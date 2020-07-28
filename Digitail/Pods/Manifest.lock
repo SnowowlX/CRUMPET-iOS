@@ -1,0 +1,36 @@
+PODS:
+  - IQKeyboardManagerSwift (6.5.2)
+  - JTAppleCalendar (8.0.2)
+  - JTMaterialSpinner (3.0.5)
+  - MGSwipeTableCell (1.6.11)
+  - RangeSeekSlider (1.8.0)
+  - SideMenu (6.0.9)
+
+DEPENDENCIES:
+  - IQKeyboardManagerSwift
+  - JTAppleCalendar
+  - JTMaterialSpinner (~> 3.0)
+  - MGSwipeTableCell
+  - RangeSeekSlider
+  - SideMenu (~> 6.0.0)
+
+SPEC REPOS:
+  trunk:
+    - IQKeyboardManagerSwift
+    - JTAppleCalendar
+    - JTMaterialSpinner
+    - MGSwipeTableCell
+    - RangeSeekSlider
+    - SideMenu
+
+SPEC CHECKSUMS:
+  IQKeyboardManagerSwift: c75366f1f19590e8caeae45fcd5815c9289d6099
+  JTAppleCalendar: bb3dd3752e2bcc85cb798ab763fbdd6e142715fc
+  JTMaterialSpinner: 28a0444186b6b2df4206a77d12f7c9dcbe604958
+  MGSwipeTableCell: b804e4e450dee439c42250be90bd50458bf67fce
+  RangeSeekSlider: 650b11fa1edcb92e1e0ede797669d98622570fb5
+  SideMenu: 12c42f4bb9405c602f0d75493206cd405911a153
+
+PODFILE CHECKSUM: 2ddac1679981d542b22e1150d194ed0fe6bd393a
+
+COCOAPODS: 1.8.4
