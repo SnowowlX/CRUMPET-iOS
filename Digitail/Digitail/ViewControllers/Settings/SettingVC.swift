@@ -74,6 +74,20 @@ class SettingVC: UIViewController {
     @IBAction func actionFakeIt(_ sender: UIButton) {
         openAlertView()
     }
+    
+    @IBAction func actionDigitail(_ sender: UIButton) {
+        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "WebKitViewVC") as! WebKitViewVC
+        vc.urlToLoad = "https://thetailcompany.com/digitail.pdf"
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func actionEarGear(_ sender: UIButton) {
+        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "WebKitViewVC") as! WebKitViewVC
+        vc.urlToLoad = "https://thetailcompany.com/eargear.pdf"
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 
     func openAlertView() {
         let alert = UIAlertController(title: "Settings", message: "Coming Soon", preferredStyle: UIAlertController.Style.alert)

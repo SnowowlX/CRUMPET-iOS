@@ -5,6 +5,7 @@ PODS:
   - MGSwipeTableCell (1.6.11)
   - RangeSeekSlider (1.8.0)
   - SideMenu (6.0.9)
+  - SOMotionDetector (1.0.2)
 
 DEPENDENCIES:
   - IQKeyboardManagerSwift
@@ -13,6 +14,7 @@ DEPENDENCIES:
   - MGSwipeTableCell
   - RangeSeekSlider
   - SideMenu (~> 6.0.0)
+  - SOMotionDetector
 
 SPEC REPOS:
   trunk:
@@ -22,6 +24,7 @@ SPEC REPOS:
     - MGSwipeTableCell
     - RangeSeekSlider
     - SideMenu
+    - SOMotionDetector
 
 SPEC CHECKSUMS:
   IQKeyboardManagerSwift: c75366f1f19590e8caeae45fcd5815c9289d6099
@@ -30,7 +33,8 @@ SPEC CHECKSUMS:
   MGSwipeTableCell: b804e4e450dee439c42250be90bd50458bf67fce
   RangeSeekSlider: 650b11fa1edcb92e1e0ede797669d98622570fb5
   SideMenu: 12c42f4bb9405c602f0d75493206cd405911a153
+  SOMotionDetector: 50131192a9b9ea76747d0230a7b6f82e5124d8d4
 
-PODFILE CHECKSUM: 2ddac1679981d542b22e1150d194ed0fe6bd393a
+PODFILE CHECKSUM: 1183c257ddcf44d1ed5d9b25c36fc0493e72d9af
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.10.1

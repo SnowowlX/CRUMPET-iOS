@@ -18,8 +18,8 @@ class SideMenuVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     @IBOutlet weak var tblViewMenuList: UITableView!
     var indexPathForTextColor : Int!
     
-    var arrMenuList = ["DIGITAIL","Alarm","Move Lists","Tail Moves","Glow Tips","Casual Mode Settings","Settings","About"]
-    var arrMenuImages = ["Home","Alarm","movelist","TailMoves","GlowTips","Casulal ModeSetting","Settings","About"]
+    var arrMenuList = ["Home","Alarm","Move Lists","Tail Moves","Glow Tips","Casual Mode Settings","Connect Gear","Settings","MiTail Instructions","About"]
+    var arrMenuImages = ["Home","Alarm","movelist","TailMoves","GlowTips","Casulal ModeSetting","bluetooth","Settings","About","About"]
     
     //MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -70,7 +70,7 @@ class SideMenuVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         let indexPath = IndexPath(row: row, section: section)
         let cell: TblCellSideMenu = self.tblViewMenuList.cellForRow(at: indexPath) as! TblCellSideMenu
         //.imgView.tintColor = UIColor.white
-        cell.imgView.image = cell.imgView.image?.withRenderingMode(.alwaysTemplate)
+//        cell.imgView.image = cell.imgView.image?.withRenderingMode(.alwaysTemplate)
         
         let navigationController = AppDelegate_.window?.rootViewController as! UINavigationController
         dismiss(animated: true, completion: nil)
@@ -98,6 +98,10 @@ class SideMenuVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let casualModeSettingVC = storyboard.instantiateViewController(withIdentifier: "CasualModeSettingVC") as! CasualModeSettingVC
             navigationController.pushViewController(casualModeSettingVC, animated: true)
+         
+        case "Connect Gear" :
+            let DeviceListVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "DeviceListVC") as? DeviceListVC
+            self.navigationController?.pushViewController(DeviceListVC!, animated: true)
             
         case "Settings" :
             let rootViewController = AppDelegate_.window!.rootViewController
@@ -114,6 +118,11 @@ class SideMenuVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             } else {
                 
             }
+        case "MiTail Instructions" :
+            let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let webViewVC = storyboard.instantiateViewController(withIdentifier: "WebKitViewVC") as! WebKitViewVC
+            webViewVC.urlToLoad = "https://thetailcompany.com/mitail.pdf"
+            navigationController.pushViewController(webViewVC, animated: true)
             
         case "About" :
             let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -131,11 +140,23 @@ class SideMenuVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
     
     func isDIGITAiLConnected() -> Bool {
-        if AppDelegate_.digitailDeviceActor != nil && (AppDelegate_.digitailDeviceActor?.peripheralActor != nil && (AppDelegate_.digitailDeviceActor?.isConnected())!) {
-            return true
-        } else {
-            return false
+        var isConnected = Bool()
+        for connectedDevices in AppDelegate_.tempDigitailDeviceActor {
+            if (connectedDevices.peripheralActor != nil && (connectedDevices.isConnected())) {
+                isConnected = true
+                break
+            } else {
+                isConnected = false
+            }
         }
+    
+        return isConnected
+        
+//        if AppDelegate_.digitailDeviceActor != nil && (AppDelegate_.digitailDeviceActor?.peripheralActor != nil && (AppDelegate_.digitailDeviceActor?.isConnected())!) {
+//            return true
+//        } else {
+//            return false
+//        }
     }
     
     //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

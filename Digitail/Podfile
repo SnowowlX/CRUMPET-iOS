@@ -13,6 +13,7 @@ target 'CRUMPET' do
   pod 'IQKeyboardManagerSwift'
   pod 'JTAppleCalendar'
   pod 'RangeSeekSlider'
+  pod 'SOMotionDetector'
 
   
   target 'DigitailTests' do

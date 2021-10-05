@@ -11,6 +11,7 @@ import MGSwipeTableCell
 
 class TblCellMoveLists: MGSwipeTableCell {
     
+    @IBOutlet weak var btn_Run_Clicked: UIButton!
     @IBOutlet var lblMoveName: UILabel!
     @IBOutlet var btnSwipeMenu: UIButton!
     

@@ -11,6 +11,7 @@ import JTMaterialSpinner
 import CoreBluetooth
 import SideMenu
 
+
 class TailMovesVC: UIViewController{
    
     //MARK: - Properties
@@ -46,20 +47,24 @@ class TailMovesVC: UIViewController{
     }
 
     func updateConnectionUI() {
-        let deviceActor = AppDelegate_.digitailDeviceActor
-        if (deviceActor?.peripheralActor != nil && (deviceActor?.isConnected())!) {
-            self.viewFindGetTail.isHidden = true
-            self.viewTailMovesDesc.isHidden = false
-            self.viewMoves.isHidden = false
-        } else {
-            self.viewActivityIndicator.isHidden = true
-            self.btnCntOrLookForDigitail.isHidden = false
-            self.btnCntOrLookForDigitail.setTitle("CONNECT", for: .normal)
-            self.lblSearchingForDigitail.text = kOneTailFound
-            self.lblDigitailDesc.text = kNotConnected
-            self.viewFindGetTail.isHidden = true
-            self.viewTailMovesDesc.isHidden = false
-            self.viewMoves.isHidden = false
+//        let deviceActor = AppDelegate_.digitailDeviceActor
+
+        for connectedDevices in AppDelegate_.tempDigitailDeviceActor {
+            let deviceActor = connectedDevices
+            if (deviceActor.peripheralActor != nil && (deviceActor.isConnected())) {
+                self.viewFindGetTail.isHidden = true
+                self.viewTailMovesDesc.isHidden = false
+                self.viewMoves.isHidden = false
+            } else {
+                self.viewActivityIndicator.isHidden = true
+                self.btnCntOrLookForDigitail.isHidden = false
+                self.btnCntOrLookForDigitail.setTitle("CONNECT", for: .normal)
+                self.lblSearchingForDigitail.text = kOneTailFound
+                self.lblDigitailDesc.text = kNotConnected
+                self.viewFindGetTail.isHidden = true
+                self.viewTailMovesDesc.isHidden = false
+                self.viewMoves.isHidden = false
+            }
         }
     }
     
@@ -146,17 +151,22 @@ class TailMovesVC: UIViewController{
         }
     }
     
+    
     //MARK: - Actions
     @IBAction func Menu_clicked(_ sender: UIButton) {
         present(SideMenuManager.default.leftMenuNavigationController!, animated: true, completion: nil)
     }
     
     @IBAction func moveClicked(_ sender: UIButton) {
-        let deviceActor = AppDelegate_.digitailDeviceActor
-        if (deviceActor != nil && (deviceActor?.isDeviceIsReady)! && (deviceActor?.isConnected())!) {
-            let tailMoveString = arrTailMoves[sender.tag]
-            let data = Data(tailMoveString.utf8)
-            deviceActor?.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
+//        let deviceActor = AppDelegate_.digitailDeviceActor
+        
+        for connectedDevices in AppDelegate_.tempDigitailDeviceActor {
+            let deviceActor = connectedDevices
+            if (deviceActor.isDeviceIsReady) && (deviceActor.isConnected()) {
+                let tailMoveString = arrTailMoves[sender.tag]
+                let data = Data(tailMoveString.utf8)
+                deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
+            }
         }
     }
     

@@ -82,38 +82,44 @@ class EarGearMovesVC: UIViewController{
     }
     
     @IBAction func Stop_Clicked(_ sender: UIButton) {
-        AppDelegate_.centralManagerActor.centralManager?.cancelPeripheralConnection((AppDelegate_.eargearDeviceActor?.peripheralActor.peripheral)!)
-        self.navigationController?.popViewController(animated: true)
+        for connectedDevice in AppDelegate_.tempEargearDeviceActor {
+            let deviceActor = connectedDevice
+            AppDelegate_.centralManagerActor.centralManager?.cancelPeripheralConnection((deviceActor.peripheralActor.peripheral)!)
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     @IBAction func LEDPatterns_Clicked(_ sender: UIButton) {
-        let deviceActor = AppDelegate_.eargearDeviceActor
-        if (deviceActor != nil && (deviceActor?.isDeviceIsReady)! && (deviceActor?.isConnected())!) {
-            switch sender.tag {
-            case 0:
-                sendHewoL()
-            case 1:
-                sendHewoR()
-            case 2:
-                sendHewoTOO()
-            case 3:
-                sendConfused()
-            case 4:
-                sendZigZagL()
-            case 5:
-                sendZigZagR()
-            case 6:
-                sendEarsHome()
-            case 7:
-                sendEltwisto()
-            case 8:
-                sendRitwisto()
-            case 9:
-                sendRFlopper()
-            case 10:
-                sendLFlopper()
-            default:
-                sendHewoL()
+//        let deviceActor = AppDelegate_.eargearDeviceActor
+        for connectedDevice in AppDelegate_.tempEargearDeviceActor {
+            let deviceActor = connectedDevice
+            if ((deviceActor.isDeviceIsReady) && (deviceActor.isConnected())) {
+                switch sender.tag {
+                case 0:
+                    sendHewoL()
+                case 1:
+                    sendHewoR()
+                case 2:
+                    sendHewoTOO()
+                case 3:
+                    sendConfused()
+                case 4:
+                    sendZigZagL()
+                case 5:
+                    sendZigZagR()
+                case 6:
+                    sendEarsHome()
+                case 7:
+                    sendEltwisto()
+                case 8:
+                    sendRitwisto()
+                case 9:
+                    sendRFlopper()
+                case 10:
+                    sendLFlopper()
+                default:
+                    sendHewoL()
+                }
             }
         }
     }
@@ -180,10 +186,13 @@ class EarGearMovesVC: UIViewController{
     }
     
     func sendDeviceCommand(command: String) {
-        let deviceActor = AppDelegate_.eargearDeviceActor
-        if (deviceActor != nil && (deviceActor?.isDeviceIsReady)! && (deviceActor?.isConnected())!) {
-            let data = Data(command.utf8)
-            deviceActor?.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
+//        let deviceActor = AppDelegate_.eargearDeviceActor
+        for connectedDevice in AppDelegate_.tempEargearDeviceActor {
+            let deviceActor = connectedDevice
+            if (deviceActor != nil && (deviceActor.isDeviceIsReady) && (deviceActor.isConnected())) {
+                let data = Data(command.utf8)
+                deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
+            }
         }
     }
     
@@ -205,7 +214,7 @@ class EarGearMovesVC: UIViewController{
     }
     
     func sendLFlopper() {
-        self.sendDeviceCommand(command: "LITILT 130")
+        self.sendDeviceCommand(command: "LETILT 130")
         self.sendDeviceCommand(command: "LETWIST 30")
     }
     

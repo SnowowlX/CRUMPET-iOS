@@ -194,11 +194,15 @@ class GlowTipsVC: UIViewController{
     }
     
     @IBAction func LEDPatterns_Clicked(_ sender: UIButton) {
-        let deviceActor = AppDelegate_.digitailDeviceActor
-        if (deviceActor != nil && (deviceActor?.isDeviceIsReady)! && (deviceActor?.isConnected())!) {
-            let ledPatternString = arrLEDPatterns[sender.tag]
-            let data = Data(ledPatternString.utf8)
-            deviceActor?.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
+//        let deviceActor = AppDelegate_.digitailDeviceActor
+        
+        for connectedDevices in AppDelegate_.tempDigitailDeviceActor {
+            let deviceActor = connectedDevices
+            if (deviceActor.isDeviceIsReady) && (deviceActor.isConnected()) {
+                let ledPatternString = arrLEDPatterns[sender.tag]
+                let data = Data(ledPatternString.utf8)
+                deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]))
+            }
         }
     }
 }

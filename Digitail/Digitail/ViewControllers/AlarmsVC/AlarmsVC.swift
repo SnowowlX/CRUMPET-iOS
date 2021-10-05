@@ -11,7 +11,7 @@ import MGSwipeTableCell
 import SideMenu
 
 let kError = "Error"
-let kMsgAlarmName = "Please Enter Alarm Name"
+let kMsgAlarmName = "needs movelist name"
 let kArrDictAlarmDetail = "AlrmDetail"
 let kArrDictMoveList = "MoveList"
 let kAlarmName = "AlarmName"

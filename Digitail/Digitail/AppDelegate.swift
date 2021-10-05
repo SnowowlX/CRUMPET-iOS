@@ -23,6 +23,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var eargearDeviceActor: BLEActor?
     var digitailPeripheral: DeviceModel?
     var eargearPeripheral: DeviceModel?
+    
+    var tempDigitailDeviceActor = [BLEActor]()
+    var tempEargearDeviceActor = [BLEActor]()
+    var tempDigitailPeripheral = [DeviceModel]()
+    var tempeargearPeripheral = [DeviceModel]()
+  
     var casualONDigitail = false
     var casualONEarGear = false
    
@@ -33,14 +39,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setRootViewController()
         setStatusColor()
         
-        // Load the objects for default store
-        let devices:NSArray = (LoadObjects(kDevicesStorageKey) as NSArray)
-        // Make BLEActor object from state and sericemeta and command(plist files)
-        for state in devices {
-            let meta: String = kServiceMeta
-            let commandMeta: String = kCommandMeta
-            self.deviceActors.append(BLEActor(deviceState: state as! NSMutableDictionary, servicesMeta: DictFromFile(meta), operationsMeta: DictFromFile(commandMeta)))
-        }
+//        // Load the objects for default store
+//        let devices:NSArray = (LoadObjects(kDevicesStorageKey) as NSArray)
+//        // Make BLEActor object from state and sericemeta and command(plist files)
+//        for state in devices {
+//            let meta: String = kServiceMeta
+//            let commandMeta: String = kCommandMeta
+//            self.deviceActors.append(BLEActor(deviceState: state as! NSMutableDictionary, servicesMeta: DictFromFile(meta), operationsMeta: DictFromFile(commandMeta)))
+//        }
         
         RegisterForNote(#selector(self.scanResultPeripheralFound(_:)),kScanResultPeripheralFound, self)
         RegisterForNote(#selector(self.PeripheralFound(_:)), kPeripheralFound, self)
@@ -92,14 +98,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         if (deviceActor == nil) {
             var isDigitail = true
-            if peripheral.identifier.uuidString == self.digitailPeripheral?.peripheral.identifier.uuidString {
-                isDigitail = true
-            } else {
-                isDigitail = false
+            //            if peripheral.identifier.uuidString == self.digitailPeripheral?.peripheral.identifier.uuidString {
+            //                isDigitail = true
+            //            } else {
+            //                isDigitail = false
+            //            }
+                        
+            var deviceName = ""
+            var isMitail = false
+            if self.tempDigitailPeripheral.count > 0 {
+                for peripharals in self.tempDigitailPeripheral {
+                    if peripheral.identifier.uuidString == peripharals.peripheral.identifier.uuidString {
+                        deviceName = peripharals.deviceName
+                        isDigitail = true
+                        if deviceName.lowercased().contains("mitail") {
+                            isMitail = true
+                        } else {
+                            isMitail = false
+                        }
+                    }
+                }
             }
             
+            if self.tempeargearPeripheral.count > 0 {
+                for peripharals in self.tempeargearPeripheral {
+                    if peripheral.identifier.uuidString == peripharals.peripheral.identifier.uuidString {
+                        isDigitail = false
+                    }
+                }
+            }
+            
+
             if isDigitail {
-                deviceActor = BLEActor(deviceState: [:], servicesMeta: DictFromFile(kServiceMeta), operationsMeta: DictFromFile(kCommandMeta))
+                if isMitail {
+                    deviceActor = BLEActor(deviceState: [:], servicesMeta: DictFromFile(kServiceMetaMitail), operationsMeta: DictFromFile(kCommandMeta))
+                } else {
+                    deviceActor = BLEActor(deviceState: [:], servicesMeta: DictFromFile(kServiceMeta), operationsMeta: DictFromFile(kCommandMeta))
+                }
+                deviceActor.state[Constants.kDeviceName] = deviceName
             } else {
                 deviceActor = BLEActor(deviceState: [:], servicesMeta: DictFromFile(kServiceMetaEarGear), operationsMeta: DictFromFile(kCommandMetaEarGear))
             }
@@ -108,8 +144,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.deviceActors.append(deviceActor)
             if isDigitail {
                 self.digitailDeviceActor = deviceActor
+                self.tempDigitailDeviceActor.append(deviceActor)
             } else {
                 self.eargearDeviceActor = deviceActor
+                self.tempEargearDeviceActor.append(deviceActor)
             }
             PostNoteBLE(kNewDeviceFound, deviceActor)
         }
@@ -187,12 +225,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let deviceName = advertisementData["kCBAdvDataLocalName"] as! String
         let RSSI = peripheralDict["Rssi"] as! NSNumber
         
-        if deviceName.contains("(!)Tail1") {
-            let device = DeviceModel.init(deviceName, peripheral, RSSI)
+        if deviceName.contains("(!)Tail1") ||  deviceName.lowercased().contains("mitail") {
+            var deviceNameToAssign = ""
+            if deviceName.lowercased().contains("mitail") {
+                deviceNameToAssign = "MITAIL"
+            } else {
+                deviceNameToAssign = "DIGITAIL"
+            }
+            let device = DeviceModel.init(deviceNameToAssign, peripheral, RSSI)
             AppDelegate_.digitailPeripheral = device
+            
+            let addedPeripharalsDevices = AppDelegate_.tempDigitailPeripheral.filter{ ($0.peripheral.identifier.uuidString.contains(device.peripheral.identifier.uuidString)) }
+            print("added Digitail Peripharals Devices",addedPeripharalsDevices)
+            
+            if addedPeripharalsDevices.count > 0 {
+                print("Digitail Device is already added or connected")
+            } else {
+                AppDelegate_.tempDigitailPeripheral.append(device)
+                print("Multiple Digitail devices ::",AppDelegate_.tempDigitailPeripheral)
+                print("Multiple Digitail devices Count::",AppDelegate_.tempDigitailPeripheral.count)
+            }
+            
+//            AppDelegate_.tempDigitailPeripheral.append(device)
+//            print("Multiple digitail devices ::",AppDelegate_.tempDigitailPeripheral)
+//            print("Multiple digitail devices Count::",AppDelegate_.tempDigitailPeripheral.count)
         } else if deviceName.lowercased().contains("eargear") {
-             let device = DeviceModel.init(deviceName, peripheral, RSSI)
+            let device = DeviceModel.init("EARGEAR", peripheral, RSSI)
             AppDelegate_.eargearPeripheral = device
+            
+            let addedPeripharalsDevices = AppDelegate_.tempeargearPeripheral.filter{ ($0.peripheral.identifier.uuidString.contains(device.peripheral.identifier.uuidString)) }
+            print("added EarGear Peripharals Devices",addedPeripharalsDevices)
+            
+            if addedPeripharalsDevices.count > 0 {
+                print("EarGear Device is already added or connected")
+            } else {
+                AppDelegate_.tempeargearPeripheral.append(device)
+                print("Multiple eargear devices ::",AppDelegate_.tempeargearPeripheral)
+                print("Multiple eargear devices Count::",AppDelegate_.tempeargearPeripheral.count)
+            }
+            
+            
+//            AppDelegate_.tempeargearPeripheral.append(device)
+//            print("Multiple eargear devices ::",AppDelegate_.tempeargearPeripheral)
+//            print("Multiple eargear devices Count::",AppDelegate_.tempeargearPeripheral.count)
         }
     }
     

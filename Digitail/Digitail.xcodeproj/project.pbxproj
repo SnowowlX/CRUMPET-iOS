@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		4910C51EBDB596C712F7080E /* Pods_CRUMPET.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 169748CE981B2F664271FCC9 /* Pods_CRUMPET.framework */; };
+		848C77A424FE43740056C576 /* WebKitViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848C77A324FE43740056C576 /* WebKitViewVC.swift */; };
 		84C5E46B24767D2F004B8BE0 /* DeveloperVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C5E46A24767D2F004B8BE0 /* DeveloperVC.swift */; };
 		92E54A5F7F92158F3837CE2A /* Pods_DigitailTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40C8F173029F8985510A6819 /* Pods_DigitailTests.framework */; };
 		9B3AAA632473A922003FA5D6 /* ConnectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3AAA622473A922003FA5D6 /* ConnectVC.swift */; };
 		9B3AAA662473D8B0003FA5D6 /* serviceMetaEarGear.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B3AAA642473D8AF003FA5D6 /* serviceMetaEarGear.plist */; };
 		9B3AAA672473D8B0003FA5D6 /* commandMetaEarGear.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B3AAA652473D8AF003FA5D6 /* commandMetaEarGear.plist */; };
 		9B3AAA6B2473FAD3003FA5D6 /* EarGearMovesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3AAA6A2473FAD2003FA5D6 /* EarGearMovesVC.swift */; };
+		9BA4621526CF7E2200ACF648 /* serviceMetaMitail.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9BA4621426CF7E2200ACF648 /* serviceMetaMitail.plist */; };
 		9BA91C6B23584DFC0088A67E /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA91C6A23584DFC0088A67E /* UIViewExtension.swift */; };
 		A006DA5D22BCF308008DDEC1 /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A006DA5C22BCF308008DDEC1 /* SideMenuVC.swift */; };
 		A006DA6022BCF4ED008DDEC1 /* TblCellSideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A006DA5F22BCF4ED008DDEC1 /* TblCellSideMenu.swift */; };
@@ -61,6 +63,15 @@
 		A0E5CDAE237179F200EA438C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E5CDAD237179F200EA438C /* Utilities.swift */; };
 		A0EE9CA322D741DD00E61AD8 /* splash.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A0EE9CA222D741DD00E61AD8 /* splash.mp4 */; };
 		A72158AA02D9A0DF9BB8121A /* Pods_DigitailUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9006D66028A4D93DEAA226A3 /* Pods_DigitailUITests.framework */; };
+		FF010CA525F62C390039A800 /* TblVw_ConnectedDeviceLIst_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF010CA425F62C390039A800 /* TblVw_ConnectedDeviceLIst_Cell.swift */; };
+		FF51055225C2DA8200D0D923 /* TailMovesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF51055125C2DA8200D0D923 /* TailMovesListVC.swift */; };
+		FF51055825C2DEFE00D0D923 /* TblVw_TailMovesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF51055725C2DEFE00D0D923 /* TblVw_TailMovesListCell.swift */; };
+		FF606EE725F0D8BA00D36BF9 /* TblVw_FastAndExited_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF606EE625F0D8BA00D36BF9 /* TblVw_FastAndExited_Cell.swift */; };
+		FF606EEC25F0DC4400D36BF9 /* TblVw_FrustretedAndTense_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF606EEB25F0DC4400D36BF9 /* TblVw_FrustretedAndTense_Cell.swift */; };
+		FF606EF225F0EAB300D36BF9 /* CollVw_MoveListSequence_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF606EF125F0EAB300D36BF9 /* CollVw_MoveListSequence_Cell.swift */; };
+		FF606F0525F2424700D36BF9 /* DeviceListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF606F0425F2424700D36BF9 /* DeviceListVC.swift */; };
+		FF606F0E25F2429900D36BF9 /* TblVw_DeviceList_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF606F0D25F2429900D36BF9 /* TblVw_DeviceList_Cell.swift */; };
+		FF9BA12625F74C5800318973 /* TblVw_ConnectedDeviceSections_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9BA12525F74C5800318973 /* TblVw_ConnectedDeviceSections_Cell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +97,7 @@
 		40C8F173029F8985510A6819 /* Pods_DigitailTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DigitailTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AD82D4A462FC5B93DC20E14 /* Pods-CRUMPET.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CRUMPET.debug.xcconfig"; path = "Target Support Files/Pods-CRUMPET/Pods-CRUMPET.debug.xcconfig"; sourceTree = "<group>"; };
 		574B6B17F0D1ABB77B66EF19 /* Pods-DigitailTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DigitailTests.release.xcconfig"; path = "Target Support Files/Pods-DigitailTests/Pods-DigitailTests.release.xcconfig"; sourceTree = "<group>"; };
+		848C77A324FE43740056C576 /* WebKitViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebKitViewVC.swift; sourceTree = "<group>"; };
 		84C5E46A24767D2F004B8BE0 /* DeveloperVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperVC.swift; sourceTree = "<group>"; };
 		8560FB2C191BE177F30E3A66 /* Pods-Digitail.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Digitail.debug.xcconfig"; path = "Target Support Files/Pods-Digitail/Pods-Digitail.debug.xcconfig"; sourceTree = "<group>"; };
 		9006D66028A4D93DEAA226A3 /* Pods_DigitailUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DigitailUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +105,7 @@
 		9B3AAA642473D8AF003FA5D6 /* serviceMetaEarGear.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = serviceMetaEarGear.plist; sourceTree = "<group>"; };
 		9B3AAA652473D8AF003FA5D6 /* commandMetaEarGear.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = commandMetaEarGear.plist; sourceTree = "<group>"; };
 		9B3AAA6A2473FAD2003FA5D6 /* EarGearMovesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EarGearMovesVC.swift; sourceTree = "<group>"; };
+		9BA4621426CF7E2200ACF648 /* serviceMetaMitail.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = serviceMetaMitail.plist; sourceTree = "<group>"; };
 		9BA91C6A23584DFC0088A67E /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewExtension.swift; path = ViewControllers/UIViewExtension.swift; sourceTree = "<group>"; };
 		A006DA5C22BCF308008DDEC1 /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
 		A006DA5F22BCF4ED008DDEC1 /* TblCellSideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TblCellSideMenu.swift; sourceTree = "<group>"; };
@@ -151,6 +164,15 @@
 		F0BBF363A91A957FA5637341 /* Pods-DigitailUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DigitailUITests.release.xcconfig"; path = "Target Support Files/Pods-DigitailUITests/Pods-DigitailUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F6FF560054B4387964FC009C /* Pods-CRUMPET.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CRUMPET.release.xcconfig"; path = "Target Support Files/Pods-CRUMPET/Pods-CRUMPET.release.xcconfig"; sourceTree = "<group>"; };
 		FD318E3C26EA1F1FC2D755AA /* Pods-DigitailTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DigitailTests.debug.xcconfig"; path = "Target Support Files/Pods-DigitailTests/Pods-DigitailTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FF010CA425F62C390039A800 /* TblVw_ConnectedDeviceLIst_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TblVw_ConnectedDeviceLIst_Cell.swift; sourceTree = "<group>"; };
+		FF51055125C2DA8200D0D923 /* TailMovesListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TailMovesListVC.swift; sourceTree = "<group>"; };
+		FF51055725C2DEFE00D0D923 /* TblVw_TailMovesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TblVw_TailMovesListCell.swift; sourceTree = "<group>"; };
+		FF606EE625F0D8BA00D36BF9 /* TblVw_FastAndExited_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TblVw_FastAndExited_Cell.swift; sourceTree = "<group>"; };
+		FF606EEB25F0DC4400D36BF9 /* TblVw_FrustretedAndTense_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TblVw_FrustretedAndTense_Cell.swift; sourceTree = "<group>"; };
+		FF606EF125F0EAB300D36BF9 /* CollVw_MoveListSequence_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollVw_MoveListSequence_Cell.swift; sourceTree = "<group>"; };
+		FF606F0425F2424700D36BF9 /* DeviceListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceListVC.swift; sourceTree = "<group>"; };
+		FF606F0D25F2429900D36BF9 /* TblVw_DeviceList_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TblVw_DeviceList_Cell.swift; sourceTree = "<group>"; };
+		FF9BA12525F74C5800318973 /* TblVw_ConnectedDeviceSections_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TblVw_ConnectedDeviceSections_Cell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +211,14 @@
 				169748CE981B2F664271FCC9 /* Pods_CRUMPET.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		848C77A224FE43490056C576 /* WebKitView */ = {
+			isa = PBXGroup;
+			children = (
+				848C77A324FE43740056C576 /* WebKitViewVC.swift */,
+			);
+			path = WebKitView;
 			sourceTree = "<group>";
 		};
 		84C5E46924767D0C004B8BE0 /* DevloperVc */ = {
@@ -285,6 +315,9 @@
 		A06E23AF22AA1FA300EB615C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FF606F0325F2422000D36BF9 /* DeviceListVc */,
+				FF51055025C2D90E00D0D923 /* NewListVc */,
+				848C77A224FE43490056C576 /* WebKitView */,
 				84C5E46924767D0C004B8BE0 /* DevloperVc */,
 				9B3AAA692473FAAA003FA5D6 /* EarGear Moves */,
 				9B3AAA612473A8C0003FA5D6 /* Connect Device */,
@@ -483,6 +516,7 @@
 		A0C629ED22AE66620036A20C /* DigitailVC */ = {
 			isa = PBXGroup;
 			children = (
+				FF010CA325F62C0E0039A800 /* UITableViewCell */,
 				A06E23B022AA2DE900EB615C /* DigitailVC.swift */,
 			);
 			path = DigitailVC;
@@ -501,6 +535,7 @@
 				A0C629F622AE67380036A20C /* Digitail-Bridging-Header.h */,
 				A0C629F722AE67380036A20C /* serviceMeta.plist */,
 				9B3AAA652473D8AF003FA5D6 /* commandMetaEarGear.plist */,
+				9BA4621426CF7E2200ACF648 /* serviceMetaMitail.plist */,
 				9B3AAA642473D8AF003FA5D6 /* serviceMetaEarGear.plist */,
 			);
 			path = BLE;
@@ -527,6 +562,60 @@
 				F6FF560054B4387964FC009C /* Pods-CRUMPET.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		FF010CA325F62C0E0039A800 /* UITableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				FF010CA425F62C390039A800 /* TblVw_ConnectedDeviceLIst_Cell.swift */,
+				FF9BA12525F74C5800318973 /* TblVw_ConnectedDeviceSections_Cell.swift */,
+			);
+			path = UITableViewCell;
+			sourceTree = "<group>";
+		};
+		FF51055025C2D90E00D0D923 /* NewListVc */ = {
+			isa = PBXGroup;
+			children = (
+				FF606EF025F0EA8400D36BF9 /* UICollectionViewCell */,
+				FF51055625C2DECB00D0D923 /* UITableViewCell */,
+				FF51055125C2DA8200D0D923 /* TailMovesListVC.swift */,
+			);
+			path = NewListVc;
+			sourceTree = "<group>";
+		};
+		FF51055625C2DECB00D0D923 /* UITableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				FF51055725C2DEFE00D0D923 /* TblVw_TailMovesListCell.swift */,
+				FF606EE625F0D8BA00D36BF9 /* TblVw_FastAndExited_Cell.swift */,
+				FF606EEB25F0DC4400D36BF9 /* TblVw_FrustretedAndTense_Cell.swift */,
+			);
+			path = UITableViewCell;
+			sourceTree = "<group>";
+		};
+		FF606EF025F0EA8400D36BF9 /* UICollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				FF606EF125F0EAB300D36BF9 /* CollVw_MoveListSequence_Cell.swift */,
+			);
+			path = UICollectionViewCell;
+			sourceTree = "<group>";
+		};
+		FF606F0325F2422000D36BF9 /* DeviceListVc */ = {
+			isa = PBXGroup;
+			children = (
+				FF606F0C25F2426D00D36BF9 /* UITableViewCell */,
+				FF606F0425F2424700D36BF9 /* DeviceListVC.swift */,
+			);
+			path = DeviceListVc;
+			sourceTree = "<group>";
+		};
+		FF606F0C25F2426D00D36BF9 /* UITableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				FF606F0D25F2429900D36BF9 /* TblVw_DeviceList_Cell.swift */,
+			);
+			path = UITableViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -647,6 +736,7 @@
 				9B3AAA672473D8B0003FA5D6 /* commandMetaEarGear.plist in Resources */,
 				A0B1DA0F22A94BAD007592B7 /* Assets.xcassets in Resources */,
 				A0B1DA0D22A94BA4007592B7 /* Main.storyboard in Resources */,
+				9BA4621526CF7E2200ACF648 /* serviceMetaMitail.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -763,6 +853,7 @@
 				A0C629FC22AE67380036A20C /* Commands.swift in Sources */,
 				A093759F22CCBAC600C278DE /* TblCellGlowTips.swift in Sources */,
 				A006DA5D22BCF308008DDEC1 /* SideMenuVC.swift in Sources */,
+				FF606EE725F0D8BA00D36BF9 /* TblVw_FastAndExited_Cell.swift in Sources */,
 				A0E5CDAE237179F200EA438C /* Utilities.swift in Sources */,
 				A095848422D345930091B36D /* TblCellUpdateAlarm.swift in Sources */,
 				A093B88622AFC3EF002BA8FB /* TailMovesVC.swift in Sources */,
@@ -771,13 +862,17 @@
 				A09DBEF022C23DCA003C605A /* AnimationClass.swift in Sources */,
 				A06421A922D4553000BB98D0 /* TblCellMoveListUpdate.swift in Sources */,
 				A06BBA6A22C63FAA00F69F17 /* SettingVC.swift in Sources */,
+				FF51055825C2DEFE00D0D923 /* TblVw_TailMovesListCell.swift in Sources */,
 				A09375A222CCCDA300C278DE /* MoveListsVC.swift in Sources */,
 				9B3AAA6B2473FAD3003FA5D6 /* EarGearMovesVC.swift in Sources */,
+				FF606EF225F0EAB300D36BF9 /* CollVw_MoveListSequence_Cell.swift in Sources */,
+				FF606F0E25F2429900D36BF9 /* TblVw_DeviceList_Cell.swift in Sources */,
 				A06E23B322AA822B00EB615C /* AlarmsVC.swift in Sources */,
 				A09DBEF522C23DCA003C605A /* Extensions.swift in Sources */,
 				A0C629F822AE67380036A20C /* ArrayUtils.m in Sources */,
 				84C5E46B24767D2F004B8BE0 /* DeveloperVC.swift in Sources */,
 				A09DBEF322C23DCA003C605A /* CellView.swift in Sources */,
+				FF606F0525F2424700D36BF9 /* DeviceListVC.swift in Sources */,
 				A09375A522CCCF8500C278DE /* TblCellMoveLists.swift in Sources */,
 				A079559B22B0C78500E3F022 /* tblCellTailMoves.swift in Sources */,
 				A0CF356B22E81BA400FE9F6C /* AboutVC.swift in Sources */,
@@ -788,14 +883,19 @@
 				9BA91C6B23584DFC0088A67E /* UIViewExtension.swift in Sources */,
 				A0C629FA22AE67380036A20C /* CBUtils.swift in Sources */,
 				9B3AAA632473A922003FA5D6 /* ConnectVC.swift in Sources */,
+				FF606EEC25F0DC4400D36BF9 /* TblVw_FrustretedAndTense_Cell.swift in Sources */,
 				A0361ACA22E8390C002CBC78 /* LoadCompanyDetail.swift in Sources */,
 				A0923D5A22D86BA7007158F7 /* TailPosesVC.swift in Sources */,
 				A09DBEE422C23B97003C605A /* PopUpVC.swift in Sources */,
+				FF51055225C2DA8200D0D923 /* TailMovesListVC.swift in Sources */,
 				A006DA6022BCF4ED008DDEC1 /* TblCellSideMenu.swift in Sources */,
 				A09DBEF622C23DCA003C605A /* PopupContainer.swift in Sources */,
+				FF010CA525F62C390039A800 /* TblVw_ConnectedDeviceLIst_Cell.swift in Sources */,
 				A06E23B722AA83C900EB615C /* tblCellAlarms.swift in Sources */,
+				FF9BA12625F74C5800318973 /* TblVw_ConnectedDeviceSections_Cell.swift in Sources */,
 				A06BBA6722C6132700F69F17 /* TblCellCasualModeSetting.swift in Sources */,
 				A095847E22D2FE400091B36D /* LaunchVC.swift in Sources */,
+				848C77A424FE43740056C576 /* WebKitViewVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -908,6 +1008,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -963,6 +1064,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.2;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -974,7 +1076,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SKRSQZ43AV;
 				INFOPLIST_FILE = Digitail/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -982,7 +1084,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.5;
+				MARKETING_VERSION = 5.4;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Digitail.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1000,7 +1102,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SKRSQZ43AV;
 				INFOPLIST_FILE = Digitail/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1008,7 +1110,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.5;
+				MARKETING_VERSION = 5.4;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Digitail.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -75,8 +75,18 @@ class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataS
          */
     }
     
-    func openErrorMsg() {
-        let deviceActor = AppDelegate_.digitailDeviceActor
+//    func openErrorMsg() {
+//        let deviceActor = AppDelegate_.digitailDeviceActor
+//        if deviceActor?.isConnected() == nil {
+//              UIAlertController.alert(title:"Error", msg:"Please connect to device", target: self)
+//        }
+//        if arrSelectedIndex.count == 0 {
+//           UIAlertController.alert(title:"Error", msg:"Please select group", target: self)
+//        }
+//    }
+    
+    func openErrorMsg(connectedDevice : BLEActor?) {
+        let deviceActor = connectedDevice
         if deviceActor?.isConnected() == nil {
               UIAlertController.alert(title:"Error", msg:"Please connect to device", target: self)
         }
@@ -138,49 +148,57 @@ class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataS
     
     @IBAction func SendToTail_Clicked(_ sender: UIButton) {
         if sender.tag == 1 {
-            let deviceActor = AppDelegate_.eargearDeviceActor
-            if (deviceActor != nil && (deviceActor?.isDeviceIsReady)! && (deviceActor?.isConnected())! && arrSelectedIndex.count != 0) {
-                btnSendToTail.setTitle(kSendToTail, for: .normal)
-                AppDelegate_.casualONEarGear = true
-                sender.tag = 2
-                let minTime = "\(Int(viewRangeSlider.selectedMinValue)) "
-                let MaxTime = "\(Int(viewRangeSlider.selectedMaxValue))"
-                var eargearString = String()
-                var timeString : String?
-                eargearString = "CASUAL"
-                timeString = "\(eargearString) \(minTime)\(MaxTime)"
-                print(timeString!)
-                let data = Data(timeString!.utf8)
-                
-                deviceActor?.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]))
+//            let deviceActor = AppDelegate_.eargearDeviceActor
+            for connectedDevice in AppDelegate_.tempEargearDeviceActor {
+                let deviceActor = connectedDevice
+                if ((deviceActor.isDeviceIsReady) && (deviceActor.isConnected()) && arrSelectedIndex.count != 0) {
+                    btnSendToTail.setTitle(kSendToTail, for: .normal)
+                    AppDelegate_.casualONEarGear = true
+                    sender.tag = 2
+                    let minTime = "\(Int(viewRangeSlider.selectedMinValue)) "
+                    let MaxTime = "\(Int(viewRangeSlider.selectedMaxValue))"
+                    var eargearString = String()
+                    var timeString : String?
+                    eargearString = "CASUAL"
+                    timeString = "\(eargearString) \(minTime)\(MaxTime)"
+                    print(timeString!)
+                    let data = Data(timeString!.utf8)
+                    
+                    deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]))
+                }
             }
         } else {
-            let deviceActor = AppDelegate_.digitailDeviceActor
-            if (deviceActor != nil && (deviceActor?.isDeviceIsReady)! && (deviceActor?.isConnected())! && arrSelectedIndex.count != 0) {
-                btnSendToTail.setTitle(kSendToEargear, for: .normal)
-                sender.tag = 1
-                AppDelegate_.casualONDigitail = true
-                let minTime = "T\(Int(viewRangeSlider.selectedMinValue)) "//T18
-                let MaxTime = "T\(Int(viewRangeSlider.selectedMaxValue)) "//T200
-                //  let totalduration = "T\(Int((viewRangeSlider.selectedMaxValue)/60))"
-                let totalduration = "T240"
-                var tailMoveString : String!
-                var timeString : String!
-                tailMoveString = "AUTOMODE"
-                // tailMoveString = "AUTOMOVE \(minTime)\(MaxTime)\(totalduration)"
-                timeString = " \(minTime)\(MaxTime)\(totalduration)"
-                for selectedGroup in arrSelectedIndex{
-                    tailMoveString.append(contentsOf:  "G\(selectedGroup+1) ")
+//            let deviceActor = AppDelegate_.digitailDeviceActor
+
+            for connectedDevices in AppDelegate_.tempDigitailDeviceActor {
+                let deviceActor = connectedDevices
+                
+                if (deviceActor.isDeviceIsReady) && (deviceActor.isConnected()) && arrSelectedIndex.count != 0 {
+                    btnSendToTail.setTitle(kSendToEargear, for: .normal)
+                    sender.tag = 1
+                    AppDelegate_.casualONDigitail = true
+                    let minTime = "T\(Int(viewRangeSlider.selectedMinValue)) "//T18
+                    let MaxTime = "T\(Int(viewRangeSlider.selectedMaxValue)) "//T200
+                    //  let totalduration = "T\(Int((viewRangeSlider.selectedMaxValue)/60))"
+                    let totalduration = "T240"
+                    var tailMoveString : String!
+                    var timeString : String!
+                    tailMoveString = "AUTOMODE"
+                    // tailMoveString = "AUTOMOVE \(minTime)\(MaxTime)\(totalduration)"
+                    timeString = " \(minTime)\(MaxTime)\(totalduration)"
+                    for selectedGroup in arrSelectedIndex{
+                        tailMoveString.append(contentsOf:  "G\(selectedGroup+1) ")
+                    }
+                    tailMoveString.append(contentsOf: timeString)
+                    print(tailMoveString!)
+                    let data = Data(tailMoveString!.utf8)
+                    deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
+                    //                } while dataSendCount < (data.count)
+                    UIAlertController.alert(title:"", msg:"Casual mode on", target: self)
                 }
-                tailMoveString.append(contentsOf: timeString)
-                print(tailMoveString!)
-                let data = Data(tailMoveString!.utf8)
-                deviceActor?.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
-                //                } while dataSendCount < (data.count)
-                UIAlertController.alert(title:"", msg:"Casual mode on", target: self)
-            }
-            else{
-                openErrorMsg()
+                else{
+                    openErrorMsg(connectedDevice: deviceActor)
+                }
             }
         }
     }

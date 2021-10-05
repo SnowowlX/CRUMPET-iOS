@@ -22,13 +22,17 @@ class DeveloperVC: UIViewController {
 
     //MARK:- CUSTOM METHODS -
     func sendDataToDevice(selectedValue : String) {
-        let deviceActor = AppDelegate_.eargearDeviceActor
-        if (deviceActor != nil && (deviceActor?.isDeviceIsReady)! && (deviceActor?.isConnected())!) {
-            let data = Data(selectedValue.utf8)
-            deviceActor?.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]))
-        } else {
-            if deviceActor?.isConnected() == nil {
-                UIAlertController.alert(title:"Error", msg:"Please connect to device", target: self)
+//        let deviceActor = AppDelegate_.eargearDeviceActor
+        
+        for connectedDevice in AppDelegate_.tempEargearDeviceActor {
+            let deviceActor = connectedDevice
+            if ((deviceActor.isDeviceIsReady) && (deviceActor.isConnected())) {
+                let data = Data(selectedValue.utf8)
+                deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]))
+            } else {
+                if deviceActor.isConnected() == false {
+                    UIAlertController.alert(title:"Error", msg:"Please connect to device", target: self)
+                }
             }
         }
     }

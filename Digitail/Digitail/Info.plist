@@ -24,6 +24,17 @@
 	<string>App is using bluetooth to interact with Digitail hardware device.</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>App is using bluetooth to interact with Digitail hardware device.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>App wants to use location for Walk Mode</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>App wants to use location for Walk Mode</string>
+	<key>NSMotionUsageDescription</key>
+	<string>App wants to use motion sensors for Walk Mode</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>bluetooth-central</string>
+		<string>location</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

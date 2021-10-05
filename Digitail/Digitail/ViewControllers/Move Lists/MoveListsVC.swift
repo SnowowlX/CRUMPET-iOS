@@ -10,7 +10,8 @@ import UIKit
 import MGSwipeTableCell
 import SideMenu
 
-class MoveListsVC: UIViewController,UITableViewDelegate,UITableViewDataSource,MGSwipeTableCellDelegate,UITextFieldDelegate{
+
+class MoveListsVC: UIViewController,UITableViewDelegate,UITableViewDataSource,MGSwipeTableCellDelegate,UITextFieldDelegate,MoveListDelegate{
     
     //MARK: - Properties
     @IBOutlet var tblViewMoveLists: UITableView!
@@ -23,7 +24,12 @@ class MoveListsVC: UIViewController,UITableViewDelegate,UITableViewDataSource,MG
     @IBOutlet var viewMoveListDesc: UIView!
     var indexPathForOpr : Int!
     var arrdictMoveListData = [[String:Any]]()
+    var currentTimerInterval : Float = 0
+    var currentMoveList: [String] = [String]()
+    var currentIndex = 0
     @IBOutlet var btnMenu: UIButton!
+    var moveTimer = Timer()
+    let dictHomePosition = ["Slow wag 1":"TAILS1","Slow wag 2":"TAILS2","Slow wag 3":"TAILS3","FAst wag":"TAILFA","SHort wag":"TAILSH","HAppy wag":"TAILHA","ERect":"TAILER","Erect Pulse":"TAILEP","Tremble 1":"TAILT1","Tremble 2":"TAILT2","Erect Trem":"TAILET"]
     
     @IBOutlet var btnCreate: UIButton!
     
@@ -32,6 +38,7 @@ class MoveListsVC: UIViewController,UITableViewDelegate,UITableViewDataSource,MG
         super.viewDidLoad()
         tblViewMoveLists.reloadData()
         setUpMainUI()
+        RegisterForNote(#selector(self.DeviceDidUpdateProperty(_:)), kDeviceDidUpdateProperty, self)
     }
     
     //MARK: - Custome Function -
@@ -95,6 +102,24 @@ class MoveListsVC: UIViewController,UITableViewDelegate,UITableViewDataSource,MG
         viewPopUp.isHidden = true
     }
     
+    func moveToCreateMoveListScreen(isfromEdit : Bool, strMoveListName : String) {
+        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let objTailMovesListVC = storyboard.instantiateViewController(withIdentifier: "TailMovesListVC") as! TailMovesListVC
+        objTailMovesListVC.delegate = self
+        objTailMovesListVC.isFromEdit = isfromEdit
+        objTailMovesListVC.savedMoveListName = strMoveListName
+        self.navigationController?.pushViewController(objTailMovesListVC, animated: true)
+    }
+    
+    //DELEGATE METHOD -
+    func fetchSavedData(strMoveName : String) {
+        var dictMoveListData = [String:Any]()
+        dictMoveListData[kMoveName] = strMoveName
+        arrdictMoveListData.append(dictMoveListData)
+        UserDefaults.standard.set(arrdictMoveListData, forKey: kArrDictMoveList)
+        self.tblViewMoveLists.reloadData()
+    }
+    
      //MARK: - Actions -
     @objc func Swipable_Menu_Clicked(sender: UIButton){
         let section = 0
@@ -104,11 +129,63 @@ class MoveListsVC: UIViewController,UITableViewDelegate,UITableViewDataSource,MG
         cell.showSwipe(.rightToLeft, animated: true)
     }
     
+    @objc func Run_Clicked(sender: UIButton) {
+        print("Run Commands from here")
+         if self.isDIGITAiLConnected() {
+             let row = sender.tag
+             let indexPath = IndexPath(row: row, section: 0)
+             let cell: TblCellMoveLists = self.tblViewMoveLists.cellForRow(at: indexPath) as! TblCellMoveLists
+            if sender.titleLabel?.text == "Run" {
+                let movelistName = arrdictMoveListData[sender.tag][kMoveName] as! String
+                    if let pravSavedData = UserDefaults.standard.value(forKey: "\(movelistName) MoveList") as? [String : AnyObject] {
+                        print(pravSavedData)
+                        let sliderValue = pravSavedData["SliderValue"] as! String
+                        let checkedIndexes = pravSavedData["SelectedData"] as! [String]
+                        self.currentMoveList = checkedIndexes
+                        self.currentTimerInterval = Float(sliderValue)!
+                        self.currentIndex = 0
+                        sendMoveCommand()
+                    }
+            }
+         } else {
+             showAlert(title: kTitleConnect, msg: kMsgConnect)
+         }
+    }
+    
+    func stopMoveList() {
+        self.moveTimer.invalidate()
+    }
+    
+    
+    func runMoveList() {
+        self.moveTimer.invalidate()
+        self.moveTimer = Timer.scheduledTimer(timeInterval: TimeInterval(self.currentTimerInterval), target: self, selector:#selector(self.sendMoveCommand) , userInfo: nil, repeats: false)
+    }
+    
+    @objc func sendMoveCommand() {
+//        let deviceActor = AppDelegate_.digitailDeviceActor
+        
+        for connectedDevices in AppDelegate_.tempDigitailDeviceActor {
+            let deviceActor = connectedDevices
+            if ((deviceActor.isDeviceIsReady) && ((deviceActor.isConnected()))) {
+                let tailMoveString = self.dictHomePosition[self.currentMoveList[self.currentIndex]]
+//                if tailMoveString != nil {
+                    let data = Data(tailMoveString!.utf8)
+                    deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
+                    self.currentIndex += 1
+                    if self.currentIndex == self.currentMoveList.count {
+                        self.currentIndex = 0
+                    }
+//                }
+            }
+        }
+    }
+    
     @IBAction func Create_Clicked(_ sender: UIButton) {
         if txtMoveListName.text == ""{
             openAlertView()
         }
-        else{
+        else {
             var dictMoveListData = [String:Any]()
             dictMoveListData[kMoveName] = txtMoveListName.text
             arrdictMoveListData.append(dictMoveListData)
@@ -120,8 +197,7 @@ class MoveListsVC: UIViewController,UITableViewDelegate,UITableViewDataSource,MG
     }
     
     @IBAction func Add_Clicked(_ sender: UIButton) {
-        viewPopUpBackground.isHidden = false
-        viewPopUp.isHidden = false
+        moveToCreateMoveListScreen(isfromEdit: false, strMoveListName: "")
     }
     
     @IBAction func OK_Clicked_PopUp(_ sender: UIButton) {
@@ -153,6 +229,8 @@ class MoveListsVC: UIViewController,UITableViewDelegate,UITableViewDataSource,MG
         cell.lblMoveName.text = arrdictMoveListData[indexPath.row][kMoveName] as? String
         cell.selectionStyle = .none
         cell.btnSwipeMenu.tag = indexPath.row
+        cell.btn_Run_Clicked.tag = indexPath.row
+        cell.btn_Run_Clicked.addTarget(self, action: #selector(Run_Clicked), for: .touchUpInside)
         cell.btnSwipeMenu.addTarget(self, action: #selector(Swipable_Menu_Clicked), for: .touchUpInside)
         cell.delegate = self
         cell.rightButtons = [MGSwipeButton(title: "", icon: UIImage(named:"delete"), backgroundColor: .clear, padding: 30, callback: { (MGSwipeTableCell) -> Bool in
@@ -160,13 +238,15 @@ class MoveListsVC: UIViewController,UITableViewDelegate,UITableViewDataSource,MG
             self.viewDeletePopUp.isHidden = false
             self.viewPopUpBackground.isHidden = false
             let moveName = self.arrdictMoveListData[indexPath.row][kMoveName] as? String
-            self.lblDeletePopUpDesc.text = "Are you sure that you want to remove the alarm '\(moveName ?? "")'?"
+            self.lblDeletePopUpDesc.text = "Are you sure that you want to remove the '\(moveName ?? "")'?"
+            
+            if isKeyPresentInUserDefaults(key: "\(self.arrdictMoveListData[indexPath.row][kMoveName] ?? "") MoveList") {
+                UserDefaults.standard.removeObject(forKey: "\(self.arrdictMoveListData[indexPath.row][kMoveName] ?? "") MoveList")
+            }
             self.tblViewMoveLists.reloadData()
             return true
         }),MGSwipeButton(title: "", icon: UIImage(named: "edit"), backgroundColor: .clear, padding: 30, callback: { (MGSwipeTableCell) -> Bool in
-             let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let moveListUpdateVC = storyboard.instantiateViewController(withIdentifier: "MoveListUpdateVC") as! MoveListUpdateVC
-            self.navigationController?.pushViewController(moveListUpdateVC, animated: true)
+            self.moveToCreateMoveListScreen(isfromEdit: true, strMoveListName: self.arrdictMoveListData[indexPath.row][kMoveName] as! String)
             return true
         })]
         
@@ -181,6 +261,56 @@ class MoveListsVC: UIViewController,UITableViewDelegate,UITableViewDataSource,MG
         btnCreate.alpha = 1.0
     }
     
+    func isDIGITAiLConnected() -> Bool {
+//        if AppDelegate_.digitailDeviceActor != nil && (AppDelegate_.digitailDeviceActor?.peripheralActor != nil && (AppDelegate_.digitailDeviceActor?.isConnected())!) {
+//            return true
+//        } else {
+//            return false
+//        }
+        
+        var isConnected = Bool()
+        for connectedDevices in AppDelegate_.tempDigitailDeviceActor {
+            if (connectedDevices.peripheralActor != nil && (connectedDevices.isConnected())) {
+                isConnected = true
+                break
+            } else {
+                isConnected = false
+            }
+        }
+    
+        return isConnected
+        
+    }
+    
+    func showAlert(title:String, msg:String) {
+        let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertController.Style.alert)
+        //        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
+        alert.addAction(UIAlertAction(title: kAlertActionOK, style: .default, handler:{ (UIAlertAction) in
+            self.navigationController?.popViewController(animated: true)
+            ///print("User click Ok button")
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func DeviceDidUpdateProperty(_ note: Notification) {
+        let objActor : BLEActor = note.object as! BLEActor
+        debugPrint(#function,"UpdateValue Data %@", note.userInfo!)
+        let responseData = note.userInfo as! [String:Any]
+        
+        if responseData["name"] as? String == Constants.kCharacteristic_WriteData || responseData["name"] as? String == Constants.kCharacteristic_ReadData {
+            if let data = responseData["value"] as? Data {
+                let str = String(decoding: data, as: UTF8.self)
+                if str.lowercased().contains("end") {
+                    if self.currentIndex == 0 {
+                        stopMoveList()
+                    } else {
+                        runMoveList()
+                    }
+                }
+                
+            }
+        }
+    }
     
 }
 

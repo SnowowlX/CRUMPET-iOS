@@ -48,6 +48,8 @@ let kCommandMeta = "commandMeta.plist"
 let kServiceMetaEarGear = "serviceMetaEarGear.plist"
 let kCommandMetaEarGear = "commandMetaEarGear.plist"
 
+let kServiceMetaMitail = "serviceMetaMitail.plist"
+
 enum kValueTransformDirection : Int {
     case In = 0
     case Out
@@ -75,7 +77,7 @@ extension CBPeripheral {
 
 extension CBCharacteristic {
     func path() -> String {
-        return  (NSStringsFromCBUUIDs(cbUUIDs: [service.uuid, uuid]) as NSArray).componentsJoined(by: Constants.kCBPathDelimiter)
+        return  (NSStringsFromCBUUIDs(cbUUIDs: [service!.uuid, uuid]) as NSArray).componentsJoined(by: Constants.kCBPathDelimiter)
     }
     
     var stringValue: String? {
@@ -232,11 +234,11 @@ class CentralManagerActor: NSObject,CBCentralManagerDelegate {
     
     func retrievePeripherals() {
         NSLog("scanning for peripherals with service UUIDs \(serviceUUIDs)")
-        AppDelegate_.deviceActors.forEach { (bleActor) in
-            if bleActor.isConnected() {
-                self.centralManager?.cancelPeripheralConnection((bleActor.peripheralActor?.peripheral)!)
-            }
-        }
+//        AppDelegate_.deviceActors.forEach { (bleActor) in
+//            if bleActor.isConnected() {
+//                self.centralManager?.cancelPeripheralConnection((bleActor.peripheralActor?.peripheral)!)
+//            }
+//        }
         
         let options: [String: Any] = [ CBCentralManagerScanOptionAllowDuplicatesKey : NSNumber.init(value: false)]
         centralManager?.scanForPeripherals(withServices: self.serviceUUIDs, options: options)
@@ -270,7 +272,7 @@ class CentralManagerActor: NSObject,CBCentralManagerDelegate {
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         if advertisementData["kCBAdvDataLocalName"] != nil {
             let deviceName = advertisementData["kCBAdvDataLocalName"] as! String
-            if deviceName.contains("(!)Tail1") ||  deviceName.lowercased().contains("eargear") {
+            if deviceName.contains("(!)Tail1") ||  deviceName.lowercased().contains("eargear") || deviceName.lowercased().contains("mitail") {
                 NSLog(deviceName)
                 NSLog("------------------------------------------------------------------")
                 NSLog("\ndidDiscover {peripheral : \(peripheral) advertisementData: \(advertisementData), Rssi : \(RSSI)}")
