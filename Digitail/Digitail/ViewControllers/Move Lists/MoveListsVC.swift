@@ -175,6 +175,9 @@ class MoveListsVC: UIViewController,UITableViewDelegate,UITableViewDataSource,MG
                     self.currentIndex += 1
                     if self.currentIndex == self.currentMoveList.count {
                         self.currentIndex = 0
+                        stopMoveList()
+                    } else {
+                        runMoveList()
                     }
 //                }
             }
@@ -302,9 +305,9 @@ class MoveListsVC: UIViewController,UITableViewDelegate,UITableViewDataSource,MG
                 let str = String(decoding: data, as: UTF8.self)
                 if str.lowercased().contains("end") {
                     if self.currentIndex == 0 {
-                        stopMoveList()
+                        //stopMoveList()
                     } else {
-                        runMoveList()
+                        //runMoveList()
                     }
                 }
                 

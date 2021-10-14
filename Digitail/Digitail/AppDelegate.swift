@@ -132,8 +132,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if isDigitail {
                 if isMitail {
                     deviceActor = BLEActor(deviceState: [:], servicesMeta: DictFromFile(kServiceMetaMitail), operationsMeta: DictFromFile(kCommandMeta))
+                    deviceActor.isMitail = true
                 } else {
                     deviceActor = BLEActor(deviceState: [:], servicesMeta: DictFromFile(kServiceMeta), operationsMeta: DictFromFile(kCommandMeta))
+                    deviceActor.isMitail = false
                 }
                 deviceActor.state[Constants.kDeviceName] = deviceName
             } else {

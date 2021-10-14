@@ -328,6 +328,7 @@ class BLEActor: NSObject {
     var didReadCharacteristicsCounter: Int = 0
     var queue: OperationQueue?
     var isDeviceIsReady: Bool = false
+    var isMitail: Bool = false
     var maxMTU: Int = 20
     
     init(deviceState aState:NSMutableDictionary, servicesMeta aServicesMeta:NSDictionary, operationsMeta aOperationsMeta:NSDictionary) {

@@ -733,9 +733,13 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
         for connectedDevices in AppDelegate_.tempDigitailDeviceActor {
             let deviceActor = connectedDevices
             if ((deviceActor.isDeviceIsReady) && ((deviceActor.isConnected()))) {
-                let tailMoveString = kBatteryCommand
-                let data = Data(tailMoveString.utf8)
-                deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
+                if (deviceActor.isMitail) {
+                    deviceActor.readProperty(Constants.kCharacteristic_BatteryLevel)
+                } else {
+                    let tailMoveString = kBatteryCommand
+                    let data = Data(tailMoveString.utf8)
+                    deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
+                }
             }
         }
     }
