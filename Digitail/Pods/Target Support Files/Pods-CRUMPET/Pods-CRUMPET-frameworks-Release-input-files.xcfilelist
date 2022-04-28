@@ -2,6 +2,7 @@ ${PODS_ROOT}/Target Support Files/Pods-CRUMPET/Pods-CRUMPET-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework
 ${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework
 ${BUILT_PRODUCTS_DIR}/JTMaterialSpinner/JTMaterialSpinner.framework
+${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework
 ${BUILT_PRODUCTS_DIR}/MGSwipeTableCell/MGSwipeTableCell.framework
 ${BUILT_PRODUCTS_DIR}/RangeSeekSlider/RangeSeekSlider.framework
 ${BUILT_PRODUCTS_DIR}/SOMotionDetector/SOMotionDetector.framework

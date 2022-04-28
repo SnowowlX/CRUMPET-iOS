@@ -29,7 +29,7 @@ class MoveListsVC: UIViewController,UITableViewDelegate,UITableViewDataSource,MG
     var currentIndex = 0
     @IBOutlet var btnMenu: UIButton!
     var moveTimer = Timer()
-    let dictHomePosition = ["Slow wag 1":"TAILS1","Slow wag 2":"TAILS2","Slow wag 3":"TAILS3","FAst wag":"TAILFA","SHort wag":"TAILSH","HAppy wag":"TAILHA","ERect":"TAILER","Erect Pulse":"TAILEP","Tremble 1":"TAILT1","Tremble 2":"TAILT2","Erect Trem":"TAILET"]
+    let dictHomePosition = [NSLocalizedString("kSlowwag1", comment: ""):"TAILS1",NSLocalizedString("kSlowwag2", comment: ""):"TAILS2",NSLocalizedString("kSlowwag3", comment: ""):"TAILS3",NSLocalizedString("kFastWag", comment: ""):"TAILFA",NSLocalizedString("kShortWag", comment: ""):"TAILSH",NSLocalizedString("kHappyWag", comment: ""):"TAILHA",NSLocalizedString("kErect", comment: ""):"TAILER",NSLocalizedString("kErectPulse", comment: ""):"TAILEP",NSLocalizedString("kTremble1", comment: ""):"TAILT1",NSLocalizedString("kTremble2", comment: ""):"TAILT2",NSLocalizedString("kErectTrem", comment: ""):"TAILET"]
     
     @IBOutlet var btnCreate: UIButton!
     
@@ -95,7 +95,7 @@ class MoveListsVC: UIViewController,UITableViewDelegate,UITableViewDataSource,MG
         self.present(alert, animated: true, completion: nil)
     }
     
-    @objc func dismissKeyboard() {
+    @objc override func dismissKeyboard() {
         view.endEditing(true)
         viewPopUpBackground.isHidden = true
         viewDeletePopUp.isHidden = true
@@ -135,7 +135,7 @@ class MoveListsVC: UIViewController,UITableViewDelegate,UITableViewDataSource,MG
              let row = sender.tag
              let indexPath = IndexPath(row: row, section: 0)
              let cell: TblCellMoveLists = self.tblViewMoveLists.cellForRow(at: indexPath) as! TblCellMoveLists
-            if sender.titleLabel?.text == "Run" {
+            if sender.titleLabel?.text == NSLocalizedString("kRun", comment: "") {
                 let movelistName = arrdictMoveListData[sender.tag][kMoveName] as! String
                     if let pravSavedData = UserDefaults.standard.value(forKey: "\(movelistName) MoveList") as? [String : AnyObject] {
                         print(pravSavedData)
@@ -241,7 +241,7 @@ class MoveListsVC: UIViewController,UITableViewDelegate,UITableViewDataSource,MG
             self.viewDeletePopUp.isHidden = false
             self.viewPopUpBackground.isHidden = false
             let moveName = self.arrdictMoveListData[indexPath.row][kMoveName] as? String
-            self.lblDeletePopUpDesc.text = "Are you sure that you want to remove the '\(moveName ?? "")'?"
+            self.lblDeletePopUpDesc.text = "\(NSLocalizedString("kRemoveItemMessage", comment: "")) '\(moveName ?? "")'?"
             
             if isKeyPresentInUserDefaults(key: "\(self.arrdictMoveListData[indexPath.row][kMoveName] ?? "") MoveList") {
                 UserDefaults.standard.removeObject(forKey: "\(self.arrdictMoveListData[indexPath.row][kMoveName] ?? "") MoveList")

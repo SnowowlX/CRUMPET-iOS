@@ -19,9 +19,20 @@ class AboutVC: UIViewController {
     @IBOutlet var viewAutherTwo: UIView!
     @IBOutlet var btnMenu: UIButton!
     
+    @IBOutlet weak var lblCreatedTitle: UILabel!
+    
+    @IBOutlet weak var lblCopyright: UILabel!
+    @IBOutlet weak var lblCopyrightDetails: UILabel!
+    
+    @IBOutlet weak var lblLibrariesinUse: UILabel!
+    @IBOutlet weak var lbliOSSystem: UILabel!
+    
+    @IBOutlet weak var lblQTInfo: UILabel!
+    @IBOutlet weak var lblAuthors: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpMainUI()
+        setupLocalization()
     }
     
     //MARK: - Custome Function
@@ -42,6 +53,19 @@ class AboutVC: UIViewController {
         viewAutherTwo.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
         viewAutherTwo.layer.shadowRadius = 1.7
         viewAutherTwo.layer.shadowOpacity = 0.5
+    }
+    
+    func setupLocalization() {
+        self.title = NSLocalizedString("kAbout", comment: "")
+        lblCreatedTitle.text = NSLocalizedString("kEargearTitle", comment: "")
+        lblCopyright.text = NSLocalizedString("kCopyright", comment: "")
+        lblCopyrightDetails.text = NSLocalizedString("kComanyInfo", comment: "")
+        lblLicense.text = NSLocalizedString("kLicenseTitle", comment: "")
+        lblLibrariesinUse.text = NSLocalizedString("kLibrariesInUse", comment: "")
+        lbliOSSystem.text = NSLocalizedString("kIOSSystem", comment: "")
+        lblQTInfo.text = NSLocalizedString("kBuiltVersion", comment: "")
+        lblAuthors.text = NSLocalizedString("kAuthors", comment: "")
+        
     }
     
     //MARK: - Actions

@@ -12,6 +12,7 @@ class TblVw_ConnectedDeviceLIst_Cell: UITableViewCell {
 
     @IBOutlet weak var iv_BatteryStatus: UIImageView!
     @IBOutlet weak var lblDeviceName: UILabel!
+    @IBOutlet weak var lblPercentage: UILabel!
   
     override func awakeFromNib() {
         super.awakeFromNib()

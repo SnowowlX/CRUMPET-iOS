@@ -1,0 +1,13 @@
+/* 
+  InfoPlist.strings
+  Digitail
+
+  Created by Rushabh Champaneri on 4/26/22.
+  Copyright © 2022 Iottive. All rights reserved.
+*/
+
+"NSBluetoothAlwaysUsageDescription" = "App is using bluetooth to interact with Digitail hardware device";
+"NSBluetoothPeripheralUsageDescription" = "App is using bluetooth to interact with Digitail hardware device.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "App wants to use location for Walk Mode";
+"NSLocationWhenInUseUsageDescription" = "App wants to use location for Walk Mode";
+"NSMotionUsageDescription" = "App wants to use location for Walk Mode";

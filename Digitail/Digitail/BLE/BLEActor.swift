@@ -272,7 +272,7 @@ class CentralManagerActor: NSObject,CBCentralManagerDelegate {
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         if advertisementData["kCBAdvDataLocalName"] != nil {
             let deviceName = advertisementData["kCBAdvDataLocalName"] as! String
-            if deviceName.contains("(!)Tail1") ||  deviceName.lowercased().contains("eargear") || deviceName.lowercased().contains("mitail") {
+            if deviceName.contains("(!)Tail1") ||  deviceName.lowercased().contains("eargear") || deviceName.lowercased().contains("mitail") || deviceName.lowercased().contains("eg2") {
                 NSLog(deviceName)
                 NSLog("------------------------------------------------------------------")
                 NSLog("\ndidDiscover {peripheral : \(peripheral) advertisementData: \(advertisementData), Rssi : \(RSSI)}")
@@ -329,6 +329,7 @@ class BLEActor: NSObject {
     var queue: OperationQueue?
     var isDeviceIsReady: Bool = false
     var isMitail: Bool = false
+    var isEG2: Bool = false
     var maxMTU: Int = 20
     
     init(deviceState aState:NSMutableDictionary, servicesMeta aServicesMeta:NSDictionary, operationsMeta aOperationsMeta:NSDictionary) {
@@ -385,7 +386,16 @@ class BLEActor: NSObject {
         self.state[Constants.kPeripheralUUIDKey] =  peripheral.identifier.uuidString
         
         if (peripheral.name != nil) {
-            state[Constants.kDeviceName] = peripheral.name
+            
+            if peripheral.name!.lowercased().contains("mitail") {
+                state[Constants.kDeviceName] = "MITAIL"
+            } else if peripheral.name!.contains("(!)Tail1") {
+                state[Constants.kDeviceName] = "DIGITAIL"
+            } else if peripheral.name!.lowercased().contains("eg2") {
+                state[Constants.kDeviceName] = "EarGear v2"
+            } else if peripheral.name!.lowercased().contains("eargear") {
+                state[Constants.kDeviceName] = "EARGEAR"
+            }
         }
         if peripheral.state == .connected {
             peripheralActor?.discoverServices(CBUUIDsFromNSStrings(strings:Array(self.servicesMeta.allKeys) as! [String]))

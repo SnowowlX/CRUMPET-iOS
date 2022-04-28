@@ -67,7 +67,7 @@ class MoveListUpdateVC: UIViewController,UITableViewDelegate,UITableViewDataSour
         cell.showSwipe(.rightToLeft, animated: true)
     }
     
-    @objc func dismissKeyboard() {
+    @objc override func dismissKeyboard() {
         view.endEditing(true)
         viewPickDurationPopUp.isHidden = true
         viewPickCommandPopUp.isHidden = true

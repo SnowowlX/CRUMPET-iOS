@@ -16,26 +16,42 @@ import RangeSeekSlider
 import SOMotionDetector
 import UserNotifications
 
-let kBlueoothOnTitle = "Bluetooth"
-let kBlueoothOnMsg = "Please turn ON Bluetooth & try again"
-let kAlertActionOK = "OK"
-let kAlertActionSettings = "Settings"
-let kBatteryCommand = "BATT"
-let kTitleConnect = "Connect Gear!"
-let kMsgConnect = "Your gear is not connected"
-let kListenModeON = "Listen Mode ON"
-let kListenModeOFF = "Listen Mode OFF"
-let kListenIOSCommand = "LISTEN IOS"
-let kListenENDCommand = "ENDLISTEN"
-let kCasualModeOff = "Casual Off"
-let kCasualMode = "Casual Mode"
-let kEndCasualCommand = "ENDCASUAL"
-let kAutoModeStopAutoCommand = "AUTOMODE STOPAUTO"
 let kWalkModeDate = "WalkModeDate"
 let kWalkModeStart = "TAILS1"
 let kWalkModeStop = "TAILHM"
-let kWalkModeOff = "Walk Mode Off"
-let kWalkMode = "Walk Mode"
+let kListenENDCommand = "ENDLISTEN"
+let kListenIOSCommand = "LISTEN IOS"
+let kTiltENDCommand = "ENDTILTMODE"
+let kTiltStartCommand = "TILTMODE START"
+let kEndCasualCommand = "ENDCASUAL"
+let kAutoModeStopAutoCommand = "STOPAUTO"
+let kWalkModeOff = NSLocalizedString("kWalkModeOff", comment: "")
+let kWalkMode = NSLocalizedString("kWalkMode", comment: "")
+let kCasualModeOff = NSLocalizedString("kCasualModeOff", comment: "")
+let kListenModeON = NSLocalizedString("kListenModeON", comment: "")
+let kListenModeOFF = NSLocalizedString("kListenModeOFF", comment: "")
+let kTiltModeON = NSLocalizedString("kTiltModeON", comment: "")
+let kTiltModeOFF = NSLocalizedString("kTiltModeOFF", comment: "")
+let kVersionCommand = "VERA"
+let kBatteryCommand = "BATT"
+
+let kBlueoothOnTitle =  NSLocalizedString("kBlueoothOnTitle", comment: "")
+let kBlueoothOnMsg = NSLocalizedString("kBlueoothOnMsg", comment: "")
+let kAlertActionOK = NSLocalizedString("kOk", comment: "")
+let kAlertActionSettings = NSLocalizedString("kSettings", comment: "")
+let kTitleConnect = NSLocalizedString("kTitleConnect", comment: "")
+let kMsgConnect = NSLocalizedString("kMsgConnect", comment: "")
+let kShutDownCommand = NSLocalizedString("kShutDownCommand", comment: "")
+let kMoves = NSLocalizedString("kMoves", comment: "")
+let kAlarm = NSLocalizedString("kAlarm", comment: "")
+let kMoveList = NSLocalizedString("kMoveListTitle", comment: "")
+let kGlowTips = NSLocalizedString("kGlowTipsTitle", comment: "")
+let kCasualMode = NSLocalizedString("kCasualMode", comment: "")
+let kWalkModeTitle = NSLocalizedString("kWalkMode", comment: "")
+let kListenMode = NSLocalizedString("kListen Mode", comment: "")
+let kEarGearPoses = NSLocalizedString("kEarGearPoses", comment: "")
+let kTiltMode = NSLocalizedString("kTiltMode", comment: "")
+let kGlowTipsTitle = NSLocalizedString("kGlowTipsTitle", comment: "")
 
 class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,UITableViewDataSource {
     
@@ -49,7 +65,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
     
     @IBOutlet var btnCausualMode: UIButton!
     @IBOutlet var btnWalkMode: UIButton!
-    @IBOutlet weak var btnMenu: UIButton!
+    
     @IBOutlet var viewTailBattery: UIView!
     
     @IBOutlet var imgViewBatteryStatus: UIImageView!
@@ -57,14 +73,37 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
     
     @IBOutlet weak var LayConsts_VwConnectedDeviceHeight: NSLayoutConstraint!
     @IBOutlet weak var vw_ConnectedDevices: UIView!
+    @IBOutlet weak var vw_ConnectDevice: UIView!
     @IBOutlet weak var LayConsts_VwConnectedDeviceTop: NSLayoutConstraint!
     @IBOutlet weak var tblVwConnectedDeviceList: UITableView!
+    @IBOutlet weak var tblVwActions: UITableView!
+    @IBOutlet weak var tblVw_Devicelist: UITableView!
+    
+    @IBOutlet weak var lblSearchingForGear: UILabel!
+    @IBOutlet weak var jtSpinner: JTMaterialSpinner!
+    
+    @IBOutlet weak var btnLookForTails: UIButton!
+    @IBOutlet weak var lblGearFoundMessage: UILabel!
+    @IBOutlet var btnConnectDisconnect: UIButton!
+    
     var isMoving = false
     var isWalkModeON = false
+    var isListenModeON = false
+    var isTiltModeON = false
     var batteryTimer = Timer()
     var batteryTimerEarGear = Timer()
     var arrSections  = ["TAIL BATTERY","EARGEAR BATTERY"]
     var statusOfLocation = 0
+    var glowTipRemoved = false
+    
+    var arrDigitailList = [kMoves,kAlarm,kMoveList,kGlowTips,kCasualMode,kWalkModeTitle]
+    var arrEarGearList = [kEarGearPoses,kListenMode,kCasualMode, kWalkModeTitle]
+    var arrEarGear2List = [kEarGearPoses,kListenMode,kTiltMode,kCasualMode, kWalkModeTitle]
+    var arrBothList = [kMoves,kAlarm,kMoveList,kGlowTipsTitle,kEarGearPoses,kListenMode,kCasualMode, kWalkModeTitle]
+    var arrAllList = [kMoves,kAlarm,kMoveList,kGlowTipsTitle,kEarGearPoses,kListenMode,kTiltMode,kCasualMode, kWalkModeTitle]
+    
+    var arrMenuList = [String]()
+    var arrMenuImages = [kMoves:"TailMoves",kAlarm:"Alarm",kMoveList:"movelist",kGlowTipsTitle:"GlowTips",kCasualMode:"Casulal ModeSetting","Casual Mode Settings":"Settings",kWalkModeTitle:"movelist",kEarGearPoses:"TailMoves",kListenMode:"filter",kTiltMode:"filter"]
     
     //MARK: - View Life Cycle -
     override func viewWillDisappear(_ animated: Bool) {
@@ -75,8 +114,9 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
-        self.navigationItem.title = "CRUMPET"
-        setUpMainUI()
+        self.navigationItem.title = NSLocalizedString("kCrumpetTitle", comment: "")
+        setUpTableUI()
+        //setUpMainUI()
         //Register for Bluetooth State Updates
         RegisterForNote(#selector(DigitailVC.DeviceIsReady(_:)),kDeviceIsReady, self)
         RegisterForNote(#selector(DigitailVC.DeviceDisconnected(_:)),kDeviceDisconnected, self)
@@ -84,19 +124,135 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
         RegisterForNote(#selector(DigitailVC.locationSettingsUpdated(note:)), LOCATION_AUTHORIZATION_STATUS_CHANGED_NOTIFICATION, self)
         setMotionCallBacks()
         
+        
+        self.navigationController?.navigationBar.tintColor = .black
+        
         if #available(iOS 13.0, *) {
             let appearance = UINavigationBarAppearance()
             appearance.configureWithOpaqueBackground()
-            appearance.backgroundColor = UIColor.init(red: 96/255.0, green: 125/255.0, blue: 138/255.0, alpha: 1.0)
+            appearance.backgroundColor = UIColor.init(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0)
             self.navigationController?.navigationBar.standardAppearance = appearance
             self.navigationController?.navigationBar.scrollEdgeAppearance = self.navigationController?.navigationBar.standardAppearance
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.startScan()
+        }
+        
+    }
+    
+    
+    func startScan() {
+        AppDelegate_.startScan()
+        if (AppDelegate_.digitailPeripheral == nil) || (AppDelegate_.eargearPeripheral == nil) {
+           AppDelegate_.isScanning = true
+       }
+        self.lblSearchingForGear.text = NSLocalizedString("kSearchingForGear", comment: "")
+        self.lblGearFoundMessage.text = NSLocalizedString("kNoneFoundYet", comment: "")
+        self.btnLookForTails.isHidden = true
+        self.jtSpinner.beginRefreshing()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            self.jtSpinner.endRefreshing()
+            self.btnLookForTails.isHidden = false
+           if AppDelegate_.tempDigitailPeripheral.count > 1 ||  AppDelegate_.tempeargearPeripheral.count > 1 || (AppDelegate_.tempDigitailPeripheral.count == 1 && AppDelegate_.tempeargearPeripheral.count == 1) {
+                self.lblGearFoundMessage.text = NSLocalizedString("kFoundGear", comment: "")
+               self.btnLookForTails.setTitle( NSLocalizedString("kShowGear", comment: ""), for: .normal)
+            } else if AppDelegate_.tempDigitailPeripheral.count == 1 || AppDelegate_.tempeargearPeripheral.count == 1 {
+                self.lblGearFoundMessage.text =  NSLocalizedString("kGearFoundMessage", comment: "")
+                self.btnLookForTails.setTitle(NSLocalizedString("kConnecttoGear", comment: ""), for: .normal)
+            } else {
+                self.lblSearchingForGear.text = NSLocalizedString("kNoGearFound", comment: "")
+                self.lblGearFoundMessage.text =  NSLocalizedString("kUnableToFindGear", comment: "")
+                self.btnLookForTails.setTitle( NSLocalizedString("kLookforGear", comment: ""), for: .normal)
+            }
+        }
+    }
+    
+    
+    @IBAction func disconnectDevice(_ sender: UIButton) {
+        
+        if isDIGITAiLConnected() || isEARGEARConnected() {
+            let alert = UIAlertController(title: NSLocalizedString("kDisconnect?", comment: ""), message: NSLocalizedString("kDisconnectMessage", comment: ""), preferredStyle: UIAlertController.Style.alert)
+            //        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("kDisconnectTitle", comment: ""), style: .default, handler:{ (UIAlertAction) in
+                self.disconnectAllDevices()
+            }))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("kShutDownGear", comment: ""), style: .default, handler:{ (UIAlertAction) in
+                self.shutDownAllDevices()
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
+                
+    }
+    
+    func disconnectAllDevices() {
+        for connectedDevice in AppDelegate_.tempEargearDeviceActor {
+            let deviceActor = connectedDevice
+            if ((deviceActor.isDeviceIsReady) && (deviceActor.isConnected())) {
+                AppDelegate_.centralManagerActor.centralManager?.cancelPeripheralConnection(deviceActor.peripheralActor.peripheral!)
+            }
+        }
+        
+        for connectedDevices in AppDelegate_.tempDigitailDeviceActor {
+            let deviceActor = connectedDevices
+            if ((deviceActor.isDeviceIsReady) && (deviceActor.isConnected())) {
+                AppDelegate_.centralManagerActor.centralManager?.cancelPeripheralConnection(deviceActor.peripheralActor.peripheral!)
+            }
+        }
+        
+        
+    }
+    
+    func shutDownAllDevices() {
+        for connectedDevice in AppDelegate_.tempEargearDeviceActor {
+            let deviceActor = connectedDevice
+            if ((deviceActor.isDeviceIsReady) && (deviceActor.isConnected())) {
+                let tailMoveString = NSLocalizedString("kShutDownCommand", comment: "")
+                let data = Data(tailMoveString.utf8)
+                deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
+            }
+        }
+        
+        for connectedDevices in AppDelegate_.tempDigitailDeviceActor {
+            let deviceActor = connectedDevices
+            
+            if ((deviceActor.isDeviceIsReady) && (deviceActor.isConnected())) {
+                let tailMoveString = NSLocalizedString("kShutDownCommand", comment: "")
+                let data = Data(tailMoveString.utf8)
+                deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
+            }
+        }
+    }
+    
+
+    @IBAction func searchAction(_ sender: UIButton) {
+        if self.btnLookForTails.titleLabel?.text == NSLocalizedString("kShowAvailableGear", comment: ""){
+            let DeviceListVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "DeviceListVC") as? DeviceListVC
+            self.present(DeviceListVC!, animated: true) {
+                
+            }
+        } else if self.btnLookForTails.titleLabel?.text ==  NSLocalizedString("kConnecttoGear", comment: "") {
+            self.lblSearchingForGear.text = NSLocalizedString("kConnectingwithGear", comment: "")
+            self.lblGearFoundMessage.text = NSLocalizedString("kPleaseWait", comment: "")
+            autoConnectToDevice()
+        } else if self.btnLookForTails.titleLabel?.text ==  NSLocalizedString("kLookforGear", comment: "") {
+            self.startScan()
+        }
+    }
+    
+    func autoConnectToDevice() {
+        if AppDelegate_.tempDigitailPeripheral.count == 1 {
+            let selectedPeripharal = AppDelegate_.tempDigitailPeripheral[0]
+            AppDelegate_.centralManagerActor.add(selectedPeripharal.peripheral)
+        } else if (AppDelegate_.tempeargearPeripheral.count == 1) {
+            let selectedPeripharalEargear = AppDelegate_.tempeargearPeripheral[0]
+            AppDelegate_.centralManagerActor.add(selectedPeripharalEargear.peripheral)
         }
     }
     
     func sendNotification(string: String) {
         let content = UNMutableNotificationContent()
         content.title = string
-        content.subtitle = "Activity"
+        content.subtitle = NSLocalizedString("kActivity", comment: "")
         content.sound = UNNotificationSound.default
 
         // show this notification five seconds from now
@@ -113,9 +269,6 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
        // self.viewTailDesciption.isHidden = true
         self.navigationItem.setHidesBackButton(true, animated:true);
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
-        if AppDelegate_.casualONEarGear || AppDelegate_.casualONDigitail {
-            self.btnCausualMode.setTitle(kCasualModeOff, for: .normal)
-        }
         updateConnectionUI()
         setUpConnectedDevicesList()
         tblVwConnectedDeviceList.reloadData()
@@ -165,10 +318,28 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
     
     func updateConnectionUI() {
         if isDIGITAiLConnected() || isEARGEARConnected() {
-            self.btnConnectDigitail.isHidden = true
+            self.vw_ConnectDevice.isHidden = true
+            self.tblVwActions.isHidden = false
         } else {
-            self.btnConnectDigitail.isHidden = false
+            self.vw_ConnectDevice.isHidden = false
+            self.tblVwActions.isHidden = true
         }
+        if isDIGITAiLConnected() && isEARGEARConnected() && isEARGEAR2Connected() {
+            self.arrMenuList = self.arrAllList
+        } else if isDIGITAiLConnected() && isEARGEARConnected() && !isEARGEAR2Connected() {
+            self.arrMenuList = self.arrBothList
+        } else if isDIGITAiLConnected() {
+            self.arrMenuList = self.arrDigitailList
+        } else if isEARGEAR2Connected() {
+            self.arrMenuList = self.arrEarGear2List
+        } else if isEARGEARConnected() {
+            self.arrMenuList = self.arrEarGearList
+        }
+        
+        if glowTipRemoved {
+            self.arrMenuList.removeAll { $0 == kGlowTipsTitle }
+        }
+        self.tblVwActions.reloadData()
         setUpConnectedDevicesList()
     }
     
@@ -204,6 +375,28 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
             if (connectedDevices.peripheralActor != nil && (connectedDevices.isConnected())) {
                 isConnected = true
                 break
+            } else {
+                isConnected = false
+            }
+        }
+    
+        return isConnected
+    }
+    
+    func isEARGEAR2Connected() -> Bool {
+//        if AppDelegate_.eargearDeviceActor != nil && (AppDelegate_.eargearDeviceActor?.peripheralActor != nil && (AppDelegate_.eargearDeviceActor?.isConnected())!) {
+//            return true
+//        } else {
+//            return false
+//        }
+        
+        var isConnected = Bool()
+        for connectedDevices in AppDelegate_.tempEargearDeviceActor {
+            if (connectedDevices.peripheralActor != nil && (connectedDevices.isConnected())) {
+                if connectedDevices.isEG2 {
+                    isConnected = true
+                    break
+                }
             } else {
                 isConnected = false
             }
@@ -284,33 +477,67 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
     
     @IBAction func EarGearMoves_Clicked(_ sender: UIButton) {
         if self.isEARGEARConnected() {
-            let eargearMovesVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "EarGearMovesVC") as? EarGearMovesVC
-            self.navigationController?.pushViewController(eargearMovesVC!, animated: true)
+            let deviceName = AppDelegate_.tempEargearDeviceActor[0].state[Constants.kDeviceName] as? String
+            if deviceName == "EarGear v2" {
+                let eargearMovesVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "EarGear2MovesVC") as? EarGear2MovesVC
+                self.navigationController?.pushViewController(eargearMovesVC!, animated: true)
+            } else {
+                let eargearMovesVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "EarGearMovesVC") as? EarGearMovesVC
+                self.navigationController?.pushViewController(eargearMovesVC!, animated: true)
+            }
+            
         } else {
-            showAlert(title: kTitleConnect, msg: kMsgConnect)
+            showAlert(title:  NSLocalizedString("kTitleConnect", comment: ""), msg: NSLocalizedString("kMsgConnect", comment: ""))
         }
     }
     
     @IBAction func ListenMode_Clicked(_ sender: UIButton) {
         if self.isEARGEARConnected() {
-            if btnListenMode.titleLabel?.text == kListenModeON {
-                sendListenModeCommand(command: kListenIOSCommand)
-                btnListenMode.setTitle(kListenModeOFF, for: .normal)
-                btnEarMoves.isEnabled = false
-                btnEarMoves.alpha = 0.5
-                DispatchQueue.main.asyncAfter(deadline: .now() + 300) {
-                    self.btnEarMoves.isEnabled = true
-                    self.btnEarMoves.alpha = 1.0
-                }
+            if isListenModeON {
+                sendListenModeCommand(command: kListenENDCommand)
+                isListenModeON = false
             } else {
-               sendListenModeCommand(command: kListenENDCommand)
-                btnListenMode.setTitle(kListenModeON, for: .normal)
-                 btnEarMoves.isEnabled = true
-                btnEarMoves.alpha = 1.0
+               sendListenModeCommand(command: kListenIOSCommand)
+                isListenModeON = true
             }
+            self.tblVwActions.reloadData()
         } else {
-            showAlert(title: kTitleConnect, msg: kMsgConnect)
+            showAlert(title:  NSLocalizedString("kTitleConnect", comment: ""), msg: NSLocalizedString("kMsgConnect", comment: ""))
         }
+    }
+    
+    @IBAction func TiltMode_Clicked(_ sender: UIButton) {
+        if self.isEARGEAR2Connected() {
+            if isTiltModeON {
+                sendListenModeCommand(command: kTiltENDCommand)
+                isTiltModeON = false
+            } else {
+               sendListenModeCommand(command: kTiltStartCommand)
+                isTiltModeON = true
+            }
+            self.tblVwActions.reloadData()
+        } else {
+            showAlert(title:  NSLocalizedString("kTitleConnect", comment: ""), msg: NSLocalizedString("kMsgConnect", comment: ""))
+        }
+    }
+    
+    func setUpTableUI() {
+        tblVwActions.layer.masksToBounds = false
+        tblVwActions.clipsToBounds = false
+        tblVwActions.layer.shadowColor = UIColor.darkGray.cgColor
+        tblVwActions.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+        tblVwActions.layer.shadowRadius = 2.5
+        tblVwActions.layer.shadowOpacity = 0.5
+        tblVwActions.layer.cornerRadius = 3
+        
+        vw_ConnectDevice.layer.masksToBounds = false
+        vw_ConnectDevice.clipsToBounds = false
+        vw_ConnectDevice.layer.shadowColor = UIColor.darkGray.cgColor
+        vw_ConnectDevice.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+        vw_ConnectDevice.layer.shadowRadius = 2.5
+        vw_ConnectDevice.layer.shadowOpacity = 0.5
+        vw_ConnectDevice.layer.cornerRadius = 3
+        
     }
 
     //MARK: - Custome Function
@@ -367,7 +594,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
         btnWalkMode.layer.shadowRadius = 2.5
         btnWalkMode.layer.shadowOpacity = 0.5
         
-        btnMenu.layer.cornerRadius = 5.0
+        
     }
     
     @IBAction func actionConnectDigitail(_ sender: UIButton) {
@@ -406,14 +633,14 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
             let moveListVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "MoveListsVC") as? MoveListsVC
             self.navigationController?.pushViewController(moveListVC!, animated: true)
         } else {
-            showAlert(title: kTitleConnect, msg: kMsgConnect)
+            showAlert(title:  NSLocalizedString("kTitleConnect", comment: ""), msg: NSLocalizedString("kMsgConnect", comment: ""))
         }
          
     }
     
    
     @IBAction func TailPoses_Clicked(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Tail Poses", message: "Coming Soon", preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title:  NSLocalizedString("kTailPoses", comment: ""), message: NSLocalizedString("kComingSoon", comment: ""), preferredStyle: UIAlertController.Style.alert)
         //        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
         alert.addAction(UIAlertAction(title: kAlertActionOK, style: .default, handler:{ (UIAlertAction) in
             self.navigationController?.popViewController(animated: true)
@@ -469,7 +696,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                     }
                 }
             }
-            self.btnCausualMode.setTitle(kCasualMode, for: .normal)
+            self.tblVwActions.reloadData()
         } else {
             let casualModeSettingVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "CasualModeSettingVC") as? CasualModeSettingVC
             self.navigationController?.pushViewController(casualModeSettingVC!, animated: true)
@@ -483,13 +710,11 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                 if statusOfLocation == 3 {
                     if (isWalkModeON) {
                         isWalkModeON = false
-                        self.btnWalkMode.setTitle(kWalkMode, for: .normal)
                         stopMotionDetection()
                     } else {
                         isWalkModeON = true
-                        self.btnWalkMode.setTitle(kWalkModeOff, for: .normal)
                         startMotionDetection()
-                        showAlert(title: "Location Permission", msg: "Please make sure you have granted Always or Allow Once in order to work in background")
+                        showAlert(title:NSLocalizedString("kLocationPermission", comment: ""), msg: NSLocalizedString("kAllowBackgroundPermission", comment: ""))
                     }
                 } else {
                     askUserAlwaysPermission()
@@ -497,18 +722,16 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
             } else {
                 if (isWalkModeON) {
                     isWalkModeON = false
-                    self.btnWalkMode.setTitle(kWalkMode, for: .normal)
                     stopMotionDetection()
                 } else {
                     isWalkModeON = true
-                    self.btnWalkMode.setTitle(kWalkModeOff, for: .normal)
                     startMotionDetection()
                 }
             }
-           
+            self.tblVwActions.reloadData()
         } else {
             isWalkModeON = true
-            showAlert(title: kTitleConnect, msg: kMsgConnect)
+            showAlert(title:  NSLocalizedString("kTitleConnect", comment: ""), msg: NSLocalizedString("kMsgConnect", comment: ""))
         }
     }
     
@@ -519,8 +742,8 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
         }
     }
     func askUserAlwaysPermission() {
-        let alertController = UIAlertController.init(title: "Location Permission", message: "Please allow location to Always", preferredStyle: .alert)
-        alertController.addAction(UIAlertAction.init(title: "OK", style: .default, handler: { action in
+        let alertController = UIAlertController.init(title: NSLocalizedString("kLocationPermission", comment: ""), message: NSLocalizedString("kPleaseAlwaysAllowLOcation", comment: ""), preferredStyle: .alert)
+        alertController.addAction(UIAlertAction.init(title: kAlertActionOK, style: .default, handler: { action in
                 //redirect to setting screen for enable bluetooth or location permision
                 guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
                     return
@@ -553,7 +776,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
         if self.isDIGITAiLConnected() {
             self.navigationController?.pushViewController(tailMovesVC!, animated: true)
         } else {
-            showAlert(title: kTitleConnect, msg: kMsgConnect)
+            showAlert(title:  NSLocalizedString("kTitleConnect", comment: ""), msg: NSLocalizedString("kMsgConnect", comment: ""))
         }
         
     }
@@ -561,85 +784,202 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
     
     //MARK: - TableView Delegate Methods -
     func numberOfSections(in tableView: UITableView) -> Int {
+        if tableView == tblVwActions {
+            return 1
+        }
         return 2
     }
  
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch (section) {
-        case 0:
-            return AppDelegate_.tempDigitailDeviceActor.count
-        case 1:
-            return AppDelegate_.tempEargearDeviceActor.count
-        default:
-            return 0
+        if tableView == tblVwActions {
+            return arrMenuList.count
+        } else {
+            switch (section) {
+            case 0:
+                return AppDelegate_.tempDigitailDeviceActor.count
+            case 1:
+                return AppDelegate_.tempEargearDeviceActor.count
+            default:
+                return 0
+            }
         }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-         if indexPath.section == 0 {
-            //DIGITAil DEVICE LISTS AND BATTERY STATUS --
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TblVw_ConnectedDeviceLIst_Cell") as! TblVw_ConnectedDeviceLIst_Cell
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if tableView == tblVwActions {
+            return 60
+        }
+        return 50
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView == tblVwActions {
+            let cell = tableView.cellForRow(at: indexPath)
             
-            if AppDelegate_.tempDigitailDeviceActor[indexPath.row].peripheralActor == nil {
-               
+            let actionName = arrMenuList[indexPath.row]
+             switch actionName {
+             case kMoves :
+                 TailMoves_Clicked(self.btnLookForTails)
+                 break
+             case kAlarm :
+                 Alarm_Clicked(self.btnLookForTails)
+                 break
+             case kMoveList :
+                 MoveList_Clicked(self.btnLookForTails)
+                 break
+             case kGlowTipsTitle :
+                 GlowTips_Clicked(self.btnLookForTails)
+                 break
+             case kEarGearPoses :
+                 EarGearMoves_Clicked(self.btnLookForTails)
+                 break
+             case kListenMode :
+                 ListenMode_Clicked(self.btnLookForTails)
+                 break
+             case kTiltMode :
+                 TiltMode_Clicked(self.btnLookForTails)
+                 break
+             case kCasualMode :
+                 CasualMode_Clicked(self.btnLookForTails)
+                 break
+             case "Casual Mode Settings" :
+                 CasualMode_Clicked(self.btnLookForTails)
+                 break
+             case kWalkModeTitle :
+                 actionWalkMode_Clicked(self.btnLookForTails)
+                 break
+                 
+             default:
+                 break
+             }
+        } else {
+            var firmwareVersion = ""
+            if indexPath.section == 0 {
+                if let version = AppDelegate_.tempDigitailDeviceActor[indexPath.row].state["FirmwareVersion"] {
+                    firmwareVersion = version as! String
+                }
             } else {
-                cell.lblDeviceName.text = AppDelegate_.tempDigitailDeviceActor[indexPath.row].state[Constants.kDeviceName] as? String
-                let batteryLevel = AppDelegate_.tempDigitailDeviceActor[indexPath.row].state["BatteryLevel"]
-
-                if batteryLevel != nil {
-                    let battery  = (batteryLevel as! NSString).integerValue
-                    DispatchQueue.main.async {
-                        cell.iv_BatteryStatus.stopAnimating()
-                        if battery == 0 {
-                            cell.iv_BatteryStatus.animationImages = [UIImage(named: "battery_0"),UIImage(named: "battery_1")] as? [UIImage]
-                            cell.iv_BatteryStatus.animationDuration = 1.0
-                            cell.iv_BatteryStatus.startAnimating()
-                        } else if battery == 1 {
-                            cell.iv_BatteryStatus.image = UIImage(named: "battery_1")
-                        } else if battery == 2 {
-                            cell.iv_BatteryStatus.image = UIImage(named: "battery_2")
-                        } else if battery == 3 {
-                            cell.iv_BatteryStatus.image = UIImage(named: "battery_3")
-                        } else if battery == 4 {
-                            cell.iv_BatteryStatus.image = UIImage(named: "battery_4")
-                        }
-                    }
+                if let version = AppDelegate_.tempEargearDeviceActor[indexPath.row].state["FirmwareVersion"] {
+                    firmwareVersion = version as! String
+                }
+                 
+            }
+            
+            showAlert(title: NSLocalizedString("kCurrentFirmwareVersion", comment: ""), msg: firmwareVersion)
+        }
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if tableView == tblVwActions {
+            let cell = tblVwActions.dequeueReusableCell(withIdentifier: "TblCellSideMenu", for: indexPath) as! TblCellSideMenu
+            cell.lblMenuName.text = arrMenuList[indexPath.row]
+            if arrMenuList[indexPath.row] == kWalkModeTitle {
+                if isWalkModeON {
+                    cell.lblMenuName.text = kWalkModeOff
+                } else {
+                    cell.lblMenuName.text = kWalkMode
                 }
             }
+            if arrMenuList[indexPath.row] == kCasualMode {
+                if AppDelegate_.casualONEarGear || AppDelegate_.casualONDigitail {
+                    cell.lblMenuName.text = kCasualModeOff
+                }
+            }
+            
+            if arrMenuList[indexPath.row] == kListenMode {
+                if isListenModeON {
+                    cell.lblMenuName.text = kListenModeOFF
+                } else {
+                    cell.lblMenuName.text = kListenModeON
+                }
+            }
+            if arrMenuList[indexPath.row] == kTiltMode {
+                if isTiltModeON {
+                    cell.lblMenuName.text = kTiltModeOFF
+                } else {
+                    cell.lblMenuName.text = kTiltModeON
+                }
+            }
+            let imageName = arrMenuImages[arrMenuList[indexPath.row]]
+            cell.imgView.image = UIImage(named: imageName ?? "")
+            cell.lblMenuName.textColor = UIColor.black
             return cell
         } else {
-            //EARGEAR DEVICE LISTS AND BATTERY STATUS --
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TblVw_ConnectedDeviceLIst_Cell") as! TblVw_ConnectedDeviceLIst_Cell
-            if AppDelegate_.tempEargearDeviceActor[indexPath.row].peripheralActor == nil {
+            if indexPath.section == 0 {
+               //DIGITAil DEVICE LISTS AND BATTERY STATUS --
+               let cell = tableView.dequeueReusableCell(withIdentifier: "TblVw_ConnectedDeviceLIst_Cell") as! TblVw_ConnectedDeviceLIst_Cell
                
-            } else {
-                let objPeripharal:CBPeripheral = (AppDelegate_.tempEargearDeviceActor[indexPath.row].peripheralActor.peripheral!)
-                cell.lblDeviceName.text = "EARGEAR"
-                let batteryLevel = AppDelegate_.tempEargearDeviceActor[indexPath.row].state["BatteryLevel"]
-                print("Eargear battery :: ",batteryLevel as Any)
+               if AppDelegate_.tempDigitailDeviceActor[indexPath.row].peripheralActor == nil {
+                  
+               } else {
+                   cell.lblDeviceName.text = AppDelegate_.tempDigitailDeviceActor[indexPath.row].state[Constants.kDeviceName] as? String
+                   let batteryLevel = AppDelegate_.tempDigitailDeviceActor[indexPath.row].state["BatteryLevel"]
+                   let batteryPercentage = AppDelegate_.tempDigitailDeviceActor[indexPath.row].state["BatteryPercentage"]
 
-                if batteryLevel != nil {
-                    let battery  = (batteryLevel as! NSString).integerValue
+                   if batteryLevel != nil {
+                       let battery  = (batteryLevel as! NSString).integerValue
+                       DispatchQueue.main.async {
+                           cell.iv_BatteryStatus.stopAnimating()
+                           if battery == 0 {
+                               cell.iv_BatteryStatus.animationImages = [UIImage(named: "battery_0"),UIImage(named: "battery_1")] as? [UIImage]
+                               cell.iv_BatteryStatus.animationDuration = 1.0
+                               cell.iv_BatteryStatus.startAnimating()
+                           } else if battery == 1 {
+                               cell.iv_BatteryStatus.image = UIImage(named: "battery_1")
+                           } else if battery == 2 {
+                               cell.iv_BatteryStatus.image = UIImage(named: "battery_2")
+                           } else if battery == 3 {
+                               cell.iv_BatteryStatus.image = UIImage(named: "battery_3")
+                           } else if battery == 4 {
+                               cell.iv_BatteryStatus.image = UIImage(named: "battery_4")
+                           }
+                       }
+                   }
+                   
+                   if batteryPercentage != nil {
+                       DispatchQueue.main.async {
+                           cell.lblPercentage.text = "\(batteryPercentage ?? "")%"
+                       }
+                   } else {
+                       DispatchQueue.main.async {
+                           cell.lblPercentage.text = ""
+                       }
+                   }
+               }
+               return cell
+           } else {
+               //EARGEAR DEVICE LISTS AND BATTERY STATUS --
+               let cell = tableView.dequeueReusableCell(withIdentifier: "TblVw_ConnectedDeviceLIst_Cell") as! TblVw_ConnectedDeviceLIst_Cell
+               if AppDelegate_.tempEargearDeviceActor[indexPath.row].peripheralActor == nil {
+                  
+               } else {
+                   let objPeripharal:CBPeripheral = (AppDelegate_.tempEargearDeviceActor[indexPath.row].peripheralActor.peripheral!)
+                   cell.lblDeviceName.text = AppDelegate_.tempEargearDeviceActor[indexPath.row].state[Constants.kDeviceName] as? String
+                   let batteryLevel = AppDelegate_.tempEargearDeviceActor[indexPath.row].state["BatteryLevel"]
+                   print("Eargear battery :: ",batteryLevel as Any)
 
-                    DispatchQueue.main.async {
-                        cell.iv_BatteryStatus.stopAnimating()
-                        if battery == 0 {
-                            cell.iv_BatteryStatus.animationImages = [UIImage(named: "battery_0"),UIImage(named: "battery_1")] as? [UIImage]
-                            cell.iv_BatteryStatus.animationDuration = 1.0
-                            cell.iv_BatteryStatus.startAnimating()
-                        } else if battery == 1 {
-                            cell.iv_BatteryStatus.image = UIImage(named: "battery_1")
-                        } else if battery == 2 {
-                            cell.iv_BatteryStatus.image = UIImage(named: "battery_2")
-                        } else if battery == 3 {
-                            cell.iv_BatteryStatus.image = UIImage(named: "battery_3")
-                        } else if battery == 4 {
-                            cell.iv_BatteryStatus.image = UIImage(named: "battery_4")
-                        }
-                    }
-                }
-            }
-            return cell
+                   if batteryLevel != nil {
+                       let battery  = (batteryLevel as! NSString).integerValue
+
+                       DispatchQueue.main.async {
+                           cell.iv_BatteryStatus.stopAnimating()
+                           if battery == 0 {
+                               cell.iv_BatteryStatus.animationImages = [UIImage(named: "battery_0"),UIImage(named: "battery_1")] as? [UIImage]
+                               cell.iv_BatteryStatus.animationDuration = 1.0
+                               cell.iv_BatteryStatus.startAnimating()
+                           } else if battery == 1 {
+                               cell.iv_BatteryStatus.image = UIImage(named: "battery_1")
+                           } else if battery == 2 {
+                               cell.iv_BatteryStatus.image = UIImage(named: "battery_2")
+                           } else if battery == 3 {
+                               cell.iv_BatteryStatus.image = UIImage(named: "battery_3")
+                           } else if battery == 4 {
+                               cell.iv_BatteryStatus.image = UIImage(named: "battery_4")
+                           }
+                       }
+                   }
+               }
+               return cell
+           }
         }
     }
     
@@ -651,6 +991,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
             if (self.isDIGITAiLConnected()) {
                 self.sendBatteryCommand()
                 self.startBatteryTimer()
+                self.versionCommand()
             }
             if (self.isEARGEARConnected()) {
                 for connectedDevice in AppDelegate_.tempEargearDeviceActor {
@@ -666,9 +1007,9 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
         debugPrint(#function,"UpdateValue Data %@", note.userInfo!)
         let responseData = note.userInfo as! [String:Any]
         
-        if responseData["name"] as? String == Constants.kCharacteristic_WriteData {
+        if responseData["name"] as? String == Constants.kCharacteristic_WriteData || responseData["name"] as? String == Constants.kCharacteristic_ReadData {
             if let data = responseData["value"] as? Data {
-                let str = String(decoding: data, as: UTF8.self)
+                var str = String(decoding: data, as: UTF8.self)
                 if str.contains("BAT") {
                     let val = Int.init(String(str.last!))
                     if AppDelegate_.tempDigitailDeviceActor.contains(objActor) { //AppDelegate_.digitailDeviceActor {
@@ -677,6 +1018,23 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                         self.tblVwConnectedDeviceList.reloadData()
 //                        updateBatteryUI(imgView: self.imgViewBatteryStatus, val: val!)
                     }
+                } else if str.contains("GT0") {
+                    self.arrMenuList.removeAll { $0 == kGlowTipsTitle }
+                    glowTipRemoved = true
+                    self.tblVwActions.reloadData()
+                } else if str.contains("GT1") {
+                    glowTipRemoved = false
+                    self.tblVwActions.reloadData()
+                }
+                if str.contains(".") {
+                    let array = str.components(separatedBy: ".")
+                    str = str.replacingOccurrences(of: "GT1", with: "")
+                    str = str.replacingOccurrences(of: "GT0", with: "")
+                    if array.count > 2 {
+                        objActor.state.setValue(str , forKey: "FirmwareVersion")
+                        AppDelegate_.storeDeviceState()
+                        self.tblVwConnectedDeviceList.reloadData()
+                    }
                 }
                 
             }
@@ -684,6 +1042,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
             if let data = responseData["value"] as? Data {
                 var val: Int = data.withUnsafeBytes { $0.pointee }
                 if AppDelegate_.tempEargearDeviceActor.contains(objActor) || AppDelegate_.tempDigitailDeviceActor.contains(objActor) {
+                    objActor.state.setValue(val , forKey: "BatteryPercentage")
                     if val < 25 {
                         val = 1
                     } else if val < 50 {
@@ -711,6 +1070,10 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
             if !(self.isDIGITAiLConnected()) {
                 self.batteryTimer.invalidate()
             }
+            
+            if !self.isDIGITAiLConnected() && !self.isEARGEARConnected() {
+                self.startScan()
+            }
         }
     }
 
@@ -724,6 +1087,17 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
         self.batteryTimerEarGear.invalidate()
         let loopTime = 30
         self.batteryTimerEarGear = Timer.scheduledTimer(timeInterval: TimeInterval(loopTime), target: self, selector:#selector(self.sendBatteryCommandEarGear) , userInfo: nil, repeats: true)
+    }
+    
+    @objc func versionCommand() {
+        for connectedDevices in AppDelegate_.tempDigitailDeviceActor {
+            let deviceActor = connectedDevices
+            if ((deviceActor.isDeviceIsReady) && ((deviceActor.isConnected()))) {
+                let tailMoveString = kVersionCommand
+                let data = Data(tailMoveString.utf8)
+                deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
+            }
+        }
     }
     
     @objc func sendBatteryCommand() {

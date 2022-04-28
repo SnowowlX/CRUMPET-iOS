@@ -11,12 +11,17 @@
 		848C77A424FE43740056C576 /* WebKitViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848C77A324FE43740056C576 /* WebKitViewVC.swift */; };
 		84C5E46B24767D2F004B8BE0 /* DeveloperVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C5E46A24767D2F004B8BE0 /* DeveloperVC.swift */; };
 		92E54A5F7F92158F3837CE2A /* Pods_DigitailTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40C8F173029F8985510A6819 /* Pods_DigitailTests.framework */; };
+		9B24AFE62817AC98004CFB7B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9B24AFE82817AC98004CFB7B /* Localizable.strings */; };
+		9B24AFEE2817F9E2004CFB7B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9B24AFF02817F9E2004CFB7B /* InfoPlist.strings */; };
 		9B3AAA632473A922003FA5D6 /* ConnectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3AAA622473A922003FA5D6 /* ConnectVC.swift */; };
 		9B3AAA662473D8B0003FA5D6 /* serviceMetaEarGear.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B3AAA642473D8AF003FA5D6 /* serviceMetaEarGear.plist */; };
 		9B3AAA672473D8B0003FA5D6 /* commandMetaEarGear.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B3AAA652473D8AF003FA5D6 /* commandMetaEarGear.plist */; };
 		9B3AAA6B2473FAD3003FA5D6 /* EarGearMovesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3AAA6A2473FAD2003FA5D6 /* EarGearMovesVC.swift */; };
 		9BA4621526CF7E2200ACF648 /* serviceMetaMitail.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9BA4621426CF7E2200ACF648 /* serviceMetaMitail.plist */; };
 		9BA91C6B23584DFC0088A67E /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA91C6A23584DFC0088A67E /* UIViewExtension.swift */; };
+		9BE7215E27D9F508003401BC /* EarGear2MovesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE7215D27D9F508003401BC /* EarGear2MovesVC.swift */; };
+		9BFFEBE227F48E5600A1A1D0 /* FirmwareUpdateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFFEBE127F48E5600A1A1D0 /* FirmwareUpdateVC.swift */; };
+		9BFFEBE427F491CE00A1A1D0 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFFEBE327F491CE00A1A1D0 /* Utility.swift */; };
 		A006DA5D22BCF308008DDEC1 /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A006DA5C22BCF308008DDEC1 /* SideMenuVC.swift */; };
 		A006DA6022BCF4ED008DDEC1 /* TblCellSideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A006DA5F22BCF4ED008DDEC1 /* TblCellSideMenu.swift */; };
 		A0361ACA22E8390C002CBC78 /* LoadCompanyDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0361AC922E8390C002CBC78 /* LoadCompanyDetail.swift */; };
@@ -101,12 +106,21 @@
 		84C5E46A24767D2F004B8BE0 /* DeveloperVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperVC.swift; sourceTree = "<group>"; };
 		8560FB2C191BE177F30E3A66 /* Pods-Digitail.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Digitail.debug.xcconfig"; path = "Target Support Files/Pods-Digitail/Pods-Digitail.debug.xcconfig"; sourceTree = "<group>"; };
 		9006D66028A4D93DEAA226A3 /* Pods_DigitailUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DigitailUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B24AFE72817AC98004CFB7B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9B24AFE92817ACCD004CFB7B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		9B24AFEA2817ACCE004CFB7B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		9B24AFEB2817ACCF004CFB7B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9B24AFEF2817F9E2004CFB7B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9B24AFF12817F9EA004CFB7B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9B3AAA622473A922003FA5D6 /* ConnectVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectVC.swift; sourceTree = "<group>"; };
 		9B3AAA642473D8AF003FA5D6 /* serviceMetaEarGear.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = serviceMetaEarGear.plist; sourceTree = "<group>"; };
 		9B3AAA652473D8AF003FA5D6 /* commandMetaEarGear.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = commandMetaEarGear.plist; sourceTree = "<group>"; };
 		9B3AAA6A2473FAD2003FA5D6 /* EarGearMovesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EarGearMovesVC.swift; sourceTree = "<group>"; };
 		9BA4621426CF7E2200ACF648 /* serviceMetaMitail.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = serviceMetaMitail.plist; sourceTree = "<group>"; };
 		9BA91C6A23584DFC0088A67E /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewExtension.swift; path = ViewControllers/UIViewExtension.swift; sourceTree = "<group>"; };
+		9BE7215D27D9F508003401BC /* EarGear2MovesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EarGear2MovesVC.swift; sourceTree = "<group>"; };
+		9BFFEBE127F48E5600A1A1D0 /* FirmwareUpdateVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirmwareUpdateVC.swift; sourceTree = "<group>"; };
+		9BFFEBE327F491CE00A1A1D0 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		A006DA5C22BCF308008DDEC1 /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
 		A006DA5F22BCF4ED008DDEC1 /* TblCellSideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TblCellSideMenu.swift; sourceTree = "<group>"; };
 		A0361AC922E8390C002CBC78 /* LoadCompanyDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadCompanyDetail.swift; sourceTree = "<group>"; };
@@ -229,6 +243,15 @@
 			path = DevloperVc;
 			sourceTree = "<group>";
 		};
+		9B24AFE32817AC79004CFB7B /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				9B24AFE82817AC98004CFB7B /* Localizable.strings */,
+				9B24AFF02817F9E2004CFB7B /* InfoPlist.strings */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
 		9B3AAA612473A8C0003FA5D6 /* Connect Device */ = {
 			isa = PBXGroup;
 			children = (
@@ -240,9 +263,18 @@
 		9B3AAA692473FAAA003FA5D6 /* EarGear Moves */ = {
 			isa = PBXGroup;
 			children = (
+				9BE7215D27D9F508003401BC /* EarGear2MovesVC.swift */,
 				9B3AAA6A2473FAD2003FA5D6 /* EarGearMovesVC.swift */,
 			);
 			path = "EarGear Moves";
+			sourceTree = "<group>";
+		};
+		9BFFEBE027F48E3300A1A1D0 /* Firmware Update */ = {
+			isa = PBXGroup;
+			children = (
+				9BFFEBE127F48E5600A1A1D0 /* FirmwareUpdateVC.swift */,
+			);
+			path = "Firmware Update";
 			sourceTree = "<group>";
 		};
 		A006DA5B22BCF2D8008DDEC1 /* SideMenuVC */ = {
@@ -315,6 +347,7 @@
 		A06E23AF22AA1FA300EB615C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9BFFEBE027F48E3300A1A1D0 /* Firmware Update */,
 				FF606F0325F2422000D36BF9 /* DeviceListVc */,
 				FF51055025C2D90E00D0D923 /* NewListVc */,
 				848C77A224FE43490056C576 /* WebKitView */,
@@ -458,6 +491,7 @@
 		A0B1D9FB22A94BA4007592B7 = {
 			isa = PBXGroup;
 			children = (
+				9B24AFE32817AC79004CFB7B /* Localization */,
 				A0B1DA0622A94BA4007592B7 /* Digitail */,
 				A0B1DA1B22A94BAD007592B7 /* DigitailTests */,
 				A0B1DA2622A94BAD007592B7 /* DigitailUITests */,
@@ -531,6 +565,7 @@
 				A0C629F222AE67380036A20C /* CBUtils.swift */,
 				A0C629F322AE67380036A20C /* commandMeta.plist */,
 				A0C629F422AE67380036A20C /* Commands.swift */,
+				9BFFEBE327F491CE00A1A1D0 /* Utility.swift */,
 				A0C629F522AE67380036A20C /* DeviceModel.swift */,
 				A0C629F622AE67380036A20C /* Digitail-Bridging-Header.h */,
 				A0C629F722AE67380036A20C /* serviceMeta.plist */,
@@ -708,6 +743,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = A0B1D9FB22A94BA4007592B7;
 			productRefGroup = A0B1DA0522A94BA4007592B7 /* Products */;
@@ -727,7 +763,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A09DBEF222C23DCA003C605A /* CalendarPopUp.xib in Resources */,
+				9B24AFE62817AC98004CFB7B /* Localizable.strings in Resources */,
 				A0B1DA1222A94BAD007592B7 /* LaunchScreen.storyboard in Resources */,
+				9B24AFEE2817F9E2004CFB7B /* InfoPlist.strings in Resources */,
 				A0C629FB22AE67380036A20C /* commandMeta.plist in Resources */,
 				A09DBEF422C23DCA003C605A /* CellView.xib in Resources */,
 				A0EE9CA322D741DD00E61AD8 /* splash.mp4 in Resources */,
@@ -863,9 +901,11 @@
 				A06421A922D4553000BB98D0 /* TblCellMoveListUpdate.swift in Sources */,
 				A06BBA6A22C63FAA00F69F17 /* SettingVC.swift in Sources */,
 				FF51055825C2DEFE00D0D923 /* TblVw_TailMovesListCell.swift in Sources */,
+				9BFFEBE227F48E5600A1A1D0 /* FirmwareUpdateVC.swift in Sources */,
 				A09375A222CCCDA300C278DE /* MoveListsVC.swift in Sources */,
 				9B3AAA6B2473FAD3003FA5D6 /* EarGearMovesVC.swift in Sources */,
 				FF606EF225F0EAB300D36BF9 /* CollVw_MoveListSequence_Cell.swift in Sources */,
+				9BFFEBE427F491CE00A1A1D0 /* Utility.swift in Sources */,
 				FF606F0E25F2429900D36BF9 /* TblVw_DeviceList_Cell.swift in Sources */,
 				A06E23B322AA822B00EB615C /* AlarmsVC.swift in Sources */,
 				A09DBEF522C23DCA003C605A /* Extensions.swift in Sources */,
@@ -895,6 +935,7 @@
 				FF9BA12625F74C5800318973 /* TblVw_ConnectedDeviceSections_Cell.swift in Sources */,
 				A06BBA6722C6132700F69F17 /* TblCellCasualModeSetting.swift in Sources */,
 				A095847E22D2FE400091B36D /* LaunchVC.swift in Sources */,
+				9BE7215E27D9F508003401BC /* EarGear2MovesVC.swift in Sources */,
 				848C77A424FE43740056C576 /* WebKitViewVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -931,10 +972,29 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		9B24AFE82817AC98004CFB7B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9B24AFE72817AC98004CFB7B /* en */,
+				9B24AFEB2817ACCF004CFB7B /* ja */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		9B24AFF02817F9E2004CFB7B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9B24AFEF2817F9E2004CFB7B /* en */,
+				9B24AFF12817F9EA004CFB7B /* ja */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		A0B1DA0B22A94BA4007592B7 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				A0B1DA0C22A94BA4007592B7 /* Base */,
+				9B24AFE92817ACCD004CFB7B /* ja */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -943,6 +1003,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				A0B1DA1122A94BAD007592B7 /* Base */,
+				9B24AFEA2817ACCE004CFB7B /* ja */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -954,6 +1015,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1016,6 +1078,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1076,7 +1139,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = SKRSQZ43AV;
 				INFOPLIST_FILE = Digitail/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1084,7 +1147,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.5;
+				MARKETING_VERSION = 5.10;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Digitail.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1102,7 +1165,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = SKRSQZ43AV;
 				INFOPLIST_FILE = Digitail/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1110,7 +1173,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.5;
+				MARKETING_VERSION = 5.10;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Digitail.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";

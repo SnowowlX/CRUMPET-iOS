@@ -33,9 +33,14 @@ class GlowTipsVC: UIViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.viewFindGetTails.isHidden = true
+        self.viewLEDPatternsDesc.isHidden = false
+        self.viewLEDPatternsList.isHidden = false
+        
         if AppDelegate_.deviceActors.count > 0 {
             updateConnectionUI()
-        } else if AppDelegate_.isScanning == true && AppDelegate_.peripheralList.count == 0 {
+        } /*else if AppDelegate_.isScanning == true && AppDelegate_.peripheralList.count == 0 {
             self.viewActivityIndicator.isHidden = false
             self.viewActivityIndicator.beginRefreshing()
             self.btnLookForTails.isHidden = true
@@ -61,7 +66,7 @@ class GlowTipsVC: UIViewController{
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                 self.startScan()
             }
-        }
+        }*/
     }
     
     //MARK: - Custom Function
@@ -126,6 +131,7 @@ class GlowTipsVC: UIViewController{
             self.viewLEDPatternsDesc.isHidden = false
             self.viewLEDPatternsList.isHidden = false
         } else {
+            /*
             self.viewActivityIndicator.isHidden = true
             self.btnLookForTails.isHidden = false
             self.btnLookForTails.setTitle("CONNECT", for: .normal)
@@ -134,6 +140,7 @@ class GlowTipsVC: UIViewController{
             self.viewFindGetTails.isHidden = false
             self.viewLEDPatternsDesc.isHidden = true
             self.viewLEDPatternsList.isHidden = true
+             */
         }
     }
     
@@ -158,7 +165,7 @@ class GlowTipsVC: UIViewController{
     }
     
     func openAlertView() {
-        let alert = UIAlertController(title: "Glow Tips", message: "Coming Soon", preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: NSLocalizedString("kGlowTipsTitle", comment: ""), message: NSLocalizedString("kComingSoon", comment: ""), preferredStyle: UIAlertController.Style.alert)
         //        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
         alert.addAction(UIAlertAction(title: kAlertActionOK, style: .default, handler:{ (UIAlertAction) in
             self.navigationController?.popViewController(animated: true)

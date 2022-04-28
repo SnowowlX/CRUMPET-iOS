@@ -61,7 +61,7 @@ class UpDateAlarmVC: UIViewController,UITableViewDelegate,UITableViewDataSource{
         btnMenu.layer.cornerRadius = 5.0
     }
     
-    @objc func dismissKeyboard() {
+    @objc override func dismissKeyboard() {
         view.endEditing(true)
         viewPopUpBackground.isHidden = true
         viewPopUpPickCommand.isHidden = true

@@ -26,8 +26,23 @@ class TailMovesVC: UIViewController{
     @IBOutlet weak var viewMoves: UIView!
     var indexPathForOpr : Int!
 
+    @IBOutlet weak var lblCalmRelaxed: UILabel!
+    @IBOutlet weak var btnSlowWag1: UIButton!
+    @IBOutlet weak var btnSlowWag2: UIButton!
+    @IBOutlet weak var btnSlowWag3: UIButton!
+    @IBOutlet weak var lblFastExcited: UILabel!
+    @IBOutlet weak var btnFastWag: UIButton!
+    @IBOutlet weak var btnShortWag: UIButton!
+    @IBOutlet weak var btnHappyWag: UIButton!
+    @IBOutlet weak var btnStandUp: UIButton!
+    @IBOutlet weak var lblFrustrated: UILabel!
+    @IBOutlet weak var btnTremble1: UIButton!
+    @IBOutlet weak var btnTremble2: UIButton!
+    @IBOutlet weak var btnErect: UIButton!
+    @IBOutlet weak var btnHighWag: UIButton!
     
-    let arrTailMoves = ["TAILS1","TAILS2","TAILS3","TAILFA","TAILSH","TAILHA","TAILER","TAILEP","TAILT1","TAILT2","TAILET"]
+    
+    let arrTailMoves = ["TAILS1","TAILS2","TAILS3","TAILFA","TAILSH","TAILHA","TAILER","TAILT1","TAILT2","TAILET","TAILEP"]
     
     let arrHomePosition = ["Slow wag 1","Slow wag 2","Slow wag 3","FAst wag","SHort wag","HAppy wag","ERect","Erect Pulse","Tremble 1","Tremble 2","Erect Trem"]
     
@@ -36,11 +51,29 @@ class TailMovesVC: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpMainUI()
+        setupLocalization()
         //Register for Bluetooth State Updates
         RegisterForNote(#selector(TailMovesVC.DeviceIsReady(_:)),kDeviceIsReady, self)
         RegisterForNote(#selector(TailMovesVC.DeviceDisconnected(_:)),kDeviceDisconnected, self)
     }
     
+    func setupLocalization()  {
+        self.title = NSLocalizedString("kTail Moves", comment: "")
+        lblCalmRelaxed.text = NSLocalizedString("kCalmAndRelaxed", comment: "")
+        btnSlowWag1.setTitle(NSLocalizedString("kSlowwag1", comment: ""), for: .normal)
+        btnSlowWag2.setTitle(NSLocalizedString("kSlowwag2", comment: ""), for: .normal)
+        btnSlowWag3.setTitle(NSLocalizedString("kSlowwag3", comment: ""), for: .normal)
+        lblFastExcited.text = NSLocalizedString("kFastAndExcited", comment: "")
+        btnFastWag.setTitle(NSLocalizedString("kFastWag", comment: ""), for: .normal)
+        btnShortWag.setTitle(NSLocalizedString("kShortWag", comment: ""), for: .normal)
+        btnHappyWag.setTitle(NSLocalizedString("kHappyWag", comment: ""), for: .normal)
+        btnStandUp.setTitle(NSLocalizedString("kStandUp!", comment: ""), for: .normal)
+        lblFrustrated.text = NSLocalizedString("kFrustratedAndTense", comment: "")
+        btnTremble1.setTitle(NSLocalizedString("kTremble1", comment: ""), for: .normal)
+        btnTremble2.setTitle(NSLocalizedString("kTremble2", comment: ""), for: .normal)
+        btnErect.setTitle(NSLocalizedString("kTrembleErect", comment: ""), for: .normal)
+        btnHighWag.setTitle(NSLocalizedString("kHighWag", comment: ""), for: .normal)
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateConnectionUI()

@@ -29,7 +29,7 @@ class TailMovesListVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
     var isFromEdit : Bool = false
     var savedMoveListName : String = ""
     var checkedIndexes = [String]()
-    let arrHomePosition = ["Slow wag 1","Slow wag 2","Slow wag 3","FAst wag","SHort wag","HAppy wag","ERect","Erect Pulse","Tremble 1","Tremble 2","Erect Trem"]
+    let arrHomePosition = [NSLocalizedString("kSlowwag1", comment: ""),NSLocalizedString("kSlowwag2", comment: ""),NSLocalizedString("kSlowwag3", comment: ""),NSLocalizedString("kFastWag", comment: ""),NSLocalizedString("kShortWag", comment: ""),NSLocalizedString("kHappyWag", comment: ""),NSLocalizedString("kErect", comment: ""),NSLocalizedString("kErectPulse", comment: ""),NSLocalizedString("kTremble1", comment: ""),NSLocalizedString("kTremble2", comment: ""),NSLocalizedString("kErectTrem", comment: "")]
     //    ["Slow wag 1","Slow wag 2","Slow wag 3","Fast wag","Short wag","Happy wag","Stand up!","Tremble 1","Tremble 2","Tremble Erect","High Wag"]
     
     override func viewDidLoad() {
@@ -39,7 +39,7 @@ class TailMovesListVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
     
     //MARK:- CUSTOM METHODS -
     func setUpMainUIAndView() {
-        self.title = "Create Move List"
+        self.title = NSLocalizedString("kCreateMoveList", comment: "")
         
         if isFromEdit == true {
             if let pravSavedData = UserDefaults.standard.value(forKey: "\(savedMoveListName) MoveList") as? [String : AnyObject] {
@@ -108,6 +108,9 @@ class TailMovesListVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
             addShadow(sender: calmAndRelaxedCell.btnSlowWag1)
             addShadow(sender: calmAndRelaxedCell.btnSlowWag2)
             addShadow(sender: calmAndRelaxedCell.btnSlowWag3)
+            calmAndRelaxedCell.btnSlowWag1.setTitle(self.arrHomePosition[calmAndRelaxedCell.btnSlowWag1.tag], for: .normal)
+            calmAndRelaxedCell.btnSlowWag2.setTitle(self.arrHomePosition[calmAndRelaxedCell.btnSlowWag2.tag], for: .normal)
+            calmAndRelaxedCell.btnSlowWag3.setTitle(self.arrHomePosition[calmAndRelaxedCell.btnSlowWag3.tag], for: .normal)
             calmAndRelaxedCell.btnSlowWag1.addTarget(self, action: #selector(tailMoves_Clicked(sender:)), for: .touchUpInside)
             calmAndRelaxedCell.btnSlowWag2.addTarget(self, action: #selector(tailMoves_Clicked(sender:)), for: .touchUpInside)
             calmAndRelaxedCell.btnSlowWag3.addTarget(self, action: #selector(tailMoves_Clicked(sender:)), for: .touchUpInside)
@@ -119,7 +122,10 @@ class TailMovesListVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
             addShadow(sender: fastAndRelaxedCell.btnShortWag)
             addShadow(sender: fastAndRelaxedCell.btnHappyWag)
             addShadow(sender: fastAndRelaxedCell.btnStandup)
-
+            fastAndRelaxedCell.btnFastTag.setTitle(self.arrHomePosition[            fastAndRelaxedCell.btnFastTag.tag], for: .normal)
+            fastAndRelaxedCell.btnShortWag.setTitle(self.arrHomePosition[            fastAndRelaxedCell.btnShortWag.tag], for: .normal)
+            fastAndRelaxedCell.btnHappyWag.setTitle(self.arrHomePosition[            fastAndRelaxedCell.btnHappyWag.tag], for: .normal)
+            fastAndRelaxedCell.btnStandup.setTitle(self.arrHomePosition[            fastAndRelaxedCell.btnStandup.tag], for: .normal)
             fastAndRelaxedCell.btnFastTag.addTarget(self, action: #selector(tailMoves_Clicked(sender:)), for: .touchUpInside)
             fastAndRelaxedCell.btnShortWag.addTarget(self, action: #selector(tailMoves_Clicked(sender:)), for: .touchUpInside)
             fastAndRelaxedCell.btnHappyWag.addTarget(self, action: #selector(tailMoves_Clicked(sender:)), for: .touchUpInside)
@@ -132,7 +138,11 @@ class TailMovesListVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
             addShadow(sender: FrustretedAndTenseCell.btnTremble2)
             addShadow(sender: FrustretedAndTenseCell.btnTremblErect)
             addShadow(sender: FrustretedAndTenseCell.btnHighWag)
-
+            FrustretedAndTenseCell.btnTremble1.setTitle(self.arrHomePosition[            FrustretedAndTenseCell.btnTremble1.tag], for: .normal)
+            FrustretedAndTenseCell.btnTremble2.setTitle(self.arrHomePosition[            FrustretedAndTenseCell.btnTremble2.tag], for: .normal)
+            FrustretedAndTenseCell.btnTremblErect.setTitle(self.arrHomePosition[            FrustretedAndTenseCell.btnTremblErect.tag], for: .normal)
+            FrustretedAndTenseCell.btnHighWag.setTitle(self.arrHomePosition[            FrustretedAndTenseCell.btnHighWag.tag], for: .normal)
+            
             FrustretedAndTenseCell.btnTremble1.addTarget(self, action: #selector(tailMoves_Clicked(sender:)), for: .touchUpInside)
             FrustretedAndTenseCell.btnTremble2.addTarget(self, action: #selector(tailMoves_Clicked(sender:)), for: .touchUpInside)
             FrustretedAndTenseCell.btnTremblErect.addTarget(self, action: #selector(tailMoves_Clicked(sender:)), for: .touchUpInside)

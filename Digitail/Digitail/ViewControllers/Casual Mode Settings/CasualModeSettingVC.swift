@@ -10,14 +10,14 @@ import UIKit
 import SideMenu
 import RangeSeekSlider
 
-let kCalmAndRelaxed  = "Calm and Relaxed"
-let kFastAndExcited  = "Fast and Excited"
-let kFrustratedAndTense  = "Frustrated and Tense"
+let kCalmAndRelaxed  = NSLocalizedString("kCalmAndRelaxed", comment: "")
+let kFastAndExcited  = NSLocalizedString("kFastAndExcited", comment: "")
+let kFrustratedAndTense  = NSLocalizedString("kFrustratedAndTense", comment: "")
 let kLEDPatterns  = "LED Patterns"
-let kEarGearMoves  = "EarGear Poses"
+let kEarGearMoves  = NSLocalizedString("kEarGearPoses", comment: "")
 
-let kSendToEargear = "Send To EarGear"
-let kSendToTail = "Send To Tail"
+let kSendToEargear = NSLocalizedString("kSendToEargear", comment: "")
+let kSendToTail = NSLocalizedString("kSendTail", comment: "")
 
 
 class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataSource,RangeSeekSliderDelegate{
@@ -47,7 +47,7 @@ class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataS
         btnSendToTail.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
         btnSendToTail.layer.shadowRadius = 2.5
         btnSendToTail.layer.shadowOpacity = 0.5
-        
+        btnSendToTail.setTitle(kSendToTail, for: .normal)
         btnMenu.layer.cornerRadius = 5.0
 
         tblViewCasualModeCategories.separatorInset = .zero

@@ -120,10 +120,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
             
+            var isEG2 = false
             if self.tempeargearPeripheral.count > 0 {
                 for peripharals in self.tempeargearPeripheral {
                     if peripheral.identifier.uuidString == peripharals.peripheral.identifier.uuidString {
+                        deviceName = peripharals.deviceName
                         isDigitail = false
+                        if deviceName.lowercased().contains("eargear v2") {
+                            isEG2 = true
+                        } else {
+                            isEG2 = false
+                        }
                     }
                 }
             }
@@ -140,6 +147,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 deviceActor.state[Constants.kDeviceName] = deviceName
             } else {
                 deviceActor = BLEActor(deviceState: [:], servicesMeta: DictFromFile(kServiceMetaEarGear), operationsMeta: DictFromFile(kCommandMetaEarGear))
+                deviceActor.isEG2 = isEG2
             }
             
             deviceActor.setPeripheral(peripheral)
@@ -190,6 +198,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             showBluetoothAlert()
             return
         }
+        AppDelegate_.tempDigitailPeripheral.removeAll()
+        AppDelegate_.tempeargearPeripheral.removeAll()
         AppDelegate_.peripheralList.removeAll()
         AppDelegate_.centralManagerActor.centralManager?.stopScan()
         AppDelegate_.centralManagerActor.retrievePeripherals()
@@ -227,7 +237,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let deviceName = advertisementData["kCBAdvDataLocalName"] as! String
         let RSSI = peripheralDict["Rssi"] as! NSNumber
         
-        if deviceName.contains("(!)Tail1") ||  deviceName.lowercased().contains("mitail") {
+        if deviceName.contains("(!)Tail1") ||  deviceName.lowercased().contains("mitail") || deviceName.contains("DIGITAIL"){
             var deviceNameToAssign = ""
             if deviceName.lowercased().contains("mitail") {
                 deviceNameToAssign = "MITAIL"
@@ -251,8 +261,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            AppDelegate_.tempDigitailPeripheral.append(device)
 //            print("Multiple digitail devices ::",AppDelegate_.tempDigitailPeripheral)
 //            print("Multiple digitail devices Count::",AppDelegate_.tempDigitailPeripheral.count)
-        } else if deviceName.lowercased().contains("eargear") {
-            let device = DeviceModel.init("EARGEAR", peripheral, RSSI)
+        } else if deviceName.lowercased().contains("eargear") ||  deviceName.lowercased().contains("eg2") {
+            var deviceNameToAssign = ""
+            if deviceName.lowercased().contains("eg2") || deviceName.lowercased().contains("eargear v2"){
+                deviceNameToAssign = "EarGear v2"
+            } else if deviceName.lowercased().contains("eargear") {
+                deviceNameToAssign = "EARGEAR"
+            }
+            
+            let device = DeviceModel.init(deviceNameToAssign, peripheral, RSSI)
             AppDelegate_.eargearPeripheral = device
             
             let addedPeripharalsDevices = AppDelegate_.tempeargearPeripheral.filter{ ($0.peripheral.identifier.uuidString.contains(device.peripheral.identifier.uuidString)) }

@@ -1,0 +1,651 @@
+
+/* Class = "UILabel"; text = "2.0.1"; ObjectID = "00H-Cn-nRX"; */
+"00H-Cn-nRX.text" = "2.0.1";
+
+/* Class = "UIButton"; normalTitle = "MICBAL"; ObjectID = "0aw-YC-44Q"; */
+"0aw-YC-44Q.normalTitle" = "MICBAL";
+
+/* Class = "UIButton"; normalTitle = "High Wag"; ObjectID = "0os-mL-0HZ"; */
+"0os-mL-0HZ.normalTitle" = "High Wag";
+
+/* Class = "UILabel"; text = "The list below shows all the light patterns available in your tail. Tap any of them to send them off to the tail!."; ObjectID = "10G-dc-gxz"; */
+"10G-dc-gxz.text" = "以下のリストは、尻尾で利用できるすべての光のパターンを示しています。 それらのいずれかをタップして、尾に送ります！。";
+
+/* Class = "UIButton"; normalTitle = "Create"; ObjectID = "17v-66-f0P"; */
+"17v-66-f0P.normalTitle" = "Create";
+
+/* Class = "UIButton"; normalTitle = "Slow Wag 3"; ObjectID = "1Fh-x2-XIn"; */
+"1Fh-x2-XIn.normalTitle" = "Slow Wag 3";
+
+/* Class = "UIButton"; normalTitle = "FLAME"; ObjectID = "1Vd-fE-6uz"; */
+"1Vd-fE-6uz.normalTitle" = "フレーム";
+
+/* Class = "UIButton"; normalTitle = "ZigZag R"; ObjectID = "1fz-YJ-f2V"; */
+"1fz-YJ-f2V.normalTitle" = "ジグザグ 右";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "2Zb-2f-x55"; */
+"2Zb-2f-x55.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "About"; ObjectID = "2fK-rF-aI1"; */
+"2fK-rF-aI1.title" = "About";
+
+/* Class = "UILabel"; text = "100%"; ObjectID = "3QB-TO-IFW"; */
+"3QB-TO-IFW.text" = "100%";
+
+/* Class = "UILabel"; text = "Calm and Relaxed"; ObjectID = "3So-HW-wUy"; */
+"3So-HW-wUy.text" = "落ち着きとリラックス";
+
+/* Class = "UITextField"; placeholder = "Enter your move list name"; ObjectID = "3Xf-vX-qTd"; */
+"3Xf-vX-qTd.placeholder" = "ムーブリスト名を入力してください";
+
+/* Class = "UILabel"; text = "Searching for DIGITAiL..."; ObjectID = "48u-P0-ig1"; */
+"48u-P0-ig1.text" = "Searching for DIGITAiL...";
+
+/* Class = "UILabel"; text = "Connect to gear"; ObjectID = "5Hf-2C-OY5"; */
+"5Hf-2C-OY5.text" = "Connect to gear";
+
+/* Class = "UILabel"; text = "Qt 5.12.3 (built against 5.12.3)"; ObjectID = "5Zh-69-6su"; */
+"5Zh-69-6su.text" = "Qt 5.12.3 (built against 5.12.3)";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "5i0-mU-43w"; */
+"5i0-mU-43w.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "R Flopper"; ObjectID = "5iV-F6-vYQ"; */
+"5iV-F6-vYQ.normalTitle" = "右 フロッパー";
+
+/* Class = "UILabel"; text = "Pick a command"; ObjectID = "5ti-yp-aIn"; */
+"5ti-yp-aIn.text" = "Pick a command";
+
+/* Class = "UILabel"; text = "Crumpet App v5"; ObjectID = "5xM-F8-ib4"; */
+"5xM-F8-ib4.text" = "Crumpet App v5";
+
+/* Class = "UILabel"; text = "Searching for DIGITAiL..."; ObjectID = "6S7-hd-eHC"; */
+"6S7-hd-eHC.text" = "Searching for DIGITAiL...";
+
+/* Class = "UILabel"; text = "Frustrated and Tense"; ObjectID = "6hh-9u-rce"; */
+"6hh-9u-rce.text" = "イライラと緊張";
+
+/* Class = "UIButton"; normalTitle = "OK"; ObjectID = "78K-16-Rc5"; */
+"78K-16-Rc5.normalTitle" = "了解";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "7YJ-Ar-UNk"; */
+"7YJ-Ar-UNk.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Ritwisto"; ObjectID = "7Yz-F2-OsM"; */
+"7Yz-F2-OsM.normalTitle" = "リツウィズト";
+
+/* Class = "UINavigationItem"; title = "Tail Moves"; ObjectID = "7ap-UG-hwd"; */
+"7ap-UG-hwd.title" = "Tail Moves";
+
+/* Class = "UILabel"; text = "Remove the Move List"; ObjectID = "7o6-un-mm7"; */
+"7o6-un-mm7.text" = "ムーブリストの削除";
+
+/* Class = "UIButton"; normalTitle = "LEFT LISTEN"; ObjectID = "82q-yP-zds"; */
+"82q-yP-zds.normalTitle" = "左で聴く";
+
+/* Class = "UILabel"; text = "The list below shows all the moves available in your tail. Tap any of them to send them off to the tail!."; ObjectID = "8a8-2H-dCI"; */
+"8a8-2H-dCI.text" = "The list below shows all the moves available in your tail. Tap any of them to send them off to the tail!.";
+
+/* Class = "UILabel"; text = "IOTTIVE OPC PRIVATE LIMITED"; ObjectID = "8ct-6k-uyu"; */
+"8ct-6k-uyu.text" = "IOTTIVE OPC PRIVATE LIMITED";
+
+/* Class = "UILabel"; text = "Searching for gear..."; ObjectID = "8hH-je-oYh"; */
+"8hH-je-oYh.text" = "Searching for gear...";
+
+/* Class = "UILabel"; text = "Your tail will now restart and we can see if the firmware upgrade was successful"; ObjectID = "8ov-sV-uWA"; */
+"8ov-sV-uWA.text" = "Your tail will now restart and we can see if the firmware upgrade was successful";
+
+/* Class = "UINavigationItem"; title = "Alarms"; ObjectID = "9rw-wV-L4p"; */
+"9rw-wV-L4p.title" = "Alarms";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "A11-Gk-uMe"; */
+"A11-Gk-uMe.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "EarGear Poses"; ObjectID = "Ais-Dz-gpe"; */
+"Ais-Dz-gpe.normalTitle" = "EarGearポーズ";
+
+/* Class = "UIButton"; normalTitle = "CANCEL"; ObjectID = "Aqk-w1-Dib"; */
+"Aqk-w1-Dib.normalTitle" = "キャンセル";
+
+/* Class = "UILabel"; text = "None found yet..."; ObjectID = "BDI-c0-vB0"; */
+"BDI-c0-vB0.text" = "None found yet...";
+
+/* Class = "UILabel"; text = "Searching for DIGITAiL..."; ObjectID = "BXX-nC-lUi"; */
+"BXX-nC-lUi.text" = "Searching for DIGITAiL...";
+
+/* Class = "UILabel"; text = "None found yet..."; ObjectID = "Baz-jE-jEb"; */
+"Baz-jE-jEb.text" = "None found yet...";
+
+/* Class = "UIButton"; normalTitle = "Glow Tips"; ObjectID = "Cdt-Oj-Epz"; */
+"Cdt-Oj-Epz.normalTitle" = "Glow Tips";
+
+/* Class = "UIButton"; normalTitle = "Slow Wag 2"; ObjectID = "Cg2-8o-E5r"; */
+"Cg2-8o-E5r.normalTitle" = "Slow Wag 2";
+
+/* Class = "UILabel"; text = "ad"; ObjectID = "Ct5-7l-nQi"; */
+"Ct5-7l-nQi.text" = "ad";
+
+/* Class = "UILabel"; text = "<gil.ildar@gmail.com>"; ObjectID = "DKH-1P-8gU"; */
+"DKH-1P-8gU.text" = "<gil.ildar@gmail.com>";
+
+/* Class = "UITextField"; placeholder = "Enter your alarm name"; ObjectID = "DZG-tf-w8Q"; */
+"DZG-tf-w8Q.placeholder" = "Enter your alarm name";
+
+/* Class = "UILabel"; text = "EARGEAR POSES"; ObjectID = "Dzl-ia-97M"; */
+"Dzl-ia-97M.text" = "EARGEARポーズ";
+
+/* Class = "UILabel"; text = "Are you sure that you want to remove the alarm jjj"; ObjectID = "E8k-yp-E8Q"; */
+"E8k-yp-E8Q.text" = "Are you sure that you want to remove the alarm jjj";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "EK5-bb-stz"; */
+"EK5-bb-stz.title" = "Settings";
+
+/* Class = "UINavigationItem"; title = "List"; ObjectID = "Ebg-FS-O41"; */
+"Ebg-FS-O41.title" = "List";
+
+/* Class = "UIButton"; normalTitle = "Hewo (L)"; ObjectID = "Efo-3C-3JC"; */
+"Efo-3C-3JC.normalTitle" = "ハロー (左)";
+
+/* Class = "UIButton"; normalTitle = "Hewo Too"; ObjectID = "F4a-oY-Na9"; */
+"F4a-oY-Na9.normalTitle" = "ハロートゥー";
+
+/* Class = "UINavigationItem"; title = "EARGEAR POSES"; ObjectID = "FBN-sw-LAM"; */
+"FBN-sw-LAM.title" = "EARGEARポーズ";
+
+/* Class = "UIButton"; normalTitle = "ADD THIS PAUSE"; ObjectID = "FFx-BJ-BaV"; */
+"FFx-BJ-BaV.normalTitle" = "ADD THIS PAUSE";
+
+/* Class = "UILabel"; text = "Pick the duration"; ObjectID = "FLV-w4-gG0"; */
+"FLV-w4-gG0.text" = "Pick the duration";
+
+/* Class = "UIButton"; normalTitle = "OK"; ObjectID = "FkO-G5-knS"; */
+"FkO-G5-knS.normalTitle" = "了解";
+
+/* Class = "UILabel"; text = "Fast and Excited"; ObjectID = "G4U-kU-Niw"; */
+"G4U-kU-Niw.text" = "スピードと興奮";
+
+/* Class = "UILabel"; text = "EARGEAR SETTINGS"; ObjectID = "GAM-ag-3XG"; */
+"GAM-ag-3XG.text" = "EARGEAR SETTINGS";
+
+/* Class = "UIButton"; normalTitle = "Alarm"; ObjectID = "GAW-wh-mce"; */
+"GAW-wh-mce.normalTitle" = "Alarm";
+
+/* Class = "UIButton"; normalTitle = "Confused"; ObjectID = "GAh-SE-mHJ"; */
+"GAh-SE-mHJ.normalTitle" = "困惑";
+
+/* Class = "UILabel"; text = "Copyright"; ObjectID = "GNu-Sw-g0n"; */
+"GNu-Sw-g0n.text" = "Copyright";
+
+/* Class = "UILabel"; text = "10s"; ObjectID = "HRI-A7-CLl"; */
+"HRI-A7-CLl.text" = "10s";
+
+/* Class = "UIButton"; normalTitle = "HAppy wag"; ObjectID = "HVV-i2-zRE"; */
+"HVV-i2-zRE.normalTitle" = "HAppy wag";
+
+/* Class = "UIButton"; normalTitle = "L Flopper"; ObjectID = "HVf-Lj-vtr"; */
+"HVf-Lj-vtr.normalTitle" = "左 フロッパー";
+
+/* Class = "UILabel"; text = "Searching for DIGITAiL..."; ObjectID = "I0S-js-ulv"; */
+"I0S-js-ulv.text" = "Searching for DIGITAiL...";
+
+/* Class = "UIButton"; normalTitle = "ZigZag L"; ObjectID = "I5W-Ez-dC4"; */
+"I5W-Ez-dC4.normalTitle" = "ジグザグ 左";
+
+/* Class = "UIButton"; normalTitle = "Stand Up!"; ObjectID = "I6s-m3-Jz8"; */
+"I6s-m3-Jz8.normalTitle" = "Stand Up!";
+
+/* Class = "UIButton"; normalTitle = "DIGITAiL instructions"; ObjectID = "IBL-Od-7Ez"; */
+"IBL-Od-7Ez.normalTitle" = "DIGITAiL instructions";
+
+/* Class = "UIButton"; nori ObjectID = "Ikr-FB-ume"; */
+"Ikr-FB-ume.normalTitle" = "ハロー";
+
+/* Class = "UIButton"; normalTitle = "Look For Tails"; ObjectID = "J9D-m9-br1"; */
+"J9D-m9-br1.normalTitle" = "Look For Tails";
+
+/* Class = "UILabel"; text = "Below are a list of things you can do with EarGear. More to come."; ObjectID = "JJL-kT-s1x"; */
+"JJL-kT-s1x.text" = "以下は、EarGearで利用可能な機能の一覧です。今後さらに機能が追加される予定です。";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "JZl-im-hKE"; */
+"JZl-im-hKE.text" = "Label";
+
+/* Class = "UILabel"; text = "0 Seconds"; ObjectID = "Jdt-MG-aBc"; */
+"Jdt-MG-aBc.text" = "0 Seconds";
+
+/* Class = "UILabel"; text = "License:"; ObjectID = "Jxn-9z-Nqm"; */
+"Jxn-9z-Nqm.text" = "License:";
+
+/* Class = "UIButton"; normalTitle = "SHort wag"; ObjectID = "JzG-59-QKy"; */
+"JzG-59-QKy.normalTitle" = "SHort wag";
+
+/* Class = "UILabel"; text = "<www.Iottive.com>"; ObjectID = "KAT-sv-MaR"; */
+"KAT-sv-MaR.text" = "<www.Iottive.com>";
+
+/* Class = "UILabel"; text = "Updating Firmware..."; ObjectID = "KLi-aw-xxo"; */
+"KLi-aw-xxo.text" = "Updating Firmware...";
+
+/* Class = "UILabel"; text = "1.1"; ObjectID = "KY2-WH-IKT"; */
+"KY2-WH-IKT.text" = "1.1";
+
+/* Class = "UIButton"; normalTitle = "DOUBLE RIGHT"; ObjectID = "Kdj-sT-BLu"; */
+"Kdj-sT-BLu.normalTitle" = "ダブルライト";
+
+/* Class = "UILabel"; text = "None found yet..."; ObjectID = "KzG-IS-qqx"; */
+"KzG-IS-qqx.text" = "None found yet...";
+
+/* Class = "UILabel"; text = "ad"; ObjectID = "LIi-Ru-e49"; */
+"LIi-Ru-e49.text" = "ad";
+
+/* Class = "UILabel"; text = "iOS System"; ObjectID = "LN8-k3-dML"; */
+"LN8-k3-dML.text" = "iOS System";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "LQZ-2w-Sda"; */
+"LQZ-2w-Sda.text" = "Label";
+
+/* Class = "UILabel"; text = "Libraries in use"; ObjectID = "La0-3o-dBi"; */
+"La0-3o-dBi.text" = "Libraries in use";
+
+/* Class = "UIButton"; normalTitle = "Tremble 1"; ObjectID = "LaP-2g-plT"; */
+"LaP-2g-plT.normalTitle" = "Tremble 1";
+
+/* Class = "UIButton"; normalTitle = "STROBE"; ObjectID = "M2J-a8-O2t"; */
+"M2J-a8-O2t.normalTitle" = "ストロボ";
+
+/* Class = "UIButton"; normalTitle = "ERect"; ObjectID = "MMn-0x-DHw"; */
+"MMn-0x-DHw.normalTitle" = "ERect";
+
+/* Class = "UIButton"; normalTitle = "FLICK RIGHT"; ObjectID = "MOL-zX-GTb"; */
+"MOL-zX-GTb.normalTitle" = "右にフリック";
+
+/* Class = "UILabel"; text = "Remove the Alarm"; ObjectID = "MfD-pI-w8A"; */
+"MfD-pI-w8A.text" = "Remove the Alarm";
+
+/* Class = "UILabel"; text = "None found yet..."; ObjectID = "MmN-wB-kIq"; */
+"MmN-wB-kIq.text" = "None found yet...";
+
+/* Class = "UIButton"; normalTitle = "CREATE"; ObjectID = "Mxo-zH-7k6"; */
+"Mxo-zH-7k6.normalTitle" = "CREATE";
+
+/* Class = "UIButton"; normalTitle = "EarGear instructions"; ObjectID = "NJ7-BU-mtC"; */
+"NJ7-BU-mtC.normalTitle" = "EarGear instructions";
+
+/* Class = "UIButton"; normalTitle = "Look For Tails"; ObjectID = "NVg-NE-LzY"; */
+"NVg-NE-LzY.normalTitle" = "Look For Tails";
+
+/* Class = "UINavigationItem"; title = "Firmware Upgrade"; ObjectID = "Ngd-kN-QQR"; */
+"Ngd-kN-QQR.title" = "ファームウェアダウングレード";
+
+/* Class = "UINavigationItem"; title = "Crumpet"; ObjectID = "Nld-sb-HqH"; */
+"Nld-sb-HqH.title" = "Crumpet";
+
+/* Class = "UIButton"; normalTitle = "Fake it!"; ObjectID = "OBa-op-CjK"; */
+"OBa-op-CjK.normalTitle" = "Fake it!";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "OPz-d1-HVr"; */
+"OPz-d1-HVr.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "DOUBLE LEFT"; ObjectID = "Os6-ZG-nj2"; */
+"Os6-ZG-nj2.normalTitle" = "ダブルレフト";
+
+/* Class = "UILabel"; text = "0s"; ObjectID = "P9H-YX-PwT"; */
+"P9H-YX-PwT.text" = "0s";
+
+/* Class = "UIButton"; normalTitle = "Slow Wag 1"; ObjectID = "PMT-i2-JfN"; */
+"PMT-i2-JfN.normalTitle" = "Slow Wag 1";
+
+/* Class = "UILabel"; text = "IIdar Gilmanov"; ObjectID = "Q8w-Lv-BeT"; */
+"Q8w-Lv-BeT.text" = "IIdar Gilmanov";
+
+/* Class = "UIButton"; normalTitle = "Look For Tails"; ObjectID = "QS4-XW-H1O"; */
+"QS4-XW-H1O.normalTitle" = "Look For Tails";
+
+/* Class = "UILabel"; text = "To upgrade the firmware of your connected MiTail please click this button."; ObjectID = "QiH-gF-5De"; */
+"QiH-gF-5De.text" = "To upgrade the firmware of your connected MiTail please click this button.";
+
+/* Class = "UILabel"; text = "Pick a name"; ObjectID = "RCu-Sk-dAI"; */
+"RCu-Sk-dAI.text" = "Pick a name";
+
+/* Class = "UIButton"; normalTitle = "Tremble Erect"; ObjectID = "Rgl-1I-CIi"; */
+"Rgl-1I-CIi.normalTitle" = "Tremble Erect";
+
+/* Class = "UILabel"; text = "1.1"; ObjectID = "Rl3-87-UWO"; */
+"Rl3-87-UWO.text" = "1.1";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Rpl-FL-mE8"; */
+"Rpl-FL-mE8.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "Happy Wag"; ObjectID = "RzE-wp-Iaa"; */
+"RzE-wp-Iaa.normalTitle" = "Happy Wag";
+
+/* Class = "UILabel"; text = "New Version Available"; ObjectID = "STm-Aq-cuz"; */
+"STm-Aq-cuz.text" = "最新バージョン利用可能";
+
+/* Class = "UILabel"; text = "None found yet..."; ObjectID = "SUD-Vr-TrJ"; */
+"SUD-Vr-TrJ.text" = "None found yet...";
+
+/* Class = "UILabel"; text = "Pick the duration"; ObjectID = "TEW-k2-meq"; */
+"TEW-k2-meq.text" = "Pick the duration";
+
+/* Class = "UISegmentedControl"; TS7-gO-lx1.segmentTitles[0] = "Calm"; ObjectID = "TS7-gO-lx1"; */
+"TS7-gO-lx1.segmentTitles[0]" = "落ち着いて";
+
+/* Class = "UISegmentedControl"; TS7-gO-lx1.segmentTitles[1] = "Excited"; ObjectID = "TS7-gO-lx1"; */
+"TS7-gO-lx1.segmentTitles[1]" = "興奮した";
+
+/* Class = "UIButton"; normalTitle = "Hewo (R)"; ObjectID = "TwL-C3-pFy"; */
+"TwL-C3-pFy.normalTitle" = "ハロー (右)";
+
+/* Class = "UIButton"; normalTitle = "RIGHT LISTEN"; ObjectID = "UCE-h0-qzh"; */
+"UCE-h0-qzh.normalTitle" = "右で聴く";
+
+/* Class = "UILabel"; text = "Update Success"; ObjectID = "UDX-zU-pqn"; */
+"UDX-zU-pqn.text" = "Update Success";
+
+/* Class = "UILabel"; text = "TAIL SETTINGS"; ObjectID = "URM-j2-rtB"; */
+"URM-j2-rtB.text" = "TAIL SETTINGS";
+
+/* Class = "UINavigationItem"; title = "Tail Poses"; ObjectID = "Ueb-cj-a8I"; */
+"Ueb-cj-a8I.title" = "Tail Poses";
+
+/* Class = "UILabel"; text = "Fake Tail"; ObjectID = "VBh-ZA-PPK"; */
+"VBh-ZA-PPK.text" = "Fake Tail";
+
+/* Class = "UIButton"; normalTitle = "Listen Mode ON"; ObjectID = "VO1-1o-Nqy"; */
+"VO1-1o-Nqy.normalTitle" = "Listen Mode ON";
+
+/* Class = "UIButton"; normalTitle = "Casual Mode"; ObjectID = "VqU-7C-IuI"; */
+"VqU-7C-IuI.normalTitle" = "Casual Mode";
+
+/* Class = "UILabel"; text = "LED Patterns"; ObjectID = "WWW-sg-gP8"; */
+"WWW-sg-gP8.text" = "LEDパターン";
+
+/* Class = "UILabel"; text = "Calm and Relaxed"; ObjectID = "WoT-Rz-axj"; */
+"WoT-Rz-axj.text" = "落ち着きとリラックス";
+
+/* Class = "UILabel"; text = "Set an alarm here. Pick a date and time for alarm, and then add one or more moves you want to perform when you hit that time."; ObjectID = "Wp2-En-7Qh"; */
+"Wp2-En-7Qh.text" = "Set an alarm here. Pick a date and time for alarm, and then add one or more moves you want to perform when you hit that time.";
+
+/* Class = "UILabel"; text = "50s"; ObjectID = "X45-jz-Wi8"; */
+"X45-jz-Wi8.text" = "50s";
+
+/* Class = "UINavigationItem"; title = "EARGEAR POSES"; ObjectID = "XHZ-X9-F7T"; */
+"XHZ-X9-F7T.title" = "EARGEARポーズ";
+
+/* Class = "UILabel"; text = "Frustrated and Tense"; ObjectID = "XLQ-WS-kdD"; */
+"XLQ-WS-kdD.text" = "イライラと緊張";
+
+/* Class = "UIButton"; normalTitle = "Connect Gear"; ObjectID = "YL4-ud-2AI"; */
+"YL4-ud-2AI.normalTitle" = "Connect Gear";
+
+/* Class = "UIButton"; normalTitle = "Forget Gear Names"; ObjectID = "YMd-5z-YPQ"; */
+"YMd-5z-YPQ.normalTitle" = "Forget Gear Names";
+
+/* Class = "UILabel"; text = "1.0.1"; ObjectID = "YUL-wB-XSa"; */
+"YUL-wB-XSa.text" = "1.0.1";
+
+/* Class = "UITextField"; placeholder = "Enter your move list name"; ObjectID = "Ypl-QK-cmW"; */
+"Ypl-QK-cmW.placeholder" = "ムーブリスト名を入力してください";
+
+/* Class = "UINavigationItem"; title = "Update Alarm"; ObjectID = "ZJX-tn-MVa"; */
+"ZJX-tn-MVa.title" = "Update Alarm";
+
+/* Class = "UIButton"; normalTitle = "OK"; ObjectID = "aaJ-5F-au4"; */
+"aaJ-5F-au4.normalTitle" = "了解";
+
+/* Class = "UIButton"; normalTitle = "Eltwisto"; ObjectID = "abo-63-G7V"; */
+"abo-63-G7V.normalTitle" = "エルトウィズト";
+
+/* Class = "UILabel"; text = "DIGITAiL, MiTail and EarGear created by The Tail Company"; ObjectID = "amI-iK-j99"; */
+"amI-iK-j99.text" = "DIGITAiL, MiTail and EarGear created by The Tail Company";
+
+/* Class = "UILabel"; text = "Instructions"; ObjectID = "bO0-c4-Eik"; */
+"bO0-c4-Eik.text" = "Instructions";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "bU6-Rl-jtU"; */
+"bU6-Rl-jtU.normalTitle" = "Cancel";
+
+/* Class = "UILabel"; text = "Your firmware is up to date"; ObjectID = "bdF-bG-m2J"; */
+"bdF-bG-m2J.text" = "Your firmware is up to date";
+
+/* Class = "UILabel"; text = "Are you sure that you want to remove the Move List"; ObjectID = "bdo-mw-aKJ"; */
+"bdo-mw-aKJ.text" = "Are you sure that you want to remove the Move List";
+
+/* Class = "UILabel"; text = "Enter a name  to use for your new alarm and click Create"; ObjectID = "be6-09-iSU"; */
+"be6-09-iSU.text" = "Enter a name  to use for your new alarm and click Create";
+
+/* Class = "UILabel"; text = "Authors"; ObjectID = "bxp-gr-UEb"; */
+"bxp-gr-UEb.text" = "Authors";
+
+/* Class = "UIButton"; normalTitle = "Fast Wag"; ObjectID = "c6c-Pl-eai"; */
+"c6c-Pl-eai.normalTitle" = "Fast Wag";
+
+/* Class = "UIButton"; normalTitle = "SAWTOOTH"; ObjectID = "cg6-QJ-mq9"; */
+"cg6-QJ-mq9.normalTitle" = "ノコギリ";
+
+/* Class = "UIButton"; normalTitle = "Slow Wag 3"; ObjectID = "dkn-Ix-f5v"; */
+"dkn-Ix-f5v.normalTitle" = "Slow Wag 3";
+
+/* Class = "UIButton"; normalTitle = "FAst wag"; ObjectID = "dlO-kx-wGC"; */
+"dlO-kx-wGC.normalTitle" = "FAst wag";
+
+/* Class = "UILabel"; text = "Gear Names"; ObjectID = "e0T-bB-NEP"; */
+"e0T-bB-NEP.text" = "Gear Names";
+
+/* Class = "UILabel"; text = "The list below shows all the moves available in your tail. Tap any of them to send them off to the tail!."; ObjectID = "e1W-u7-m0h"; */
+"e1W-u7-m0h.text" = "The list below shows all the moves available in your tail. Tap any of them to send them off to the tail!.";
+
+/* Class = "UINavigationItem"; title = "Move Lists Update"; ObjectID = "e3N-xR-lXq"; */
+"e3N-xR-lXq.title" = "Move Lists Update";
+
+/* Class = "UIButton"; normalTitle = "Connect"; ObjectID = "e64-j7-VTu"; */
+"e64-j7-VTu.normalTitle" = "Connect";
+
+/* Class = "UILabel"; text = "Create lists of moves, glows and pauses to send to your tail. To send a list you have created, tap it and pick OK. To perform actions on the ones you've created, like editing or even removing them entirely, swipe left on the item."; ObjectID = "eJe-6A-mNZ"; */
+"eJe-6A-mNZ.text" = "動作、蛍光、ポーズのリストを作成し、しっぽに送信します。作成したリストを送信するには、リストをタップして「了解」を選択していください。作成したリストに対して、編集や削除などのアクションを実行するには、項目を左にスワイプします。";
+
+/* Class = "UINavigationItem"; title = "Casual Mode Categories"; ObjectID = "edu-Ir-CKa"; */
+"edu-Ir-CKa.title" = "カジュアルモードカテゴリ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "eg6-qK-5JT"; */
+"eg6-qK-5JT.text" = "Label";
+
+/* Class = "UILabel"; text = "Below are a list of things you can do with EarGear v2. More to come."; ObjectID = "fBc-0G-atZ"; */
+"fBc-0G-atZ.text" = "以下は、EarGear v2で利用可能な機能の一覧です。今後さらに機能が追加される予定です。";
+
+/* Class = "UINavigationItem"; title = "Move Lists"; ObjectID = "fVH-k4-K2Z"; */
+"fVH-k4-K2Z.title" = "動作リスト";
+
+/* Class = "UILabel"; text = "This is where you set the pauses inbetween moves and move familes too"; ObjectID = "fhH-XB-7qm"; */
+"fhH-XB-7qm.text" = "動作間のポーズを設定することができます。";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "flq-T8-NeY"; */
+"flq-T8-NeY.text" = "Label";
+
+/* Class = "UILabel"; text = "Pick a command"; ObjectID = "fsa-h6-mus"; */
+"fsa-h6-mus.text" = "Pick a command";
+
+/* Class = "UINavigationItem"; title = "Developer"; ObjectID = "fwo-xd-J90"; */
+"fwo-xd-J90.title" = "Developer";
+
+/* Class = "UILabel"; text = "Pick a name"; ObjectID = "g7b-ve-5Ag"; */
+"g7b-ve-5Ag.text" = "Pick a name";
+
+/* Class = "UILabel"; text = "Firmware Upgrade"; ObjectID = "h3K-Yc-tLx"; */
+"h3K-Yc-tLx.text" = "Firmware Upgrade";
+
+/* Class = "UIButton"; normalTitle = "Ears Home!"; ObjectID = "hZp-13-Bdg"; */
+"hZp-13-Bdg.normalTitle" = "イヤーホーム！";
+
+/* Class = "UIButton"; normalTitle = "Erect Trem"; ObjectID = "hug-KS-ThF"; */
+"hug-KS-ThF.normalTitle" = "Erect Trem";
+
+/* Class = "UIButton"; normalTitle = "Tail Moves"; ObjectID = "i9G-oC-imf"; */
+"i9G-oC-imf.normalTitle" = "Tail Moves";
+
+/* Class = "UILabel"; text = "© 2018-2022 The Tail Company"; ObjectID = "iMm-li-ABk"; */
+"iMm-li-ABk.text" = "© 2018-2022 The Tail Company";
+
+/* Class = "UILabel"; text = "Range of pause between random moves in seconds."; ObjectID = "jK3-RB-rK7"; */
+"jK3-RB-rK7.text" = "ランダム動作の間隔を秒単位で指定。";
+
+/* Class = "UIButton"; normalTitle = "ADD THIS PAUSE"; ObjectID = "jm3-2u-PTM"; */
+"jm3-2u-PTM.normalTitle" = "ADD THIS PAUSE";
+
+/* Class = "UIButton"; normalTitle = "TRIANGLE"; ObjectID = "jw4-hs-Uka"; */
+"jw4-hs-Uka.normalTitle" = "トライアングル";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "jwE-Fl-zlb"; */
+"jwE-Fl-zlb.text" = "Label";
+
+/* Class = "UILabel"; text = "74 Seconds"; ObjectID = "jxu-r4-Kum"; */
+"jxu-r4-Kum.text" = "74 Seconds";
+
+/* Class = "UILabel"; text = "Download and read the instructions by clicking the links below. Please make sure you read them before using your gear."; ObjectID = "k92-9g-8Kr"; */
+"k92-9g-8Kr.text" = "Download and read the instructions by clicking the links below. Please make sure you read them before using your gear.";
+
+/* Class = "UILabel"; text = "Select Tail Moves"; ObjectID = "kgE-hg-obP"; */
+"kgE-hg-obP.text" = "尻尾の動きを選択";
+
+/* Class = "UILabel"; text = "20 Seconds"; ObjectID = "ksB-S6-Lfh"; */
+"ksB-S6-Lfh.text" = "20 Seconds";
+
+/* Class = "UIButton"; normalTitle = "Short Wag"; ObjectID = "lti-B0-iaP"; */
+"lti-B0-iaP.normalTitle" = "Short Wag";
+
+/* Class = "UIButton"; normalTitle = "MiTail instructions"; ObjectID = "mlw-B3-P6C"; */
+"mlw-B3-P6C.normalTitle" = "MiTail instructions";
+
+/* Class = "UILabel"; text = "Enter a name  to use for your new alarm and click Create"; ObjectID = "moL-Lo-tSc"; */
+"moL-Lo-tSc.text" = "Enter a name  to use for your new alarm and click Create";
+
+/* Class = "UIButton"; normalTitle = "Tremble 2"; ObjectID = "nN3-JO-LEN"; */
+"nN3-JO-LEN.normalTitle" = "Tremble 2";
+
+/* Class = "UIButton"; normalTitle = "Run"; ObjectID = "nP0-zC-0Rb"; */
+"nP0-zC-0Rb.normalTitle" = "走る";
+
+/* Class = "UILabel"; text = "Reconnect Automatically"; ObjectID = "nYN-RK-ypP"; */
+"nYN-RK-ypP.text" = "Reconnect Automatically";
+
+/* Class = "UIButton"; normalTitle = "CANCEL"; ObjectID = "nac-Ps-I7o"; */
+"nac-Ps-I7o.normalTitle" = "キャンセル";
+
+/* Class = "UIButton"; normalTitle = "Tremble 2"; ObjectID = "nto-FV-R1N"; */
+"nto-FV-R1N.normalTitle" = "Tremble 2";
+
+/* Class = "UILabel"; text = "This is your list of commands. It can include both moves, glows, and pauses. Tip: To add a new command underneath one you have in the list already. Click the add actions shown when you swipe left on item."; ObjectID = "o5j-x9-u2U"; */
+"o5j-x9-u2U.text" = "This is your list of commands. It can include both moves, glows, and pauses. Tip: To add a new command underneath one you have in the list already. Click the add actions shown when you swipe left on item.";
+
+/* Class = "UIButton"; normalTitle = "Send To Tail"; ObjectID = "oA4-bh-CcY"; */
+"oA4-bh-CcY.normalTitle" = "Send To Tail";
+
+/* Class = "UILabel"; text = "Please only use these if you know what you're doing"; ObjectID = "oOx-G3-12w"; */
+"oOx-G3-12w.text" = "Please only use these if you know what you're doing";
+
+/* Class = "UINavigationItem"; title = "Tail Moves"; ObjectID = "ohr-nQ-U8V"; */
+"ohr-nQ-U8V.title" = "Tail Moves";
+
+/* Class = "UIButton"; normalTitle = "FLICK LEFT"; ObjectID = "olQ-G3-Tg6"; */
+"olQ-G3-Tg6.normalTitle" = "左にフリック";
+
+/* Class = "UILabel"; text = "This is your list of commands. It can include both moves, glows,a nd pauses. Tip:To add a new command underneath one you have in the list already.click the add actions shown when you swipe left on  the items."; ObjectID = "p2F-5y-B6M"; */
+"p2F-5y-B6M.text" = "This is your list of commands. It can include both moves, glows,a nd pauses. Tip:To add a new command underneath one you have in the list already.click the add actions shown when you swipe left on  the items.";
+
+/* Class = "UILabel"; text = "74 Seconds"; ObjectID = "p4s-DJ-CZA"; */
+"p4s-DJ-CZA.text" = "74 Seconds";
+
+/* Class = "UIViewController"; title = "Tail Moves List"; ObjectID = "pJR-pZ-9pZ"; */
+"pJR-pZ-9pZ.title" = "Tail Moves List";
+
+/* Class = "UILabel"; text = "Fast & Excited"; ObjectID = "pyO-cc-3cn"; */
+"pyO-cc-3cn.text" = "スピードと興奮";
+
+/* Class = "UILabel"; text = "Current Sequense"; ObjectID = "qBa-bI-p11"; */
+"qBa-bI-p11.text" = "現在のシーケンス";
+
+/* Class = "UINavigationItem"; title = "Glow Tips"; ObjectID = "qFb-Cb-UE0"; */
+"qFb-Cb-UE0.title" = "蛍光チップ";
+
+/* Class = "UIButton"; normalTitle = "Erect Pulse"; ObjectID = "qYd-VZ-Nts"; */
+"qYd-VZ-Nts.normalTitle" = "Erect Pulse";
+
+/* Class = "UINavigationItem"; title = "Crumpet"; ObjectID = "qiM-EB-0gZ"; */
+"qiM-EB-0gZ.title" = "Crumpet";
+
+/* Class = "UILabel"; text = "Calm & Relaxed"; ObjectID = "rG2-lz-0X1"; */
+"rG2-lz-0X1.text" = "落ち着きとリラックス";
+
+/* Class = "UILabel"; text = "EARGEAR POSES"; ObjectID = "s0c-nV-4XR"; */
+"s0c-nV-4XR.text" = "EARGEARポーズ";
+
+/* Class = "UILabel"; text = "In Certain situations,the app might lose its connection to your tail. Ticking this option will ensure that the app will attempt to reconnect automatically when the connection is lost."; ObjectID = "s31-tJ-eMx"; */
+"s31-tJ-eMx.text" = "In Certain situations,the app might lose its connection to your tail. Ticking this option will ensure that the app will attempt to reconnect automatically when the connection is lost.";
+
+/* Class = "UIButton"; normalTitle = "MORSE"; ObjectID = "sMz-tu-VXO"; */
+"sMz-tu-VXO.normalTitle" = "モールス";
+
+/* Class = "UIButton"; normalTitle = "Slow Wag 1"; ObjectID = "sR9-aB-NFF"; */
+"sR9-aB-NFF.normalTitle" = "Slow Wag 1";
+
+/* Class = "UILabel"; text = "To make the app forget any gear names you may have stored, click this button."; ObjectID = "sos-Yv-OGG"; */
+"sos-Yv-OGG.text" = "To make the app forget any gear names you may have stored, click this button.";
+
+/* Class = "UILabel"; text = "TAIL BATTERY"; ObjectID = "tFr-wz-bV0"; */
+"tFr-wz-bV0.text" = "TAIL BATTERY";
+
+/* Class = "UIButton"; normalTitle = "Slow Wag 2"; ObjectID = "tez-Ty-nNN"; */
+"tez-Ty-nNN.normalTitle" = "Slow Wag 2";
+
+/* Class = "UIButton"; normalTitle = "SAVE"; ObjectID = "u8M-v9-8Id"; */
+"u8M-v9-8Id.normalTitle" = "SAVE";
+
+/* Class = "UIButton"; normalTitle = "Firmware Upgrade"; ObjectID = "uJb-Er-mcY"; */
+"uJb-Er-mcY.normalTitle" = "Firmware Upgrade";
+
+/* Class = "UIButton"; normalTitle = "BLINK"; ObjectID = "uVB-b2-O8d"; */
+"uVB-b2-O8d.normalTitle" = "点滅";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "uj7-1N-NbF"; */
+"uj7-1N-NbF.text" = "0";
+
+/* Class = "UILabel"; text = "Automatic Reconnection"; ObjectID = "v1Z-zt-76F"; */
+"v1Z-zt-76F.text" = "Automatic Reconnection";
+
+/* Class = "UILabel"; text = "Select Duration"; ObjectID = "v6v-9u-nAx"; */
+"v6v-9u-nAx.text" = "期間を選択";
+
+/* Class = "UIButton"; normalTitle = "Tremble 1"; ObjectID = "v9B-L5-kNo"; */
+"v9B-L5-kNo.normalTitle" = "Tremble 1";
+
+/* Class = "UIButton"; normalTitle = "Walk Mode"; ObjectID = "vEN-ux-8o8"; */
+"vEN-ux-8o8.normalTitle" = "Walk Mode";
+
+/* Class = "UIButton"; normalTitle = "Switch L/R"; ObjectID = "vtR-JS-j5S"; */
+"vtR-JS-j5S.normalTitle" = "Switch L/R";
+
+/* Class = "UILabel"; text = "Current Firmware Version"; ObjectID = "vyU-n8-R9v"; */
+"vyU-n8-R9v.text" = "現在のバージョン";
+
+/* Class = "UILabel"; text = "None found yet..."; ObjectID = "wK4-bP-k4v"; */
+"wK4-bP-k4v.text" = "None found yet...";
+
+/* Class = "UILabel"; text = "If you have just downloades the app, for example in anticipation of the arrival of your brand nea,super shiny digitail.., you might want to explore what the app can do. You can click the button below to trick the app into thinking that it is connected to a tail, and explore what options exist."; ObjectID = "y1i-zC-ymx"; */
+"y1i-zC-ymx.text" = "If you have just downloades the app, for example in anticipation of the arrival of your brand nea,super shiny digitail.., you might want to explore what the app can do. You can click the button below to trick the app into thinking that it is connected to a tail, and explore what options exist.";
+
+/* Class = "UIButton"; normalTitle = "Move List"; ObjectID = "yKJ-7n-FnG"; */
+"yKJ-7n-FnG.normalTitle" = "Move List";
+
+/* Class = "UILabel"; text = "Searching for DIGITAiL..."; ObjectID = "ypg-e8-hYE"; */
+"ypg-e8-hYE.text" = "Searching for DIGITAiL...";
+
+/* Class = "UIButton"; normalTitle = "EARS WIDE"; ObjectID = "zPX-As-Ebi"; */
+"zPX-As-Ebi.normalTitle" = "イヤーワイド";
+
+/* Class = "UIButton"; normalTitle = "Ok"; ObjectID = "zTs-Oz-yts"; */
+"zTs-Oz-yts.normalTitle" = "Ok";
+
+/* Class = "UIButton"; normalTitle = "BEACON"; ObjectID = "znx-np-x2I"; */
+"znx-np-x2I.normalTitle" = "ビーコン";
+
+/* Class = "UIButton"; normalTitle = "Look For Tails"; ObjectID = "zrV-rx-T10"; */
+"zrV-rx-T10.normalTitle" = "Look For Tails";

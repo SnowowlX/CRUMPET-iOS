@@ -22,11 +22,12 @@ class DeviceListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         RegisterForNote(#selector(self.DeviceDisconnected(_:)),kDeviceDisconnected, self)
 
         self.title = kConnectGear
+        self.tblVw_Devicelist.reloadData()
        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        startScan()
+       
     }
     
     //MARK:- CUSTOM METHODS -
@@ -97,6 +98,11 @@ class DeviceListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         
     }
     
+    @IBAction func Close_Clicked(_ sender: UIButton) {
+        self.dismiss(animated: true) {
+            
+        }
+    }
     
     //MARK:-  BUTTON EVENTS -
     @IBAction func Menu_Clicked(_ sender: UIButton) {
@@ -161,5 +167,7 @@ class DeviceListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             self.tblVw_Devicelist.reloadData()
         }
     }
+    
+    
     
 }

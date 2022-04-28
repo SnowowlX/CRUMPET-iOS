@@ -10,13 +10,14 @@ import UIKit
 import MGSwipeTableCell
 import SideMenu
 
-let kError = "Error"
-let kMsgAlarmName = "needs movelist name"
-let kArrDictAlarmDetail = "AlrmDetail"
+let kError = NSLocalizedString("kError", comment: "")
+let kMsgAlarmName = NSLocalizedString("kMsgAlarmName", comment: "")
+let kArrDictAlarmDetail = NSLocalizedString("kArrDictAlarmDetail", comment: "")
 let kArrDictMoveList = "MoveList"
 let kAlarmName = "AlarmName"
 let kMoveName = "MoveName"
 let kAlarmTime = "AlarmTime"
+let kPlease_enable_bluetooth = NSLocalizedString("kPleaseEnableBluetooth", comment: "")
 
 class AlarmsVC:UIViewController,UITableViewDelegate,UITableViewDataSource,MGSwipeTableCellDelegate,UITextFieldDelegate
 {
@@ -50,6 +51,17 @@ class AlarmsVC:UIViewController,UITableViewDelegate,UITableViewDataSource,MGSwip
     @IBOutlet var pickerViewTime: UIDatePicker!
     @IBOutlet var nsLayoutPickerViewBottom: NSLayoutConstraint!
    
+    @IBOutlet weak var lblAlarmDescription: UILabel!
+    @IBOutlet weak var lblPickName: UILabel!
+    @IBOutlet weak var lblAddNameInstruction: UILabel!
+    
+    @IBOutlet weak var txtFieldEnterName: UITextField!
+    
+    @IBOutlet weak var btnSave: UIButton!
+    
+    @IBOutlet weak var lblRemoveAlarm: UILabel!
+    @IBOutlet weak var btnOK: UIButton!
+    @IBOutlet weak var btnCancel: UIButton!
     var currentDate: Date! = Date() {
         didSet {
             //    setDate()
@@ -61,6 +73,19 @@ class AlarmsVC:UIViewController,UITableViewDelegate,UITableViewDataSource,MGSwip
         setUpMainUI()
         tableView.reloadData()
         currentDate = Date()
+        setupLocalization()
+    }
+    
+    func setupLocalization() {
+        self.title = NSLocalizedString("kAlarm", comment: "")
+        lblAlarmDescription.text = NSLocalizedString("kSetAlarm", comment: "")
+        lblPickName.text = NSLocalizedString("kPickName", comment: "")
+        lblAddNameInstruction.text = NSLocalizedString("kCreateAlarm", comment: "")
+        txtFieldEnterName.placeholder = NSLocalizedString("kCreateAlarm", comment: "")
+        btnSave.setTitle(NSLocalizedString("kcreate", comment: ""), for: .normal)
+        btnOK.setTitle(NSLocalizedString("kOk", comment: ""), for: .normal)
+        btnCancel.setTitle(NSLocalizedString("kCancel", comment: ""), for: .normal)
+        lblRemoveAlarm.text = NSLocalizedString("kRemoveAlarmTitle", comment: "")
     }
     //MARK: - Custome Function -
     func setUpMainUI(){
@@ -109,7 +134,7 @@ class AlarmsVC:UIViewController,UITableViewDelegate,UITableViewDataSource,MGSwip
         btnMenu.layer.cornerRadius = 5.0
     }
     
-    @objc func dismissKeyboard() {
+    @objc override func dismissKeyboard() {
         view.endEditing(true)
         viewPopUpAddAlrmBackground.isHidden = true
         viewAddAlarmPopUp.isHidden = true
@@ -193,7 +218,7 @@ class AlarmsVC:UIViewController,UITableViewDelegate,UITableViewDataSource,MGSwip
     
     @IBAction func Ok_Clicked(_ sender: UIButton) {
         if selectedTime == nil{
-            let alert = UIAlertController(title: kError, message: "Plese Select Time", preferredStyle: UIAlertController.Style.alert)
+            let alert = UIAlertController(title: kError, message:NSLocalizedString("kPleseSelectTime", comment: ""), preferredStyle: UIAlertController.Style.alert)
             //        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
             alert.addAction(UIAlertAction(title: kAlertActionOK, style: .default, handler:{ (UIAlertAction) in
                 ///print("User click Ok button")
@@ -288,6 +313,7 @@ class AlarmsVC:UIViewController,UITableViewDelegate,UITableViewDataSource,MGSwip
             self.lblDeletePopDesc.text = self.arrdictAlarmData[indexPath.row][kAlarmName] as? String
             let alramName = self.arrdictAlarmData[indexPath.row][kAlarmName] as? String
             self.lblDeletePopDesc.text = "Are you sure that you want to remove the alarm \(alramName ?? "")?"
+            self.lblDeletePopDesc.text = self.lblDeletePopDesc.text?.replacingOccurrences(of: "Are you sure that you want to remove the alarm", with:  NSLocalizedString("kRemoveAlarm", comment: ""))
           //  self.arrdictAlarmData.remove(at: indexPath.row)
             //UserDefaults.standard.set(self.arrdictAlarmData, forKey: kArrDictAlarmDetail)
             //tableView.reloadData()

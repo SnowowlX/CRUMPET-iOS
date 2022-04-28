@@ -1,0 +1,13 @@
+/* 
+  InfoPlist.strings
+  Digitail
+
+  Created by Rushabh Champaneri on 4/26/22.
+  Copyright © 2022 Iottive. All rights reserved.
+*/
+
+"NSBluetoothAlwaysUsageDescription" = "アプリはBluetoothを使用してDigitailハードウェアデバイスと対話しています";
+"NSBluetoothPeripheralUsageDescription" = "アプリはBluetoothを使用してDigitailハードウェアデバイスと対話しています";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "アプリが歩行モードに位置情報を使用したい";
+"NSLocationWhenInUseUsageDescription" = "アプリが歩行モードに位置情報を使用したい";
+"NSMotionUsageDescription" = "アプリが歩行モードに位置情報を使用したい";

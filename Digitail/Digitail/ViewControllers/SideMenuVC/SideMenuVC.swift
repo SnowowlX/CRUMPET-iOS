@@ -10,6 +10,8 @@ import UIKit
 
 //let k = "DIGITAIL"
 
+let kSettings = NSLocalizedString("kSettings", comment: "")
+let kAbout = NSLocalizedString("kAbout", comment: "")
 
 class SideMenuVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
@@ -18,8 +20,9 @@ class SideMenuVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     @IBOutlet weak var tblViewMenuList: UITableView!
     var indexPathForTextColor : Int!
     
-    var arrMenuList = ["Home","Alarm","Move Lists","Tail Moves","Glow Tips","Casual Mode Settings","Connect Gear","Settings","MiTail Instructions","About"]
-    var arrMenuImages = ["Home","Alarm","movelist","TailMoves","GlowTips","Casulal ModeSetting","bluetooth","Settings","About","About"]
+//    var arrMenuList = ["Crumpet","Alarm","Move Lists","Tail Moves","Glow Tips","Casual Mode Settings","Connect Gear","Settings","MiTail Instructions","About"]
+    var arrMenuList = ["Crumpet",kSettings,kAbout]
+    var arrMenuImages = ["Home","Settings","About"]
     
     //MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -80,12 +83,12 @@ class SideMenuVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let alarmVc = self.storyboard?.instantiateViewController(withIdentifier: "AlarmsVC") as! AlarmsVC
             navigationController.pushViewController(alarmVc, animated: true)
-            
+            break
         case "Move Lists" :
             let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let moveListVC = storyboard.instantiateViewController(withIdentifier: "MoveListsVC") as! MoveListsVC
             navigationController.pushViewController(moveListVC, animated: true)
-            
+            break
         case "Tail Moves" :
             if (self.isDIGITAiLConnected()) {
                 let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -94,22 +97,23 @@ class SideMenuVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             } else {
                 
             }
+            break
         case "Casual Mode Settings" :
             let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let casualModeSettingVC = storyboard.instantiateViewController(withIdentifier: "CasualModeSettingVC") as! CasualModeSettingVC
             navigationController.pushViewController(casualModeSettingVC, animated: true)
-         
+            break
         case "Connect Gear" :
             let DeviceListVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "DeviceListVC") as? DeviceListVC
             self.navigationController?.pushViewController(DeviceListVC!, animated: true)
-            
-        case "Settings" :
+            break
+        case kSettings :
             let rootViewController = AppDelegate_.window!.rootViewController
             let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let setViewController = mainStoryboard.instantiateViewController(withIdentifier: "SettingVC") as! SettingVC
             
             navigationController.pushViewController(setViewController, animated: true)
-            
+            break
         case "Glow Tips" :
             if (self.isDIGITAiLConnected()) {
                 let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -118,22 +122,23 @@ class SideMenuVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             } else {
                 
             }
+            break
         case "MiTail Instructions" :
             let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let webViewVC = storyboard.instantiateViewController(withIdentifier: "WebKitViewVC") as! WebKitViewVC
             webViewVC.urlToLoad = "https://thetailcompany.com/mitail.pdf"
             navigationController.pushViewController(webViewVC, animated: true)
-            
-        case "About" :
+            break
+        case kAbout :
             let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let objAboutVC = storyboard.instantiateViewController(withIdentifier: "AboutVC") as! AboutVC
             navigationController.pushViewController(objAboutVC, animated: true)
-            
+            break
         case "Developer" :
             let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let objDeveloperVC = storyboard.instantiateViewController(withIdentifier: "DeveloperVC") as! DeveloperVC
             navigationController.pushViewController(objDeveloperVC, animated: true)
-            
+            break
         default:
             break
         }

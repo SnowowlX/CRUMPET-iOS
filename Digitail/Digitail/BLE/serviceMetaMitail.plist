@@ -8,6 +8,8 @@
 		<dict>
 			<key>name</key>
 			<string>readData</string>
+			<key>isObservable</key>
+			<true/>
 			<key>type</key>
 			<string>data</string>
 		</dict>

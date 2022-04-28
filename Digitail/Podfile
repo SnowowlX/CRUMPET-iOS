@@ -14,6 +14,7 @@ target 'CRUMPET' do
   pod 'JTAppleCalendar'
   pod 'RangeSeekSlider'
   pod 'SOMotionDetector'
+  pod 'MBProgressHUD'
 
   
   target 'DigitailTests' do
