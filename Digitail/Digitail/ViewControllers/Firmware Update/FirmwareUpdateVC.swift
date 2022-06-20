@@ -207,7 +207,7 @@ class FirmwareUpdateVC: UIViewController {
     //MARK:- TO GET LATEST FIRMWARE VERSION FROM SERVER -
     func getLatestFWVersionFromServer() -> String {
         var latestFWVersion : String = ""
-        let myURLString = "https://thetailcompany.com/fw/mitail"
+        let myURLString = connectedDeviceActor.isEG2 ? "https://thetailcompany.com/fw/eargear" : "https://thetailcompany.com/fw/mitail"
         if let myURL = NSURL(string: myURLString) {
             do {
                 let myHTMLString = try NSString(contentsOf: myURL as URL, encoding: String.Encoding.utf8.rawValue)
@@ -277,11 +277,19 @@ class FirmwareUpdateVC: UIViewController {
         if sender.tag == 1 {
             //TITLE IS UPFDATE FIRMWARE
             //DOWNLOAD FIRMWARE FROM SERVER
-            openAlert(title: NSLocalizedString("kFirmwareUpgrade", comment: ""), message: NSLocalizedString("kFirmwareUpgradeDecription", comment: ""), alertStyle: .alert, actionTitles: [NSLocalizedString("kStart", comment: ""),NSLocalizedString("kCancel", comment: "")], actionStyles: [.default,.cancel], actions:[{action in
-                self.downloadLatestFWFromServer()
-            },{cancel in
-                
-            }])
+            if connectedDeviceActor.isEG2 {
+                openAlert(title: NSLocalizedString("kEG2FirmwareUpgrade", comment: ""), message: NSLocalizedString("kEG2FirmwareUpgradeDecription", comment: ""), alertStyle: .alert, actionTitles: [NSLocalizedString("kStart", comment: ""),NSLocalizedString("kCancel", comment: "")], actionStyles: [.default,.cancel], actions:[{action in
+                                self.downloadLatestFWFromServer()
+                            },{cancel in
+                                
+                            }])
+            } else {
+                openAlert(title: NSLocalizedString("kFirmwareUpgrade", comment: ""), message: NSLocalizedString("kFirmwareUpgradeDecription", comment: ""), alertStyle: .alert, actionTitles: [NSLocalizedString("kStart", comment: ""),NSLocalizedString("kCancel", comment: "")], actionStyles: [.default,.cancel], actions:[{action in
+                                self.downloadLatestFWFromServer()
+                            },{cancel in
+                                
+                            }])
+            }
         } else if sender.tag == 2 {
             //TITLE IS CANCEL
             self.navigationController?.popViewController(animated: true)

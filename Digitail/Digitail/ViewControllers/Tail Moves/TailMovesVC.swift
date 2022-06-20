@@ -135,7 +135,7 @@ class TailMovesVC: UIViewController{
             self.lblDigitailDesc.text = kNoneFoundYet
         }
         else{
-            self.btnCntOrLookForDigitail.setTitle("LOOK FOR TAILS", for: .normal)
+            self.btnCntOrLookForDigitail.setTitle("SEARCH", for: .normal)
             self.lblSearchingForDigitail.text = kNoTailsFound
           //  self.lblDigitailDesc.text = "We were unable to find any tails.Please ensure that it is nearby and Switched on."
              self.lblDigitailDesc.text = "We were unable to find your Tail. Please ensure that it is nearby and switched on"
@@ -164,7 +164,7 @@ class TailMovesVC: UIViewController{
             if AppDelegate_.peripheralList.count == 0 {
                 self.viewActivityIndicator.isHidden = true
                 self.btnCntOrLookForDigitail.isHidden = false
-                self.btnCntOrLookForDigitail.setTitle("LOOK FOR TAILS", for: .normal)
+                self.btnCntOrLookForDigitail.setTitle("SEARCH", for: .normal)
                 self.lblSearchingForDigitail.text = kNoTailsFound
                 self.lblDigitailDesc.text = "We were unable to find your Tail. Please ensure that it is nearby and switched on"
                 self.viewFindGetTail.isHidden = false

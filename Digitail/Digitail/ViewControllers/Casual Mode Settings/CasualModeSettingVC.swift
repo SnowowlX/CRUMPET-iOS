@@ -18,7 +18,10 @@ let kEarGearMoves  = NSLocalizedString("kEarGearPoses", comment: "")
 
 let kSendToEargear = NSLocalizedString("kSendToEargear", comment: "")
 let kSendToTail = NSLocalizedString("kSendTail", comment: "")
+let kStartCasualMode = NSLocalizedString("kStartCasualMode", comment: "")
+let kStopCasualMode = NSLocalizedString("kStopCasualMode", comment: "")
 
+let selectedKeys = "userdefault_selected_keys"
 
 class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataSource,RangeSeekSliderDelegate{
     
@@ -33,12 +36,21 @@ class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataS
     
     var arrSelectedIndex =  [Int]()
     let arrCasualMode = [kCalmAndRelaxed,kFastAndExcited,kFrustratedAndTense,kEarGearMoves]
-   
+
+    var arrSelectedMode = [String]()
    
     //MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpMainUI()
+        
+        arrSelectedMode = UserDefaults.standard.stringArray(forKey: selectedKeys) ?? []
+        
+        if AppDelegate_.casualONDigitail || AppDelegate_.casualONEarGear {
+            btnSendToTail.setTitle(kStopCasualMode, for: .normal)
+        } else {
+            btnSendToTail.setTitle(kStartCasualMode, for: .normal)
+        }
     }
     
     //MARK: - Custome Function
@@ -90,7 +102,7 @@ class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataS
         if deviceActor?.isConnected() == nil {
               UIAlertController.alert(title:"Error", msg:"Please connect to device", target: self)
         }
-        if arrSelectedIndex.count == 0 {
+        if arrSelectedMode.count == 0 {
            UIAlertController.alert(title:"Error", msg:"Please select group", target: self)
         }
     }
@@ -106,13 +118,15 @@ class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataS
         cell.lblCasualCategoryName.text = arrCasualMode[indexPath.row]
         cell.btnCheckBox.tag = indexPath.row
         cell.btnCheckBox.addTarget(self, action: #selector(CheckBox_Clicked(sender:)), for: .touchUpInside)
-        if arrSelectedIndex.contains(indexPath.row) {
-             cell.btnCheckBox.setImage(UIImage(named: "check-mark (2)"), for: .normal)
+        
+        if arrSelectedMode.contains(arrCasualMode[indexPath.row]) {
+            cell.btnCheckBox.setImage(UIImage(named: "check-mark (2)"), for: .normal)
             cell.btnCheckBox.backgroundColor = UIColor(red: 25/255, green: 157/255, blue: 8/255, alpha: 1.0)
         } else {
             cell.btnCheckBox.backgroundColor = UIColor(red: 25/255, green: 157/255, blue: 8/255, alpha: 1.0)
-               cell.btnCheckBox.setImage(nil, for: .normal)
+            cell.btnCheckBox.setImage(nil, for: .normal)
         }
+        
         return cell
     }
     
@@ -122,41 +136,73 @@ class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataS
     }
     
     @objc func CheckBox_Clicked(sender: UIButton){
-        if arrSelectedIndex.contains(sender.tag) {
-            arrSelectedIndex.remove(at: arrSelectedIndex.index(of: sender.tag)!)
+        let checkMode = arrCasualMode[sender.tag]
+        
+        if arrSelectedMode.contains(checkMode) {
+            if let firstIndex = arrSelectedMode.firstIndex(of: checkMode) {
+                arrSelectedMode.remove(at: firstIndex)
+            }
         } else {
-            if sender.tag == 3 {
-                arrSelectedIndex.removeAll()
-            }
-            arrSelectedIndex.append(sender.tag)
-            if sender.tag != 3 && arrSelectedIndex.contains(3) {
-                arrSelectedIndex.remove(at: arrSelectedIndex.index(of: 3)!)
-            }
+            arrSelectedMode.append(checkMode)
         }
         
+//        if arrSelectedIndex.contains(sender.tag) {
+//                    arrSelectedIndex.remove(at: arrSelectedIndex.index(of: sender.tag)!)
+//                } else {
+//                    if sender.tag == 3 {
+//                        arrSelectedIndex.removeAll()
+//                    }
+//                    arrSelectedIndex.append(sender.tag)
+//                    if sender.tag != 3 && arrSelectedIndex.contains(3) {
+//                        arrSelectedIndex.remove(at: arrSelectedIndex.index(of: 3)!)
+//                    }
+//                }
         
-        if arrCasualMode[sender.tag] == kEarGearMoves {
-            btnSendToTail.setTitle(kSendToEargear, for: .normal)
-            btnSendToTail.tag = 1
+        UserDefaults.standard.set(arrSelectedMode, forKey: selectedKeys)
+
+        if arrSelectedMode.count == 0 {
+            btnSendToTail.isUserInteractionEnabled = false
+            btnSendToTail.alpha = 0.5
         } else {
-            btnSendToTail.setTitle(kSendToTail, for: .normal)
-            btnSendToTail.tag = 2
+            btnSendToTail.isUserInteractionEnabled = true
+            btnSendToTail.alpha = 1.0
         }
         
         tblViewCasualModeCategories.reloadData()
     }
     
     @IBAction func SendToTail_Clicked(_ sender: UIButton) {
-        if sender.tag == 1 {
-//            let deviceActor = AppDelegate_.eargearDeviceActor
+        if AppDelegate_.casualONDigitail || AppDelegate_.casualONEarGear { // already on
             for connectedDevice in AppDelegate_.tempEargearDeviceActor {
                 let deviceActor = connectedDevice
-                if ((deviceActor.isDeviceIsReady) && (deviceActor.isConnected()) && arrSelectedIndex.count != 0) {
+                if ((deviceActor.isDeviceIsReady) && (deviceActor.isConnected())) {
+                    let tailMoveString = kEndCasualCommand
+                    let data = Data(tailMoveString.utf8)
+                    deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
+                }
+            }
+            
+            AppDelegate_.casualONDigitail = false
+            for connectedDevices in AppDelegate_.tempDigitailDeviceActor {
+                let deviceActor = connectedDevices
+                
+                if ((deviceActor.isDeviceIsReady) && (deviceActor.isConnected())) {
+                    let tailMoveString = kAutoModeStopAutoCommand
+                    let data = Data(tailMoveString.utf8)
+                    deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
+                }
+            }
+
+            btnSendToTail.setTitle(kStartCasualMode, for: .normal)
+        } else { // start
+            for connectedDevice in AppDelegate_.tempEargearDeviceActor {
+                let deviceActor = connectedDevice
+                if ((deviceActor.isDeviceIsReady) && (deviceActor.isConnected())) {
                     btnSendToTail.setTitle(kSendToTail, for: .normal)
                     AppDelegate_.casualONEarGear = true
                     sender.tag = 2
-                    let minTime = "\(Int(viewRangeSlider.selectedMinValue)) "
-                    let MaxTime = "\(Int(viewRangeSlider.selectedMaxValue))"
+                    let minTime = "T\(Int(viewRangeSlider.selectedMinValue))"
+                    let MaxTime = "T\(Int(viewRangeSlider.selectedMaxValue))"
                     var eargearString = String()
                     var timeString : String?
                     eargearString = "CASUAL"
@@ -167,13 +213,11 @@ class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataS
                     deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]))
                 }
             }
-        } else {
-//            let deviceActor = AppDelegate_.digitailDeviceActor
-
+            
             for connectedDevices in AppDelegate_.tempDigitailDeviceActor {
                 let deviceActor = connectedDevices
                 
-                if (deviceActor.isDeviceIsReady) && (deviceActor.isConnected()) && arrSelectedIndex.count != 0 {
+                if (deviceActor.isDeviceIsReady) && (deviceActor.isConnected()) {
                     btnSendToTail.setTitle(kSendToEargear, for: .normal)
                     sender.tag = 1
                     AppDelegate_.casualONDigitail = true
@@ -186,9 +230,13 @@ class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataS
                     tailMoveString = "AUTOMODE"
                     // tailMoveString = "AUTOMOVE \(minTime)\(MaxTime)\(totalduration)"
                     timeString = " \(minTime)\(MaxTime)\(totalduration)"
-                    for selectedGroup in arrSelectedIndex{
-                        tailMoveString.append(contentsOf:  "G\(selectedGroup+1) ")
+
+                    for selectedGroup in arrSelectedMode {
+                        if let modeIndex = arrCasualMode.firstIndex(of: selectedGroup) {
+                            tailMoveString.append(contentsOf:  "G\(modeIndex+1) ")
+                        }
                     }
+                    
                     tailMoveString.append(contentsOf: timeString)
                     print(tailMoveString!)
                     let data = Data(tailMoveString!.utf8)
@@ -200,6 +248,8 @@ class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataS
                     openErrorMsg(connectedDevice: deviceActor)
                 }
             }
+            
+            btnSendToTail.setTitle(kStopCasualMode, for: .normal)
         }
     }
     

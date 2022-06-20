@@ -104,7 +104,7 @@ class GlowTipsVC: UIViewController{
             if AppDelegate_.peripheralList.count == 0 {
                 self.viewActivityIndicator.isHidden = true
                 self.btnLookForTails.isHidden = false
-                self.btnLookForTails.setTitle("LOOK FOR TAILS", for: .normal)
+                self.btnLookForTails.setTitle("SEARCH", for: .normal)
                 self.lblSearchingDigitail.text = kNoTailsFound
                 self.lblTailDescription.text = "We were unable to find your Tail. Please ensure that it is nearby and switched on"
                 self.viewFindGetTails.isHidden = false

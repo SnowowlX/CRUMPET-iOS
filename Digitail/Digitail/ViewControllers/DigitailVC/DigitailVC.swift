@@ -834,10 +834,10 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                  EarGearMoves_Clicked(self.btnLookForTails)
                  break
              case kListenMode :
-                 ListenMode_Clicked(self.btnLookForTails)
+//                 ListenMode_Clicked(self.btnLookForTails)
                  break
              case kTiltMode :
-                 TiltMode_Clicked(self.btnLookForTails)
+//                 TiltMode_Clicked(self.btnLookForTails)
                  break
              case kCasualMode :
                  CasualMode_Clicked(self.btnLookForTails)
@@ -885,20 +885,34 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                 }
             }
             
+            cell.accessoryType = .disclosureIndicator
+            cell.modeSwitch.isHidden = true
+            
             if arrMenuList[indexPath.row] == kListenMode {
-                if isListenModeON {
-                    cell.lblMenuName.text = kListenModeOFF
-                } else {
-                    cell.lblMenuName.text = kListenModeON
-                }
+                cell.accessoryType = .none
+                
+                cell.modeSwitch.isHidden = false
+                cell.modeSwitch.isOn = isListenModeON
+                cell.lblMenuName.text = isListenModeON ? kListenModeON : kListenModeOFF
             }
+            
             if arrMenuList[indexPath.row] == kTiltMode {
-                if isTiltModeON {
-                    cell.lblMenuName.text = kTiltModeOFF
-                } else {
-                    cell.lblMenuName.text = kTiltModeON
+                cell.accessoryType = .none
+                
+                cell.modeSwitch.isHidden = false
+                cell.modeSwitch.isOn = isTiltModeON
+                cell.lblMenuName.text = isTiltModeON ? kTiltModeON : kTiltModeOFF
+            }
+            
+            cell.changeMode = { [weak self] mode in
+                guard let self = self else { return }
+                if self.arrMenuList[indexPath.row] == kListenMode {
+                    self.ListenMode_Clicked(self.btnLookForTails)
+                } else if self.arrMenuList[indexPath.row] == kTiltMode {
+                    self.TiltMode_Clicked(self.btnLookForTails)
                 }
             }
+            
             let imageName = arrMenuImages[arrMenuList[indexPath.row]]
             cell.imgView.image = UIImage(named: imageName ?? "")
             cell.lblMenuName.textColor = UIColor.black
@@ -994,6 +1008,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                 self.versionCommand()
             }
             if (self.isEARGEARConnected()) {
+                self.versionCommandEG2()
                 for connectedDevice in AppDelegate_.tempEargearDeviceActor {
                     let deviceActor = connectedDevice
                     deviceActor.readProperty(Constants.kCharacteristic_BatteryLevel)
@@ -1099,6 +1114,17 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
             }
         }
     }
+    
+    @objc func versionCommandEG2() {
+            for connectedDevices in AppDelegate_.tempEargearDeviceActor {
+                let deviceActor = connectedDevices
+                if ((deviceActor.isDeviceIsReady) && ((deviceActor.isConnected()))) {
+                    let tailMoveString = kVersionCommand
+                    let data = Data(tailMoveString.utf8)
+                    deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
+                }
+            }
+        }
     
     @objc func sendBatteryCommand() {
 //        let deviceActor = AppDelegate_.digitailDeviceActor

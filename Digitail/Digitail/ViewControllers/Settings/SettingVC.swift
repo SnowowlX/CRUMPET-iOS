@@ -17,6 +17,7 @@ class SettingVC: UIViewController {
     @IBOutlet var viewTailMoves: UIView!
     @IBOutlet var viewFailTails: UIView!
     @IBOutlet var viewFirmwareUpgrade: UIView!
+    @IBOutlet weak var viewEG2FirmwareUpgrade: UIView!
     @IBOutlet var btnCheckBox: UIButton!
     @IBOutlet var btnMenu: UIButton!
     @IBOutlet weak var lblInstuctionsTitle: UILabel!
@@ -28,10 +29,13 @@ class SettingVC: UIViewController {
     @IBOutlet weak var lblGearNameInstuctions: UILabel!
     
     @IBOutlet weak var lblFirmwareUpgrade: UILabel!
+    @IBOutlet weak var lblEG2FirmwareUpgrade: UILabel!
     @IBOutlet weak var btnForgetNames: UIButton!
     
     @IBOutlet weak var btnFirmwareUpgrade: UIButton!
+    @IBOutlet weak var btnEG2FirmwareUpgrade: UIButton!
     @IBOutlet weak var lblFirmwareUpgradeInstuctions: UILabel!
+    @IBOutlet weak var lblEG2FirmwareUpgradeInstructions: UILabel!
     //MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +70,11 @@ class SettingVC: UIViewController {
         viewFirmwareUpgrade.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
         viewFirmwareUpgrade.layer.shadowRadius = 2.5
         viewFirmwareUpgrade.layer.shadowOpacity = 0.5
+        
+        viewEG2FirmwareUpgrade.layer.shadowColor = UIColor.darkGray.cgColor
+        viewEG2FirmwareUpgrade.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+        viewEG2FirmwareUpgrade.layer.shadowRadius = 2.5
+        viewEG2FirmwareUpgrade.layer.shadowOpacity = 0.5
     }
     
     func setupLocalization() {
@@ -78,9 +87,12 @@ class SettingVC: UIViewController {
         lblGearNames.text = NSLocalizedString("KGearNames", comment: "")
         lblGearNameInstuctions.text = NSLocalizedString("kGearStored", comment: "")
         lblFirmwareUpgrade.text = NSLocalizedString("kFirmwareUpgrade", comment: "")
+        lblEG2FirmwareUpgrade.text = NSLocalizedString("kEG2FirmwareUpgrade", comment: "")
         btnForgetNames.setTitle(NSLocalizedString("kForgetGearNames", comment: ""), for: .normal)
         btnFirmwareUpgrade.setTitle(NSLocalizedString("kFirmwareUpgrade", comment: ""), for: .normal)
+        btnEG2FirmwareUpgrade.setTitle(NSLocalizedString("kEG2FirmwareUpgrade", comment: ""), for: .normal)
         lblFirmwareUpgradeInstuctions.text = NSLocalizedString("kConnectedMiTail", comment: "")
+        lblEG2FirmwareUpgradeInstructions.text = NSLocalizedString("kConnectedEG2", comment: "")
     }
     
     //MARK: - Actions
@@ -144,6 +156,26 @@ class SettingVC: UIViewController {
             ///print("User click Ok button")
         }))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func actionEG2FirmwareUpgrade(_ sender: Any) {
+        var deviceActor:BLEActor?
+        for connectedDevices in AppDelegate_.tempEargearDeviceActor {
+            if ((connectedDevices.isDeviceIsReady) && ((connectedDevices.isConnected()))) {
+                if (connectedDevices.isEG2) {
+                    deviceActor = connectedDevices
+                }
+            }
+        }
+        
+        if (deviceActor != nil) {
+            let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "FirmwareUpdateVC") as! FirmwareUpdateVC
+            vc.connectedDeviceActor = deviceActor
+            self.navigationController?.pushViewController(vc, animated: true)
+        } else {
+            showAlert(alertTitle: kTitleConnect, message: kMsgConnect, vc: self)
+        }
     }
     
     @IBAction func actionFirmwareUpgrade(_ sender: UIButton) {

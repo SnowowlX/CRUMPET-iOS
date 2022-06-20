@@ -12,6 +12,9 @@ class TblCellSideMenu: UITableViewCell {
     
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var lblMenuName: UILabel!
+    @IBOutlet weak var modeSwitch: UISwitch!
+    
+    var changeMode:((Bool) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,4 +24,7 @@ class TblCellSideMenu: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
+    @IBAction func modeSwitchAction(_ sender: UISwitch) {
+        changeMode?(sender.isOn)
+    }
 }
