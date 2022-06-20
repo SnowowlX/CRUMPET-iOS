@@ -11,8 +11,10 @@
 "kDownloadingFirmware" = "Downloading Firmware";
 "kUpdatingFirmware" = "Updating Firmware..";
 "kCancel" = "Cancel";
-"kFirmwareUpgrade" = "Firmware Upgrade";
+"kFirmwareUpgrade" = "MiTail Firmware Update";
+"kEG2FirmwareUpgrade" = "EarGear Firmware Update";
 "kFirmwareUpgradeDecription" = "Before updating your tail, please make sure it is connected to the power, and that your phone has more than 50 percent battery. When you're ready, click Start below";
+"kEG2FirmwareUpgradeDecription" = "Before updating your gear, please make sure it is connected to the power, and that your phone has more than 50 percent battery. When you're ready, click Start below";
 "kStart" = "Start";
 "kCurrentFirmwareVersion" = "Current Firmware Version";
 "kNewVersionAvailable" = "New Version Available";
@@ -96,11 +98,11 @@
 "kTails1" = "TAILS1";
 "kTails2" = "TAILS2";
 "kTails3" = "TAILS3";
-"kFastWag" = "FAst wag";
+"kFastWag" = "Fast wag";
 "kTailfa" = "TAILFA";
-"kShortWag" = "SHort wag";
+"kShortWag" = "Short wag";
 "kTailsh" = "TAILSH";
-"kHappyWag" = "HAppy wag";
+"kHappyWag" = "Happy wag";
 "kTailha" = "TAILHA";
 "kErect" = "ERect";
 "kTailer" = "TAILER";
@@ -148,6 +150,7 @@
 "kForgetGearNames" = "Forget Gear Names";
 "kFaikTail" = "Fake Tail";
 "kConnectedMiTail" = "To upgrade the firmware of your connected MiTail please click this button.";
+"kConnectedEG2" = "To upgrade the firmware of your connected EarGear please click this button.";
 "kReconnectAutomatically" = "Reconnect Automatically";
 "kCalmAndRelaxed" = "Calm and Relaxed";
 "kFastAndExcited" = "Fast and Excited";
@@ -159,10 +162,12 @@
 "kConnectDEvice" = "Please connect to device";
 "kSelectGroup" = "Please select group";
 "kCausalMode" = "Casual mode on";
-"kPauseMovesMessage" = "This is where you set the pauses inbetween moves and move familes too";
+"kPauseMovesMessage" = "This is where you set the pauses inbetween moves and move familes too.\nChange Casual Mode settings below.";
 "kCamandRelaxed" = "Calm and Relaxed";
 "kRangeMoves" = "Range of pause between random moves in seconds.";
 "kSendTail" = "Send To Tail";
+"kStartCasualMode" = "Start Casual Mode";
+"kStopCasualMode" = "Stop Casual Mode";
 "kCausalModeCategories" = "Casual Mode Categories";
 "kCrumpet" = "Crumpet";
 "kAbout" = "About";
@@ -174,7 +179,7 @@
 "kTail Moves" = "Tail Moves";
 "kCasualModeSettings" = "Casual Mode Settings";
 "kConnectGear" = "Connect Gear";
-"kLookForTails" = "LOOK FOR TAILS";
+"kLookForTails" = "SEARCHING";
 "kDefaultAction" = "Default action";
 "kSearchingForDigital" = "Searching for DIGITAiL...";
 "kTailAvailable " = "The list below shows all the moves available in your tail. Tap any of them to send them off to the tail!.";
@@ -216,7 +221,7 @@
 "kCasulalModeSetting" = "Casulal ModeSetting";
 "kTailMoves" = "TailMoves";
 "kFilter" = "filter";
-"kSearchingForGear" = "Searching for gear...";
+"kSearchingForGear" = "Searching...";
 "kFoundGear" = "Found 2 pieces of gear so far. To see them push \"Show available gear..\" below";
 "kShowGear" = "Show available gear";
 "kGearFoundMessage" = "1 piece of gear found. Simply wait or push \"Connect\" below to control it";
