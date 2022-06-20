@@ -36,7 +36,14 @@ class SettingVC: UIViewController {
     @IBOutlet weak var btnEG2FirmwareUpgrade: UIButton!
     @IBOutlet weak var lblFirmwareUpgradeInstuctions: UILabel!
     @IBOutlet weak var lblEG2FirmwareUpgradeInstructions: UILabel!
+    
+    @IBOutlet weak var eg2FWViewTopConstraint: NSLayoutConstraint!
+    
+    var latestTailFWVersion: Int = 0
+    var latestEGFWVersion: Int = 0
+    
     //MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpMainUI()
@@ -75,6 +82,92 @@ class SettingVC: UIViewController {
         viewEG2FirmwareUpgrade.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
         viewEG2FirmwareUpgrade.layer.shadowRadius = 2.5
         viewEG2FirmwareUpgrade.layer.shadowOpacity = 0.5
+        
+        viewFirmwareUpgrade.isHidden = true
+        viewEG2FirmwareUpgrade.isHidden = true
+        
+        DispatchQueue.global().async {
+            self.latestTailFWVersion = self.getFirmwareVersionFrom(text: self.getLatestTailFWVersionFromServer())
+            self.latestEGFWVersion = self.getFirmwareVersionFrom(text: self.getLatestEarGearFWVersionFromServer())
+        
+            print("latest tail fw version = \(self.latestTailFWVersion), eg fw version = \(self.latestEGFWVersion)")
+            DispatchQueue.main.async {
+                self.checkFWVersions()
+            }
+        }
+    }
+    
+    func checkFWVersions() {
+        // check if tail connected
+        if let connectedMiTail = getConnectedMiTail() {
+            // get current FW version
+            if let currentFWVersion = connectedMiTail.state["FirmwareVersion"] as? String {
+                viewFirmwareUpgrade.isHidden = false
+                if getFirmwareVersionFrom(text: currentFWVersion) == latestTailFWVersion {
+                    // already have the latest FW
+                    btnFirmwareUpgrade.isEnabled = false
+                    btnFirmwareUpgrade.alpha = 0.5
+                    lblFirmwareUpgradeInstuctions.text = NSLocalizedString("kLatestFirmware", comment: "")
+                }
+            } else {
+                // can't get the current firmware version of connected MiTail device
+                
+            }
+        } else {
+            viewFirmwareUpgrade.isHidden = true
+        }
+        
+        // check if EG has connected
+        if let connectedEG = getConnectedEG() {
+            
+            if getConnectedMiTail() == nil {
+                eg2FWViewTopConstraint.constant = -151.5
+            }
+            
+            // get EG fw version
+            if let currentFWVersion = connectedEG.state["FirmwareVersion"] as? String {
+                viewEG2FirmwareUpgrade.isHidden = false
+                if getFirmwareVersionFrom(text: currentFWVersion) == latestEGFWVersion {
+                    // already have the latest FW
+                    btnEG2FirmwareUpgrade.isEnabled = false
+                    btnEG2FirmwareUpgrade.alpha = 0.5
+                    lblEG2FirmwareUpgradeInstructions.text = NSLocalizedString("kLatestFirmware", comment: "")
+                }
+            } else {
+                // can't get the current firmware version of connected EG device
+                
+            }
+        } else {
+            viewEG2FirmwareUpgrade.isHidden = true
+        }
+    }
+    
+    func getConnectedMiTail() -> BLEActor? {
+        var deviceActor:BLEActor?
+        for connectedDevices in AppDelegate_.tempDigitailDeviceActor {
+            if ((connectedDevices.isDeviceIsReady) && ((connectedDevices.isConnected()))) {
+                if (connectedDevices.isMitail) {
+                    deviceActor = connectedDevices
+                    break
+                }
+            }
+        }
+        
+        return deviceActor
+    }
+    
+    func getConnectedEG() -> BLEActor? {
+        var deviceActor:BLEActor?
+        for connectedDevices in AppDelegate_.tempEargearDeviceActor {
+            if ((connectedDevices.isDeviceIsReady) && ((connectedDevices.isConnected()))) {
+                if (connectedDevices.isEG2) {
+                    deviceActor = connectedDevices
+                    break
+                }
+            }
+        }
+        
+        return deviceActor
     }
     
     func setupLocalization() {
@@ -156,6 +249,69 @@ class SettingVC: UIViewController {
             ///print("User click Ok button")
         }))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    //MARK:- TO GET LATEST FIRMWARE VERSION FROM SERVER -
+    func getLatestTailFWVersionFromServer() -> String {
+        var latestFWVersion : String = ""
+        let myURLString = "https://thetailcompany.com/fw/mitail"
+        if let myURL = NSURL(string: myURLString) {
+            do {
+                let myHTMLString = try NSString(contentsOf: myURL as URL, encoding: String.Encoding.utf8.rawValue)
+                print("html \(myHTMLString)")
+                let dictionary = convertStringToDictionary(text: myHTMLString as String)
+                
+                latestFWVersion = dictionary?["version"] as! String
+                
+            } catch {
+                print(error)
+            }
+        }
+        return latestFWVersion
+    }
+    
+    func getLatestEarGearFWVersionFromServer() -> String {
+        var latestFWVersion : String = ""
+        let myURLString = "https://thetailcompany.com/fw/eargear"
+        if let myURL = NSURL(string: myURLString) {
+            do {
+                let myHTMLString = try NSString(contentsOf: myURL as URL, encoding: String.Encoding.utf8.rawValue)
+                print("html \(myHTMLString)")
+                let dictionary = convertStringToDictionary(text: myHTMLString as String)
+                
+                latestFWVersion = dictionary?["version"] as! String
+            } catch {
+                print(error)
+            }
+        }
+        return latestFWVersion
+    }
+    
+    func convertStringToDictionary(text: String) -> [String:AnyObject]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:AnyObject]
+                return json
+            } catch {
+                print("Something went wrong")
+            }
+        }
+        return nil
+    }
+    
+    func getFirmwareVersionFrom(text: String) -> Int {
+        let array = text.components(separatedBy: " ")
+        if array.count > 1 {
+            let arrayOfVer = array.last?.components(separatedBy: ".")
+            if arrayOfVer?.count == 3 {
+                let firstComponent = arrayOfVer?.first
+                let lastComponent = arrayOfVer?.last
+                let middelComponent = arrayOfVer?[1]
+                let stringOfVersion = "\(firstComponent ?? "0")\(middelComponent ?? "0")\(lastComponent ?? "0")"
+                return Int(stringOfVersion) ?? 0
+            }
+        }
+        return 0
     }
     
     @IBAction func actionEG2FirmwareUpgrade(_ sender: Any) {

@@ -7,6 +7,7 @@
 */
 
 "kUpdateFirmware" = "Update Firmware";
+"kLatestFirmware" = "You already have the most recent Firmware.";
 "kLoading" = "Loading...";
 "kDownloadingFirmware" = "Downloading Firmware";
 "kUpdatingFirmware" = "Updating Firmware..";

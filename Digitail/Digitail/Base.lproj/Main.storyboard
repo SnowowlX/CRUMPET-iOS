@@ -1560,7 +1560,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="756"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RpH-Ax-HVl">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1156"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="622"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7jV-Pm-E6d">
                                                 <rect key="frame" x="20" y="25" width="280" height="250"/>
@@ -1892,6 +1892,7 @@
                                             <constraint firstItem="wgp-zY-uh9" firstAttribute="top" secondItem="gKt-M2-EAQ" secondAttribute="bottom" constant="8.5" id="CPo-rL-WUE"/>
                                             <constraint firstItem="7jV-Pm-E6d" firstAttribute="top" secondItem="RpH-Ax-HVl" secondAttribute="top" constant="25" id="KUg-tj-zmV"/>
                                             <constraint firstAttribute="trailing" secondItem="7jV-Pm-E6d" secondAttribute="trailing" constant="20" id="Pgp-ae-Vjp"/>
+                                            <constraint firstAttribute="bottom" secondItem="wgp-zY-uh9" secondAttribute="bottom" constant="10" id="Vg4-cb-N7e"/>
                                             <constraint firstItem="7jV-Pm-E6d" firstAttribute="centerX" secondItem="RpH-Ax-HVl" secondAttribute="centerX" id="XTs-xO-3uQ"/>
                                             <constraint firstItem="wgp-zY-uh9" firstAttribute="trailing" secondItem="gKt-M2-EAQ" secondAttribute="trailing" id="YbE-6x-aRj"/>
                                             <constraint firstAttribute="trailing" secondItem="rgj-IV-ibD" secondAttribute="trailing" constant="17" id="ZZ1-hl-a2A"/>
@@ -1909,7 +1910,6 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="RpH-Ax-HVl" secondAttribute="trailing" id="3qn-fT-b1K"/>
                                     <constraint firstAttribute="bottom" secondItem="RpH-Ax-HVl" secondAttribute="bottom" id="KtG-ED-FqG"/>
-                                    <constraint firstItem="RpH-Ax-HVl" firstAttribute="height" secondItem="kzp-6w-mSa" secondAttribute="height" constant="400" id="aKi-Xg-6Yg"/>
                                     <constraint firstItem="RpH-Ax-HVl" firstAttribute="top" secondItem="kzp-6w-mSa" secondAttribute="top" id="hMc-a3-W1k"/>
                                     <constraint firstItem="RpH-Ax-HVl" firstAttribute="leading" secondItem="kzp-6w-mSa" secondAttribute="leading" id="qBs-YS-jsW"/>
                                     <constraint firstItem="RpH-Ax-HVl" firstAttribute="width" secondItem="kzp-6w-mSa" secondAttribute="width" id="rVj-0s-Ldt"/>
@@ -1952,6 +1952,7 @@
                         <outlet property="btnForgetNames" destination="YMd-5z-YPQ" id="9UW-IJ-2ZQ"/>
                         <outlet property="btnMenu" destination="a5L-ic-pH7" id="KMI-8D-FYB"/>
                         <outlet property="btnMiTailInstructions" destination="mlw-B3-P6C" id="J2I-9z-K8S"/>
+                        <outlet property="eg2FWViewTopConstraint" destination="CPo-rL-WUE" id="qRv-qK-7ea"/>
                         <outlet property="lblEG2FirmwareUpgrade" destination="G7d-qw-buT" id="Jc1-02-znG"/>
                         <outlet property="lblEG2FirmwareUpgradeInstructions" destination="3Db-CJ-s8W" id="1vk-F1-Bzd"/>
                         <outlet property="lblFirmwareUpgrade" destination="h3K-Yc-tLx" id="nYf-gD-2Z7"/>

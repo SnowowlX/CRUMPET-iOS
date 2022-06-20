@@ -6,6 +6,7 @@
   Copyright © 2022 Iottive. All rights reserved.
 */
 "kUpdateFirmware" = "ファームウェア更新";
+"kLatestFirmware" = "You already have the most recent Firmware.";
 "kLoading" = "読み込んでいます...";
 "kDownloadingFirmware" = "ファームウェアダウンロード";
 "kUpdatingFirmware" = "ファームウェアを更新しています...";
