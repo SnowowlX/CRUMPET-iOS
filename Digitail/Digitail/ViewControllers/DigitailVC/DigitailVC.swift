@@ -1114,6 +1114,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
             self.isWalkModeON = false
             AppDelegate_.casualONDigitail = false
             AppDelegate_.casualONEarGear = false
+            AppDelegate_.moveOn = false
             
             self.updateConnectionUI()
             if !(self.isDIGITAiLConnected()) {
