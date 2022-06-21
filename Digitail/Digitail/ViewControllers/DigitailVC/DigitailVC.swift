@@ -121,7 +121,9 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
         RegisterForNote(#selector(DigitailVC.DeviceIsReady(_:)),kDeviceIsReady, self)
         RegisterForNote(#selector(DigitailVC.DeviceDisconnected(_:)),kDeviceDisconnected, self)
         RegisterForNote(#selector(self.DeviceDidUpdateProperty(_:)), kDeviceDidUpdateProperty, self)
+        RegisterForNote(#selector(self.refreshHome(_:)), kDeviceModeRefreshNotification, self)
         RegisterForNote(#selector(DigitailVC.locationSettingsUpdated(note:)), LOCATION_AUTHORIZATION_STATUS_CHANGED_NOTIFICATION, self)
+        
         setMotionCallBacks()
         
         
@@ -819,6 +821,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == tblVwActions {
+            print("tblVwAction clicked - \(indexPath.row)")
             let cell = tableView.cellForRow(at: indexPath)
             
             let actionName = arrMenuList[indexPath.row]
@@ -858,6 +861,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                  break
              }
         } else {
+            print("battery clicked - \(indexPath.row)")
             var firmwareVersion = ""
             if indexPath.section == 0 {
                 if let version = AppDelegate_.tempDigitailDeviceActor[indexPath.row].state["FirmwareVersion"] {
@@ -1022,6 +1026,11 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
     
     
     //MARK:- BLE METHODS -
+    
+    @objc func refreshHome(_ note: Notification) {
+        self.tblVwActions.reloadData()
+    }
+    
     @objc func DeviceIsReady(_ note: Notification) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.updateConnectionUI()
@@ -1044,7 +1053,15 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
         let objActor : BLEActor = note.object as! BLEActor
         debugPrint(#function,"UpdateValue Data %@", note.userInfo!)
         let responseData = note.userInfo as! [String:Any]
-        
+        if let data = responseData["value"] as? Data {
+            let str = String(decoding: data, as: UTF8.self)
+            if str.lowercased().hasSuffix(" end") {
+                AppDelegate_.moveOn = false
+                DispatchQueue.main.async {
+                    self.tblVwActions.reloadData()
+                }
+            }
+        }
         if responseData["name"] as? String == Constants.kCharacteristic_WriteData || responseData["name"] as? String == Constants.kCharacteristic_ReadData {
             if let data = responseData["value"] as? Data {
                 var str = String(decoding: data, as: UTF8.self)
@@ -1095,12 +1112,6 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                     AppDelegate_.storeDeviceState()
                     self.tblVwConnectedDeviceList.reloadData()
                 }
-            }
-        } else if let commandName = responseData["name"] as? String, commandName.lowercased().hasPrefix("end ") { // end command
-            AppDelegate_.moveOn = false
-            AppDelegate_.walkModeOn = false
-            DispatchQueue.main.async {
-                self.tblVwActions.reloadData()
             }
         }
     }

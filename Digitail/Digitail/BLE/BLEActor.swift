@@ -27,6 +27,7 @@ let kDeviceFailedToPerformCommand = "DeviceFailedToPerformCommand"
 let kDeviceWillPerformCommand  = "DeviceWillPerformCommand"
 let kNewDeviceFound = "NewDeviceFound"
 let kAddingCommandInQueue = "AddingCommandInQueue"
+let kDeviceModeRefreshNotification = "DeviceModeUpdateNotification"
 
 // CBPeripheralManager Notification
 let kPeripheralDidDiscoverServices = "PeripheralDidDiscoverServices"

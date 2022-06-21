@@ -55,6 +55,7 @@ class TailMovesVC: UIViewController{
         //Register for Bluetooth State Updates
         RegisterForNote(#selector(TailMovesVC.DeviceIsReady(_:)),kDeviceIsReady, self)
         RegisterForNote(#selector(TailMovesVC.DeviceDisconnected(_:)),kDeviceDisconnected, self)
+        RegisterForNote(#selector(self.DeviceDidUpdateProperty(_:)), kDeviceDidUpdateProperty, self)        
     }
     
     func checkCasualModeIsOn() {
@@ -216,6 +217,7 @@ class TailMovesVC: UIViewController{
                 let data = Data(tailMoveString.utf8)
                 AppDelegate_.moveOn = true
                 deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
+                checkCasualModeIsOn()
             }
         }
     }
@@ -249,7 +251,30 @@ class TailMovesVC: UIViewController{
         
     }
     
-    
+    @objc func DeviceDidUpdateProperty(_ note: Notification) {
+        let responseData = note.userInfo as! [String:Any]
+        if let data = responseData["value"] as? Data {
+            let str = String(decoding: data, as: UTF8.self)
+            print("---- \n\n\n\n ***** \(str) ***** \n\n\n\n")
+            
+            // check if move end command
+            if str.lowercased().hasSuffix("end") {
+                var ismoveEndCommand = false
+                for tailMove in arrTailMoves {
+                    if str.lowercased().hasPrefix(tailMove.lowercased()) {
+                        ismoveEndCommand = true
+                        break
+                    }
+                }
+                
+                if ismoveEndCommand { //received a move end command from the device
+                    AppDelegate_.moveOn = false
+                    checkCasualModeIsOn()
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: kDeviceModeRefreshNotification), object: nil)
+                }
+            }
+        }
+    }
     
     @objc func DeviceIsReady(_ note: Notification) {
         let actor = note.object as! BLEActor

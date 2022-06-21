@@ -103,7 +103,7 @@ class SettingVC: UIViewController {
             // get current FW version
             if let currentFWVersion = connectedMiTail.state["FirmwareVersion"] as? String {
                 viewFirmwareUpgrade.isHidden = false
-                if getFirmwareVersionFrom(text: currentFWVersion) == latestTailFWVersion {
+                if getFirmwareVersionFrom(text: currentFWVersion.trimmingCharacters(in: .whitespaces)) == latestTailFWVersion {
                     // already have the latest FW
                     btnFirmwareUpgrade.isEnabled = false
                     btnFirmwareUpgrade.alpha = 0.5
@@ -127,7 +127,7 @@ class SettingVC: UIViewController {
             // get EG fw version
             if let currentFWVersion = connectedEG.state["FirmwareVersion"] as? String {
                 viewEG2FirmwareUpgrade.isHidden = false
-                if getFirmwareVersionFrom(text: currentFWVersion) == latestEGFWVersion {
+                if getFirmwareVersionFrom(text: currentFWVersion.trimmingCharacters(in: .whitespaces)) == latestEGFWVersion {
                     // already have the latest FW
                     btnEG2FirmwareUpgrade.isEnabled = false
                     btnEG2FirmwareUpgrade.alpha = 0.5
