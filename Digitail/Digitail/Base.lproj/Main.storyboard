@@ -5604,7 +5604,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qiu-T2-Pae" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-209" y="43"/>
+            <point key="canvasLocation" x="-209" y="51"/>
         </scene>
         <!--Firmware Upgrade-->
         <scene sceneID="2Y6-si-OUM">
@@ -5833,11 +5833,6 @@
             <point key="canvasLocation" x="3049" y="894"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="mUB-6l-EaV">
-            <size key="intrinsicContentSize" width="-1" height="65"/>
-        </designable>
-    </designables>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
         <image name="1.4" width="25.5" height="25"/>

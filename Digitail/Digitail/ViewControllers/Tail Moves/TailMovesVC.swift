@@ -44,7 +44,7 @@ class TailMovesVC: UIViewController{
     
     let arrTailMoves = ["TAILS1","TAILS2","TAILS3","TAILFA","TAILSH","TAILHA","TAILER","TAILT1","TAILT2","TAILET","TAILEP"]
     
-    let arrHomePosition = ["Slow wag 1","Slow wag 2","Slow wag 3","FAst wag","SHort wag","HAppy wag","ERect","Erect Pulse","Tremble 1","Tremble 2","Erect Trem"]
+    let arrHomePosition = ["Slow wag 1","Slow wag 2","Slow wag 3","Fast wag","Short wag","Happy wag","ERect","Erect Pulse","Tremble 1","Tremble 2","Erect Trem"]
     
     
      //MARK: - View Life Cycle
@@ -55,6 +55,21 @@ class TailMovesVC: UIViewController{
         //Register for Bluetooth State Updates
         RegisterForNote(#selector(TailMovesVC.DeviceIsReady(_:)),kDeviceIsReady, self)
         RegisterForNote(#selector(TailMovesVC.DeviceDisconnected(_:)),kDeviceDisconnected, self)
+    }
+    
+    func checkCasualModeIsOn() {
+        if AppDelegate_.casualONDigitail || AppDelegate_.walkModeOn || AppDelegate_.moveOn {
+            // already started
+            [btnSlowWag1, btnSlowWag2, btnSlowWag3, btnFastWag, btnShortWag, btnHappyWag, btnStandUp, btnTremble1, btnTremble2, btnErect, btnHighWag].forEach({
+                $0?.isEnabled = false
+                $0?.alpha = 0.5
+            })
+        } else {
+            [btnSlowWag1, btnSlowWag2, btnSlowWag3, btnFastWag, btnShortWag, btnHappyWag, btnStandUp, btnTremble1, btnTremble2, btnErect, btnHighWag].forEach({
+                $0?.isEnabled = true
+                $0?.alpha = 1.0
+            })
+        }
     }
     
     func setupLocalization()  {
@@ -77,6 +92,7 @@ class TailMovesVC: UIViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateConnectionUI()
+        checkCasualModeIsOn()
     }
 
     func updateConnectionUI() {
@@ -198,6 +214,7 @@ class TailMovesVC: UIViewController{
             if (deviceActor.isDeviceIsReady) && (deviceActor.isConnected()) {
                 let tailMoveString = arrTailMoves[sender.tag]
                 let data = Data(tailMoveString.utf8)
+                AppDelegate_.moveOn = true
                 deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
             }
         }

@@ -710,9 +710,11 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                 if statusOfLocation == 3 {
                     if (isWalkModeON) {
                         isWalkModeON = false
+                        AppDelegate_.walkModeOn = false
                         stopMotionDetection()
                     } else {
                         isWalkModeON = true
+                        AppDelegate_.walkModeOn = true
                         startMotionDetection()
                         showAlert(title:NSLocalizedString("kLocationPermission", comment: ""), msg: NSLocalizedString("kAllowBackgroundPermission", comment: ""))
                     }
@@ -722,15 +724,18 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
             } else {
                 if (isWalkModeON) {
                     isWalkModeON = false
+                    AppDelegate_.walkModeOn = false
                     stopMotionDetection()
                 } else {
                     isWalkModeON = true
+                    AppDelegate_.walkModeOn = true
                     startMotionDetection()
                 }
             }
             self.tblVwActions.reloadData()
         } else {
             isWalkModeON = true
+            AppDelegate_.walkModeOn = true
             showAlert(title:  NSLocalizedString("kTitleConnect", comment: ""), msg: NSLocalizedString("kMsgConnect", comment: ""))
         }
     }
@@ -878,11 +883,29 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                 } else {
                     cell.lblMenuName.text = kWalkMode
                 }
+                
+                if AppDelegate_.casualONDigitail || AppDelegate_.moveOn {
+                    cell.isUserInteractionEnabled = false
+                    cell.alpha = 0.5
+                } else {
+                    cell.isUserInteractionEnabled = true
+                    cell.alpha = 1.0
+                }
+                
             }
             if arrMenuList[indexPath.row] == kCasualMode {
                 if AppDelegate_.casualONEarGear || AppDelegate_.casualONDigitail {
                     cell.lblMenuName.text = kCasualModeOff
                 }
+                
+                if isWalkModeON || AppDelegate_.moveOn {
+                    cell.isUserInteractionEnabled = false
+                    cell.alpha = 0.5
+                } else {
+                    cell.isUserInteractionEnabled = true
+                    cell.alpha = 1.0
+                }
+                
             }
             
             cell.accessoryType = .disclosureIndicator
@@ -1073,6 +1096,12 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                     self.tblVwConnectedDeviceList.reloadData()
                 }
             }
+        } else if let commandName = responseData["name"] as? String, commandName.lowercased().hasPrefix("end ") { // end command
+            AppDelegate_.moveOn = false
+            AppDelegate_.walkModeOn = false
+            DispatchQueue.main.async {
+                self.tblVwActions.reloadData()
+            }
         }
     }
     
@@ -1081,6 +1110,11 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             let actor = note.object as? BLEActor
 
+            AppDelegate_.walkModeOn = false
+            self.isWalkModeON = false
+            AppDelegate_.casualONDigitail = false
+            AppDelegate_.casualONEarGear = false
+            
             self.updateConnectionUI()
             if !(self.isDIGITAiLConnected()) {
                 self.batteryTimer.invalidate()
