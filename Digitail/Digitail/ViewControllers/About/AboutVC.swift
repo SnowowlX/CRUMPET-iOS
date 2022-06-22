@@ -12,11 +12,8 @@ import SideMenu
 class AboutVC: UIViewController {
     
     //MARK: - Properties
-    @IBOutlet var btnProfile: UIButton!
     @IBOutlet var lblCompnyLink: UILabel!
-    @IBOutlet var lblLicense: UILabel!
-    @IBOutlet var viewAutherOne: UIView!
-    @IBOutlet var viewAutherTwo: UIView!
+    @IBOutlet var lblLicense: UITextView!
     @IBOutlet var btnMenu: UIButton!
     
     @IBOutlet weak var lblCreatedTitle: UILabel!
@@ -24,11 +21,7 @@ class AboutVC: UIViewController {
     @IBOutlet weak var lblCopyright: UILabel!
     @IBOutlet weak var lblCopyrightDetails: UILabel!
     
-    @IBOutlet weak var lblLibrariesinUse: UILabel!
-    @IBOutlet weak var lbliOSSystem: UILabel!
-    
-    @IBOutlet weak var lblQTInfo: UILabel!
-    @IBOutlet weak var lblAuthors: UILabel!
+    let telegramURL = URL(string: "https://t.me/+SYMOR3svXHfby-mo")!
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpMainUI()
@@ -40,32 +33,29 @@ class AboutVC: UIViewController {
         btnMenu.layer.cornerRadius = 5.0
 
         lblCompnyLink.isUserInteractionEnabled = true
-        btnProfile.layer.cornerRadius = btnProfile.frame.height/2.0
-      let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AboutVC.CompanyLink_Clicked))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AboutVC.CompanyLink_Clicked))
         lblCompnyLink.addGestureRecognizer(tap)
-        
-        viewAutherOne.layer.shadowColor = UIColor.darkGray.cgColor
-        viewAutherOne.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-        viewAutherOne.layer.shadowRadius = 1.7
-        viewAutherOne.layer.shadowOpacity = 0.5
-        
-        viewAutherTwo.layer.shadowColor = UIColor.darkGray.cgColor
-        viewAutherTwo.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-        viewAutherTwo.layer.shadowRadius = 1.7
-        viewAutherTwo.layer.shadowOpacity = 0.5
     }
     
     func setupLocalization() {
         self.title = NSLocalizedString("kAbout", comment: "")
-        lblCreatedTitle.text = NSLocalizedString("kEargearTitle", comment: "")
         lblCopyright.text = NSLocalizedString("kCopyright", comment: "")
         lblCopyrightDetails.text = NSLocalizedString("kComanyInfo", comment: "")
-        lblLicense.text = NSLocalizedString("kLicenseTitle", comment: "")
-        lblLibrariesinUse.text = NSLocalizedString("kLibrariesInUse", comment: "")
-        lbliOSSystem.text = NSLocalizedString("kIOSSystem", comment: "")
-        lblQTInfo.text = NSLocalizedString("kBuiltVersion", comment: "")
-        lblAuthors.text = NSLocalizedString("kAuthors", comment: "")
         
+        let licenseAttributeText = NSMutableAttributedString(string: "This app is open source. If you would like to get involved please visit our ", attributes: [.foregroundColor: UIColor.black, .font: UIFont.systemFont(ofSize: 24)])
+        let telegram = NSMutableAttributedString(string: "Telegram group.", attributes: [.foregroundColor: UIColor.systemBlue, .font: UIFont.systemFont(ofSize: 24), .underlineStyle: NSUnderlineStyle.single.rawValue, .underlineColor: UIColor.systemBlue])
+        telegram.addAttribute(.link, value: "telegram", range: NSRange(location: 0, length: telegram.length))
+        licenseAttributeText.append(telegram)
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+        
+        licenseAttributeText.addAttributes([.paragraphStyle: paragraphStyle], range: NSRange(location: 0, length: licenseAttributeText.length))
+        
+        lblLicense.linkTextAttributes = [.foregroundColor: UIColor.systemBlue, .font: UIFont.systemFont(ofSize: 24)]
+        lblLicense.attributedText = licenseAttributeText
+        
+        lblLicense.delegate = self
     }
     
     //MARK: - Actions
@@ -80,4 +70,11 @@ class AboutVC: UIViewController {
         present(SideMenuManager.default.leftMenuNavigationController!, animated: true, completion: nil)
     }
     
+}
+
+extension AboutVC: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        UIApplication.shared.open(telegramURL, options: [:], completionHandler: nil)
+        return true
+    }
 }
