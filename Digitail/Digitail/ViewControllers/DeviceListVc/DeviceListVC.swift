@@ -13,6 +13,9 @@ import CoreBluetooth
 class DeviceListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     @IBOutlet weak var tblVw_Devicelist: UITableView!
+    @IBOutlet weak var connectAllButton: UIButton!
+    
+    var connectedAll = false
     
     //MARK:- LIFE CYCLE -
     override func viewDidLoad() {
@@ -24,6 +27,7 @@ class DeviceListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         self.title = kConnectGear
         self.tblVw_Devicelist.reloadData()
        
+        connectAllButton.isHidden = AppDelegate_.tempDigitailPeripheral.count + AppDelegate_.tempeargearPeripheral.count == 0
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,19 +79,19 @@ class DeviceListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             let objPeripharal:CBPeripheral = AppDelegate_.tempDigitailPeripheral[indexPath.row].peripheral
             deviceListCell.lblDeviceUuid.text = AppDelegate_.tempDigitailPeripheral[indexPath.row].peripheral.identifier.uuidString
             deviceListCell.lblDeviceName.text = AppDelegate_.tempDigitailPeripheral[indexPath.row].deviceName
-            
+
             if objPeripharal.state == .connected {
                 deviceListCell.btnConnect?.setTitle("DISCONNECT", for: .normal)
             } else {
                 deviceListCell.btnConnect?.setTitle("Connect", for: .normal)
             }
-            
+
         } else {
             let objPeripharal:CBPeripheral = AppDelegate_.tempeargearPeripheral[indexPath.row].peripheral
-            
+
             deviceListCell.lblDeviceUuid.text = AppDelegate_.tempeargearPeripheral[indexPath.row].peripheral.identifier.uuidString
             deviceListCell.lblDeviceName.text = AppDelegate_.tempeargearPeripheral[indexPath.row].deviceName
-            
+
             if objPeripharal.state == .connected {
                 deviceListCell.btnConnect?.setTitle("DISCONNECT", for: .normal)
             } else {
@@ -96,6 +100,40 @@ class DeviceListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         }
         return deviceListCell
         
+    }
+    
+    @IBAction func onConnectAll(_ sender: Any) {
+        connectedAll.toggle()
+        
+        if connectedAll {
+            for digital in AppDelegate_.tempDigitailPeripheral {
+                if digital.peripheral.state == .disconnected {
+                    connectDevice(device: digital)
+                }
+            }
+            
+            for eargear in AppDelegate_.tempeargearPeripheral {
+                if eargear.peripheral.state == .disconnected {
+                    connectDevice(device: eargear)
+                }
+            }
+            
+            connectAllButton.setTitle("Disconnect All", for: .normal)
+        } else {
+            for digital in AppDelegate_.tempDigitailPeripheral {
+                if digital.peripheral.state == .connected {
+                    AppDelegate_.centralManagerActor.centralManager?.cancelPeripheralConnection(digital.peripheral)
+                }
+            }
+            
+            for eargear in AppDelegate_.tempeargearPeripheral {
+                if eargear.peripheral.state == .connected {
+                    AppDelegate_.centralManagerActor.centralManager?.cancelPeripheralConnection(eargear.peripheral)
+                }
+            }
+            
+            connectAllButton.setTitle("Connect All", for: .normal)
+        }
     }
     
     @IBAction func Close_Clicked(_ sender: UIButton) {
@@ -124,6 +162,9 @@ class DeviceListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
                     if objPeripharal.state == .connected {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                             AppDelegate_.centralManagerActor.centralManager?.cancelPeripheralConnection(objPeripharal)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                self.tblVw_Devicelist.reloadData()
+                            }
                         }
                     } else {
                         connectDevice(device: selectedPeripharal)
@@ -150,6 +191,9 @@ class DeviceListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     func connectDevice(device: DeviceModel) {
         AppDelegate_.centralManagerActor.add(device.peripheral)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.tblVw_Devicelist.reloadData()
+        }
     }
     
     //MARK:- BLE METHODS -
