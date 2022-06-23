@@ -214,6 +214,13 @@ class SettingVC: UIViewController {
         openAlertView()
     }
     
+    @IBAction func actionWagging(_ sender: Any) {
+        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "WebKitViewVC") as! WebKitViewVC
+        vc.urlToLoad = "https://thetailcompany.com/responsiblewagging.pdf"
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     @IBAction func actionDigitail(_ sender: UIButton) {
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "WebKitViewVC") as! WebKitViewVC

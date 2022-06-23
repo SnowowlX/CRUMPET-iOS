@@ -10,6 +10,7 @@ import UIKit
 import CoreBluetooth
 import SideMenu
 import IQKeyboardManagerSwift
+import SOMotionDetector
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -29,10 +30,61 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var tempDigitailPeripheral = [DeviceModel]()
     var tempeargearPeripheral = [DeviceModel]()
   
-    var casualONDigitail = false
-    var casualONEarGear = false
-    var walkModeOn = false
+    var casualONDigitail = false {
+        didSet {
+            if !casualONDigitail {
+                casualWalkModeTimer?.invalidate()
+                casualWalkModeTimer = nil
+                duration = 0
+            } else {
+                // start timer
+                casualWalkModeTimer?.invalidate()
+                casualWalkModeTimer = nil
+                duration = 0
+                
+                casualWalkModeTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerCallback(_:)), userInfo: nil, repeats: true)
+            }
+        }
+    }
+    var casualONEarGear = false {
+        didSet {
+            if !casualONEarGear {
+                casualWalkModeTimer?.invalidate()
+                casualWalkModeTimer = nil
+                duration = 0
+            } else {
+                // start timer
+                casualWalkModeTimer?.invalidate()
+                casualWalkModeTimer = nil
+                duration = 0
+                
+                casualWalkModeTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerCallback(_:)), userInfo: nil, repeats: true)
+            }
+        }
+    }
+    
+    var walkModeOn = false {
+        didSet {
+            if !walkModeOn {
+                casualWalkModeTimer?.invalidate()
+                casualWalkModeTimer = nil
+                duration = 0
+            } else {
+                // start timer
+                casualWalkModeTimer?.invalidate()
+                casualWalkModeTimer = nil
+                duration = 0
+                
+                casualWalkModeTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerCallback(_:)), userInfo: nil, repeats: true)
+            }
+        }
+    }
+    
     var moveOn = false
+    
+    var duration: Double = 0.0
+    var casualWalkModeTimer: Timer?
+    var lastStartDate = "last_start_date"
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -84,6 +136,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        }
         
         UIApplication.shared.statusBarStyle = .lightContent
+    }
+    
+    @objc func timerCallback(_ timer: Timer) {
+        duration += 1.0
+        
+        if duration > 60 {
+            // stop casual or walkmode
+            if self.casualONDigitail || self.casualONEarGear {
+                for connectedDevice in AppDelegate_.tempEargearDeviceActor {
+                    let deviceActor = connectedDevice
+                    if ((deviceActor.isDeviceIsReady) && (deviceActor.isConnected())) {
+                        let tailMoveString = kEndCasualCommand
+                        let data = Data(tailMoveString.utf8)
+                        deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
+                    }
+                }
+                
+                self.casualONDigitail = false
+                self.casualONEarGear = false
+                
+                for connectedDevices in AppDelegate_.tempDigitailDeviceActor {
+                    let deviceActor = connectedDevices
+                    
+                    if ((deviceActor.isDeviceIsReady) && (deviceActor.isConnected())) {
+                        let tailMoveString = kAutoModeStopAutoCommand
+                        let data = Data(tailMoveString.utf8)
+                        deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
+                    }
+                }
+                print("send refresh notification....")
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: kDeviceModeRefreshNotification), object: nil)
+                
+            } else if self.walkModeOn {
+                self.walkModeOn = false
+                SOMotionDetector.sharedInstance()?.stopDetection()
+                SOLocationManager.sharedInstance()?.stop()
+                print("send refresh notification....")
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: kDeviceModeRefreshNotification), object: nil)
+            }
+        }
     }
     
     @objc func PeripheralFound(_ note: Notification) {
@@ -187,6 +279,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
+        
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

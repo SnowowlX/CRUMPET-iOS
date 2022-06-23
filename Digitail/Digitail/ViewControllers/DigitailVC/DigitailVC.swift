@@ -1025,6 +1025,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
     //MARK:- BLE METHODS -
     
     @objc func refreshHome(_ note: Notification) {
+        self.isWalkModeON = AppDelegate_.walkModeOn
         self.tblVwActions.reloadData()
     }
     
@@ -1123,6 +1124,8 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
             AppDelegate_.casualONDigitail = false
             AppDelegate_.casualONEarGear = false
             AppDelegate_.moveOn = false
+            AppDelegate_.casualWalkModeTimer?.invalidate()
+            AppDelegate_.duration = 0
             
             self.updateConnectionUI()
             if !(self.isDIGITAiLConnected()) {

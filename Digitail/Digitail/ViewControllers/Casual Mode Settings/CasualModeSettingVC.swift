@@ -46,6 +46,16 @@ class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataS
         
         arrSelectedMode = UserDefaults.standard.stringArray(forKey: selectedKeys) ?? []
         
+        RegisterForNote(#selector(self.refreshHome(_:)), kDeviceModeRefreshNotification, self)
+        
+        if AppDelegate_.casualONDigitail || AppDelegate_.casualONEarGear {
+            btnSendToTail.setTitle(kStopCasualMode, for: .normal)
+        } else {
+            btnSendToTail.setTitle(kStartCasualMode, for: .normal)
+        }
+    }
+    
+    @objc func refreshHome(_ note: Notification) {
         if AppDelegate_.casualONDigitail || AppDelegate_.casualONEarGear {
             btnSendToTail.setTitle(kStopCasualMode, for: .normal)
         } else {
