@@ -141,7 +141,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     @objc func timerCallback(_ timer: Timer) {
         duration += 1.0
         
-        if duration > 60 {
+        if duration > 3600 {
             // stop casual or walkmode
             if self.casualONDigitail || self.casualONEarGear {
                 for connectedDevice in AppDelegate_.tempEargearDeviceActor {
