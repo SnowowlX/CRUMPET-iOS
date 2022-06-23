@@ -180,6 +180,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
             alert.addAction(UIAlertAction(title: NSLocalizedString("kShutDownGear", comment: ""), style: .default, handler:{ (UIAlertAction) in
                 self.shutDownAllDevices()
             }))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("kCancel", comment: ""), style: .cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
                 
