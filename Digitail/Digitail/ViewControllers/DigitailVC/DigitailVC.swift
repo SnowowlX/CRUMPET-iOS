@@ -43,7 +43,6 @@ let kTitleConnect = NSLocalizedString("kTitleConnect", comment: "")
 let kMsgConnect = NSLocalizedString("kMsgConnect", comment: "")
 let kShutDownCommand = NSLocalizedString("kShutDownCommand", comment: "")
 let kMoves = NSLocalizedString("kMoves", comment: "")
-let kAlarm = NSLocalizedString("kAlarm", comment: "")
 let kMoveList = NSLocalizedString("kMoveListTitle", comment: "")
 let kGlowTips = NSLocalizedString("kGlowTipsTitle", comment: "")
 let kCasualMode = NSLocalizedString("kCasualMode", comment: "")
@@ -96,14 +95,14 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
     var statusOfLocation = 0
     var glowTipRemoved = false
     
-    var arrDigitailList = [kMoves,kAlarm,kMoveList,kGlowTips,kCasualMode,kWalkModeTitle]
+    var arrDigitailList = [kMoves,kMoveList,kGlowTips,kCasualMode,kWalkModeTitle]
     var arrEarGearList = [kEarGearPoses,kListenMode,kCasualMode, kWalkModeTitle]
     var arrEarGear2List = [kEarGearPoses,kListenMode,kTiltMode,kCasualMode, kWalkModeTitle]
-    var arrBothList = [kMoves,kAlarm,kMoveList,kGlowTipsTitle,kEarGearPoses,kListenMode,kCasualMode, kWalkModeTitle]
-    var arrAllList = [kMoves,kAlarm,kMoveList,kGlowTipsTitle,kEarGearPoses,kListenMode,kTiltMode,kCasualMode, kWalkModeTitle]
+    var arrBothList = [kMoves,kMoveList,kGlowTipsTitle,kEarGearPoses,kListenMode,kCasualMode, kWalkModeTitle]
+    var arrAllList = [kMoves,kMoveList,kGlowTipsTitle,kEarGearPoses,kListenMode,kTiltMode,kCasualMode, kWalkModeTitle]
     
     var arrMenuList = [String]()
-    var arrMenuImages = [kMoves:"TailMoves",kAlarm:"Alarm",kMoveList:"movelist",kGlowTipsTitle:"GlowTips",kCasualMode:"Casulal ModeSetting","Casual Mode Settings":"Settings",kWalkModeTitle:"movelist",kEarGearPoses:"TailMoves",kListenMode:"filter",kTiltMode:"filter"]
+    var arrMenuImages = [kMoves:"TailMoves",kMoveList:"movelist",kGlowTipsTitle:"GlowTips",kCasualMode:"Casulal ModeSetting","Casual Mode Settings":"Settings",kWalkModeTitle:"movelist",kEarGearPoses:"TailMoves",kListenMode:"filter",kTiltMode:"filter"]
     
     //MARK: - View Life Cycle -
     override func viewWillDisappear(_ animated: Bool) {
@@ -828,9 +827,6 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
              switch actionName {
              case kMoves :
                  TailMoves_Clicked(self.btnLookForTails)
-                 break
-             case kAlarm :
-                 Alarm_Clicked(self.btnLookForTails)
                  break
              case kMoveList :
                  MoveList_Clicked(self.btnLookForTails)
