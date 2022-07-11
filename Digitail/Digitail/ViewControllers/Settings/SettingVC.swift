@@ -350,13 +350,14 @@ class SettingVC: UIViewController {
     }
     
     @IBAction func actionEG2FirmwareUpgrade(_ sender: Any) {
+        /*
         let alertController = UIAlertController(title: nil, message: "Coming soon", preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(defaultAction)
         self.present(alertController, animated: true, completion: nil)
         
         return
-        
+        */
         var deviceActor:BLEActor?
         for connectedDevices in AppDelegate_.tempEargearDeviceActor {
             if ((connectedDevices.isDeviceIsReady) && ((connectedDevices.isConnected()))) {
