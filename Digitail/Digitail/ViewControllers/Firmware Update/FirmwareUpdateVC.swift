@@ -104,7 +104,12 @@ class FirmwareUpdateVC: UIViewController {
             let arrayOfVer = array.last?.components(separatedBy: ".")
             if arrayOfVer?.count == 3 {
                 let firstComponent = arrayOfVer?.first
-                let lastComponent = arrayOfVer?.last
+                var lastComponent = arrayOfVer?.last
+                
+                if let last = lastComponent, last.hasSuffix("b") {
+                    lastComponent = String(last.dropLast())
+                }
+                
                 let middelComponent = arrayOfVer?[1]
                 let stringOfVersion = "\(firstComponent ?? "0")\(middelComponent ?? "0")\(lastComponent ?? "0")"
                 return Int(stringOfVersion) ?? 0
@@ -112,6 +117,7 @@ class FirmwareUpdateVC: UIViewController {
         }
         return 0
     }
+    
     func showLoader() {
         hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         hud.mode = .indeterminate
@@ -206,8 +212,14 @@ class FirmwareUpdateVC: UIViewController {
     
     //MARK:- TO GET LATEST FIRMWARE VERSION FROM SERVER -
     func getLatestFWVersionFromServer() -> String {
+        
+        var egFW = "https://thetailcompany.com/fw/eargear"
+        if lblCurrentFwVersionNumber.text?.hasSuffix("b") == true {
+            egFW = "https://thetailcompany.com/fw/eargear-b"
+        }
+        
         var latestFWVersion : String = ""
-        let myURLString = connectedDeviceActor.isEG2 ? "https://thetailcompany.com/fw/eargear" : "https://thetailcompany.com/fw/mitail"
+        let myURLString = connectedDeviceActor.isEG2 ? egFW : "https://thetailcompany.com/fw/mitail"
         if let myURL = NSURL(string: myURLString) {
             do {
                 let myHTMLString = try NSString(contentsOf: myURL as URL, encoding: String.Encoding.utf8.rawValue)

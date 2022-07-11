@@ -41,6 +41,7 @@ class SettingVC: UIViewController {
     
     var latestTailFWVersion: Int = 0
     var latestEGFWVersion: Int = 0
+    var latestEGFWVersionB: Int = 0
     
     //MARK: - View Life Cycle
     
@@ -89,8 +90,9 @@ class SettingVC: UIViewController {
         DispatchQueue.global().async {
             self.latestTailFWVersion = self.getFirmwareVersionFrom(text: self.getLatestTailFWVersionFromServer())
             self.latestEGFWVersion = self.getFirmwareVersionFrom(text: self.getLatestEarGearFWVersionFromServer())
+            self.latestEGFWVersionB = self.getFirmwareVersionFrom(text: self.getLatestEarGearFWVersionBFromServer())
         
-            print("latest tail fw version = \(self.latestTailFWVersion), eg fw version = \(self.latestEGFWVersion)")
+            print("latest tail fw version = \(self.latestTailFWVersion), eg fw version = \(self.latestEGFWVersion), eg-b - \(self.latestEGFWVersionB)")
             DispatchQueue.main.async {
                 self.checkFWVersions()
             }
@@ -126,6 +128,10 @@ class SettingVC: UIViewController {
             
             // get EG fw version
             if let currentFWVersion = connectedEG.state["FirmwareVersion"] as? String {
+                if currentFWVersion.hasSuffix("b") {
+                    self.latestEGFWVersion = self.latestEGFWVersionB
+                }
+                
                 viewEG2FirmwareUpgrade.isHidden = false
                 if getFirmwareVersionFrom(text: currentFWVersion.trimmingCharacters(in: .whitespaces)) == latestEGFWVersion {
                     // already have the latest FW
@@ -277,6 +283,23 @@ class SettingVC: UIViewController {
         return latestFWVersion
     }
     
+    func getLatestEarGearFWVersionBFromServer() -> String {
+        var latestFWVersion : String = ""
+        let myURLString = "https://thetailcompany.com/fw/eargear-b"
+        if let myURL = NSURL(string: myURLString) {
+            do {
+                let myHTMLString = try NSString(contentsOf: myURL as URL, encoding: String.Encoding.utf8.rawValue)
+                print("html \(myHTMLString)")
+                let dictionary = convertStringToDictionary(text: myHTMLString as String)
+                
+                latestFWVersion = dictionary?["version"] as! String
+            } catch {
+                print(error)
+            }
+        }
+        return latestFWVersion
+    }
+    
     func getLatestEarGearFWVersionFromServer() -> String {
         var latestFWVersion : String = ""
         let myURLString = "https://thetailcompany.com/fw/eargear"
@@ -312,7 +335,12 @@ class SettingVC: UIViewController {
             let arrayOfVer = array.last?.components(separatedBy: ".")
             if arrayOfVer?.count == 3 {
                 let firstComponent = arrayOfVer?.first
-                let lastComponent = arrayOfVer?.last
+                var lastComponent = arrayOfVer?.last
+                
+                if let last = lastComponent, last.hasSuffix("b") {
+                    lastComponent = String(last.dropLast())
+                }
+                
                 let middelComponent = arrayOfVer?[1]
                 let stringOfVersion = "\(firstComponent ?? "0")\(middelComponent ?? "0")\(lastComponent ?? "0")"
                 return Int(stringOfVersion) ?? 0
