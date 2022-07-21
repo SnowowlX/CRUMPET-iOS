@@ -337,6 +337,22 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
             self.arrMenuList = self.arrEarGearList
         }
         
+        if isEARGEARConnected() || isEARGEAR2Connected() {
+            var isCFirmware = false
+            for connectedDevice in AppDelegate_.tempEargearDeviceActor {
+                if let firmware = connectedDevice.state["FirmwareVersion"] as? String, firmware.lowercased().hasSuffix("c") {
+                    isCFirmware = true
+                    break
+                }
+            }
+            
+            if isCFirmware {
+                if let listenModeIndex = self.arrMenuList.firstIndex(of: kListenMode) {
+                    self.arrMenuList.remove(at: listenModeIndex)
+                }
+            }
+        }
+        
         if glowTipRemoved {
             self.arrMenuList.removeAll { $0 == kGlowTipsTitle }
         }
