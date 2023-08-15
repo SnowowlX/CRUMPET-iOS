@@ -20,11 +20,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var deviceActors = [BLEActor]()
     var peripheralList = [DeviceModel]()
     var isScanning = false
+    
     var digitailDeviceActor: BLEActor?
     var eargearDeviceActor: BLEActor?
+    var flutterDeviceActor: BLEActor?
+
     var digitailPeripheral: DeviceModel?
     var eargearPeripheral: DeviceModel?
-    
+    var flutterPeripheral: DeviceModel?
+
     var tempDigitailDeviceActor = [BLEActor]()
     var tempEargearDeviceActor = [BLEActor]()
     var tempFlutterDeviceActor = [BLEActor]()
@@ -262,6 +266,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if type == .digitail || type == .mitail {
                 self.digitailDeviceActor = deviceActor
                 self.tempDigitailDeviceActor.append(deviceActor)
+            } else if type == .flutter {
+                self.flutterDeviceActor = deviceActor
+                self.tempFlutterDeviceActor.append(deviceActor)
             } else {
                 self.eargearDeviceActor = deviceActor
                 self.tempEargearDeviceActor.append(deviceActor)
@@ -308,6 +315,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         AppDelegate_.tempDigitailPeripheral.removeAll()
         AppDelegate_.tempeargearPeripheral.removeAll()
+        AppDelegate_.tempFlutterPeripheral.removeAll()
         AppDelegate_.peripheralList.removeAll()
         AppDelegate_.centralManagerActor.centralManager?.stopScan()
         AppDelegate_.centralManagerActor.retrievePeripherals()
@@ -345,7 +353,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let deviceName = advertisementData["kCBAdvDataLocalName"] as! String
         let RSSI = peripheralDict["Rssi"] as! NSNumber
         
-        if deviceName.contains("(!)Tail1") ||  deviceName.lowercased().contains("mitail") || deviceName.contains("DIGITAIL"){
+        if deviceName.contains("(!)Tail1") ||  deviceName.lowercased().contains("mitail") || deviceName.contains("DIGITAIL") {
             var deviceNameToAssign = ""
             if deviceName.lowercased().contains("mitail") {
                 deviceNameToAssign = "MITAIL"
@@ -366,9 +374,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("Multiple Digitail devices Count::",AppDelegate_.tempDigitailPeripheral.count)
             }
             
-//            AppDelegate_.tempDigitailPeripheral.append(device)
-//            print("Multiple digitail devices ::",AppDelegate_.tempDigitailPeripheral)
-//            print("Multiple digitail devices Count::",AppDelegate_.tempDigitailPeripheral.count)
         } else if deviceName.lowercased().contains("eargear") ||  deviceName.lowercased().contains("eg2") {
             var deviceNameToAssign = ""
             if deviceName.lowercased().contains("eg2") || deviceName.lowercased().contains("eargear v2"){
@@ -391,10 +396,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("Multiple eargear devices Count::",AppDelegate_.tempeargearPeripheral.count)
             }
             
+        } else if deviceName.lowercased().contains("flutter") {
+            var deviceNameToAssign = "FLUTTER"
             
-//            AppDelegate_.tempeargearPeripheral.append(device)
-//            print("Multiple eargear devices ::",AppDelegate_.tempeargearPeripheral)
-//            print("Multiple eargear devices Count::",AppDelegate_.tempeargearPeripheral.count)
+            let device = DeviceModel.init(deviceNameToAssign, peripheral, RSSI)
+            AppDelegate_.flutterPeripheral = device
+            
+            let addedPeripharalsDevices = AppDelegate_.tempFlutterPeripheral.filter{ ($0.peripheral.identifier.uuidString.contains(device.peripheral.identifier.uuidString)) }
+            print("added Digitail Peripharals Devices",addedPeripharalsDevices)
+            
+            if addedPeripharalsDevices.count > 0 {
+                print("Digitail Device is already added or connected")
+            } else {
+                AppDelegate_.tempFlutterPeripheral.append(device)
+                print("Multiple Digitail devices ::",AppDelegate_.tempFlutterPeripheral)
+                print("Multiple Digitail devices Count::",AppDelegate_.tempFlutterPeripheral.count)
+            }
         }
     }
     
