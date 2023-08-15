@@ -153,10 +153,10 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
             self.jtSpinner.endRefreshing()
             self.btnLookForTails.isHidden = false
-           if AppDelegate_.tempDigitailPeripheral.count > 1 ||  AppDelegate_.tempeargearPeripheral.count > 1 || (AppDelegate_.tempDigitailPeripheral.count == 1 && AppDelegate_.tempeargearPeripheral.count == 1) {
+           if AppDelegate_.tempDigitailPeripheral.count > 1 ||  AppDelegate_.tempeargearPeripheral.count > 1 ||  AppDelegate_.tempFlutterPeripheral.count > 1 || (AppDelegate_.tempDigitailPeripheral.count == 1 && AppDelegate_.tempeargearPeripheral.count == 1 && AppDelegate_.tempFlutterPeripheral.count == 1) {
                 self.lblGearFoundMessage.text = NSLocalizedString("kFoundGear", comment: "")
                self.btnLookForTails.setTitle( NSLocalizedString("kShowGear", comment: ""), for: .normal)
-            } else if AppDelegate_.tempDigitailPeripheral.count == 1 || AppDelegate_.tempeargearPeripheral.count == 1 {
+            } else if AppDelegate_.tempDigitailPeripheral.count == 1 || AppDelegate_.tempeargearPeripheral.count == 1 || AppDelegate_.tempFlutterPeripheral.count == 1{
                 self.lblGearFoundMessage.text =  NSLocalizedString("kGearFoundMessage", comment: "")
                 self.btnLookForTails.setTitle(NSLocalizedString("kConnecttoGear", comment: ""), for: .normal)
             } else {
@@ -246,6 +246,9 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
             AppDelegate_.centralManagerActor.add(selectedPeripharal.peripheral)
         } else if (AppDelegate_.tempeargearPeripheral.count == 1) {
             let selectedPeripharalEargear = AppDelegate_.tempeargearPeripheral[0]
+            AppDelegate_.centralManagerActor.add(selectedPeripharalEargear.peripheral)
+        } else if (AppDelegate_.tempFlutterPeripheral.count == 1) {
+            let selectedPeripharalEargear = AppDelegate_.tempFlutterPeripheral[0]
             AppDelegate_.centralManagerActor.add(selectedPeripharalEargear.peripheral)
         }
     }
