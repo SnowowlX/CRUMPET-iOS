@@ -1,7 +1,7 @@
 //
 //  JTACMonthLayout.swift
 //
-//  Copyright (c) 2016-2017 JTAppleCalendar (https://github.com/patchthecode/JTAppleCalendar)
+//  Copyright (c) 2016-2020 JTAppleCalendar (https://github.com/patchthecode/JTAppleCalendar)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -66,6 +66,7 @@ class JTACMonthLayout: UICollectionViewLayout, JTACMonthLayoutProtocol {
     var xCellOffset: CGFloat = 0
     var yCellOffset: CGFloat = 0
     var endSeparator: CGFloat = 0
+    override var flipsHorizontallyInOppositeLayoutDirection: Bool { return true }
     
     var delayedExecutionClosure: [(() -> Void)] = []
     func executeDelayedTasks() {
@@ -315,8 +316,8 @@ class JTACMonthLayout: UICollectionViewLayout, JTACMonthLayoutProtocol {
         let attrib = UICollectionViewLayoutAttributes(forCellWith: IndexPath(item: item, section: section))
         
         attrib.frame = CGRect(x: cachedValue.xOffset, y: cachedValue.yOffset, width: cachedValue.width, height: cachedValue.height)
-        if minimumInteritemSpacing > -1, minimumLineSpacing > -1 {
-            var frame = attrib.frame.insetBy(dx: minimumInteritemSpacing, dy: minimumLineSpacing)
+        if minimumInteritemSpacing > 0, minimumLineSpacing > 0 {
+            var frame = attrib.frame.insetBy(dx: minimumInteritemSpacing / 2, dy: minimumLineSpacing / 2)
             if frame == .null { frame = attrib.frame.insetBy(dx: 0, dy: 0) }
             attrib.frame = frame
         }

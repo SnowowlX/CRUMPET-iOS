@@ -1,7 +1,7 @@
 //
 //  JTACScrollViewDelegates.swift
 //
-//  Copyright (c) 2016-2017 JTAppleCalendar (https://github.com/patchthecode/JTAppleCalendar)
+//  Copyright (c) 2016-2020 JTAppleCalendar (https://github.com/patchthecode/JTAppleCalendar)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -178,9 +178,13 @@ extension JTACMonthView: UIScrollViewDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
             self.decelerationRate = UIScrollView.DecelerationRate(rawValue: self.decelerationRateMatchingScrollingMode)
         }
-        
-        DispatchQueue.main.async {
-            self.calendarDelegate?.scrollDidEndDecelerating(for: self)
+    }
+    
+    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if decelerate {
+            DispatchQueue.main.async {
+                self.calendarDelegate?.scrollDidEndDecelerating(for: self)
+            }
         }
     }
     

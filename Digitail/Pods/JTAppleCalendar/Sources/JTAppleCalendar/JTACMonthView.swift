@@ -1,7 +1,7 @@
 //
 //  JTACMonthView.swift
 //
-//  Copyright (c) 2016-2017 JTAppleCalendar (https://github.com/patchthecode/JTAppleCalendar)
+//  Copyright (c) 2016-2020 JTAppleCalendar (https://github.com/patchthecode/JTAppleCalendar)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -63,11 +63,7 @@ open class JTACMonthView: UICollectionView {
     /// then whenever you click on a datecell, you may notice a very fast
     /// refreshing of the date-cells both left and right of the cell you
     /// just selected.
-    @available(*, unavailable, renamed: "allowsRangedSelection")
-    open var isRangeSelectionUsed: Bool = false
-    open var allowsRangedSelection: Bool = false {
-        didSet { allowsMultipleSelection = true }
-    }
+    open var allowsRangedSelection: Bool = false
   
     open var rangeSelectionMode: RangeSelectionMode = .segmented
   

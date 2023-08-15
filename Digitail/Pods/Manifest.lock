@@ -1,9 +1,9 @@
 PODS:
-  - IQKeyboardManagerSwift (6.5.2)
-  - JTAppleCalendar (8.0.2)
+  - IQKeyboardManagerSwift (6.5.12)
+  - JTAppleCalendar (8.0.5)
   - JTMaterialSpinner (3.0.5)
   - MBProgressHUD (1.2.0)
-  - MGSwipeTableCell (1.6.11)
+  - MGSwipeTableCell (1.6.14)
   - RangeSeekSlider (1.8.0)
   - SideMenu (6.0.9)
   - SOMotionDetector (1.0.2)
@@ -30,15 +30,15 @@ SPEC REPOS:
     - SOMotionDetector
 
 SPEC CHECKSUMS:
-  IQKeyboardManagerSwift: c75366f1f19590e8caeae45fcd5815c9289d6099
-  JTAppleCalendar: bb3dd3752e2bcc85cb798ab763fbdd6e142715fc
+  IQKeyboardManagerSwift: 371b08cb39664fb56030f5345c815a4ffc74bbc0
+  JTAppleCalendar: 16c6501b22cb27520372c28b0a2e0b12c8d0cd73
   JTMaterialSpinner: 28a0444186b6b2df4206a77d12f7c9dcbe604958
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
-  MGSwipeTableCell: b804e4e450dee439c42250be90bd50458bf67fce
+  MGSwipeTableCell: d99ed6466f393b71cd488c6f798ba112ff5d1d01
   RangeSeekSlider: 650b11fa1edcb92e1e0ede797669d98622570fb5
   SideMenu: 12c42f4bb9405c602f0d75493206cd405911a153
   SOMotionDetector: 50131192a9b9ea76747d0230a7b6f82e5124d8d4
 
-PODFILE CHECKSUM: d5f3f420d06d51574abb09cba9a423be74f1c080
+PODFILE CHECKSUM: 357877572474cab7d0462f34730ca6b269ec57c2
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.1

@@ -1,7 +1,7 @@
 //
 //  JTACMonthViewProtocols.swift
 //
-//  Copyright (c) 2016-2017 JTAppleCalendar (https://github.com/patchthecode/JTAppleCalendar)
+//  Copyright (c) 2016-2020 JTAppleCalendar (https://github.com/patchthecode/JTAppleCalendar)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -31,8 +31,8 @@ import UIKit
 /// the calendar-view object with the information it needs to construct and
 /// then modify it self
 @available(*, unavailable, renamed: "JTACMonthViewDataSource")
-public protocol JTAppleCalendarViewDataSource: class {}
-public protocol JTACMonthViewDataSource: class {
+public protocol JTAppleCalendarViewDataSource: AnyObject {}
+public protocol JTACMonthViewDataSource: AnyObject {
     /// Asks the data source to return the start and end boundary dates
     /// as well as the calendar to use. You should properly configure
     /// your calendar at this point.
@@ -47,8 +47,8 @@ public protocol JTACMonthViewDataSource: class {
 /// JTAppleCalendarMonthViewDelegate protocol Optional methods of the protocol
 /// allow the delegate to manage selections, and configure the cells
 @available(*, unavailable, renamed: "JTACMonthViewDelegate")
-public protocol JTAppleCalendarViewDelegate: class {}
-public protocol JTACMonthViewDelegate: class {
+public protocol JTAppleCalendarViewDelegate: AnyObject {}
+public protocol JTACMonthViewDelegate: AnyObject {
     /// Asks the delegate if selecting the date-cell with a specified date is
     /// allowed
     /// - Parameters:

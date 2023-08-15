@@ -1,7 +1,7 @@
 //
 //  JTACMonthQueryFunctions.swift
 //
-//  Copyright (c) 2016-2017 JTAppleCalendar (https://github.com/patchthecode/JTAppleCalendar)
+//  Copyright (c) 2016-2020 JTAppleCalendar (https://github.com/patchthecode/JTAppleCalendar)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -63,6 +63,7 @@ extension JTACMonthView {
 
         switch scrollingMode {
         case .stopAtEachCalendarFrame, .stopAtEach, .nonStopTo:
+            assert(fixedScrollSize != 0, "You should not try to divide by zero.")
             let frameSection = theTargetContentOffset / fixedScrollSize
             let roundedFrameSection = floor(frameSection)
             if scrollDirection == .horizontal {
@@ -314,6 +315,8 @@ extension JTACMonthView {
             let selectedDates = self.selectedDatesSet
             if !selectedDates.contains(date) || selectedDates.isEmpty  { return .none }
           
+            let isLTRDirection = UIView.userInterfaceLayoutDirection(
+            for: self.semanticContentAttribute) == .leftToRight
           let restrictToSection = self.rangeSelectionMode == .segmented
           let validSelectedIndexes = self.validForwardAndBackwordSelectedIndexes(forIndexPath: indexPath, restrictToSection: restrictToSection)
             let dateBeforeIsSelected = validSelectedIndexes.backIndex != nil
@@ -324,9 +327,9 @@ extension JTACMonthView {
             if dateBeforeIsSelected, dateAfterIsSelected {
                 position = .middle
             } else if !dateBeforeIsSelected, dateAfterIsSelected {
-                position = .left
+                position = isLTRDirection ? .left : .right
             } else if dateBeforeIsSelected, !dateAfterIsSelected {
-                position = .right
+                position = isLTRDirection ? .right : .left
             } else if !dateBeforeIsSelected, !dateAfterIsSelected  {
                 position = .full
             } else {

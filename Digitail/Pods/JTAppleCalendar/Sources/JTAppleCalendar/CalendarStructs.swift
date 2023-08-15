@@ -1,7 +1,7 @@
 //
 //  CalendarStructs.swift
 //
-//  Copyright (c) 2016-2017 JTAppleCalendar (https://github.com/patchthecode/JTAppleCalendar)
+//  Copyright (c) 2016-2020 JTAppleCalendar (https://github.com/patchthecode/JTAppleCalendar)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -275,7 +275,7 @@ class JTAppleDateConfigGenerator {
             
             // Track the month name index
             var monthNameIndex = parameters.calendar.component(.month, from: parameters.startDate) - 1
-            let allMonthsOfYear: [MonthsOfYear] = [.jan, .feb, .mar, .apr, .may, .jun, .jul, .aug, .sep, .oct, .nov, .dec]
+            let allMonthsOfYear = MonthsOfYear.allCases
             
             for monthIndex in 0 ..< numberOfMonths {
                 if let currentMonthDate = parameters.calendar.date(byAdding: .month, value: monthIndex, to: parameters.startDate) {

@@ -1,7 +1,7 @@
 //
 //  JTACYearViewProtocols.swift
 //
-//  Copyright (c) 2016-2017 JTAppleCalendar (https://github.com/patchthecode/JTAppleCalendar)
+//  Copyright (c) 2016-2020 JTAppleCalendar (https://github.com/patchthecode/JTAppleCalendar)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,7 @@
 import Foundation
 import UIKit
 
-public protocol JTACYearViewDelegate: class {
+public protocol JTACYearViewDelegate: AnyObject {
     func calendar(_ calendar: JTACYearView, cellFor item: Any, at date: Date, indexPath: IndexPath) -> JTACMonthCell
     func calendar(_ calendar: JTACYearView,
                   monthView: JTACCellMonthView,
@@ -46,7 +46,7 @@ extension JTACYearViewDelegate {
     func calendar(_ calendar: JTACYearView, sizeFor item: Any) -> CGSize { return .zero }
 }
 
-public protocol JTACYearViewDataSource: class {
+public protocol JTACYearViewDataSource: AnyObject {
     func configureCalendar(_ calendar: JTACYearView) -> (configurationParameters: ConfigurationParameters, months: [Any])
 }
 
