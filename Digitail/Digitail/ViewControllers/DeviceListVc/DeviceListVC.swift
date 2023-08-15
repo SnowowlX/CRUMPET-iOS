@@ -27,7 +27,7 @@ class DeviceListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         self.title = kConnectGear
         self.tblVw_Devicelist.reloadData()
        
-        connectAllButton.isHidden = AppDelegate_.tempDigitailPeripheral.count + AppDelegate_.tempeargearPeripheral.count == 0
+        connectAllButton.isHidden = AppDelegate_.tempDigitailPeripheral.count + AppDelegate_.tempeargearPeripheral.count + AppDelegate_.tempFlutterPeripheral.count == 0
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,7 +39,7 @@ class DeviceListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     func startScan() {
         AppDelegate_.startScan()
         
-        if (AppDelegate_.digitailPeripheral == nil) || (AppDelegate_.eargearPeripheral == nil) {
+        if (AppDelegate_.digitailPeripheral == nil) || (AppDelegate_.eargearPeripheral == nil) || (AppDelegate_.flutterPeripheral == nil){
            AppDelegate_.isScanning = true
        }
         
@@ -62,11 +62,17 @@ class DeviceListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             }  else {
                 return 0
             }
+        }  else if section == 2 {
+            if AppDelegate_.tempFlutterPeripheral.count > 0 {
+                return AppDelegate_.tempFlutterPeripheral.count
+            }  else {
+                return 0
+            }
         }
         return 0
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -86,11 +92,22 @@ class DeviceListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
                 deviceListCell.btnConnect?.setTitle("Connect", for: .normal)
             }
 
-        } else {
+        } else if indexPath.section == 1 {
             let objPeripharal:CBPeripheral = AppDelegate_.tempeargearPeripheral[indexPath.row].peripheral
 
             deviceListCell.lblDeviceUuid.text = AppDelegate_.tempeargearPeripheral[indexPath.row].peripheral.identifier.uuidString
             deviceListCell.lblDeviceName.text = AppDelegate_.tempeargearPeripheral[indexPath.row].deviceName
+
+            if objPeripharal.state == .connected {
+                deviceListCell.btnConnect?.setTitle("DISCONNECT", for: .normal)
+            } else {
+                deviceListCell.btnConnect?.setTitle("Connect", for: .normal)
+            }
+        }  else {
+            let objPeripharal:CBPeripheral = AppDelegate_.tempFlutterPeripheral[indexPath.row].peripheral
+
+            deviceListCell.lblDeviceUuid.text = AppDelegate_.tempFlutterPeripheral[indexPath.row].peripheral.identifier.uuidString
+            deviceListCell.lblDeviceName.text = AppDelegate_.tempFlutterPeripheral[indexPath.row].deviceName
 
             if objPeripharal.state == .connected {
                 deviceListCell.btnConnect?.setTitle("DISCONNECT", for: .normal)
