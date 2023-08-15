@@ -152,7 +152,7 @@ class SettingVC: UIViewController {
         var deviceActor:BLEActor?
         for connectedDevices in AppDelegate_.tempDigitailDeviceActor {
             if ((connectedDevices.isDeviceIsReady) && ((connectedDevices.isConnected()))) {
-                if (connectedDevices.isMitail) {
+                if (connectedDevices.bleDeviceType == .mitail) {
                     deviceActor = connectedDevices
                     break
                 }
@@ -166,7 +166,7 @@ class SettingVC: UIViewController {
         var deviceActor:BLEActor?
         for connectedDevices in AppDelegate_.tempEargearDeviceActor {
             if ((connectedDevices.isDeviceIsReady) && ((connectedDevices.isConnected()))) {
-                if (connectedDevices.isEG2) {
+                if (connectedDevices.bleDeviceType == .eg2) {
                     deviceActor = connectedDevices
                     break
                 }
@@ -361,7 +361,7 @@ class SettingVC: UIViewController {
         var deviceActor:BLEActor?
         for connectedDevices in AppDelegate_.tempEargearDeviceActor {
             if ((connectedDevices.isDeviceIsReady) && ((connectedDevices.isConnected()))) {
-                if (connectedDevices.isEG2) {
+                if (connectedDevices.bleDeviceType == .eg2) {
                     deviceActor = connectedDevices
                 }
             }
@@ -381,7 +381,7 @@ class SettingVC: UIViewController {
         var deviceActor:BLEActor?
         for connectedDevices in AppDelegate_.tempDigitailDeviceActor {
             if ((connectedDevices.isDeviceIsReady) && ((connectedDevices.isConnected()))) {
-                if (connectedDevices.isMitail) {
+                if (connectedDevices.bleDeviceType == .mitail) {
                     deviceActor = connectedDevices
                 }
             }

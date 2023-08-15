@@ -213,13 +213,16 @@ class FirmwareUpdateVC: UIViewController {
     //MARK:- TO GET LATEST FIRMWARE VERSION FROM SERVER -
     func getLatestFWVersionFromServer() -> String {
         
-        var egFW = "https://thetailcompany.com/fw/eargear"
+        var strFirmwareUpgrade = "https://thetailcompany.com/fw/eargear" // default eargear url
         if lblCurrentFwVersionNumber.text?.hasSuffix("b") == true {
-            egFW = "https://thetailcompany.com/fw/eargear-b"
+            strFirmwareUpgrade = "https://thetailcompany.com/fw/eargear-b"
+        }
+        if connectedDeviceActor.bleDeviceType == .mitail {
+            strFirmwareUpgrade = "https://thetailcompany.com/fw/mitail"
         }
         
         var latestFWVersion : String = ""
-        let myURLString = connectedDeviceActor.isEG2 ? egFW : "https://thetailcompany.com/fw/mitail"
+        let myURLString = strFirmwareUpgrade
         if let myURL = NSURL(string: myURLString) {
             do {
                 let myHTMLString = try NSString(contentsOf: myURL as URL, encoding: String.Encoding.utf8.rawValue)
@@ -289,7 +292,7 @@ class FirmwareUpdateVC: UIViewController {
         if sender.tag == 1 {
             //TITLE IS UPFDATE FIRMWARE
             //DOWNLOAD FIRMWARE FROM SERVER
-            if connectedDeviceActor.isEG2 {
+            if connectedDeviceActor.bleDeviceType == .eg2 {
                 openAlert(title: NSLocalizedString("kEG2FirmwareUpgrade", comment: ""), message: NSLocalizedString("kEG2FirmwareUpgradeDecription", comment: ""), alertStyle: .alert, actionTitles: [NSLocalizedString("kStart", comment: ""),NSLocalizedString("kCancel", comment: "")], actionStyles: [.default,.cancel], actions:[{action in
                                 self.downloadLatestFWFromServer()
                             },{cancel in

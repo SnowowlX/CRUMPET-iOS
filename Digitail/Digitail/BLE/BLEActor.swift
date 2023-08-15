@@ -56,6 +56,13 @@ enum kValueTransformDirection : Int {
     case Out
 }
 
+enum BLEDeviceType {
+    case digitail
+    case mitail
+    case eg2
+    case flutter
+}
+
 extension CBPeripheral {
     func characteristic(withPath path: String)  -> CBCharacteristic? {
         let pathUUIDs: [CBUUID] = CBUUIDsFromNSStrings(strings: path.components(separatedBy: Constants.kCBPathDelimiter))
@@ -273,7 +280,7 @@ class CentralManagerActor: NSObject,CBCentralManagerDelegate {
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         if advertisementData["kCBAdvDataLocalName"] != nil {
             let deviceName = advertisementData["kCBAdvDataLocalName"] as! String
-            if deviceName.contains("(!)Tail1") ||  deviceName.lowercased().contains("eargear") || deviceName.lowercased().contains("mitail") || deviceName.lowercased().contains("eg2") {
+            if deviceName.contains("(!)Tail1") ||  deviceName.lowercased().contains("eargear") || deviceName.lowercased().contains("mitail") || deviceName.lowercased().contains("eg2") || deviceName.lowercased().contains("flutter") {
                 NSLog(deviceName)
                 NSLog("------------------------------------------------------------------")
                 NSLog("\ndidDiscover {peripheral : \(peripheral) advertisementData: \(advertisementData), Rssi : \(RSSI)}")
@@ -329,8 +336,10 @@ class BLEActor: NSObject {
     var didReadCharacteristicsCounter: Int = 0
     var queue: OperationQueue?
     var isDeviceIsReady: Bool = false
-    var isMitail: Bool = false
-    var isEG2: Bool = false
+    var bleDeviceType: BLEDeviceType = .digitail
+//    var isMitail: Bool = false
+//    var isEG2: Bool = false
+//    var isFlutter: Bool = false
     var maxMTU: Int = 20
     
     init(deviceState aState:NSMutableDictionary, servicesMeta aServicesMeta:NSDictionary, operationsMeta aOperationsMeta:NSDictionary) {
@@ -396,6 +405,8 @@ class BLEActor: NSObject {
                 state[Constants.kDeviceName] = "EarGear v2"
             } else if peripheral.name!.lowercased().contains("eargear") {
                 state[Constants.kDeviceName] = "EARGEAR"
+            } else if peripheral.name!.lowercased().contains("flutter") {
+                state[Constants.kDeviceName] = "FLUTTER"
             }
         }
         if peripheral.state == .connected {

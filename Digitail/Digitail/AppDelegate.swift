@@ -27,9 +27,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var tempDigitailDeviceActor = [BLEActor]()
     var tempEargearDeviceActor = [BLEActor]()
+    var tempFlutterDeviceActor = [BLEActor]()
+
+    
     var tempDigitailPeripheral = [DeviceModel]()
     var tempeargearPeripheral = [DeviceModel]()
-  
+    var tempFlutterPeripheral = [DeviceModel]()
+
     var casualONDigitail = false {
         didSet {
             if !casualONDigitail {
@@ -191,7 +195,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         if (deviceActor == nil) {
-            var isDigitail = true
+            
+            var type: BLEDeviceType = .digitail
+            
             //            if peripheral.identifier.uuidString == self.digitailPeripheral?.peripheral.identifier.uuidString {
             //                isDigitail = true
             //            } else {
@@ -199,54 +205,61 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //            }
                         
             var deviceName = ""
-            var isMitail = false
+
             if self.tempDigitailPeripheral.count > 0 {
                 for peripharals in self.tempDigitailPeripheral {
                     if peripheral.identifier.uuidString == peripharals.peripheral.identifier.uuidString {
                         deviceName = peripharals.deviceName
-                        isDigitail = true
                         if deviceName.lowercased().contains("mitail") {
-                            isMitail = true
-                        } else {
-                            isMitail = false
+                            type = .mitail
                         }
                     }
                 }
             }
             
-            var isEG2 = false
             if self.tempeargearPeripheral.count > 0 {
                 for peripharals in self.tempeargearPeripheral {
                     if peripheral.identifier.uuidString == peripharals.peripheral.identifier.uuidString {
                         deviceName = peripharals.deviceName
-                        isDigitail = false
                         if deviceName.lowercased().contains("eargear v2") {
-                            isEG2 = true
-                        } else {
-                            isEG2 = false
+                            type = .eg2
                         }
                     }
                 }
             }
             
-
-            if isDigitail {
-                if isMitail {
-                    deviceActor = BLEActor(deviceState: [:], servicesMeta: DictFromFile(kServiceMetaMitail), operationsMeta: DictFromFile(kCommandMeta))
-                    deviceActor.isMitail = true
-                } else {
-                    deviceActor = BLEActor(deviceState: [:], servicesMeta: DictFromFile(kServiceMeta), operationsMeta: DictFromFile(kCommandMeta))
-                    deviceActor.isMitail = false
+            if self.tempFlutterPeripheral.count > 0 {
+                for peripharals in self.tempFlutterPeripheral {
+                    if peripheral.identifier.uuidString == peripharals.peripheral.identifier.uuidString {
+                        deviceName = peripharals.deviceName
+                        if deviceName.lowercased().contains("flutter") {
+                            type = .flutter
+                        }
+                    }
                 }
-                deviceActor.state[Constants.kDeviceName] = deviceName
-            } else {
-                deviceActor = BLEActor(deviceState: [:], servicesMeta: DictFromFile(kServiceMetaEarGear), operationsMeta: DictFromFile(kCommandMetaEarGear))
-                deviceActor.isEG2 = isEG2
             }
+            
+            
+            if type == .digitail {
+                deviceActor = BLEActor(deviceState: [:], servicesMeta: DictFromFile(kServiceMeta), operationsMeta: DictFromFile(kCommandMeta))
+                deviceActor.bleDeviceType = type
+                deviceActor.state[Constants.kDeviceName] = deviceName
+            } else if type == .mitail {
+                deviceActor = BLEActor(deviceState: [:], servicesMeta: DictFromFile(kServiceMetaMitail), operationsMeta: DictFromFile(kCommandMeta))
+                deviceActor.bleDeviceType = type
+                deviceActor.state[Constants.kDeviceName] = deviceName
+            } else if type == .eg2 {
+                deviceActor = BLEActor(deviceState: [:], servicesMeta: DictFromFile(kServiceMetaEarGear), operationsMeta: DictFromFile(kCommandMetaEarGear))
+                deviceActor.bleDeviceType = type
+            } else if type == .flutter {
+                deviceActor = BLEActor(deviceState: [:], servicesMeta: DictFromFile(kServiceMetaEarGear), operationsMeta: DictFromFile(kCommandMetaEarGear))
+                deviceActor.bleDeviceType = type
+            }
+            
             
             deviceActor.setPeripheral(peripheral)
             self.deviceActors.append(deviceActor)
-            if isDigitail {
+            if type == .digitail || type == .mitail {
                 self.digitailDeviceActor = deviceActor
                 self.tempDigitailDeviceActor.append(deviceActor)
             } else {

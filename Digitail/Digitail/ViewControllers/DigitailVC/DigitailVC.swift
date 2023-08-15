@@ -410,7 +410,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
         var isConnected = Bool()
         for connectedDevices in AppDelegate_.tempEargearDeviceActor {
             if (connectedDevices.peripheralActor != nil && (connectedDevices.isConnected())) {
-                if connectedDevices.isEG2 {
+                if connectedDevices.bleDeviceType == .eg2 {
                     isConnected = true
                     break
                 }
@@ -1191,7 +1191,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
         for connectedDevices in AppDelegate_.tempDigitailDeviceActor {
             let deviceActor = connectedDevices
             if ((deviceActor.isDeviceIsReady) && ((deviceActor.isConnected()))) {
-                if (deviceActor.isMitail) {
+                if (deviceActor.bleDeviceType == .mitail) {
                     deviceActor.readProperty(Constants.kCharacteristic_BatteryLevel)
                 } else {
                     let tailMoveString = kBatteryCommand
