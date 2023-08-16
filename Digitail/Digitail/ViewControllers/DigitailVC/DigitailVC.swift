@@ -95,7 +95,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
     var glowTipRemoved = false
     
     var arrDigitailList = [kMoves,kGlowTips,kCasualMode,kWalkModeTitle]
-    var arrFlutterList = [kMoves,kGlowTips,kCasualMode,kWalkModeTitle]
+    var arrFlutterList = [kMoves,kCasualMode,kWalkModeTitle]
     var arrEarGearList = [kEarGearPoses,kListenMode,kCasualMode, kWalkModeTitle]
     var arrEarGear2List = [kEarGearPoses,kListenMode,kTiltMode,kCasualMode, kWalkModeTitle]
     var arrBothList = [kMoves,kGlowTipsTitle,kEarGearPoses,kListenMode,kCasualMode, kWalkModeTitle]
@@ -199,6 +199,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
             if ((deviceActor.isDeviceIsReady) && (deviceActor.isConnected())) {
                 AppDelegate_.centralManagerActor.centralManager?.cancelPeripheralConnection(deviceActor.peripheralActor.peripheral!)
             }
+            
         }
         
         for connectedDevices in AppDelegate_.tempFlutterDeviceActor {
@@ -207,6 +208,17 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                 AppDelegate_.centralManagerActor.centralManager?.cancelPeripheralConnection(deviceActor.peripheralActor.peripheral!)
             }
         }
+        
+        AppDelegate_.tempDigitailPeripheral.removeAll()
+        AppDelegate_.tempDigitailDeviceActor.removeAll()
+        
+        AppDelegate_.tempeargearPeripheral.removeAll()
+        AppDelegate_.tempEargearDeviceActor.removeAll()
+        
+        AppDelegate_.tempFlutterPeripheral.removeAll()
+        AppDelegate_.tempFlutterDeviceActor.removeAll()
+        
+        AppDelegate_.deviceActors.removeAll()
         
     }
     
@@ -239,6 +251,16 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                 deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
             }
         }
+        
+        AppDelegate_.tempDigitailPeripheral.removeAll()
+        AppDelegate_.tempDigitailDeviceActor.removeAll()
+        
+        AppDelegate_.tempeargearPeripheral.removeAll()
+        AppDelegate_.tempEargearDeviceActor.removeAll()
+        
+        AppDelegate_.tempFlutterPeripheral.removeAll()
+        AppDelegate_.tempFlutterDeviceActor.removeAll()
+        AppDelegate_.deviceActors.removeAll()
     }
     
 
@@ -1288,7 +1310,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                 self.batteryTimer.invalidate()
             }
             
-            if !self.isDIGITAiLConnected() && !self.isEARGEARConnected() {
+            if !self.isDIGITAiLConnected() && !self.isEARGEARConnected() && !self.isFlutterConnected() {
                 self.startScan()
             }
         }

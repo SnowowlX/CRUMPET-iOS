@@ -241,6 +241,9 @@ class CentralManagerActor: NSObject,CBCentralManagerDelegate {
         }
     }
     
+    func removeAllPeripherals() {
+        self.peripherals.removeAllObjects()
+    }
     func retrievePeripherals() {
         NSLog("scanning for peripherals with service UUIDs \(serviceUUIDs)")
 //        AppDelegate_.deviceActors.forEach { (bleActor) in
@@ -539,6 +542,7 @@ class BLEActor: NSObject {
             peripheralActor?.discoverServices(CBUUIDsFromNSStrings(strings: servicesMeta.allKeys as! [String]))
         }
         else {
+            AppDelegate_.centralManagerActor.removeAllPeripherals()
             stopCommands()
             PostNoteBLE(kDeviceDisconnected, self)
         }

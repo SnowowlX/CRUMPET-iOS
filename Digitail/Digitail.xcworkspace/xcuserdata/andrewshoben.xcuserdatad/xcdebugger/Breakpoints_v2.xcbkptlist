@@ -7,15 +7,95 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F0944A7F-CB29-49D4-92B1-F6FFA9E8345A"
+            uuid = "D48ACE91-A091-45CD-8DC8-929018CB5721"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Digitail/ViewControllers/DigitailVC/DigitailVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "430"
+            endingLineNumber = "430"
+            landmarkName = "isFlutterConnected()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D48ACE91-A091-45CD-8DC8-929018CB5721 - b6fbcb8aacc739cd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CRUMPET.DigitailVC.isFlutterConnected() -&gt; Swift.Bool"
+                  moduleName = "CRUMPET"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewshoben/Desktop/CRUMPET-iOS/Digitail/Digitail/ViewControllers/DigitailVC/DigitailVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "431"
+                  endingLineNumber = "431"
+                  offsetFromSymbolStart = "520">
+               </Location>
+               <Location
+                  uuid = "D48ACE91-A091-45CD-8DC8-929018CB5721 - b6fbcb8aacc739ec"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CRUMPET.DigitailVC.isFlutterConnected() -&gt; Swift.Bool"
+                  moduleName = "CRUMPET"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewshoben/Desktop/CRUMPET-iOS/Digitail/Digitail/ViewControllers/DigitailVC/DigitailVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "430"
+                  endingLineNumber = "430"
+                  offsetFromSymbolStart = "296">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "95D46A4E-26AF-465C-99DB-3F19C8DE83C5"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Digitail/AppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "201"
-            endingLineNumber = "201"
+            startingLineNumber = "357"
+            endingLineNumber = "357"
+            landmarkName = "stopScan()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "696570C9-344D-48CE-83F0-206799111580"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Digitail/ViewControllers/DeviceListVc/DeviceListVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
+            landmarkName = "Connect_Clicked(sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F071A48E-2E07-4D8F-B24E-03880EFBD715"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Digitail/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "295"
+            endingLineNumber = "295"
             landmarkName = "PeripheralFound(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -23,33 +103,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A12B0BC3-9875-4D79-9875-3C177B6C3412"
+            uuid = "158EB51B-E6C0-48BA-89CF-2534D46C2E35"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Digitail/AppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "356"
-            endingLineNumber = "356"
-            landmarkName = "scanResultPeripheralFound(_:)"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
+            landmarkName = "PeripheralFound(_:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "BA23E9B9-071A-4FC2-9230-0A51C1CD6546"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Digitail/BLE/CBUtils.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "307"
-            endingLineNumber = "307"
-            landmarkName = "PostNoteBLE(_:_:)"
-            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
