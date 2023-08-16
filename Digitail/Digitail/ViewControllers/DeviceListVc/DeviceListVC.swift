@@ -135,6 +135,12 @@ class DeviceListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
                 }
             }
             
+            for eargear in AppDelegate_.tempFlutterPeripheral {
+                if eargear.peripheral.state == .disconnected {
+                    connectDevice(device: eargear)
+                }
+            }
+            
             connectAllButton.setTitle("Disconnect All", for: .normal)
         } else {
             for digital in AppDelegate_.tempDigitailPeripheral {
@@ -146,6 +152,12 @@ class DeviceListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             for eargear in AppDelegate_.tempeargearPeripheral {
                 if eargear.peripheral.state == .connected {
                     AppDelegate_.centralManagerActor.centralManager?.cancelPeripheralConnection(eargear.peripheral)
+                }
+            }
+            
+            for digital in AppDelegate_.tempFlutterPeripheral {
+                if digital.peripheral.state == .connected {
+                    AppDelegate_.centralManagerActor.centralManager?.cancelPeripheralConnection(digital.peripheral)
                 }
             }
             
@@ -187,7 +199,7 @@ class DeviceListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
                         connectDevice(device: selectedPeripharal)
                     }
                 }
-            } else {
+            } else if indexPath?.section == 1 {
                 let selectedPeripharalEargear = AppDelegate_.tempeargearPeripheral[sender.tag]
                 if selectedPeripharalEargear.peripheral == nil {
                     AppDelegate_.isScanning = true
@@ -200,6 +212,24 @@ class DeviceListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
                         }
                     } else {
                         connectDevice(device: selectedPeripharalEargear)
+                    }
+                }
+            } else {
+                let selectedPeripharal = AppDelegate_.tempFlutterPeripheral[sender.tag]
+                if selectedPeripharal.peripheral == nil {
+                    AppDelegate_.isScanning = true
+                    self.startScan()
+                } else {
+                    let objPeripharal:CBPeripheral = AppDelegate_.tempFlutterPeripheral[sender.tag].peripheral
+                    if objPeripharal.state == .connected {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            AppDelegate_.centralManagerActor.centralManager?.cancelPeripheralConnection(objPeripharal)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                self.tblVw_Devicelist.reloadData()
+                            }
+                        }
+                    } else {
+                        connectDevice(device: selectedPeripharal)
                     }
                 }
             }

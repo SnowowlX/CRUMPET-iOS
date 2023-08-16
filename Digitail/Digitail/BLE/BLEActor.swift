@@ -50,6 +50,7 @@ let kServiceMetaEarGear = "serviceMetaEarGear.plist"
 let kCommandMetaEarGear = "commandMetaEarGear.plist"
 
 let kServiceMetaMitail = "serviceMetaMitail.plist"
+let kServiceMetaFlutter = "serviceMetaFlutter.plist"
 
 enum kValueTransformDirection : Int {
     case In = 0

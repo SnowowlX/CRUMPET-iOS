@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CVg-a4-NWh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CVg-a4-NWh">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -110,7 +110,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TblVw_ConnectedDeviceLIst_Cell" id="OJD-gZ-c9q" customClass="TblVw_ConnectedDeviceLIst_Cell" customModule="CRUMPET" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="44.5" width="335" height="44"/>
+                                                <rect key="frame" x="0.0" y="50" width="335" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OJD-gZ-c9q" id="l2f-bk-Lh4">
                                                     <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
@@ -158,7 +158,7 @@
                                                 </connections>
                                             </tableViewCell>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TblVw_ConnectedDeviceSections_Cell" id="6ZQ-4u-4ry" customClass="TblVw_ConnectedDeviceSections_Cell" customModule="CRUMPET" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="88.5" width="335" height="44"/>
+                                                <rect key="frame" x="0.0" y="94" width="335" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6ZQ-4u-4ry" id="x8A-Ar-ohv">
                                                     <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
@@ -205,14 +205,14 @@
                                 <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TblCellSideMenu" rowHeight="90" id="3UG-Ta-KAf" customClass="TblCellSideMenu" customModule="CRUMPET" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="335" height="90"/>
+                                        <rect key="frame" x="0.0" y="50" width="335" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3UG-Ta-KAf" id="Ys4-U5-Cj3">
-                                            <rect key="frame" x="0.0" y="0.0" width="310.5" height="90"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="308.5" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BFt-ZO-Bwb">
-                                                    <rect key="frame" x="0.0" y="0.0" width="310.5" height="90"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="308.5" height="90"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Joj-wH-4tX">
                                                             <rect key="frame" x="15" y="30" width="30" height="30"/>
@@ -222,13 +222,13 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5i0-mU-43w">
-                                                            <rect key="frame" x="65" y="10" width="243.5" height="70"/>
+                                                            <rect key="frame" x="65" y="10" width="241.5" height="70"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <switch hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IMN-tc-qxs">
-                                                            <rect key="frame" x="241.5" y="29.5" width="51" height="31"/>
+                                                            <rect key="frame" x="239.5" y="29.5" width="51" height="31"/>
                                                             <connections>
                                                                 <action selector="modeSwitchAction:" destination="3UG-Ta-KAf" eventType="valueChanged" id="S2R-5N-ffD"/>
                                                             </connections>
@@ -376,7 +376,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tblCellAlarms" rowHeight="75" id="C0L-wd-TvH" customClass="tblCellAlarms" customModule="CRUMPET" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="375" height="75"/>
+                                        <rect key="frame" x="0.0" y="50" width="375" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="C0L-wd-TvH" id="435-G5-gqb">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
@@ -1152,7 +1152,7 @@
                                 <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TblCellSideMenu" rowHeight="90" id="hfv-0s-P2M" customClass="TblCellSideMenu" customModule="CRUMPET" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="375" height="90"/>
+                                        <rect key="frame" x="0.0" y="50" width="375" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hfv-0s-P2M" id="BA8-KI-jLa">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
@@ -1316,7 +1316,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TblCellCasualModeSetting" rowHeight="75" id="xTI-F3-0CM" customClass="TblCellCasualModeSetting" customModule="CRUMPET" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="375" height="75"/>
+                                        <rect key="frame" x="0.0" y="50" width="375" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xTI-F3-0CM" id="DpF-8m-yDM">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
@@ -2324,7 +2324,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TblCellMoveLists" rowHeight="75" id="xO3-iQ-Csr" customClass="TblCellMoveLists" customModule="CRUMPET" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="375" height="75"/>
+                                        <rect key="frame" x="0.0" y="50" width="375" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xO3-iQ-Csr" id="xXd-BE-cqR">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
@@ -2675,7 +2675,7 @@
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TblCellUpdateAlarm" rowHeight="75" id="k7l-uM-lLC" customClass="TblCellUpdateAlarm" customModule="CRUMPET" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="375" height="75"/>
+                                        <rect key="frame" x="0.0" y="50" width="375" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="k7l-uM-lLC" id="aOf-Eg-lpR">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
@@ -2964,7 +2964,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TblCellMoveListUpdate" rowHeight="75" id="P40-5m-UPO" customClass="TblCellMoveListUpdate" customModule="CRUMPET" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="375" height="75"/>
+                                        <rect key="frame" x="0.0" y="50" width="375" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="P40-5m-UPO" id="87M-c2-gC4">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
@@ -4013,7 +4013,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TblVw_DeviceList_Cell" rowHeight="61" id="oQT-WS-RXE" customClass="TblVw_DeviceList_Cell" customModule="CRUMPET" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="375" height="61"/>
+                                        <rect key="frame" x="0.0" y="50" width="375" height="61"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oQT-WS-RXE" id="GRz-pR-TGR">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="61"/>
@@ -4400,7 +4400,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TblVw_TailMovesListCalmAndRelaxedCell" rowHeight="110" id="bjq-5B-Gv3" customClass="TblVw_TailMovesListCalmAndRelaxedCell" customModule="CRUMPET" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="44.5" width="375" height="110"/>
+                                                <rect key="frame" x="0.0" y="50" width="375" height="110"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bjq-5B-Gv3" id="HsR-zn-5Ck">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
@@ -4504,7 +4504,7 @@
                                                 </connections>
                                             </tableViewCell>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TblVw_FastAndExited_Cell" rowHeight="164" id="JJW-rk-34F" customClass="TblVw_FastAndExited_Cell" customModule="CRUMPET" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="154.5" width="375" height="164"/>
+                                                <rect key="frame" x="0.0" y="160" width="375" height="164"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JJW-rk-34F" id="Emf-8w-6zB">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="164"/>
@@ -4627,7 +4627,7 @@
                                                 </connections>
                                             </tableViewCell>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TblVw_FrustretedAndTense_Cell" rowHeight="164" id="u4m-ML-ahQ" customClass="TblVw_FrustretedAndTense_Cell" customModule="CRUMPET" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="318.5" width="375" height="164"/>
+                                                <rect key="frame" x="0.0" y="324" width="375" height="164"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="u4m-ML-ahQ" id="Kg1-J5-v3G">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="164"/>
@@ -5358,7 +5358,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TblVw_ConnectedDeviceLIst_Cell" id="JlQ-wr-cRX" customClass="TblVw_ConnectedDeviceLIst_Cell" customModule="CRUMPET" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="44.5" width="335" height="44"/>
+                                                <rect key="frame" x="0.0" y="50" width="335" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JlQ-wr-cRX" id="B6E-MI-rD9">
                                                     <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
@@ -5391,7 +5391,7 @@
                                                 </connections>
                                             </tableViewCell>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TblVw_ConnectedDeviceSections_Cell" id="85m-SW-rtT" customClass="TblVw_ConnectedDeviceSections_Cell" customModule="CRUMPET" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="88.5" width="335" height="44"/>
+                                                <rect key="frame" x="0.0" y="94" width="335" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="85m-SW-rtT" id="H9z-v5-9y3">
                                                     <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
@@ -5748,7 +5748,7 @@
         <image name="menu-2" width="26" height="26"/>
         <image name="menu-3" width="15" height="15"/>
         <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

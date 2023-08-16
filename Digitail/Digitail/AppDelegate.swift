@@ -54,6 +54,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+    var casualONFlutter = false {
+        didSet {
+            if !casualONFlutter {
+                casualWalkModeTimer?.invalidate()
+                casualWalkModeTimer = nil
+                duration = 0
+            } else {
+                // start timer
+                casualWalkModeTimer?.invalidate()
+                casualWalkModeTimer = nil
+                duration = 0
+                
+                casualWalkModeTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerCallback(_:)), userInfo: nil, repeats: true)
+            }
+        }
+    }
+    
     var casualONEarGear = false {
         didSet {
             if !casualONEarGear {
@@ -151,7 +169,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if duration > 3600 {
             // stop casual or walkmode
-            if self.casualONDigitail || self.casualONEarGear {
+            if self.casualONDigitail || self.casualONEarGear || self.casualONFlutter {
                 for connectedDevice in AppDelegate_.tempEargearDeviceActor {
                     let deviceActor = connectedDevice
                     if ((deviceActor.isDeviceIsReady) && (deviceActor.isConnected())) {
@@ -163,8 +181,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 self.casualONDigitail = false
                 self.casualONEarGear = false
+                self.casualONFlutter = false
                 
                 for connectedDevices in AppDelegate_.tempDigitailDeviceActor {
+                    let deviceActor = connectedDevices
+                    
+                    if ((deviceActor.isDeviceIsReady) && (deviceActor.isConnected())) {
+                        let tailMoveString = kAutoModeStopAutoCommand
+                        let data = Data(tailMoveString.utf8)
+                        deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
+                    }
+                }
+                
+                for connectedDevices in AppDelegate_.tempFlutterDeviceActor {
                     let deviceActor = connectedDevices
                     
                     if ((deviceActor.isDeviceIsReady) && (deviceActor.isConnected())) {
@@ -256,7 +285,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 deviceActor = BLEActor(deviceState: [:], servicesMeta: DictFromFile(kServiceMetaEarGear), operationsMeta: DictFromFile(kCommandMetaEarGear))
                 deviceActor.bleDeviceType = type
             } else if type == .flutter {
-                deviceActor = BLEActor(deviceState: [:], servicesMeta: DictFromFile(kServiceMetaEarGear), operationsMeta: DictFromFile(kCommandMetaEarGear))
+                deviceActor = BLEActor(deviceState: [:], servicesMeta: DictFromFile(kServiceMetaFlutter), operationsMeta: DictFromFile(kCommandMetaEarGear))
                 deviceActor.bleDeviceType = type
             }
             

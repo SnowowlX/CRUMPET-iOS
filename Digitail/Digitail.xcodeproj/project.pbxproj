@@ -68,6 +68,7 @@
 		A0E5CDAE237179F200EA438C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E5CDAD237179F200EA438C /* Utilities.swift */; };
 		A0EE9CA322D741DD00E61AD8 /* splash.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A0EE9CA222D741DD00E61AD8 /* splash.mp4 */; };
 		A72158AA02D9A0DF9BB8121A /* Pods_DigitailUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9006D66028A4D93DEAA226A3 /* Pods_DigitailUITests.framework */; };
+		E3C2D9352A8CCDAE003E72C0 /* serviceMetaFlutter.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3C2D9342A8CCDAE003E72C0 /* serviceMetaFlutter.plist */; };
 		FF010CA525F62C390039A800 /* TblVw_ConnectedDeviceLIst_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF010CA425F62C390039A800 /* TblVw_ConnectedDeviceLIst_Cell.swift */; };
 		FF51055225C2DA8200D0D923 /* TailMovesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF51055125C2DA8200D0D923 /* TailMovesListVC.swift */; };
 		FF51055825C2DEFE00D0D923 /* TblVw_TailMovesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF51055725C2DEFE00D0D923 /* TblVw_TailMovesListCell.swift */; };
@@ -175,6 +176,7 @@
 		A0E5CDAD237179F200EA438C /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		A0EE9CA222D741DD00E61AD8 /* splash.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = splash.mp4; sourceTree = "<group>"; };
 		B4E1F9189C564EB8B1157BBF /* Pods-Digitail.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Digitail.release.xcconfig"; path = "Target Support Files/Pods-Digitail/Pods-Digitail.release.xcconfig"; sourceTree = "<group>"; };
+		E3C2D9342A8CCDAE003E72C0 /* serviceMetaFlutter.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = serviceMetaFlutter.plist; sourceTree = "<group>"; };
 		F0BBF363A91A957FA5637341 /* Pods-DigitailUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DigitailUITests.release.xcconfig"; path = "Target Support Files/Pods-DigitailUITests/Pods-DigitailUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F6FF560054B4387964FC009C /* Pods-CRUMPET.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CRUMPET.release.xcconfig"; path = "Target Support Files/Pods-CRUMPET/Pods-CRUMPET.release.xcconfig"; sourceTree = "<group>"; };
 		FD318E3C26EA1F1FC2D755AA /* Pods-DigitailTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DigitailTests.debug.xcconfig"; path = "Target Support Files/Pods-DigitailTests/Pods-DigitailTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -572,6 +574,7 @@
 				9B3AAA652473D8AF003FA5D6 /* commandMetaEarGear.plist */,
 				9BA4621426CF7E2200ACF648 /* serviceMetaMitail.plist */,
 				9B3AAA642473D8AF003FA5D6 /* serviceMetaEarGear.plist */,
+				E3C2D9342A8CCDAE003E72C0 /* serviceMetaFlutter.plist */,
 			);
 			path = BLE;
 			sourceTree = "<group>";
@@ -768,6 +771,7 @@
 				9B24AFEE2817F9E2004CFB7B /* InfoPlist.strings in Resources */,
 				A0C629FB22AE67380036A20C /* commandMeta.plist in Resources */,
 				A09DBEF422C23DCA003C605A /* CellView.xib in Resources */,
+				E3C2D9352A8CCDAE003E72C0 /* serviceMetaFlutter.plist in Resources */,
 				A0EE9CA322D741DD00E61AD8 /* splash.mp4 in Resources */,
 				A0C629FE22AE67380036A20C /* serviceMeta.plist in Resources */,
 				9B3AAA662473D8B0003FA5D6 /* serviceMetaEarGear.plist in Resources */,
@@ -1140,7 +1144,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = SKRSQZ43AV;
+				DEVELOPMENT_TEAM = F8FHGZZHCU;
 				INFOPLIST_FILE = Digitail/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1166,7 +1170,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = SKRSQZ43AV;
+				DEVELOPMENT_TEAM = F8FHGZZHCU;
 				INFOPLIST_FILE = Digitail/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
