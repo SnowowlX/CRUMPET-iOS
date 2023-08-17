@@ -83,7 +83,7 @@ class DeviceListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         
         if indexPath.section == 0 {
             let objPeripharal:CBPeripheral = AppDelegate_.tempDigitailPeripheral[indexPath.row].peripheral
-            deviceListCell.lblDeviceUuid.text = AppDelegate_.tempDigitailPeripheral[indexPath.row].peripheral.identifier.uuidString
+//            deviceListCell.lblDeviceUuid.text = AppDelegate_.tempDigitailPeripheral[indexPath.row].peripheral.identifier.uuidString
             deviceListCell.lblDeviceName.text = AppDelegate_.tempDigitailPeripheral[indexPath.row].deviceName
 
             if objPeripharal.state == .connected {
@@ -95,7 +95,7 @@ class DeviceListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         } else if indexPath.section == 1 {
             let objPeripharal:CBPeripheral = AppDelegate_.tempeargearPeripheral[indexPath.row].peripheral
 
-            deviceListCell.lblDeviceUuid.text = AppDelegate_.tempeargearPeripheral[indexPath.row].peripheral.identifier.uuidString
+//            deviceListCell.lblDeviceUuid.text = AppDelegate_.tempeargearPeripheral[indexPath.row].peripheral.identifier.uuidString
             deviceListCell.lblDeviceName.text = AppDelegate_.tempeargearPeripheral[indexPath.row].deviceName
 
             if objPeripharal.state == .connected {
@@ -106,7 +106,7 @@ class DeviceListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         }  else {
             let objPeripharal:CBPeripheral = AppDelegate_.tempFlutterPeripheral[indexPath.row].peripheral
 
-            deviceListCell.lblDeviceUuid.text = AppDelegate_.tempFlutterPeripheral[indexPath.row].peripheral.identifier.uuidString
+//            deviceListCell.lblDeviceUuid.text = AppDelegate_.tempFlutterPeripheral[indexPath.row].peripheral.identifier.uuidString
             deviceListCell.lblDeviceName.text = AppDelegate_.tempFlutterPeripheral[indexPath.row].deviceName
 
             if objPeripharal.state == .connected {
@@ -142,6 +142,14 @@ class DeviceListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             }
             
             connectAllButton.setTitle("Disconnect All", for: .normal)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: { [weak self] in
+                guard let weakSelf = self else { return }
+                weakSelf.dismiss(animated: true) {
+                    
+                }
+            })
+            
         } else {
             for digital in AppDelegate_.tempDigitailPeripheral {
                 if digital.peripheral.state == .connected {

@@ -402,15 +402,15 @@ class BLEActor: NSObject {
         if (peripheral.name != nil) {
             
             if peripheral.name!.lowercased().contains("mitail") {
-                state[Constants.kDeviceName] = "MITAIL"
+                state[Constants.kDeviceName] = "MiTail"
             } else if peripheral.name!.contains("(!)Tail1") {
                 state[Constants.kDeviceName] = "DIGITAIL"
             } else if peripheral.name!.lowercased().contains("eg2") {
-                state[Constants.kDeviceName] = "EarGear v2"
+                state[Constants.kDeviceName] = "EarGear"
             } else if peripheral.name!.lowercased().contains("eargear") {
                 state[Constants.kDeviceName] = "EARGEAR"
             } else if peripheral.name!.lowercased().contains("flutter") {
-                state[Constants.kDeviceName] = "FLUTTER"
+                state[Constants.kDeviceName] = "FlutterWings"
             }
         }
         if peripheral.state == .connected {

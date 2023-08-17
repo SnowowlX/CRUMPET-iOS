@@ -10,7 +10,7 @@ import UIKit
 
 class TblVw_DeviceList_Cell: UITableViewCell {
 
-    @IBOutlet weak var lblDeviceUuid: UILabel!
+//    @IBOutlet weak var lblDeviceUuid: UILabel!
     @IBOutlet weak var btnConnect: UIButton!
     @IBOutlet weak var lblDeviceName: UILabel!
    

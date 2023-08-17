@@ -43,6 +43,7 @@ let kTitleConnect = NSLocalizedString("kTitleConnect", comment: "")
 let kMsgConnect = NSLocalizedString("kMsgConnect", comment: "")
 let kShutDownCommand = NSLocalizedString("kShutDownCommand", comment: "")
 let kMoves = NSLocalizedString("kMoves", comment: "")
+let kMovesFlutter = NSLocalizedString("kMovesFlutter", comment: "")
 let kGlowTips = NSLocalizedString("kGlowTipsTitle", comment: "")
 let kCasualMode = NSLocalizedString("kCasualMode", comment: "")
 let kWalkModeTitle = NSLocalizedString("kWalkMode", comment: "")
@@ -94,15 +95,22 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
     var statusOfLocation = 0
     var glowTipRemoved = false
     
-    var arrDigitailList = [kMoves,kGlowTips,kCasualMode,kWalkModeTitle]
-    var arrFlutterList = [kMoves,kCasualMode,kWalkModeTitle]
-    var arrEarGearList = [kEarGearPoses,kListenMode,kCasualMode, kWalkModeTitle]
-    var arrEarGear2List = [kEarGearPoses,kListenMode,kTiltMode,kCasualMode, kWalkModeTitle]
-    var arrBothList = [kMoves,kGlowTipsTitle,kEarGearPoses,kListenMode,kCasualMode, kWalkModeTitle]
-    var arrAllList = [kMoves,kGlowTipsTitle,kEarGearPoses,kListenMode,kTiltMode,kCasualMode, kWalkModeTitle]
+    var generalMenuList = [kCasualMode, kWalkModeTitle]
+    
+    var mitailMenuList = [kMoves, kGlowTips]
+    var earGearMenuList = [kEarGearPoses, kListenMode]
+    var earGear2MenuList = [kEarGearPoses, kListenMode, kTiltMode]
+    var flutterMenuList = [kMovesFlutter]
+    
+//    var arrDigitailList = [kMoves,kGlowTips,kCasualMode,kWalkModeTitle]
+//    var arrFlutterList = [kMoves,kCasualMode,kWalkModeTitle]
+//    var arrEarGearList = [kEarGearPoses,kListenMode,kCasualMode, kWalkModeTitle]
+//    var arrEarGear2List = [kEarGearPoses,kListenMode,kTiltMode,kCasualMode, kWalkModeTitle]
+//    var arrBothList = [kMoves,kGlowTipsTitle,kEarGearPoses,kListenMode,kCasualMode, kWalkModeTitle]
+//    var arrAllList = [kMoves,kGlowTipsTitle,kEarGearPoses,kListenMode,kTiltMode,kCasualMode, kWalkModeTitle]
     
     var arrMenuList = [String]()
-    var arrMenuImages = [kMoves:"TailMoves",kGlowTipsTitle:"GlowTips",kCasualMode:"Casulal ModeSetting","Casual Mode Settings":"Settings",kWalkModeTitle:"movelist",kEarGearPoses:"TailMoves",kListenMode:"filter",kTiltMode:"filter"]
+    var arrMenuImages = [kMoves:"TailMoves",kGlowTipsTitle:"GlowTips",kCasualMode:"Casulal ModeSetting","Casual Mode Settings":"Settings",kWalkModeTitle:"movelist",kEarGearPoses:"TailMoves",kListenMode:"filter",kTiltMode:"filter", kMovesFlutter: "TailMoves"]
     
     //MARK: - View Life Cycle -
     override func viewWillDisappear(_ animated: Bool) {
@@ -154,10 +162,27 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
             self.jtSpinner.endRefreshing()
             self.btnLookForTails.isHidden = false
-           if AppDelegate_.tempDigitailPeripheral.count > 1 ||  AppDelegate_.tempeargearPeripheral.count > 1 ||  AppDelegate_.tempFlutterPeripheral.count > 1 || (AppDelegate_.tempDigitailPeripheral.count == 1 && AppDelegate_.tempeargearPeripheral.count == 1 && AppDelegate_.tempFlutterPeripheral.count == 1) {
+            
+            var isDigitailAvailable = false
+            var isEarGearAvailable = false
+            var isFlutterAvailable = false
+            
+            if AppDelegate_.tempDigitailPeripheral.count > 0 {
+                isDigitailAvailable = true
+            }
+            
+            if AppDelegate_.tempeargearPeripheral.count > 0 {
+                isEarGearAvailable = true
+            }
+            
+            if AppDelegate_.tempFlutterPeripheral.count > 0 {
+                isFlutterAvailable = true
+            }
+            
+            if (isDigitailAvailable && isEarGearAvailable && isFlutterAvailable) || (isDigitailAvailable && isEarGearAvailable) || (isEarGearAvailable && isFlutterAvailable) || (isDigitailAvailable && isFlutterAvailable) {
                 self.lblGearFoundMessage.text = NSLocalizedString("kFoundGear", comment: "")
-               self.btnLookForTails.setTitle( NSLocalizedString("kShowGear", comment: ""), for: .normal)
-            } else if AppDelegate_.tempDigitailPeripheral.count == 1 || AppDelegate_.tempeargearPeripheral.count == 1 || AppDelegate_.tempFlutterPeripheral.count == 1{
+                self.btnLookForTails.setTitle( NSLocalizedString("kShowGear", comment: ""), for: .normal)
+            }  else if AppDelegate_.tempDigitailPeripheral.count == 1 || AppDelegate_.tempeargearPeripheral.count == 1 || AppDelegate_.tempFlutterPeripheral.count == 1 {
                 self.lblGearFoundMessage.text =  NSLocalizedString("kGearFoundMessage", comment: "")
                 self.btnLookForTails.setTitle(NSLocalizedString("kConnecttoGear", comment: ""), for: .normal)
             } else {
@@ -165,6 +190,18 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                 self.lblGearFoundMessage.text =  NSLocalizedString("kUnableToFindGear", comment: "")
                 self.btnLookForTails.setTitle( NSLocalizedString("kLookforGear", comment: ""), for: .normal)
             }
+            
+//           if AppDelegate_.tempDigitailPeripheral.count > 1 ||  AppDelegate_.tempeargearPeripheral.count > 1 ||  AppDelegate_.tempFlutterPeripheral.count > 1 || (AppDelegate_.tempDigitailPeripheral.count == 1 && AppDelegate_.tempeargearPeripheral.count == 1 && AppDelegate_.tempFlutterPeripheral.count == 1) {
+//                self.lblGearFoundMessage.text = NSLocalizedString("kFoundGear", comment: "")
+//               self.btnLookForTails.setTitle( NSLocalizedString("kShowGear", comment: ""), for: .normal)
+//            } else if AppDelegate_.tempDigitailPeripheral.count == 1 || AppDelegate_.tempeargearPeripheral.count == 1 || AppDelegate_.tempFlutterPeripheral.count == 1{
+//                self.lblGearFoundMessage.text =  NSLocalizedString("kGearFoundMessage", comment: "")
+//                self.btnLookForTails.setTitle(NSLocalizedString("kConnecttoGear", comment: ""), for: .normal)
+//            } else {
+//                self.lblSearchingForGear.text = NSLocalizedString("kNoGearFound", comment: "")
+//                self.lblGearFoundMessage.text =  NSLocalizedString("kUnableToFindGear", comment: "")
+//                self.btnLookForTails.setTitle( NSLocalizedString("kLookforGear", comment: ""), for: .normal)
+//            }
         }
     }
     
@@ -367,19 +404,39 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
             self.vw_ConnectDevice.isHidden = false
             self.tblVwActions.isHidden = true
         }
-        if isDIGITAiLConnected() && isEARGEARConnected() && isEARGEAR2Connected() && isFlutterConnected() {
-            self.arrMenuList = self.arrAllList
-        } else if isDIGITAiLConnected() && isEARGEARConnected() && !isEARGEAR2Connected() && !isFlutterConnected() {
-            self.arrMenuList = self.arrBothList
-        } else if isDIGITAiLConnected() {
-            self.arrMenuList = self.arrDigitailList
-        } else if isEARGEAR2Connected() {
-            self.arrMenuList = self.arrEarGear2List
-        } else if isEARGEARConnected() {
-            self.arrMenuList = self.arrEarGearList
-        } else if isFlutterConnected() {
-            self.arrMenuList = self.arrFlutterList
+        
+        self.arrMenuList.removeAll()
+        if isDIGITAiLConnected() {
+            self.arrMenuList.append(contentsOf: mitailMenuList)
         }
+        
+        if isEARGEARConnected() {
+            self.arrMenuList.append(contentsOf: earGearMenuList)
+        }
+        
+        if isEARGEAR2Connected() {
+            self.arrMenuList.append(contentsOf: earGear2MenuList)
+        }
+        
+        if isFlutterConnected() {
+            self.arrMenuList.append(contentsOf: flutterMenuList)
+        }
+        
+        self.arrMenuList.append(contentsOf: generalMenuList)
+//
+//        if isDIGITAiLConnected() && isEARGEARConnected() && isEARGEAR2Connected() && isFlutterConnected() {
+//            self.arrMenuList = self.arrAllList
+//        } else if isDIGITAiLConnected() && isEARGEARConnected() && !isEARGEAR2Connected() && !isFlutterConnected() {
+//            self.arrMenuList = self.arrBothList
+//        } else if isDIGITAiLConnected() {
+//            self.arrMenuList = self.arrDigitailList
+//        } else if isEARGEAR2Connected() {
+//            self.arrMenuList = self.arrEarGear2List
+//        } else if isEARGEARConnected() {
+//            self.arrMenuList = self.arrEarGearList
+//        } else if isFlutterConnected() {
+//            self.arrMenuList = self.arrFlutterList
+//        }
         
         if isEARGEARConnected() || isEARGEAR2Connected() {
             var isCFirmware = false
@@ -919,6 +976,16 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
         
     }
     
+    @IBAction func FlutterTailMoves_Clicked(_ sender: UIButton) {
+        let tailMovesVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "TailMovesVC") as? TailMovesVC
+        
+        if self.isDIGITAiLConnected() || self.isFlutterConnected() {
+            self.navigationController?.pushViewController(tailMovesVC!, animated: true)
+        } else {
+            showAlert(title:  NSLocalizedString("kTitleConnect", comment: ""), msg: NSLocalizedString("kMsgConnect", comment: ""))
+        }
+        
+    }
     
     //MARK: - TableView Delegate Methods -
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -983,7 +1050,8 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
              case kWalkModeTitle :
                  actionWalkMode_Clicked(self.btnLookForTails)
                  break
-                 
+             case kMovesFlutter:
+                 FlutterTailMoves_Clicked(self.btnLookForTails)
              default:
                  break
              }

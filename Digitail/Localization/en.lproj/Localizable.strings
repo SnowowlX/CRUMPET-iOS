@@ -214,6 +214,7 @@
 "kTailBattery" = "TAIL BATTERY";
 "kEargearBattery" = "EARGEAR BATTERY";
 "kMoves" = "Moves";
+"kMovesFlutter" = "FlutterWings moves";
 "kMoveListTitle" = "Move List";
 "kListen Mode" = "Listen Mode";
 "kTiltMode" = "Tilt Mode";
@@ -223,7 +224,7 @@
 "kTailMoves" = "TailMoves";
 "kFilter" = "filter";
 "kSearchingForGear" = "Searching...";
-"kFoundGear" = "Found 2 pieces of gear so far. To see them push \"Show available gear..\" below";
+"kFoundGear" = "Found multiple pieces of gear so far. To see them push \"Show available gear..\" below";
 "kShowGear" = "Show available gear";
 "kGearFoundMessage" = "1 piece of gear found. Simply wait or push \"Connect\" below to control it";
 "kConnecttoGear" = "Connect to gear";

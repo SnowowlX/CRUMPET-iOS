@@ -385,7 +385,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if deviceName.contains("(!)Tail1") ||  deviceName.lowercased().contains("mitail") || deviceName.contains("DIGITAIL") {
             var deviceNameToAssign = ""
             if deviceName.lowercased().contains("mitail") {
-                deviceNameToAssign = "MITAIL"
+                deviceNameToAssign = "MiTail"
             } else {
                 deviceNameToAssign = "DIGITAIL"
             }
@@ -406,7 +406,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else if deviceName.lowercased().contains("eargear") ||  deviceName.lowercased().contains("eg2") {
             var deviceNameToAssign = ""
             if deviceName.lowercased().contains("eg2") || deviceName.lowercased().contains("eargear v2"){
-                deviceNameToAssign = "EarGear v2"
+                deviceNameToAssign = "EarGear"
             } else if deviceName.lowercased().contains("eargear") {
                 deviceNameToAssign = "EARGEAR"
             }
@@ -426,7 +426,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             
         } else if deviceName.lowercased().contains("flutter") {
-            var deviceNameToAssign = "FLUTTER"
+            var deviceNameToAssign = "FlutterWings"
             
             let device = DeviceModel.init(deviceNameToAssign, peripheral, RSSI)
             AppDelegate_.flutterPeripheral = device
