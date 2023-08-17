@@ -254,7 +254,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 for peripharals in self.tempeargearPeripheral {
                     if peripheral.identifier.uuidString == peripharals.peripheral.identifier.uuidString {
                         deviceName = peripharals.deviceName
-                        if deviceName.lowercased().contains("eargear v2") {
+                        if deviceName.lowercased().contains("eargear v2") || deviceName.lowercased().contains("eargear") {
                             type = .eg2
                         }
                     }

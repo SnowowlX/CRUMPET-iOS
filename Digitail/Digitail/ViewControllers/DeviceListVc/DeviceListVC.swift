@@ -143,7 +143,7 @@ class DeviceListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             
             connectAllButton.setTitle("Disconnect All", for: .normal)
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: { [weak self] in
                 guard let weakSelf = self else { return }
                 weakSelf.dismiss(animated: true) {
                     

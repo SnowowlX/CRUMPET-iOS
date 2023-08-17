@@ -410,9 +410,9 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
             self.arrMenuList.append(contentsOf: mitailMenuList)
         }
         
-        if isEARGEARConnected() {
-            self.arrMenuList.append(contentsOf: earGearMenuList)
-        }
+//        if isEARGEARConnected() {
+//            self.arrMenuList.append(contentsOf: earGearMenuList)
+//        }
         
         if isEARGEAR2Connected() {
             self.arrMenuList.append(contentsOf: earGear2MenuList)
@@ -459,6 +459,17 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
         }
         self.tblVwActions.reloadData()
         setUpConnectedDevicesList()
+        
+        
+    }
+    
+    func startAutoScroll() {
+        let numberOfSections = tblVwConnectedDeviceList.numberOfSections
+        let numberOfRows = tblVwConnectedDeviceList.numberOfRows(inSection: numberOfSections - 1)
+
+        let indexPath = NSIndexPath(row: numberOfRows, section: numberOfSections)
+        self.tblVwConnectedDeviceList.scrollToRow(at: indexPath as IndexPath,
+                                          at: UITableView.ScrollPosition.middle, animated: true)
     }
     
     func isDIGITAiLConnected() -> Bool {
@@ -1187,7 +1198,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                    }
                }
                return cell
-            } else if indexPath.row == 1 {
+            } else if indexPath.section == 1 {
                //EARGEAR DEVICE LISTS AND BATTERY STATUS --
                let cell = tableView.dequeueReusableCell(withIdentifier: "TblVw_ConnectedDeviceLIst_Cell") as! TblVw_ConnectedDeviceLIst_Cell
                if AppDelegate_.tempEargearDeviceActor[indexPath.row].peripheralActor == nil {
