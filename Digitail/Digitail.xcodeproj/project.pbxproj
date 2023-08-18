@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4910C51EBDB596C712F7080E /* Pods_CRUMPET.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 169748CE981B2F664271FCC9 /* Pods_CRUMPET.framework */; };
+		4DC078252A8F475800F22D28 /* ContentSized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC078242A8F475800F22D28 /* ContentSized.swift */; };
 		848C77A424FE43740056C576 /* WebKitViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848C77A324FE43740056C576 /* WebKitViewVC.swift */; };
 		84C5E46B24767D2F004B8BE0 /* DeveloperVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C5E46A24767D2F004B8BE0 /* DeveloperVC.swift */; };
 		92E54A5F7F92158F3837CE2A /* Pods_DigitailTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40C8F173029F8985510A6819 /* Pods_DigitailTests.framework */; };
@@ -102,6 +103,7 @@
 		30F8C7A47360241042CE73E2 /* Pods-DigitailUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DigitailUITests.debug.xcconfig"; path = "Target Support Files/Pods-DigitailUITests/Pods-DigitailUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		40C8F173029F8985510A6819 /* Pods_DigitailTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DigitailTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AD82D4A462FC5B93DC20E14 /* Pods-CRUMPET.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CRUMPET.debug.xcconfig"; path = "Target Support Files/Pods-CRUMPET/Pods-CRUMPET.debug.xcconfig"; sourceTree = "<group>"; };
+		4DC078242A8F475800F22D28 /* ContentSized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSized.swift; sourceTree = "<group>"; };
 		574B6B17F0D1ABB77B66EF19 /* Pods-DigitailTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DigitailTests.release.xcconfig"; path = "Target Support Files/Pods-DigitailTests/Pods-DigitailTests.release.xcconfig"; sourceTree = "<group>"; };
 		848C77A324FE43740056C576 /* WebKitViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebKitViewVC.swift; sourceTree = "<group>"; };
 		84C5E46A24767D2F004B8BE0 /* DeveloperVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperVC.swift; sourceTree = "<group>"; };
@@ -517,6 +519,7 @@
 			isa = PBXGroup;
 			children = (
 				9BA91C6A23584DFC0088A67E /* UIViewExtension.swift */,
+				4DC078242A8F475800F22D28 /* ContentSized.swift */,
 				A0EE9CA222D741DD00E61AD8 /* splash.mp4 */,
 				A09DBEE822C23DC9003C605A /* JTAppleCalender */,
 				A0C629EE22AE67380036A20C /* BLE */,
@@ -919,6 +922,7 @@
 				FF606F0525F2424700D36BF9 /* DeviceListVC.swift in Sources */,
 				A09375A522CCCF8500C278DE /* TblCellMoveLists.swift in Sources */,
 				A079559B22B0C78500E3F022 /* tblCellTailMoves.swift in Sources */,
+				4DC078252A8F475800F22D28 /* ContentSized.swift in Sources */,
 				A0CF356B22E81BA400FE9F6C /* AboutVC.swift in Sources */,
 				A09DBEF122C23DCA003C605A /* CalendarPopUp.swift in Sources */,
 				A095848122D344BB0091B36D /* UpDateAlarmVC.swift in Sources */,

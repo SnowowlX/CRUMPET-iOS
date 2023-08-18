@@ -105,7 +105,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VuS-cr-ZXP">
                                 <rect key="frame" x="20" y="13" width="335" height="110"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pxP-Va-viD">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="335" placeholderIntrinsicHeight="110" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pxP-Va-viD" customClass="ContentSizedTableView" customModule="CRUMPET" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="110"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
@@ -128,10 +128,9 @@
                                                                 <constraint firstAttribute="width" constant="67" id="Mal-mo-atM"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="3QB-TO-IFW">
-                                                            <rect key="frame" x="286" y="11.5" width="41.5" height="20"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="3QB-TO-IFW">
+                                                            <rect key="frame" x="286" y="2" width="41.5" height="40"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="20" id="HVR-2w-ytH"/>
                                                                 <constraint firstAttribute="width" constant="41.5" id="c9K-M7-rcv"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
@@ -140,14 +139,14 @@
                                                         </label>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="bottom" secondItem="3QB-TO-IFW" secondAttribute="bottom" constant="12.5" id="1qo-GW-2gR"/>
                                                         <constraint firstItem="3QB-TO-IFW" firstAttribute="leading" secondItem="Xsw-NU-gVA" secondAttribute="trailing" constant="11" id="34y-it-ddI"/>
                                                         <constraint firstItem="OPz-d1-HVr" firstAttribute="centerY" secondItem="l2f-bk-Lh4" secondAttribute="centerY" id="5aF-Oj-X2C"/>
-                                                        <constraint firstItem="3QB-TO-IFW" firstAttribute="top" secondItem="l2f-bk-Lh4" secondAttribute="top" constant="11.5" id="6dG-ub-4ih"/>
+                                                        <constraint firstItem="3QB-TO-IFW" firstAttribute="top" secondItem="Xsw-NU-gVA" secondAttribute="top" id="8iB-R6-V9p"/>
                                                         <constraint firstAttribute="trailing" secondItem="Xsw-NU-gVA" secondAttribute="trailing" constant="60" id="9sb-oU-V4g"/>
                                                         <constraint firstItem="Xsw-NU-gVA" firstAttribute="centerY" secondItem="l2f-bk-Lh4" secondAttribute="centerY" id="Edh-tG-1G7"/>
                                                         <constraint firstAttribute="trailing" secondItem="3QB-TO-IFW" secondAttribute="trailing" constant="7.5" id="fpf-UG-GRe"/>
                                                         <constraint firstItem="OPz-d1-HVr" firstAttribute="leading" secondItem="l2f-bk-Lh4" secondAttribute="leading" constant="10" id="s44-Y7-uLM"/>
+                                                        <constraint firstItem="3QB-TO-IFW" firstAttribute="bottom" secondItem="Xsw-NU-gVA" secondAttribute="bottom" id="sYT-TQ-LUZ"/>
                                                         <constraint firstItem="Xsw-NU-gVA" firstAttribute="leading" secondItem="OPz-d1-HVr" secondAttribute="trailing" constant="8" id="tVr-Kd-xdh"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
@@ -155,30 +154,6 @@
                                                     <outlet property="iv_BatteryStatus" destination="Xsw-NU-gVA" id="g5f-HB-A0x"/>
                                                     <outlet property="lblDeviceName" destination="OPz-d1-HVr" id="DeV-8k-TXY"/>
                                                     <outlet property="lblPercentage" destination="3QB-TO-IFW" id="V3c-ZR-wsi"/>
-                                                </connections>
-                                            </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TblVw_ConnectedDeviceSections_Cell" id="6ZQ-4u-4ry" customClass="TblVw_ConnectedDeviceSections_Cell" customModule="CRUMPET" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="94" width="335" height="44"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6ZQ-4u-4ry" id="x8A-Ar-ohv">
-                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eg6-qK-5JT">
-                                                            <rect key="frame" x="10" y="13.5" width="317" height="17"/>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="eg6-qK-5JT" firstAttribute="leading" secondItem="x8A-Ar-ohv" secondAttribute="leading" constant="10" id="XrA-2J-50c"/>
-                                                        <constraint firstAttribute="trailing" secondItem="eg6-qK-5JT" secondAttribute="trailing" constant="8" id="Xy5-ng-lse"/>
-                                                        <constraint firstItem="eg6-qK-5JT" firstAttribute="centerY" secondItem="x8A-Ar-ohv" secondAttribute="centerY" id="jJB-V3-qiE"/>
-                                                    </constraints>
-                                                </tableViewCellContentView>
-                                                <connections>
-                                                    <outlet property="lblSectionTitle" destination="eg6-qK-5JT" id="2M0-h7-Cqf"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -192,7 +167,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="110" id="7EE-sv-2wJ"/>
                                     <constraint firstAttribute="trailing" secondItem="pxP-Va-viD" secondAttribute="trailing" id="O7n-tQ-NyR"/>
-                                    <constraint firstAttribute="bottom" secondItem="pxP-Va-viD" secondAttribute="bottom" id="TqE-by-mUA"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="pxP-Va-viD" secondAttribute="bottom" id="TqE-by-mUA"/>
                                     <constraint firstItem="pxP-Va-viD" firstAttribute="top" secondItem="VuS-cr-ZXP" secondAttribute="top" id="cHI-P9-CsV"/>
                                     <constraint firstItem="pxP-Va-viD" firstAttribute="leading" secondItem="VuS-cr-ZXP" secondAttribute="leading" id="doZ-b0-FMU"/>
                                 </constraints>
@@ -5722,6 +5697,11 @@
             <point key="canvasLocation" x="3049" y="894"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="mUB-6l-EaV">
+            <size key="intrinsicContentSize" width="-1" height="65"/>
+        </designable>
+    </designables>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
         <image name="1.4" width="25.5" height="25"/>

@@ -74,7 +74,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
     @IBOutlet weak var vw_ConnectedDevices: UIView!
     @IBOutlet weak var vw_ConnectDevice: UIView!
     @IBOutlet weak var LayConsts_VwConnectedDeviceTop: NSLayoutConstraint!
-    @IBOutlet weak var tblVwConnectedDeviceList: UITableView!
+    @IBOutlet weak var tblVwConnectedDeviceList: ContentSizedTableView!
     @IBOutlet weak var tblVwActions: UITableView!
     @IBOutlet weak var tblVw_Devicelist: UITableView!
     
@@ -561,21 +561,36 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
         
         if AppDelegate_.tempDigitailDeviceActor.count > 0 {
             LayConsts_VwConnectedDeviceHeight.constant = 50
-            LayConsts_VwConnectedDeviceTop.constant = 13
+//            LayConsts_VwConnectedDeviceTop.constant = 13
         }
         if AppDelegate_.tempEargearDeviceActor.count > 0 {
             LayConsts_VwConnectedDeviceHeight.constant = 50
-            LayConsts_VwConnectedDeviceTop.constant = 13
+//            LayConsts_VwConnectedDeviceTop.constant = 13
         }
         if AppDelegate_.tempFlutterDeviceActor.count > 0 {
             LayConsts_VwConnectedDeviceHeight.constant = 50
-            LayConsts_VwConnectedDeviceTop.constant = 13
+//            LayConsts_VwConnectedDeviceTop.constant = 13
         }
         if AppDelegate_.tempDigitailDeviceActor.count > 0 && AppDelegate_.tempEargearDeviceActor.count > 0 && AppDelegate_.tempFlutterDeviceActor.count > 0 {
-            LayConsts_VwConnectedDeviceTop.constant = 13
-            LayConsts_VwConnectedDeviceHeight.constant = 50
+//            LayConsts_VwConnectedDeviceTop.constant = 13
+            LayConsts_VwConnectedDeviceHeight.constant = 150
+        } else {
+            
+            if AppDelegate_.tempDigitailDeviceActor.count > 0 && AppDelegate_.tempEargearDeviceActor.count > 0 {
+                //            LayConsts_VwConnectedDeviceTop.constant = 13
+                LayConsts_VwConnectedDeviceHeight.constant = 100
+            }
+            
+            if AppDelegate_.tempDigitailDeviceActor.count > 0 && AppDelegate_.tempFlutterDeviceActor.count > 0 {
+                //            LayConsts_VwConnectedDeviceTop.constant = 13
+                LayConsts_VwConnectedDeviceHeight.constant = 100
+            }
+            
+            if AppDelegate_.tempEargearDeviceActor.count > 0 && AppDelegate_.tempFlutterDeviceActor.count > 0 {
+                //            LayConsts_VwConnectedDeviceTop.constant = 13
+                LayConsts_VwConnectedDeviceHeight.constant = 100
+            }
         }
-        
         tblVwConnectedDeviceList.reloadData()
         checkConnectionStatusOfDevices()
     }
@@ -1027,7 +1042,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
         if tableView == tblVwActions {
             return 60
         }
-        return 50
+        return 30
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
