@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4910C51EBDB596C712F7080E /* Pods_CRUMPET.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 169748CE981B2F664271FCC9 /* Pods_CRUMPET.framework */; };
 		4DC078252A8F475800F22D28 /* ContentSized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC078242A8F475800F22D28 /* ContentSized.swift */; };
+		4DC2F4412A96648A00C9C303 /* FlutterTailMovesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC2F43E2A96648A00C9C303 /* FlutterTailMovesVC.swift */; };
+		4DC2F4422A96648A00C9C303 /* tblCellFlutterTailMoves.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC2F4402A96648A00C9C303 /* tblCellFlutterTailMoves.swift */; };
 		848C77A424FE43740056C576 /* WebKitViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848C77A324FE43740056C576 /* WebKitViewVC.swift */; };
 		84C5E46B24767D2F004B8BE0 /* DeveloperVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C5E46A24767D2F004B8BE0 /* DeveloperVC.swift */; };
 		92E54A5F7F92158F3837CE2A /* Pods_DigitailTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40C8F173029F8985510A6819 /* Pods_DigitailTests.framework */; };
@@ -104,6 +106,8 @@
 		40C8F173029F8985510A6819 /* Pods_DigitailTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DigitailTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AD82D4A462FC5B93DC20E14 /* Pods-CRUMPET.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CRUMPET.debug.xcconfig"; path = "Target Support Files/Pods-CRUMPET/Pods-CRUMPET.debug.xcconfig"; sourceTree = "<group>"; };
 		4DC078242A8F475800F22D28 /* ContentSized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSized.swift; sourceTree = "<group>"; };
+		4DC2F43E2A96648A00C9C303 /* FlutterTailMovesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlutterTailMovesVC.swift; sourceTree = "<group>"; };
+		4DC2F4402A96648A00C9C303 /* tblCellFlutterTailMoves.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tblCellFlutterTailMoves.swift; sourceTree = "<group>"; };
 		574B6B17F0D1ABB77B66EF19 /* Pods-DigitailTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DigitailTests.release.xcconfig"; path = "Target Support Files/Pods-DigitailTests/Pods-DigitailTests.release.xcconfig"; sourceTree = "<group>"; };
 		848C77A324FE43740056C576 /* WebKitViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebKitViewVC.swift; sourceTree = "<group>"; };
 		84C5E46A24767D2F004B8BE0 /* DeveloperVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperVC.swift; sourceTree = "<group>"; };
@@ -221,6 +225,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4DC2F43D2A96648A00C9C303 /* Flutterwings Tail Moves */ = {
+			isa = PBXGroup;
+			children = (
+				4DC2F43E2A96648A00C9C303 /* FlutterTailMovesVC.swift */,
+				4DC2F43F2A96648A00C9C303 /* TableViewCell */,
+			);
+			path = "Flutterwings Tail Moves";
+			sourceTree = "<group>";
+		};
+		4DC2F43F2A96648A00C9C303 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				4DC2F4402A96648A00C9C303 /* tblCellFlutterTailMoves.swift */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
 		6C4084BB8164862C333C842C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,6 +390,7 @@
 				A06BBA6822C63F8600F69F17 /* Settings */,
 				A06BBA6022C60E5800F69F17 /* Casual Mode Settings */,
 				A006DA5B22BCF2D8008DDEC1 /* SideMenuVC */,
+				4DC2F43D2A96648A00C9C303 /* Flutterwings Tail Moves */,
 				A093B88422AF6908002BA8FB /* Tail Moves */,
 				A0C629ED22AE66620036A20C /* DigitailVC */,
 				A06E23B422AA838E00EB615C /* AlarmsVC */,
@@ -895,6 +917,7 @@
 				A06421A622D454A900BB98D0 /* MoveListUpdateVC.swift in Sources */,
 				A06E23B122AA2DE900EB615C /* DigitailVC.swift in Sources */,
 				A06BBA6222C611BC00F69F17 /* CasualModeSettingVC.swift in Sources */,
+				4DC2F4412A96648A00C9C303 /* FlutterTailMovesVC.swift in Sources */,
 				A0C629FC22AE67380036A20C /* Commands.swift in Sources */,
 				A093759F22CCBAC600C278DE /* TblCellGlowTips.swift in Sources */,
 				A006DA5D22BCF308008DDEC1 /* SideMenuVC.swift in Sources */,
@@ -936,6 +959,7 @@
 				A0923D5A22D86BA7007158F7 /* TailPosesVC.swift in Sources */,
 				A09DBEE422C23B97003C605A /* PopUpVC.swift in Sources */,
 				FF51055225C2DA8200D0D923 /* TailMovesListVC.swift in Sources */,
+				4DC2F4422A96648A00C9C303 /* tblCellFlutterTailMoves.swift in Sources */,
 				A006DA6022BCF4ED008DDEC1 /* TblCellSideMenu.swift in Sources */,
 				A09DBEF622C23DCA003C605A /* PopupContainer.swift in Sources */,
 				FF010CA525F62C390039A800 /* TblVw_ConnectedDeviceLIst_Cell.swift in Sources */,

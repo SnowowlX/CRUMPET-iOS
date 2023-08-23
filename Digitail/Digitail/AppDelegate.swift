@@ -170,14 +170,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if duration > 3600 {
             // stop casual or walkmode
             if self.casualONDigitail || self.casualONEarGear || self.casualONFlutter {
-                for connectedDevice in AppDelegate_.tempEargearDeviceActor {
-                    let deviceActor = connectedDevice
-                    if ((deviceActor.isDeviceIsReady) && (deviceActor.isConnected())) {
-                        let tailMoveString = kEndCasualCommand
-                        let data = Data(tailMoveString.utf8)
-                        deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
-                    }
-                }
+                
                 
                 self.casualONDigitail = false
                 self.casualONEarGear = false
@@ -188,6 +181,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     
                     if ((deviceActor.isDeviceIsReady) && (deviceActor.isConnected())) {
                         let tailMoveString = kAutoModeStopAutoCommand
+                        let data = Data(tailMoveString.utf8)
+                        deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
+                    }
+                }
+                
+                for connectedDevice in AppDelegate_.tempEargearDeviceActor {
+                    let deviceActor = connectedDevice
+                    if ((deviceActor.isDeviceIsReady) && (deviceActor.isConnected())) {
+                        let tailMoveString = kEndCasualCommand
                         let data = Data(tailMoveString.utf8)
                         deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
                     }

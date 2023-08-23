@@ -18,7 +18,7 @@ class AboutVC: UIViewController {
     
     @IBOutlet weak var lblCreatedTitle: UILabel!
     
-    @IBOutlet weak var lblCopyright: UILabel!
+//    @IBOutlet weak var lblCopyright: UILabel!
     @IBOutlet weak var lblCopyrightDetails: UILabel!
     
     let telegramURL = URL(string: "https://t.me/+SYMOR3svXHfby-mo")!
@@ -39,20 +39,20 @@ class AboutVC: UIViewController {
     
     func setupLocalization() {
         self.title = NSLocalizedString("kAbout", comment: "")
-        lblCopyright.text = NSLocalizedString("kCopyright", comment: "")
+//        lblCopyright.text = NSLocalizedString("kCopyright", comment: "")
         lblCopyrightDetails.text = NSLocalizedString("kComanyInfo", comment: "")
         
-        let licenseAttributeText = NSMutableAttributedString(string: "This app is open source. If you would like to get involved please visit our ", attributes: [.foregroundColor: UIColor.black, .font: UIFont.systemFont(ofSize: 24)])
-        let telegram = NSMutableAttributedString(string: "Telegram group.", attributes: [.foregroundColor: UIColor.systemBlue, .font: UIFont.systemFont(ofSize: 24), .underlineStyle: NSUnderlineStyle.single.rawValue, .underlineColor: UIColor.systemBlue])
+        let licenseAttributeText = NSMutableAttributedString(string: "This app is open source. If you would like to get involved please visit our ", attributes: [.foregroundColor: UIColor.black, .font: UIFont.systemFont(ofSize: 16)])
+        let telegram = NSMutableAttributedString(string: "Telegram group.", attributes: [.foregroundColor: UIColor.systemBlue, .font: UIFont.systemFont(ofSize: 16), .underlineStyle: NSUnderlineStyle.single.rawValue, .underlineColor: UIColor.systemBlue])
         telegram.addAttribute(.link, value: "telegram", range: NSRange(location: 0, length: telegram.length))
         licenseAttributeText.append(telegram)
         
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = .center
+        paragraphStyle.alignment = .left
         
         licenseAttributeText.addAttributes([.paragraphStyle: paragraphStyle], range: NSRange(location: 0, length: licenseAttributeText.length))
         
-        lblLicense.linkTextAttributes = [.foregroundColor: UIColor.systemBlue, .font: UIFont.systemFont(ofSize: 24)]
+        lblLicense.linkTextAttributes = [.foregroundColor: UIColor.systemBlue, .font: UIFont.systemFont(ofSize: 16)]
         lblLicense.attributedText = licenseAttributeText
         
         lblLicense.delegate = self

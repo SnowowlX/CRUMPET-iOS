@@ -21,8 +21,8 @@ class SideMenuVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     var indexPathForTextColor : Int!
     
 //    var arrMenuList = ["Crumpet","Alarm","Move Lists","Tail Moves","Glow Tips","Casual Mode Settings","Connect Gear","Settings","MiTail Instructions","About"]
-    var arrMenuList = ["Crumpet",kSettings,kAbout]
-    var arrMenuImages = ["Home","Settings","About"]
+    var arrMenuList = ["Crumpet",kSettings,kAbout, "Visit our website"]
+    var arrMenuImages = ["Home","Settings","About", "browser"]
     
     //MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -32,10 +32,10 @@ class SideMenuVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         // bottomTabs.drawBehind = true
         self.navigationController?.isNavigationBarHidden = true
       
-        let tapGestureForDeveloper = UITapGestureRecognizer(target: self, action: #selector (addDeveloper_Clcked))
-        tapGestureForDeveloper.numberOfTapsRequired = 5
-        imgView.isUserInteractionEnabled = true
-        imgView.addGestureRecognizer(tapGestureForDeveloper)
+//        let tapGestureForDeveloper = UITapGestureRecognizer(target: self, action: #selector (addDeveloper_Clcked))
+//        tapGestureForDeveloper.numberOfTapsRequired = 5
+//        imgView.isUserInteractionEnabled = true
+//        imgView.addGestureRecognizer(tapGestureForDeveloper)
     }
     
     @objc func addDeveloper_Clcked() {
@@ -138,6 +138,11 @@ class SideMenuVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let objDeveloperVC = storyboard.instantiateViewController(withIdentifier: "DeveloperVC") as! DeveloperVC
             navigationController.pushViewController(objDeveloperVC, animated: true)
+            break
+        case "Visit our website" :
+            if let url = URL(string: "https://thetailcompany.com") {
+                UIApplication.shared.open(url)
+            }
             break
         default:
             break

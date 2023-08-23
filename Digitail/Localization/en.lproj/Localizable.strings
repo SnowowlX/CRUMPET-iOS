@@ -178,6 +178,7 @@
 "kAlarm" = "Alarm";
 "kMoveLists" = "Move Lists";
 "kTail Moves" = "Tail Moves";
+"kTail Flutter Moves" = "Flutters";
 "kCasualModeSettings" = "Casual Mode Settings";
 "kConnectGear" = "Connect Gear";
 "kLookForTails" = "SEARCHING";
@@ -213,8 +214,8 @@
 "kVersionCommand" = "VERA";
 "kTailBattery" = "TAIL BATTERY";
 "kEargearBattery" = "EARGEAR BATTERY";
-"kMoves" = "Moves";
-"kMovesFlutter" = "FlutterWings moves";
+"kMoves" = "Tail Moves";
+"kMovesFlutter" = "FlutterWings Moves";
 "kMoveListTitle" = "Move List";
 "kListen Mode" = "Listen Mode";
 "kTiltMode" = "Tilt Mode";

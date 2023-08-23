@@ -182,29 +182,42 @@ class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataS
     }
     
     @IBAction func SendToTail_Clicked(_ sender: UIButton) {
+      
         if AppDelegate_.casualONDigitail || AppDelegate_.casualONEarGear { // already on
-            for connectedDevice in AppDelegate_.tempEargearDeviceActor {
-                let deviceActor = connectedDevice
-                if ((deviceActor.isDeviceIsReady) && (deviceActor.isConnected())) {
-                    let tailMoveString = kEndCasualCommand
-                    let data = Data(tailMoveString.utf8)
-                    deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
+            
+            if AppDelegate_.casualONDigitail {
+                print("Maulik- Casual mode in digitail is on and need to off now")
+                AppDelegate_.casualONDigitail = false
+                for connectedDevices in AppDelegate_.tempDigitailDeviceActor {
+                    let deviceActor = connectedDevices
+                    
+                    if ((deviceActor.isDeviceIsReady) && (deviceActor.isConnected())) {
+                        let tailMoveString = kAutoModeStopAutoCommand
+                        let data = Data(tailMoveString.utf8)
+                        deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
+                    }
                 }
+                
             }
             
-            AppDelegate_.casualONDigitail = false
-            for connectedDevices in AppDelegate_.tempDigitailDeviceActor {
-                let deviceActor = connectedDevices
-                
-                if ((deviceActor.isDeviceIsReady) && (deviceActor.isConnected())) {
-                    let tailMoveString = kAutoModeStopAutoCommand
-                    let data = Data(tailMoveString.utf8)
-                    deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
+            if AppDelegate_.casualONEarGear {
+                print("Maulik- Casual mode in eargear is on and need to off now")
+                AppDelegate_.casualONEarGear = false
+                for connectedDevice in AppDelegate_.tempEargearDeviceActor {
+                    let deviceActor = connectedDevice
+                    if ((deviceActor.isDeviceIsReady) && (deviceActor.isConnected())) {
+                        let tailMoveString = kEndCasualCommand
+                        let data = Data(tailMoveString.utf8)
+                        deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
+                    }
                 }
+                
             }
-
+            
             btnSendToTail.setTitle(kStartCasualMode, for: .normal)
+            
         } else { // start
+            
             for connectedDevice in AppDelegate_.tempEargearDeviceActor {
                 let deviceActor = connectedDevice
                 if ((deviceActor.isDeviceIsReady) && (deviceActor.isConnected())) {
@@ -252,7 +265,7 @@ class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataS
                     let data = Data(tailMoveString!.utf8)
                     deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
                     //                } while dataSendCount < (data.count)
-                    UIAlertController.alert(title:"", msg:"Casual mode on", target: self)
+//                    UIAlertController.alert(title:"", msg:"Casual mode on", target: self)
                 }
                 else{
                     openErrorMsg(connectedDevice: deviceActor)

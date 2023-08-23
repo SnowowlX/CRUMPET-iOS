@@ -89,9 +89,10 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
     var isWalkModeON = false
     var isListenModeON = false
     var isTiltModeON = false
-    var batteryTimer = Timer()
+    var batteryTimerMitail = Timer()
     var batteryTimerEarGear = Timer()
-    var arrSections  = ["TAIL BATTERY","EARGEAR BATTERY"]
+    var batteryTimerFlutter = Timer()
+    var arrSections  = ["TAIL BATTERY","EARGEAR BATTERY", "FLUTTER BATTERY"]
     var statusOfLocation = 0
     var glowTipRemoved = false
     
@@ -560,38 +561,34 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
         LayConsts_VwConnectedDeviceTop.constant = 13
         
         if AppDelegate_.tempDigitailDeviceActor.count > 0 {
-            LayConsts_VwConnectedDeviceHeight.constant = 50
-//            LayConsts_VwConnectedDeviceTop.constant = 13
+            LayConsts_VwConnectedDeviceHeight.constant = 40
         }
         if AppDelegate_.tempEargearDeviceActor.count > 0 {
-            LayConsts_VwConnectedDeviceHeight.constant = 50
-//            LayConsts_VwConnectedDeviceTop.constant = 13
+            LayConsts_VwConnectedDeviceHeight.constant = 40
         }
         if AppDelegate_.tempFlutterDeviceActor.count > 0 {
-            LayConsts_VwConnectedDeviceHeight.constant = 50
-//            LayConsts_VwConnectedDeviceTop.constant = 13
+            LayConsts_VwConnectedDeviceHeight.constant = 40
         }
         if AppDelegate_.tempDigitailDeviceActor.count > 0 && AppDelegate_.tempEargearDeviceActor.count > 0 && AppDelegate_.tempFlutterDeviceActor.count > 0 {
-//            LayConsts_VwConnectedDeviceTop.constant = 13
-            LayConsts_VwConnectedDeviceHeight.constant = 150
+            LayConsts_VwConnectedDeviceHeight.constant = 90
         } else {
             
             if AppDelegate_.tempDigitailDeviceActor.count > 0 && AppDelegate_.tempEargearDeviceActor.count > 0 {
-                //            LayConsts_VwConnectedDeviceTop.constant = 13
-                LayConsts_VwConnectedDeviceHeight.constant = 100
+                LayConsts_VwConnectedDeviceHeight.constant = 60
             }
             
             if AppDelegate_.tempDigitailDeviceActor.count > 0 && AppDelegate_.tempFlutterDeviceActor.count > 0 {
-                //            LayConsts_VwConnectedDeviceTop.constant = 13
-                LayConsts_VwConnectedDeviceHeight.constant = 100
+                LayConsts_VwConnectedDeviceHeight.constant = 60
             }
             
             if AppDelegate_.tempEargearDeviceActor.count > 0 && AppDelegate_.tempFlutterDeviceActor.count > 0 {
-                //            LayConsts_VwConnectedDeviceTop.constant = 13
-                LayConsts_VwConnectedDeviceHeight.constant = 100
+                LayConsts_VwConnectedDeviceHeight.constant = 60
             }
         }
-        tblVwConnectedDeviceList.reloadData()
+        
+        
+        self.view.layoutIfNeeded()
+        
         checkConnectionStatusOfDevices()
     }
     
@@ -610,7 +607,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
             
             if status == false {
                 if AppDelegate_.tempEargearDeviceActor.count > 0 || AppDelegate_.tempFlutterDeviceActor.count > 0 {
-                    LayConsts_VwConnectedDeviceHeight.constant = 50
+                    LayConsts_VwConnectedDeviceHeight.constant = 60
                     LayConsts_VwConnectedDeviceTop.constant = 13
                 } else {
                     LayConsts_VwConnectedDeviceHeight.constant = 0
@@ -633,7 +630,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
             
             if status == false {
                 if AppDelegate_.tempDigitailDeviceActor.count > 0  || AppDelegate_.tempFlutterDeviceActor.count > 0 {
-                    LayConsts_VwConnectedDeviceHeight.constant = 50
+                    LayConsts_VwConnectedDeviceHeight.constant = 60
                     LayConsts_VwConnectedDeviceTop.constant = 13
                 } else {
                     LayConsts_VwConnectedDeviceHeight.constant = 0
@@ -656,7 +653,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
             
             if status == false {
                 if AppDelegate_.tempDigitailDeviceActor.count > 0 || AppDelegate_.tempEargearDeviceActor.count > 0 {
-                    LayConsts_VwConnectedDeviceHeight.constant = 50
+                    LayConsts_VwConnectedDeviceHeight.constant = 60
                     LayConsts_VwConnectedDeviceTop.constant = 13
                 } else {
                     LayConsts_VwConnectedDeviceHeight.constant = 0
@@ -664,12 +661,18 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                 }
             }
         }
+        
+        if !isDIGITAiLConnected() && !isEARGEARConnected() && !isFlutterConnected() {
+            LayConsts_VwConnectedDeviceHeight.constant = 0
+            LayConsts_VwConnectedDeviceTop.constant = 13
+        }
+        tblVwConnectedDeviceList.reloadData()
     }
     
     @IBAction func EarGearMoves_Clicked(_ sender: UIButton) {
         if self.isEARGEARConnected() {
             let deviceName = AppDelegate_.tempEargearDeviceActor[0].state[Constants.kDeviceName] as? String
-            if deviceName == "EarGear v2" {
+            if deviceName == "EarGear" {
                 let eargearMovesVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "EarGear2MovesVC") as? EarGear2MovesVC
                 self.navigationController?.pushViewController(eargearMovesVC!, animated: true)
             } else {
@@ -713,13 +716,13 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
     }
     
     func setUpTableUI() {
-        tblVwActions.layer.masksToBounds = false
-        tblVwActions.clipsToBounds = false
-        tblVwActions.layer.shadowColor = UIColor.darkGray.cgColor
-        tblVwActions.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
-        tblVwActions.layer.shadowRadius = 2.5
-        tblVwActions.layer.shadowOpacity = 0.5
-        tblVwActions.layer.cornerRadius = 3
+//        tblVwActions.layer.masksToBounds = false
+//        tblVwActions.clipsToBounds = false
+//        tblVwActions.layer.shadowColor = UIColor.darkGray.cgColor
+//        tblVwActions.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+//        tblVwActions.layer.shadowRadius = 2.5
+//        tblVwActions.layer.shadowOpacity = 0.5
+//        tblVwActions.layer.cornerRadius = 3
         
         vw_ConnectDevice.layer.masksToBounds = false
         vw_ConnectDevice.clipsToBounds = false
@@ -994,7 +997,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
     @IBAction func TailMoves_Clicked(_ sender: UIButton) {
         let tailMovesVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "TailMovesVC") as? TailMovesVC
         
-        if self.isDIGITAiLConnected() || self.isFlutterConnected() {
+        if self.isDIGITAiLConnected(){
             self.navigationController?.pushViewController(tailMovesVC!, animated: true)
         } else {
             showAlert(title:  NSLocalizedString("kTitleConnect", comment: ""), msg: NSLocalizedString("kMsgConnect", comment: ""))
@@ -1003,9 +1006,9 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
     }
     
     @IBAction func FlutterTailMoves_Clicked(_ sender: UIButton) {
-        let tailMovesVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "TailMovesVC") as? TailMovesVC
+        let tailMovesVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "FlutterTailMovesVC") as? FlutterTailMovesVC
         
-        if self.isDIGITAiLConnected() || self.isFlutterConnected() {
+        if self.isFlutterConnected() {
             self.navigationController?.pushViewController(tailMovesVC!, animated: true)
         } else {
             showAlert(title:  NSLocalizedString("kTitleConnect", comment: ""), msg: NSLocalizedString("kMsgConnect", comment: ""))
@@ -1018,6 +1021,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
         if tableView == tblVwActions {
             return 1
         }
+        
         return 3
     }
  
@@ -1041,8 +1045,18 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if tableView == tblVwActions {
             return 60
+        } else {
+            if indexPath.section == 0 && self.isDIGITAiLConnected() {
+                return 30
+            } else if indexPath.section == 1 && self.isEARGEARConnected() {
+                return 30
+            } else if indexPath.section == 2 && self.isFlutterConnected() {
+                return 30
+            } else {
+                return 0
+            }
         }
-        return 30
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -1171,12 +1185,16 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
             cell.lblMenuName.textColor = UIColor.black
             return cell
         } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TblVw_ConnectedDeviceLIst_Cell") as! TblVw_ConnectedDeviceLIst_Cell
+            
             if indexPath.section == 0 {
                //DIGITAil DEVICE LISTS AND BATTERY STATUS --
-               let cell = tableView.dequeueReusableCell(withIdentifier: "TblVw_ConnectedDeviceLIst_Cell") as! TblVw_ConnectedDeviceLIst_Cell
+               
                
                if AppDelegate_.tempDigitailDeviceActor[indexPath.row].peripheralActor == nil {
-                  
+                   DispatchQueue.main.async {
+                       cell.lblPercentage.text = ""
+                   }
                } else {
                    cell.lblDeviceName.text = AppDelegate_.tempDigitailDeviceActor[indexPath.row].state[Constants.kDeviceName] as? String
                    let batteryLevel = AppDelegate_.tempDigitailDeviceActor[indexPath.row].state["BatteryLevel"]
@@ -1202,6 +1220,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                        }
                    }
                    
+                   
                    if batteryPercentage != nil {
                        DispatchQueue.main.async {
                            cell.lblPercentage.text = "\(batteryPercentage ?? "")%"
@@ -1212,16 +1231,20 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                        }
                    }
                }
-               return cell
+               
             } else if indexPath.section == 1 {
                //EARGEAR DEVICE LISTS AND BATTERY STATUS --
-               let cell = tableView.dequeueReusableCell(withIdentifier: "TblVw_ConnectedDeviceLIst_Cell") as! TblVw_ConnectedDeviceLIst_Cell
+               
+                
                if AppDelegate_.tempEargearDeviceActor[indexPath.row].peripheralActor == nil {
-                  
+                   DispatchQueue.main.async {
+                       cell.lblPercentage.text = ""
+                   }
                } else {
                    let objPeripharal:CBPeripheral = (AppDelegate_.tempEargearDeviceActor[indexPath.row].peripheralActor.peripheral!)
                    cell.lblDeviceName.text = AppDelegate_.tempEargearDeviceActor[indexPath.row].state[Constants.kDeviceName] as? String
                    let batteryLevel = AppDelegate_.tempEargearDeviceActor[indexPath.row].state["BatteryLevel"]
+                   let batteryPercentage = AppDelegate_.tempEargearDeviceActor[indexPath.row].state["BatteryPercentage"]
                    print("Eargear battery :: ",batteryLevel as Any)
 
                    if batteryLevel != nil {
@@ -1244,14 +1267,27 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                            }
                        }
                    }
+                   
+                   
+                   if batteryPercentage != nil {
+                       DispatchQueue.main.async {
+                           cell.lblPercentage.text = "\(batteryPercentage ?? "")%"
+                       }
+                   } else {
+                       DispatchQueue.main.async {
+                           cell.lblPercentage.text = ""
+                       }
+                   }
                }
-               return cell
+               
            } else {
                //Flutter DEVICE LISTS AND BATTERY STATUS --
-               let cell = tableView.dequeueReusableCell(withIdentifier: "TblVw_ConnectedDeviceLIst_Cell") as! TblVw_ConnectedDeviceLIst_Cell
+               
                
                if AppDelegate_.tempFlutterDeviceActor[indexPath.row].peripheralActor == nil {
-                  
+                   DispatchQueue.main.async {
+                       cell.lblPercentage.text = ""
+                   }
                } else {
                    cell.lblDeviceName.text = AppDelegate_.tempFlutterDeviceActor[indexPath.row].state[Constants.kDeviceName] as? String
                    let batteryLevel = AppDelegate_.tempFlutterDeviceActor[indexPath.row].state["BatteryLevel"]
@@ -1287,8 +1323,10 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                        }
                    }
                }
-               return cell
+               
            }
+            
+            return cell
         }
     }
     
@@ -1304,9 +1342,9 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.updateConnectionUI()
             if (self.isDIGITAiLConnected()) {
-                self.sendBatteryCommand()
-                self.startBatteryTimer()
-                self.versionCommand()
+                self.sendMitailBatteryCommand()
+                self.startMitailBatteryTimer()
+                self.versionCommandMitail()
             }
             if (self.isEARGEARConnected()) {
                 self.versionCommandEG2()
@@ -1314,6 +1352,11 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                     let deviceActor = connectedDevice
                     deviceActor.readProperty(Constants.kCharacteristic_BatteryLevel)
                 }
+            }
+            if (self.isFlutterConnected()) {
+                self.sendFlutterBatteryCommand()
+                self.startFlutterBatteryTimer()
+                self.versionCommandFlutter()
             }
         }
     }
@@ -1336,7 +1379,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                 var str = String(decoding: data, as: UTF8.self)
                 if str.contains("BAT") {
                     let val = Int.init(String(str.last!))
-                    if AppDelegate_.tempDigitailDeviceActor.contains(objActor) { //AppDelegate_.digitailDeviceActor {
+                    if AppDelegate_.tempDigitailDeviceActor.contains(objActor) || AppDelegate_.tempFlutterDeviceActor.contains(objActor){ //AppDelegate_.digitailDeviceActor {
                         objActor.state.setValue("\(val ?? 0)", forKey: "BatteryLevel")
                         AppDelegate_.storeDeviceState()
                         self.tblVwConnectedDeviceList.reloadData()
@@ -1365,7 +1408,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
         } else if responseData["name"] as? String == Constants.kCharacteristic_BatteryLevel {
             if let data = responseData["value"] as? Data {
                 var val: Int = data.withUnsafeBytes { $0.pointee }
-                if AppDelegate_.tempEargearDeviceActor.contains(objActor) || AppDelegate_.tempDigitailDeviceActor.contains(objActor) {
+                if AppDelegate_.tempEargearDeviceActor.contains(objActor) || AppDelegate_.tempDigitailDeviceActor.contains(objActor) || AppDelegate_.tempFlutterDeviceActor.contains(objActor) {
                     objActor.state.setValue(val , forKey: "BatteryPercentage")
                     if val < 25 {
                         val = 1
@@ -1401,7 +1444,15 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
             
             self.updateConnectionUI()
             if !(self.isDIGITAiLConnected()) {
-                self.batteryTimer.invalidate()
+                self.batteryTimerMitail.invalidate()
+            }
+            
+            if !(self.isEARGEARConnected()) {
+                self.batteryTimerEarGear.invalidate()
+            }
+            
+            if !(self.isFlutterConnected()) {
+                self.batteryTimerFlutter.invalidate()
             }
             
             if !self.isDIGITAiLConnected() && !self.isEARGEARConnected() && !self.isFlutterConnected() {
@@ -1410,10 +1461,16 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
         }
     }
 
-    func startBatteryTimer() {
-        self.batteryTimer.invalidate()
+    func startMitailBatteryTimer() {
+        self.batteryTimerMitail.invalidate()
         let loopTime = 30
-        self.batteryTimer = Timer.scheduledTimer(timeInterval: TimeInterval(loopTime), target: self, selector:#selector(self.sendBatteryCommand) , userInfo: nil, repeats: true)
+        self.batteryTimerMitail = Timer.scheduledTimer(timeInterval: TimeInterval(loopTime), target: self, selector:#selector(self.sendMitailBatteryCommand) , userInfo: nil, repeats: true)
+    }
+    
+    func startFlutterBatteryTimer() {
+        self.batteryTimerFlutter.invalidate()
+        let loopTime = 30
+        self.batteryTimerFlutter = Timer.scheduledTimer(timeInterval: TimeInterval(loopTime), target: self, selector:#selector(self.sendFlutterBatteryCommand) , userInfo: nil, repeats: true)
     }
     
     func startBatteryTimerEarGear() {
@@ -1422,7 +1479,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
         self.batteryTimerEarGear = Timer.scheduledTimer(timeInterval: TimeInterval(loopTime), target: self, selector:#selector(self.sendBatteryCommandEarGear) , userInfo: nil, repeats: true)
     }
     
-    @objc func versionCommand() {
+    @objc func versionCommandMitail() {
         for connectedDevices in AppDelegate_.tempDigitailDeviceActor {
             let deviceActor = connectedDevices
             if ((deviceActor.isDeviceIsReady) && ((deviceActor.isConnected()))) {
@@ -1434,17 +1491,28 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
     }
     
     @objc func versionCommandEG2() {
-            for connectedDevices in AppDelegate_.tempEargearDeviceActor {
-                let deviceActor = connectedDevices
-                if ((deviceActor.isDeviceIsReady) && ((deviceActor.isConnected()))) {
-                    let tailMoveString = kVersionCommand
-                    let data = Data(tailMoveString.utf8)
-                    deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
-                }
+        for connectedDevices in AppDelegate_.tempEargearDeviceActor {
+            let deviceActor = connectedDevices
+            if ((deviceActor.isDeviceIsReady) && ((deviceActor.isConnected()))) {
+                let tailMoveString = kVersionCommand
+                let data = Data(tailMoveString.utf8)
+                deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
             }
         }
+    }
     
-    @objc func sendBatteryCommand() {
+    @objc func versionCommandFlutter() {
+        for connectedDevices in AppDelegate_.tempFlutterDeviceActor {
+            let deviceActor = connectedDevices
+            if ((deviceActor.isDeviceIsReady) && ((deviceActor.isConnected()))) {
+                let tailMoveString = kVersionCommand
+                let data = Data(tailMoveString.utf8)
+                deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
+            }
+        }
+    }
+    
+    @objc func sendMitailBatteryCommand() {
 //        let deviceActor = AppDelegate_.digitailDeviceActor
 //        if ((deviceActor!.isDeviceIsReady) && ((deviceActor?.isConnected())!)) {
         
@@ -1452,6 +1520,24 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
             let deviceActor = connectedDevices
             if ((deviceActor.isDeviceIsReady) && ((deviceActor.isConnected()))) {
                 if (deviceActor.bleDeviceType == .mitail) {
+                    deviceActor.readProperty(Constants.kCharacteristic_BatteryLevel)
+                } else {
+                    let tailMoveString = kBatteryCommand
+                    let data = Data(tailMoveString.utf8)
+                    deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
+                }
+            }
+        }
+    }
+    
+    @objc func sendFlutterBatteryCommand() {
+//        let deviceActor = AppDelegate_.digitailDeviceActor
+//        if ((deviceActor!.isDeviceIsReady) && ((deviceActor?.isConnected())!)) {
+        
+        for connectedDevices in AppDelegate_.tempFlutterDeviceActor {
+            let deviceActor = connectedDevices
+            if ((deviceActor.isDeviceIsReady) && ((deviceActor.isConnected()))) {
+                if (deviceActor.bleDeviceType == .flutter) {
                     deviceActor.readProperty(Constants.kCharacteristic_BatteryLevel)
                 } else {
                     let tailMoveString = kBatteryCommand
