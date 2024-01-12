@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CVg-a4-NWh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CVg-a4-NWh">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -4046,6 +4046,7 @@
                                 <color key="backgroundColor" red="0.83921568629999999" green="0.84313725490000002" blue="0.84313725490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="55" id="Wr7-cN-jWG"/>
+                                    <constraint firstAttribute="width" secondItem="7yC-nL-ibY" secondAttribute="height" multiplier="1:1" id="hHS-Df-WZg"/>
                                 </constraints>
                                 <state key="normal" image="menu-2"/>
                                 <connections>
@@ -4089,7 +4090,6 @@
                             <constraint firstItem="5Hf-2C-OY5" firstAttribute="leading" secondItem="88x-wV-Rp7" secondAttribute="leading" constant="126" id="XZP-le-2ss"/>
                             <constraint firstItem="88x-wV-Rp7" firstAttribute="bottom" secondItem="iuF-BZ-1Pc" secondAttribute="bottom" constant="20" id="asO-3c-ia6"/>
                             <constraint firstItem="88x-wV-Rp7" firstAttribute="bottom" secondItem="7yC-nL-ibY" secondAttribute="bottom" constant="10" id="fXk-yu-uSX"/>
-                            <constraint firstItem="7yC-nL-ibY" firstAttribute="width" secondItem="7yC-nL-ibY" secondAttribute="height" multiplier="1:1" id="hHS-Df-WZg"/>
                             <constraint firstItem="88x-wV-Rp7" firstAttribute="trailing" secondItem="eyM-AJ-MbB" secondAttribute="trailing" constant="11" id="jbH-QU-8tb"/>
                             <constraint firstItem="eyM-AJ-MbB" firstAttribute="top" secondItem="88x-wV-Rp7" secondAttribute="top" constant="13" id="mIP-Ot-Ac7"/>
                             <constraint firstItem="oj2-r6-nDs" firstAttribute="trailing" secondItem="88x-wV-Rp7" secondAttribute="trailing" id="t6R-Hi-mBM"/>
@@ -6120,7 +6120,7 @@
         <image name="menu-2" width="26" height="26"/>
         <image name="menu-3" width="15" height="15"/>
         <systemColor name="labelColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

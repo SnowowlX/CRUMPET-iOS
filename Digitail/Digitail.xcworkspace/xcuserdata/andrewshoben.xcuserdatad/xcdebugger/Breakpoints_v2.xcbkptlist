@@ -30,10 +30,42 @@
             filePath = "Digitail/ViewControllers/DigitailVC/DigitailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "807"
-            endingLineNumber = "807"
+            startingLineNumber = "890"
+            endingLineNumber = "890"
             landmarkName = "actionConnectDigitail(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5CAE9BA4-1E92-4DE4-8877-BA4410FE1AC7 - c9dabf9b6033297f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CRUMPET.DigitailVC.CasualMode_Clicked(__C.UIButton) -&gt; ()"
+                  moduleName = "CRUMPET"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewshoben/Desktop/CRUMPET-iOS/Digitail/Digitail/ViewControllers/DigitailVC/DigitailVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "891"
+                  endingLineNumber = "891"
+                  offsetFromSymbolStart = "2152">
+               </Location>
+               <Location
+                  uuid = "5CAE9BA4-1E92-4DE4-8877-BA4410FE1AC7 - fa1f707eff8be7d4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CRUMPET.DigitailVC.actionConnectDigitail(__C.UIButton) -&gt; ()"
+                  moduleName = "CRUMPET"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewshoben/Desktop/CRUMPET-iOS/Digitail/Digitail/ViewControllers/DigitailVC/DigitailVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "890"
+                  endingLineNumber = "890"
+                  offsetFromSymbolStart = "84">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -46,10 +78,42 @@
             filePath = "Digitail/ViewControllers/DigitailVC/DigitailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "816"
-            endingLineNumber = "816"
+            startingLineNumber = "899"
+            endingLineNumber = "899"
             landmarkName = "actionConnectEarGear(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F0D00FED-A266-48E5-9A53-26F3F11A48E9 - c9dabf9b60332867"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CRUMPET.DigitailVC.CasualMode_Clicked(__C.UIButton) -&gt; ()"
+                  moduleName = "CRUMPET"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewshoben/Desktop/CRUMPET-iOS/Digitail/Digitail/ViewControllers/DigitailVC/DigitailVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "899"
+                  endingLineNumber = "899"
+                  offsetFromSymbolStart = "3084">
+               </Location>
+               <Location
+                  uuid = "F0D00FED-A266-48E5-9A53-26F3F11A48E9 - 4952a28e9362577c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CRUMPET.DigitailVC.actionConnectEarGear(__C.UIButton) -&gt; ()"
+                  moduleName = "CRUMPET"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewshoben/Desktop/CRUMPET-iOS/Digitail/Digitail/ViewControllers/DigitailVC/DigitailVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "899"
+                  endingLineNumber = "899"
+                  offsetFromSymbolStart = "84">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -62,8 +126,8 @@
             filePath = "Digitail/ViewControllers/DeviceListVc/DeviceListVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "257"
-            endingLineNumber = "257"
+            startingLineNumber = "306"
+            endingLineNumber = "306"
             landmarkName = "DeviceDisconnected(_:)"
             landmarkType = "7">
          </BreakpointContent>

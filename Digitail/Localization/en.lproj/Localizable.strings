@@ -179,6 +179,8 @@
 "kMoveLists" = "Move Lists";
 "kTail Moves" = "Tail Moves";
 "kTail Flutter Moves" = "Flutters";
+"kTail Minitail Moves" = "MiTail Mini Moves";
+
 "kCasualModeSettings" = "Casual Mode Settings";
 "kConnectGear" = "Connect Gear";
 "kLookForTails" = "SEARCHING";
@@ -216,6 +218,8 @@
 "kEargearBattery" = "EARGEAR BATTERY";
 "kMoves" = "Tail Moves";
 "kMovesFlutter" = "FlutterWings Moves";
+"kMovesMinitail" = "MiTail Mini Moves";
+
 "kMoveListTitle" = "Move List";
 "kListen Mode" = "Listen Mode";
 "kTiltMode" = "Tilt Mode";
@@ -223,6 +227,7 @@
 "kGlowTips" = "GlowTips";
 "kCasulalModeSetting" = "Casulal ModeSetting";
 "kTailMoves" = "TailMoves";
+"kMovesMinitail" = "MiTail Mini Moves";
 "kFilter" = "filter";
 "kSearchingForGear" = "Searching...";
 "kFoundGear" = "Found multiple pieces of gear so far. To see them push \"Show available gear..\" below";
