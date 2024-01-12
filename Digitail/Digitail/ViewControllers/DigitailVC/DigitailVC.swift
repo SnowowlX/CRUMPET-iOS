@@ -183,7 +183,10 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
             if (isDigitailAvailable && isEarGearAvailable && isFlutterAvailable) || (isDigitailAvailable && isEarGearAvailable) || (isEarGearAvailable && isFlutterAvailable) || (isDigitailAvailable && isFlutterAvailable) {
                 self.lblGearFoundMessage.text = NSLocalizedString("kFoundGear", comment: "")
                 self.btnLookForTails.setTitle( NSLocalizedString("kShowGear", comment: ""), for: .normal)
-            }  else if AppDelegate_.tempDigitailPeripheral.count == 1 || AppDelegate_.tempeargearPeripheral.count == 1 || AppDelegate_.tempFlutterPeripheral.count == 1 {
+            } else if AppDelegate_.tempDigitailPeripheral.count > 1 || AppDelegate_.tempeargearPeripheral.count > 1 || AppDelegate_.tempFlutterPeripheral.count > 1 {
+                self.lblGearFoundMessage.text =  NSLocalizedString("kFoundGear", comment: "")
+                self.btnLookForTails.setTitle(NSLocalizedString("kShowGear", comment: ""), for: .normal)
+            } else if AppDelegate_.tempDigitailPeripheral.count == 1 || AppDelegate_.tempeargearPeripheral.count == 1 || AppDelegate_.tempFlutterPeripheral.count == 1 {
                 self.lblGearFoundMessage.text =  NSLocalizedString("kGearFoundMessage", comment: "")
                 self.btnLookForTails.setTitle(NSLocalizedString("kConnecttoGear", comment: ""), for: .normal)
             } else {
@@ -560,31 +563,36 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
         LayConsts_VwConnectedDeviceHeight.constant = 0
         LayConsts_VwConnectedDeviceTop.constant = 13
         
-        if AppDelegate_.tempDigitailDeviceActor.count > 0 {
-            LayConsts_VwConnectedDeviceHeight.constant = 40
+        if AppDelegate_.tempDigitailDeviceActor.count > 0 || AppDelegate_.tempEargearDeviceActor.count > 0 || AppDelegate_.tempFlutterDeviceActor.count > 0 {
+            LayConsts_VwConnectedDeviceHeight.constant = CGFloat(30 * (AppDelegate_.tempDigitailDeviceActor.count + AppDelegate_.tempEargearDeviceActor.count + AppDelegate_.tempFlutterDeviceActor.count))
         }
-        if AppDelegate_.tempEargearDeviceActor.count > 0 {
-            LayConsts_VwConnectedDeviceHeight.constant = 40
-        }
-        if AppDelegate_.tempFlutterDeviceActor.count > 0 {
-            LayConsts_VwConnectedDeviceHeight.constant = 40
-        }
-        if AppDelegate_.tempDigitailDeviceActor.count > 0 && AppDelegate_.tempEargearDeviceActor.count > 0 && AppDelegate_.tempFlutterDeviceActor.count > 0 {
-            LayConsts_VwConnectedDeviceHeight.constant = 90
-        } else {
-            
-            if AppDelegate_.tempDigitailDeviceActor.count > 0 && AppDelegate_.tempEargearDeviceActor.count > 0 {
-                LayConsts_VwConnectedDeviceHeight.constant = 60
-            }
-            
-            if AppDelegate_.tempDigitailDeviceActor.count > 0 && AppDelegate_.tempFlutterDeviceActor.count > 0 {
-                LayConsts_VwConnectedDeviceHeight.constant = 60
-            }
-            
-            if AppDelegate_.tempEargearDeviceActor.count > 0 && AppDelegate_.tempFlutterDeviceActor.count > 0 {
-                LayConsts_VwConnectedDeviceHeight.constant = 60
-            }
-        }
+        
+//
+//        if AppDelegate_.tempDigitailDeviceActor.count > 0 {
+//            LayConsts_VwConnectedDeviceHeight.constant = 40
+//        }
+//        if AppDelegate_.tempEargearDeviceActor.count > 0 {
+//            LayConsts_VwConnectedDeviceHeight.constant = 40
+//        }
+//        if AppDelegate_.tempFlutterDeviceActor.count > 0 {
+//            LayConsts_VwConnectedDeviceHeight.constant = 40
+//        }
+//        if AppDelegate_.tempDigitailDeviceActor.count > 0 && AppDelegate_.tempEargearDeviceActor.count > 0 && AppDelegate_.tempFlutterDeviceActor.count > 0 {
+//            LayConsts_VwConnectedDeviceHeight.constant = 90
+//        } else {
+//
+//            if AppDelegate_.tempDigitailDeviceActor.count > 0 && AppDelegate_.tempEargearDeviceActor.count > 0 {
+//                LayConsts_VwConnectedDeviceHeight.constant = 60
+//            }
+//
+//            if AppDelegate_.tempDigitailDeviceActor.count > 0 && AppDelegate_.tempFlutterDeviceActor.count > 0 {
+//                LayConsts_VwConnectedDeviceHeight.constant = 60
+//            }
+//
+//            if AppDelegate_.tempEargearDeviceActor.count > 0 && AppDelegate_.tempFlutterDeviceActor.count > 0 {
+//                LayConsts_VwConnectedDeviceHeight.constant = 60
+//            }
+//        }
         
         
         self.view.layoutIfNeeded()
@@ -1442,6 +1450,34 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
             AppDelegate_.casualWalkModeTimer?.invalidate()
             AppDelegate_.duration = 0
             
+            
+            AppDelegate_.tempDigitailDeviceActor.removeAll { actorObj in
+                actorObj.peripheralActor.peripheral?.identifier == actor?.peripheralActor.peripheral?.identifier
+            }
+            
+            AppDelegate_.tempEargearDeviceActor.removeAll { actorObj in
+                actorObj.peripheralActor.peripheral?.identifier == actor?.peripheralActor.peripheral?.identifier
+            }
+            
+            AppDelegate_.tempFlutterDeviceActor.removeAll { actorObj in
+                actorObj.peripheralActor.peripheral?.identifier == actor?.peripheralActor.peripheral?.identifier
+            }
+            
+            AppDelegate_.deviceActors.removeAll { actorObj in
+                actorObj.peripheralActor.peripheral?.identifier == actor?.peripheralActor.peripheral?.identifier
+            }
+            
+            AppDelegate_.tempDigitailPeripheral.removeAll { model in
+                model.peripheral?.identifier == actor?.peripheralActor.peripheral?.identifier
+            }
+            
+            AppDelegate_.tempeargearPeripheral.removeAll { model in
+                model.peripheral?.identifier == actor?.peripheralActor.peripheral?.identifier
+            }
+            
+            AppDelegate_.tempFlutterPeripheral.removeAll { model in
+                model.peripheral?.identifier == actor?.peripheralActor.peripheral?.identifier
+            }
             self.updateConnectionUI()
             if !(self.isDIGITAiLConnected()) {
                 self.batteryTimerMitail.invalidate()
