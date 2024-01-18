@@ -30,28 +30,13 @@
             filePath = "Digitail/ViewControllers/DigitailVC/DigitailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "890"
-            endingLineNumber = "890"
+            startingLineNumber = "891"
+            endingLineNumber = "891"
             landmarkName = "actionConnectDigitail(_:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "5CAE9BA4-1E92-4DE4-8877-BA4410FE1AC7 - c9dabf9b6033297f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CRUMPET.DigitailVC.CasualMode_Clicked(__C.UIButton) -&gt; ()"
-                  moduleName = "CRUMPET"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/andrewshoben/Desktop/CRUMPET-iOS/Digitail/Digitail/ViewControllers/DigitailVC/DigitailVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "891"
-                  endingLineNumber = "891"
-                  offsetFromSymbolStart = "2152">
-               </Location>
-               <Location
-                  uuid = "5CAE9BA4-1E92-4DE4-8877-BA4410FE1AC7 - fa1f707eff8be7d4"
+                  uuid = "5CAE9BA4-1E92-4DE4-8877-BA4410FE1AC7 - fa1f707eff8be7f5"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -61,8 +46,23 @@
                   urlString = "file:///Users/andrewshoben/Desktop/CRUMPET-iOS/Digitail/Digitail/ViewControllers/DigitailVC/DigitailVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "890"
-                  endingLineNumber = "890"
+                  startingLineNumber = "891"
+                  endingLineNumber = "891"
+                  offsetFromSymbolStart = "384">
+               </Location>
+               <Location
+                  uuid = "5CAE9BA4-1E92-4DE4-8877-BA4410FE1AC7 - fa1f707eff8be7f5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CRUMPET.DigitailVC.actionConnectDigitail(__C.UIButton) -&gt; ()"
+                  moduleName = "CRUMPET"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewshoben/Desktop/CRUMPET-iOS/Digitail/Digitail/ViewControllers/DigitailVC/DigitailVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "891"
+                  endingLineNumber = "891"
                   offsetFromSymbolStart = "84">
                </Location>
             </Locations>
@@ -78,28 +78,13 @@
             filePath = "Digitail/ViewControllers/DigitailVC/DigitailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "899"
-            endingLineNumber = "899"
+            startingLineNumber = "900"
+            endingLineNumber = "900"
             landmarkName = "actionConnectEarGear(_:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "F0D00FED-A266-48E5-9A53-26F3F11A48E9 - c9dabf9b60332867"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CRUMPET.DigitailVC.CasualMode_Clicked(__C.UIButton) -&gt; ()"
-                  moduleName = "CRUMPET"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/andrewshoben/Desktop/CRUMPET-iOS/Digitail/Digitail/ViewControllers/DigitailVC/DigitailVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "899"
-                  endingLineNumber = "899"
-                  offsetFromSymbolStart = "3084">
-               </Location>
-               <Location
-                  uuid = "F0D00FED-A266-48E5-9A53-26F3F11A48E9 - 4952a28e9362577c"
+                  uuid = "F0D00FED-A266-48E5-9A53-26F3F11A48E9 - 4952a28e93625713"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -109,8 +94,23 @@
                   urlString = "file:///Users/andrewshoben/Desktop/CRUMPET-iOS/Digitail/Digitail/ViewControllers/DigitailVC/DigitailVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "899"
-                  endingLineNumber = "899"
+                  startingLineNumber = "900"
+                  endingLineNumber = "900"
+                  offsetFromSymbolStart = "384">
+               </Location>
+               <Location
+                  uuid = "F0D00FED-A266-48E5-9A53-26F3F11A48E9 - 4952a28e93625713"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CRUMPET.DigitailVC.actionConnectEarGear(__C.UIButton) -&gt; ()"
+                  moduleName = "CRUMPET"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrewshoben/Desktop/CRUMPET-iOS/Digitail/Digitail/ViewControllers/DigitailVC/DigitailVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "900"
+                  endingLineNumber = "900"
                   offsetFromSymbolStart = "84">
                </Location>
             </Locations>

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4910C51EBDB596C712F7080E /* Pods_CRUMPET.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 169748CE981B2F664271FCC9 /* Pods_CRUMPET.framework */; };
 		4D554C722B515DC1007EA9AF /* serviceMetaMinitail.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4D554C712B515DC1007EA9AF /* serviceMetaMinitail.plist */; };
+		4D72C9002B593C0B000DC46E /* MiniTailMovesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D72C8FD2B593C0A000DC46E /* MiniTailMovesVC.swift */; };
+		4D72C9012B593C0B000DC46E /* tblCellMiniTailMoves.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D72C8FF2B593C0B000DC46E /* tblCellMiniTailMoves.swift */; };
 		4DC078252A8F475800F22D28 /* ContentSized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC078242A8F475800F22D28 /* ContentSized.swift */; };
 		4DC2F4412A96648A00C9C303 /* FlutterTailMovesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC2F43E2A96648A00C9C303 /* FlutterTailMovesVC.swift */; };
 		4DC2F4422A96648A00C9C303 /* tblCellFlutterTailMoves.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC2F4402A96648A00C9C303 /* tblCellFlutterTailMoves.swift */; };
@@ -107,6 +109,8 @@
 		40C8F173029F8985510A6819 /* Pods_DigitailTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DigitailTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AD82D4A462FC5B93DC20E14 /* Pods-CRUMPET.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CRUMPET.debug.xcconfig"; path = "Target Support Files/Pods-CRUMPET/Pods-CRUMPET.debug.xcconfig"; sourceTree = "<group>"; };
 		4D554C712B515DC1007EA9AF /* serviceMetaMinitail.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = serviceMetaMinitail.plist; sourceTree = "<group>"; };
+		4D72C8FD2B593C0A000DC46E /* MiniTailMovesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniTailMovesVC.swift; sourceTree = "<group>"; };
+		4D72C8FF2B593C0B000DC46E /* tblCellMiniTailMoves.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tblCellMiniTailMoves.swift; sourceTree = "<group>"; };
 		4DC078242A8F475800F22D28 /* ContentSized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSized.swift; sourceTree = "<group>"; };
 		4DC2F43E2A96648A00C9C303 /* FlutterTailMovesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlutterTailMovesVC.swift; sourceTree = "<group>"; };
 		4DC2F4402A96648A00C9C303 /* tblCellFlutterTailMoves.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tblCellFlutterTailMoves.swift; sourceTree = "<group>"; };
@@ -227,6 +231,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D72C8FC2B593BE0000DC46E /* Minitail Moves */ = {
+			isa = PBXGroup;
+			children = (
+				4D72C8FE2B593C0B000DC46E /* TableViewCell */,
+				4D72C8FD2B593C0A000DC46E /* MiniTailMovesVC.swift */,
+			);
+			path = "Minitail Moves";
+			sourceTree = "<group>";
+		};
+		4D72C8FE2B593C0B000DC46E /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				4D72C8FF2B593C0B000DC46E /* tblCellMiniTailMoves.swift */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
 		4DC2F43D2A96648A00C9C303 /* Flutterwings Tail Moves */ = {
 			isa = PBXGroup;
 			children = (
@@ -392,6 +413,7 @@
 				A06BBA6822C63F8600F69F17 /* Settings */,
 				A06BBA6022C60E5800F69F17 /* Casual Mode Settings */,
 				A006DA5B22BCF2D8008DDEC1 /* SideMenuVC */,
+				4D72C8FC2B593BE0000DC46E /* Minitail Moves */,
 				4DC2F43D2A96648A00C9C303 /* Flutterwings Tail Moves */,
 				A093B88422AF6908002BA8FB /* Tail Moves */,
 				A0C629ED22AE66620036A20C /* DigitailVC */,
@@ -924,6 +946,8 @@
 				4DC2F4412A96648A00C9C303 /* FlutterTailMovesVC.swift in Sources */,
 				A0C629FC22AE67380036A20C /* Commands.swift in Sources */,
 				A093759F22CCBAC600C278DE /* TblCellGlowTips.swift in Sources */,
+				4D72C9002B593C0B000DC46E /* MiniTailMovesVC.swift in Sources */,
+				4D72C9012B593C0B000DC46E /* tblCellMiniTailMoves.swift in Sources */,
 				A006DA5D22BCF308008DDEC1 /* SideMenuVC.swift in Sources */,
 				FF606EE725F0D8BA00D36BF9 /* TblVw_FastAndExited_Cell.swift in Sources */,
 				A0E5CDAE237179F200EA438C /* Utilities.swift in Sources */,
@@ -1183,7 +1207,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.17;
+				MARKETING_VERSION = 5.18.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Digitail.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1209,7 +1233,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.17;
+				MARKETING_VERSION = 5.18.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Digitail.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";

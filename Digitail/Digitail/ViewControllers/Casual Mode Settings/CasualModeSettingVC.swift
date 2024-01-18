@@ -183,7 +183,7 @@ class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataS
     
     @IBAction func SendToTail_Clicked(_ sender: UIButton) {
       
-        if AppDelegate_.casualONDigitail || AppDelegate_.casualONEarGear { // already on
+        if AppDelegate_.casualONDigitail || AppDelegate_.casualONEarGear || AppDelegate_.casualONFlutter || AppDelegate_.casualONMinitail { // already on
             
             if AppDelegate_.casualONDigitail {
                 print("Maulik- Casual mode in digitail is on and need to off now")
@@ -214,6 +214,35 @@ class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataS
                 
             }
             
+            if AppDelegate_.casualONFlutter {
+                print("Maulik- Casual mode in digitail is on and need to off now")
+                AppDelegate_.casualONFlutter = false
+                for connectedDevices in AppDelegate_.tempFlutterDeviceActor {
+                    let deviceActor = connectedDevices
+                    
+                    if ((deviceActor.isDeviceIsReady) && (deviceActor.isConnected())) {
+                        let tailMoveString = kAutoModeStopAutoCommand
+                        let data = Data(tailMoveString.utf8)
+                        deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
+                    }
+                }
+                
+            }
+            
+            if AppDelegate_.casualONMinitail {
+                print("Maulik- Casual mode in digitail is on and need to off now")
+                AppDelegate_.casualONMinitail = false
+                for connectedDevices in AppDelegate_.tempFlutterDeviceActor {
+                    let deviceActor = connectedDevices
+                    
+                    if ((deviceActor.isDeviceIsReady) && (deviceActor.isConnected())) {
+                        let tailMoveString = kAutoModeStopAutoCommand
+                        let data = Data(tailMoveString.utf8)
+                        deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
+                    }
+                }
+                
+            }
             btnSendToTail.setTitle(kStartCasualMode, for: .normal)
             
         } else { // start
@@ -272,6 +301,75 @@ class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataS
                 }
             }
             
+            for connectedDevices in AppDelegate_.tempFlutterDeviceActor {
+                let deviceActor = connectedDevices
+                
+                if (deviceActor.isDeviceIsReady) && (deviceActor.isConnected()) {
+                    btnSendToTail.setTitle(kSendToEargear, for: .normal)
+                    sender.tag = 1
+                    AppDelegate_.casualONFlutter = true
+                    let minTime = "T\(Int(viewRangeSlider.selectedMinValue)) "//T18
+                    let MaxTime = "T\(Int(viewRangeSlider.selectedMaxValue)) "//T200
+                    //  let totalduration = "T\(Int((viewRangeSlider.selectedMaxValue)/60))"
+                    let totalduration = "T240"
+                    var tailMoveString : String!
+                    var timeString : String!
+                    tailMoveString = "AUTOMODE"
+                    // tailMoveString = "AUTOMOVE \(minTime)\(MaxTime)\(totalduration)"
+                    timeString = " \(minTime)\(MaxTime)\(totalduration)"
+
+                    for selectedGroup in arrSelectedMode {
+                        if let modeIndex = arrCasualMode.firstIndex(of: selectedGroup) {
+                            tailMoveString.append(contentsOf:  "G\(modeIndex+1) ")
+                        }
+                    }
+                    
+                    tailMoveString.append(contentsOf: timeString)
+                    print(tailMoveString!)
+                    let data = Data(tailMoveString!.utf8)
+                    deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
+                    //                } while dataSendCount < (data.count)
+//                    UIAlertController.alert(title:"", msg:"Casual mode on", target: self)
+                }
+                else{
+                    openErrorMsg(connectedDevice: deviceActor)
+                }
+            }
+            
+            for connectedDevices in AppDelegate_.tempMinitailDeviceActor {
+                let deviceActor = connectedDevices
+                
+                if (deviceActor.isDeviceIsReady) && (deviceActor.isConnected()) {
+                    btnSendToTail.setTitle(kSendToEargear, for: .normal)
+                    sender.tag = 1
+                    AppDelegate_.casualONMinitail = true
+                    let minTime = "T\(Int(viewRangeSlider.selectedMinValue)) "//T18
+                    let MaxTime = "T\(Int(viewRangeSlider.selectedMaxValue)) "//T200
+                    //  let totalduration = "T\(Int((viewRangeSlider.selectedMaxValue)/60))"
+                    let totalduration = "T240"
+                    var tailMoveString : String!
+                    var timeString : String!
+                    tailMoveString = "AUTOMODE"
+                    // tailMoveString = "AUTOMOVE \(minTime)\(MaxTime)\(totalduration)"
+                    timeString = " \(minTime)\(MaxTime)\(totalduration)"
+
+                    for selectedGroup in arrSelectedMode {
+                        if let modeIndex = arrCasualMode.firstIndex(of: selectedGroup) {
+                            tailMoveString.append(contentsOf:  "G\(modeIndex+1) ")
+                        }
+                    }
+                    
+                    tailMoveString.append(contentsOf: timeString)
+                    print(tailMoveString!)
+                    let data = Data(tailMoveString!.utf8)
+                    deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
+                    //                } while dataSendCount < (data.count)
+//                    UIAlertController.alert(title:"", msg:"Casual mode on", target: self)
+                }
+                else{
+                    openErrorMsg(connectedDevice: deviceActor)
+                }
+            }
             btnSendToTail.setTitle(kStopCasualMode, for: .normal)
         }
     }

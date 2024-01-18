@@ -75,9 +75,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    var casualONMinital = false {
+    var casualONMinitail = false {
         didSet {
-            if !casualONMinital {
+            if !casualONMinitail {
                 casualWalkModeTimer?.invalidate()
                 casualWalkModeTimer = nil
                 duration = 0
@@ -189,13 +189,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if duration > 3600 {
             // stop casual or walkmode
-            if self.casualONDigitail || self.casualONEarGear || self.casualONFlutter || self.casualONMinital {
+            if self.casualONDigitail || self.casualONEarGear || self.casualONFlutter || self.casualONMinitail {
                 
                 
                 self.casualONDigitail = false
                 self.casualONEarGear = false
                 self.casualONFlutter = false
-                self.casualONMinital = false
+                self.casualONMinitail = false
                 
                 for connectedDevices in AppDelegate_.tempDigitailDeviceActor {
                     let deviceActor = connectedDevices

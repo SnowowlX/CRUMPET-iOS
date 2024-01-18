@@ -26,6 +26,7 @@ let kTiltStartCommand = "TILTMODE START"
 let kEndCasualCommand = "ENDCASUAL"
 let kAutoModeStopAutoCommand = "STOPAUTO"
 let kWalkModeOff = NSLocalizedString("kWalkModeOff", comment: "")
+let kWalkModeOn = NSLocalizedString("kWalkModeOn", comment: "")
 let kWalkMode = NSLocalizedString("kWalkMode", comment: "")
 let kCasualModeOff = NSLocalizedString("kCasualModeOff", comment: "")
 let kListenModeON = NSLocalizedString("kListenModeON", comment: "")
@@ -954,7 +955,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
     
     
     @IBAction func CasualMode_Clicked(_ sender: UIButton) {
-        if AppDelegate_.casualONDigitail || AppDelegate_.casualONEarGear || AppDelegate_.casualONFlutter || AppDelegate_.casualONMinital {
+        if AppDelegate_.casualONDigitail || AppDelegate_.casualONEarGear || AppDelegate_.casualONFlutter || AppDelegate_.casualONMinitail {
             if self.isEARGEARConnected() && AppDelegate_.casualONEarGear {
                 AppDelegate_.casualONEarGear = false
 //                let deviceActor = AppDelegate_.eargearDeviceActor
@@ -996,8 +997,8 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                 }
             }
             
-            if self.isMinitailConnected() && AppDelegate_.casualONMinital {
-                AppDelegate_.casualONMinital = false
+            if self.isMinitailConnected() && AppDelegate_.casualONMinitail {
+                AppDelegate_.casualONMinitail = false
 //                let deviceActor = AppDelegate_.digitailDeviceActor
                 
                 for connectedDevices in AppDelegate_.tempMinitailDeviceActor {
@@ -1135,13 +1136,13 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
     }
     
     @IBAction func MiniTailMoves_Clicked(_ sender: UIButton) {
-//        let tailMovesVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "FlutterTailMovesVC") as? FlutterTailMovesVC
-//        
-//        if self.isFlutterConnected() {
-//            self.navigationController?.pushViewController(tailMovesVC!, animated: true)
-//        } else {
-//            showAlert(title:  NSLocalizedString("kTitleConnect", comment: ""), msg: NSLocalizedString("kMsgConnect", comment: ""))
-//        }
+        let tailMovesVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "MiniTailMovesVC") as? MiniTailMovesVC
+        
+        if self.isMinitailConnected() {
+            self.navigationController?.pushViewController(tailMovesVC!, animated: true)
+        } else {
+            showAlert(title:  NSLocalizedString("kTitleConnect", comment: ""), msg: NSLocalizedString("kMsgConnect", comment: ""))
+        }
         
     }
     
@@ -1221,7 +1222,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                  CasualMode_Clicked(self.btnLookForTails)
                  break
              case kWalkModeTitle :
-                 actionWalkMode_Clicked(self.btnLookForTails)
+//                 actionWalkMode_Clicked(self.btnLookForTails)
                  break
              case kMovesFlutter:
                  FlutterTailMoves_Clicked(self.btnLookForTails)
@@ -1265,10 +1266,10 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                 if isWalkModeON {
                     cell.lblMenuName.text = kWalkModeOff
                 } else {
-                    cell.lblMenuName.text = kWalkMode
+                    cell.lblMenuName.text = kWalkModeOn
                 }
                 
-                if AppDelegate_.casualONDigitail || AppDelegate_.casualONFlutter || AppDelegate_.moveOn || AppDelegate_.casualONMinital {
+                if AppDelegate_.casualONDigitail || AppDelegate_.casualONFlutter || AppDelegate_.moveOn || AppDelegate_.casualONMinitail {
                     cell.isUserInteractionEnabled = false
                     cell.alpha = 0.5
                 } else {
@@ -1278,7 +1279,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                 
             }
             if arrMenuList[indexPath.row] == kCasualMode {
-                if AppDelegate_.casualONEarGear || AppDelegate_.casualONDigitail || AppDelegate_.casualONFlutter || AppDelegate_.casualONMinital {
+                if AppDelegate_.casualONEarGear || AppDelegate_.casualONDigitail || AppDelegate_.casualONFlutter || AppDelegate_.casualONMinitail {
                     cell.lblMenuName.text = kCasualModeOff
                 }
                 
@@ -1311,12 +1312,23 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                 cell.lblMenuName.text = isTiltModeON ? kTiltModeON : kTiltModeOFF
             }
             
+            if arrMenuList[indexPath.row] == kWalkMode {
+                cell.accessoryType = .none
+                
+                cell.modeSwitch.isHidden = false
+                cell.modeSwitch.isOn = isWalkModeON
+                cell.lblMenuName.text = isWalkModeON ? kWalkModeOn : kWalkModeOff
+            }
+            
             cell.changeMode = { [weak self] mode in
                 guard let self = self else { return }
                 if self.arrMenuList[indexPath.row] == kListenMode {
                     self.ListenMode_Clicked(self.btnLookForTails)
                 } else if self.arrMenuList[indexPath.row] == kTiltMode {
                     self.TiltMode_Clicked(self.btnLookForTails)
+                } else if self.arrMenuList[indexPath.row] == kWalkMode {
+                    self.actionWalkMode_Clicked(self.btnLookForTails)
+//                    self.TiltMode_Clicked(self.btnLookForTails)
                 }
             }
             
@@ -1628,7 +1640,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
             AppDelegate_.casualONDigitail = false
             AppDelegate_.casualONEarGear = false
             AppDelegate_.casualONFlutter = false
-            AppDelegate_.casualONMinital = false
+            AppDelegate_.casualONMinitail = false
             AppDelegate_.moveOn = false
             AppDelegate_.casualWalkModeTimer?.invalidate()
             AppDelegate_.duration = 0
