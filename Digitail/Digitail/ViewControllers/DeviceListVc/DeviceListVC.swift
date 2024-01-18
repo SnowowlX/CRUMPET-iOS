@@ -27,7 +27,7 @@ class DeviceListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         self.title = kConnectGear
         self.tblVw_Devicelist.reloadData()
        
-        connectAllButton.isHidden = AppDelegate_.tempDigitailPeripheral.count + AppDelegate_.tempeargearPeripheral.count + AppDelegate_.tempFlutterPeripheral.count == 0 + AppDelegate_.tempMinitailPeripheral.count
+        connectAllButton.isHidden = AppDelegate_.tempDigitailPeripheral.count + AppDelegate_.tempeargearPeripheral.count + AppDelegate_.tempFlutterPeripheral.count + AppDelegate_.tempMinitailPeripheral.count == 0
     }
     
     override func viewWillAppear(_ animated: Bool) {

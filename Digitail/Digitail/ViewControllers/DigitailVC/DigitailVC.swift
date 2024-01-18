@@ -190,7 +190,18 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
             }
             
             if (isDigitailAvailable && isEarGearAvailable && isFlutterAvailable && isMinitailAvailable) 
-                || (isDigitailAvailable && isEarGearAvailable && isFlutterAvailable) || (isEarGearAvailable && isFlutterAvailable && isMinitailAvailable) || (isDigitailAvailable && isFlutterAvailable && isMinitailAvailable) || (isDigitailAvailable && isEarGearAvailable && isMinitailAvailable) || (isDigitailAvailable && isEarGearAvailable) || (isEarGearAvailable && isFlutterAvailable) || (isDigitailAvailable && isFlutterAvailable) {
+                || (isDigitailAvailable && isEarGearAvailable && isFlutterAvailable)
+                || (isDigitailAvailable && isFlutterAvailable && isMinitailAvailable)
+                || (isDigitailAvailable && isEarGearAvailable && isMinitailAvailable)
+                || (isEarGearAvailable && isFlutterAvailable && isMinitailAvailable)
+                || (isDigitailAvailable && isEarGearAvailable)
+                || (isDigitailAvailable && isFlutterAvailable)
+                || (isDigitailAvailable && isMinitailAvailable)
+                || (isEarGearAvailable && isFlutterAvailable)
+                || (isEarGearAvailable && isMinitailAvailable)
+                || (isFlutterAvailable && isMinitailAvailable)
+                
+            {
                 self.lblGearFoundMessage.text = NSLocalizedString("kFoundGear", comment: "")
                 self.btnLookForTails.setTitle( NSLocalizedString("kShowGear", comment: ""), for: .normal)
             } else if AppDelegate_.tempDigitailPeripheral.count > 1 || AppDelegate_.tempeargearPeripheral.count > 1 || AppDelegate_.tempFlutterPeripheral.count > 1 || AppDelegate_.tempMinitailPeripheral.count > 1{
