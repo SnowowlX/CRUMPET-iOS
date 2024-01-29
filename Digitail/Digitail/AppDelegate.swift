@@ -24,19 +24,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var digitailDeviceActor: BLEActor?
     var eargearDeviceActor: BLEActor?
     var flutterDeviceActor: BLEActor?
-
+    var minitailDeviceActor: BLEActor?
+    
     var digitailPeripheral: DeviceModel?
     var eargearPeripheral: DeviceModel?
     var flutterPeripheral: DeviceModel?
-
+    var minitailPeripheral: DeviceModel?
+    
     var tempDigitailDeviceActor = [BLEActor]()
     var tempEargearDeviceActor = [BLEActor]()
     var tempFlutterDeviceActor = [BLEActor]()
-
+    var tempMinitailDeviceActor = [BLEActor]()
     
     var tempDigitailPeripheral = [DeviceModel]()
     var tempeargearPeripheral = [DeviceModel]()
     var tempFlutterPeripheral = [DeviceModel]()
+    var tempMinitailPeripheral = [DeviceModel]()
 
     var casualONDigitail = false {
         didSet {
@@ -58,6 +61,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var casualONFlutter = false {
         didSet {
             if !casualONFlutter {
+                casualWalkModeTimer?.invalidate()
+                casualWalkModeTimer = nil
+                duration = 0
+            } else {
+                // start timer
+                casualWalkModeTimer?.invalidate()
+                casualWalkModeTimer = nil
+                duration = 0
+                
+                casualWalkModeTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerCallback(_:)), userInfo: nil, repeats: true)
+            }
+        }
+    }
+    
+    var casualONMinitail = false {
+        didSet {
+            if !casualONMinitail {
                 casualWalkModeTimer?.invalidate()
                 casualWalkModeTimer = nil
                 duration = 0
@@ -169,12 +189,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if duration > 3600 {
             // stop casual or walkmode
-            if self.casualONDigitail || self.casualONEarGear || self.casualONFlutter {
+            if self.casualONDigitail || self.casualONEarGear || self.casualONFlutter || self.casualONMinitail {
                 
                 
                 self.casualONDigitail = false
                 self.casualONEarGear = false
                 self.casualONFlutter = false
+                self.casualONMinitail = false
                 
                 for connectedDevices in AppDelegate_.tempDigitailDeviceActor {
                     let deviceActor = connectedDevices
@@ -204,6 +225,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
                     }
                 }
+                
+                for connectedDevices in AppDelegate_.tempMinitailDeviceActor {
+                    let deviceActor = connectedDevices
+                    
+                    if ((deviceActor.isDeviceIsReady) && (deviceActor.isConnected())) {
+                        let tailMoveString = kAutoModeStopAutoCommand
+                        let data = Data(tailMoveString.utf8)
+                        deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
+                    }
+                }
+                
                 print("send refresh notification....")
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: kDeviceModeRefreshNotification), object: nil)
                 
@@ -274,6 +306,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
             
+            if self.tempMinitailPeripheral.count > 0 {
+                for peripharals in self.tempMinitailPeripheral {
+                    if peripheral.identifier.uuidString == peripharals.peripheral.identifier.uuidString {
+                        deviceName = peripharals.deviceName
+                        if deviceName.lowercased().contains("minitail") {
+                            type = .minitail
+                        }
+                    }
+                }
+            }
             
             if type == .digitail {
                 deviceActor = BLEActor(deviceState: [:], servicesMeta: DictFromFile(kServiceMeta), operationsMeta: DictFromFile(kCommandMeta))
@@ -289,6 +331,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             } else if type == .flutter {
                 deviceActor = BLEActor(deviceState: [:], servicesMeta: DictFromFile(kServiceMetaFlutter), operationsMeta: DictFromFile(kCommandMetaEarGear))
                 deviceActor.bleDeviceType = type
+            } else if type == .minitail {
+                deviceActor = BLEActor(deviceState: [:], servicesMeta: DictFromFile(kServiceMetaMinitail), operationsMeta: DictFromFile(kCommandMetaEarGear))
+                deviceActor.bleDeviceType = type
             }
             
             
@@ -300,6 +345,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             } else if type == .flutter {
                 self.flutterDeviceActor = deviceActor
                 self.tempFlutterDeviceActor.append(deviceActor)
+            } else if type == .minitail {
+                self.minitailDeviceActor = deviceActor
+                self.tempMinitailDeviceActor.append(deviceActor)
             } else {
                 self.eargearDeviceActor = deviceActor
                 self.tempEargearDeviceActor.append(deviceActor)
@@ -347,6 +395,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AppDelegate_.tempDigitailPeripheral.removeAll()
         AppDelegate_.tempeargearPeripheral.removeAll()
         AppDelegate_.tempFlutterPeripheral.removeAll()
+        AppDelegate_.tempMinitailPeripheral.removeAll()
         AppDelegate_.peripheralList.removeAll()
         AppDelegate_.centralManagerActor.centralManager?.stopScan()
         AppDelegate_.centralManagerActor.retrievePeripherals()
@@ -442,6 +491,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 AppDelegate_.tempFlutterPeripheral.append(device)
                 print("Multiple Digitail devices ::",AppDelegate_.tempFlutterPeripheral)
                 print("Multiple Digitail devices Count::",AppDelegate_.tempFlutterPeripheral.count)
+            }
+        } else if deviceName.lowercased().contains("minitail") {
+            var deviceNameToAssign = "Minitail"
+            
+            let device = DeviceModel.init(deviceNameToAssign, peripheral, RSSI)
+            AppDelegate_.minitailPeripheral = device
+            
+            let addedPeripharalsDevices = AppDelegate_.tempMinitailPeripheral.filter{ ($0.peripheral.identifier.uuidString.contains(device.peripheral.identifier.uuidString)) }
+            print("added Minitail Peripharals Devices",addedPeripharalsDevices)
+            
+            if addedPeripharalsDevices.count > 0 {
+                print("Minitail Device is already added or connected")
+            } else {
+                AppDelegate_.tempMinitailPeripheral.append(device)
+                print("Multiple Digitail devices ::",AppDelegate_.tempMinitailPeripheral)
+                print("Multiple Digitail devices Count::",AppDelegate_.tempMinitailPeripheral.count)
             }
         }
     }

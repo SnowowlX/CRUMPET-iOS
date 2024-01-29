@@ -27,7 +27,7 @@ class DeviceListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         self.title = kConnectGear
         self.tblVw_Devicelist.reloadData()
        
-        connectAllButton.isHidden = AppDelegate_.tempDigitailPeripheral.count + AppDelegate_.tempeargearPeripheral.count + AppDelegate_.tempFlutterPeripheral.count == 0
+        connectAllButton.isHidden = AppDelegate_.tempDigitailPeripheral.count + AppDelegate_.tempeargearPeripheral.count + AppDelegate_.tempFlutterPeripheral.count + AppDelegate_.tempMinitailPeripheral.count == 0
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,7 +39,7 @@ class DeviceListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     func startScan() {
         AppDelegate_.startScan()
         
-        if (AppDelegate_.digitailPeripheral == nil) || (AppDelegate_.eargearPeripheral == nil) || (AppDelegate_.flutterPeripheral == nil){
+        if (AppDelegate_.digitailPeripheral == nil) || (AppDelegate_.eargearPeripheral == nil) || (AppDelegate_.flutterPeripheral == nil) || (AppDelegate_.minitailPeripheral == nil) {
            AppDelegate_.isScanning = true
        }
         
@@ -68,11 +68,17 @@ class DeviceListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             }  else {
                 return 0
             }
+        }   else if section == 3 {
+            if AppDelegate_.tempMinitailPeripheral.count > 0 {
+                return AppDelegate_.tempMinitailPeripheral.count
+            }  else {
+                return 0
+            }
         }
         return 0
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -103,11 +109,24 @@ class DeviceListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             } else {
                 deviceListCell.btnConnect?.setTitle("Connect", for: .normal)
             }
-        }  else {
+        }  else if indexPath.section == 2{
+            // Flutter
             let objPeripharal:CBPeripheral = AppDelegate_.tempFlutterPeripheral[indexPath.row].peripheral
 
 //            deviceListCell.lblDeviceUuid.text = AppDelegate_.tempFlutterPeripheral[indexPath.row].peripheral.identifier.uuidString
             deviceListCell.lblDeviceName.text = AppDelegate_.tempFlutterPeripheral[indexPath.row].deviceName
+
+            if objPeripharal.state == .connected {
+                deviceListCell.btnConnect?.setTitle("DISCONNECT", for: .normal)
+            } else {
+                deviceListCell.btnConnect?.setTitle("Connect", for: .normal)
+            }
+        }  else {
+            // Minitail
+            let objPeripharal:CBPeripheral = AppDelegate_.tempMinitailPeripheral[indexPath.row].peripheral
+
+//            deviceListCell.lblDeviceUuid.text = AppDelegate_.tempFlutterPeripheral[indexPath.row].peripheral.identifier.uuidString
+            deviceListCell.lblDeviceName.text = AppDelegate_.tempMinitailPeripheral[indexPath.row].deviceName
 
             if objPeripharal.state == .connected {
                 deviceListCell.btnConnect?.setTitle("DISCONNECT", for: .normal)
@@ -141,6 +160,12 @@ class DeviceListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
                 }
             }
             
+            for eargear in AppDelegate_.tempMinitailPeripheral {
+                if eargear.peripheral.state == .disconnected {
+                    connectDevice(device: eargear)
+                }
+            }
+            
             connectAllButton.setTitle("Disconnect All", for: .normal)
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: { [weak self] in
@@ -164,6 +189,12 @@ class DeviceListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             }
             
             for digital in AppDelegate_.tempFlutterPeripheral {
+                if digital.peripheral.state == .connected {
+                    AppDelegate_.centralManagerActor.centralManager?.cancelPeripheralConnection(digital.peripheral)
+                }
+            }
+            
+            for digital in AppDelegate_.tempMinitailPeripheral {
                 if digital.peripheral.state == .connected {
                     AppDelegate_.centralManagerActor.centralManager?.cancelPeripheralConnection(digital.peripheral)
                 }
@@ -222,13 +253,31 @@ class DeviceListVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
                         connectDevice(device: selectedPeripharalEargear)
                     }
                 }
-            } else {
+            } else if indexPath?.section == 2 {
                 let selectedPeripharal = AppDelegate_.tempFlutterPeripheral[sender.tag]
                 if selectedPeripharal.peripheral == nil {
                     AppDelegate_.isScanning = true
                     self.startScan()
                 } else {
                     let objPeripharal:CBPeripheral = AppDelegate_.tempFlutterPeripheral[sender.tag].peripheral
+                    if objPeripharal.state == .connected {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            AppDelegate_.centralManagerActor.centralManager?.cancelPeripheralConnection(objPeripharal)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                self.tblVw_Devicelist.reloadData()
+                            }
+                        }
+                    } else {
+                        connectDevice(device: selectedPeripharal)
+                    }
+                }
+            }  else {
+                let selectedPeripharal = AppDelegate_.tempMinitailPeripheral[sender.tag]
+                if selectedPeripharal.peripheral == nil {
+                    AppDelegate_.isScanning = true
+                    self.startScan()
+                } else {
+                    let objPeripharal:CBPeripheral = AppDelegate_.tempMinitailPeripheral[sender.tag].peripheral
                     if objPeripharal.state == .connected {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                             AppDelegate_.centralManagerActor.centralManager?.cancelPeripheralConnection(objPeripharal)

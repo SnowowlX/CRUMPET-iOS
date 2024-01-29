@@ -51,6 +51,7 @@ let kCommandMetaEarGear = "commandMetaEarGear.plist"
 
 let kServiceMetaMitail = "serviceMetaMitail.plist"
 let kServiceMetaFlutter = "serviceMetaFlutter.plist"
+let kServiceMetaMinitail = "serviceMetaMinitail.plist"
 
 enum kValueTransformDirection : Int {
     case In = 0
@@ -62,6 +63,7 @@ enum BLEDeviceType {
     case mitail
     case eg2
     case flutter
+    case minitail
 }
 
 extension CBPeripheral {
@@ -284,7 +286,7 @@ class CentralManagerActor: NSObject,CBCentralManagerDelegate {
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         if advertisementData["kCBAdvDataLocalName"] != nil {
             let deviceName = advertisementData["kCBAdvDataLocalName"] as! String
-            if deviceName.contains("(!)Tail1") ||  deviceName.lowercased().contains("eargear") || deviceName.lowercased().contains("mitail") || deviceName.lowercased().contains("eg2") || deviceName.lowercased().contains("flutter") {
+            if deviceName.contains("(!)Tail1") ||  deviceName.lowercased().contains("eargear") || deviceName.lowercased().contains("mitail") || deviceName.lowercased().contains("eg2") || deviceName.lowercased().contains("flutter") || deviceName.lowercased().contains("minitail"){
                 NSLog(deviceName)
                 NSLog("------------------------------------------------------------------")
                 NSLog("\ndidDiscover {peripheral : \(peripheral) advertisementData: \(advertisementData), Rssi : \(RSSI)}")
@@ -411,6 +413,8 @@ class BLEActor: NSObject {
                 state[Constants.kDeviceName] = "EARGEAR"
             } else if peripheral.name!.lowercased().contains("flutter") {
                 state[Constants.kDeviceName] = "FlutterWings"
+            } else if peripheral.name!.lowercased().contains("minitail") {
+                state[Constants.kDeviceName] = "MiTail Mini"
             }
         }
         if peripheral.state == .connected {

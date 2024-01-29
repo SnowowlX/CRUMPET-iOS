@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>3af2108b-d066-42da-a7d4-55648fa0a9b6</key>
+	<dict>
+		<key>c6612b64-0087-4974-939e-68968ef294b0</key>
+		<dict>
+			<key>name</key>
+			<string>readData</string>
+			<key>isObservable</key>
+			<true/>
+			<key>type</key>
+			<string>data</string>
+		</dict>
+		<key>5bfd6484-ddee-4723-bfe6-b653372bbfd6</key>
+		<dict>
+			<key>name</key>
+			<string>writeData</string>
+			<key>isObservable</key>
+			<true/>
+			<key>type</key>
+			<string>data</string>
+		</dict>
+	</dict>
+	<key>180f</key>
+	<dict>
+		<key>2a19</key>
+		<dict>
+			<key>name</key>
+			<string>batteryLevel</string>
+			<key>isObservable</key>
+			<true/>
+			<key>type</key>
+			<string>data</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
