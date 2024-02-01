@@ -14,8 +14,10 @@
 "kCancel" = "Cancel";
 "kFirmwareUpgrade" = "MiTail Firmware Update";
 "kEG2FirmwareUpgrade" = "EarGear Firmware Update";
+"kFlutterFirmwareUpgrade" = "Flutter Firmware Update";
 "kFirmwareUpgradeDecription" = "Before updating your tail, please make sure it is connected to the power, and that your phone has more than 50 percent battery. When you're ready, click Start below";
 "kEG2FirmwareUpgradeDecription" = "Before updating your gear, please make sure it is connected to the power, and that your phone has more than 50 percent battery. When you're ready, click Start below";
+"kFlutterFirmwareUpgradeDecription" = "Before updating your gear, please make sure it is connected to the power, and that your phone has more than 50 percent battery. When you're ready, click Start below";
 "kStart" = "Start";
 "kCurrentFirmwareVersion" = "Current Firmware Version";
 "kNewVersionAvailable" = "New Version Available";
@@ -150,12 +152,14 @@
 "kDigitalInstruction" = "DIGITAiL instructions";
 "kMitailInstructions" = "MiTail instructions";
 "kEarGearInstructions" = "EarGear instructions";
+"kFlutterInstructions" = "FlutterWings instructions";
 "KGearNames" = "Gear Names";
 "kGearStored" = "To make the app forget any gear names you may have stored, click this button.";
 "kForgetGearNames" = "Forget Gear Names";
 "kFaikTail" = "Fake Tail";
 "kConnectedMiTail" = "To upgrade the firmware of your connected MiTail please click this button.";
 "kConnectedEG2" = "To upgrade the firmware of your connected EarGear please click this button.";
+"kConnectedFlutter" = "To upgrade the firmware of your connected Flutter please click this button.";
 "kReconnectAutomatically" = "Reconnect Automatically";
 "kCalmAndRelaxed" = "Calm and Relaxed";
 "kFastAndExcited" = "Fast and Excited";
@@ -205,7 +209,7 @@
 "kListenENDCommand" = "ENDLISTEN";
 "kTiltStartCommand" = "TILTMODE START";
 "kTiltENDCommand" = "ENDTILTMODE";
-"kCasualModeOff" = "Casual Off";
+"kCasualModeOff" = "Casual OFF";
 "kCasualMode" = "Casual Mode";
 "kEndCasualCommand" = "ENDCASUAL";
 "kShutDownCommand" = "SHUTDOWN";
@@ -213,7 +217,7 @@
 "kWalkModeDate" = "WalkModeDate";
 "kWalkModeStart" = "TAILS1";
 "kWalkModeStop" = "TAILHM";
-"kWalkModeOff" = "Walk Mode Off";
+"kWalkModeOff" = "Walk Mode OFF";
 "kWalkModeOn" = "Walk Mode On";
 "kWalkMode" = "Walk Mode";
 "kVersionCommand" = "VERA";

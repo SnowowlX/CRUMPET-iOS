@@ -1535,7 +1535,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="736"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RpH-Ax-HVl">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="835.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7jV-Pm-E6d">
                                                 <rect key="frame" x="20" y="25" width="280" height="295"/>
@@ -1556,7 +1556,7 @@
                                                         <rect key="frame" x="10" y="109" width="260" height="176"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mlw-B3-P6C">
-                                                                <rect key="frame" x="0.0" y="0.0" width="260" height="41"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="260" height="32"/>
                                                                 <color key="backgroundColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                 <state key="normal" title="MiTail instructions">
@@ -1567,7 +1567,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJ7-BU-mtC">
-                                                                <rect key="frame" x="0.0" y="45" width="260" height="41"/>
+                                                                <rect key="frame" x="0.0" y="36" width="260" height="32"/>
                                                                 <color key="backgroundColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                 <state key="normal" title="EarGear instructions">
@@ -1578,7 +1578,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IBL-Od-7Ez">
-                                                                <rect key="frame" x="0.0" y="90" width="260" height="41"/>
+                                                                <rect key="frame" x="0.0" y="72" width="260" height="32"/>
                                                                 <color key="backgroundColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                 <state key="normal" title="DIGITAiL instructions">
@@ -1588,8 +1588,19 @@
                                                                     <action selector="actionDigitail:" destination="xu2-uL-Uzq" eventType="touchUpInside" id="J0E-0I-fTf"/>
                                                                 </connections>
                                                             </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2p6-WX-EKu">
+                                                                <rect key="frame" x="0.0" y="108" width="260" height="32"/>
+                                                                <color key="backgroundColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                <state key="normal" title="FlutterWings instructions">
+                                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="actionFlutter:" destination="xu2-uL-Uzq" eventType="touchUpInside" id="wDY-Y6-Q6S"/>
+                                                                </connections>
+                                                            </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kpK-4U-3CQ">
-                                                                <rect key="frame" x="0.0" y="135" width="260" height="41"/>
+                                                                <rect key="frame" x="0.0" y="144" width="260" height="32"/>
                                                                 <color key="backgroundColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                 <state key="normal" title="Responsible Wagging Guide">
@@ -1866,6 +1877,56 @@
                                                     <constraint firstItem="3Db-CJ-s8W" firstAttribute="top" secondItem="G7d-qw-buT" secondAttribute="bottom" constant="10" id="tPO-y7-Ebp"/>
                                                 </constraints>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SF8-Pf-uxs">
+                                                <rect key="frame" x="20" y="665.5" width="280" height="160"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="EarGear Firmware Update" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFL-xA-sUp">
+                                                        <rect key="frame" x="10" y="10" width="196" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To upgrade the firmware of your connected EarGear please click this button." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EDd-RU-nPT">
+                                                        <rect key="frame" x="7" y="40.5" width="263" height="70"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ynw-TY-IOI">
+                                                        <rect key="frame" x="7" y="120.5" width="266" height="30"/>
+                                                        <color key="backgroundColor" red="0.83921568629999999" green="0.84313725490000002" blue="0.84313725490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="Ynw-TY-IOI" secondAttribute="height" multiplier="134:15" id="tX0-QY-dAy"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <state key="normal" title="Firmware Upgrade">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="3"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="actionFlutterFirmwareUpgrade:" destination="xu2-uL-Uzq" eventType="touchUpInside" id="NNY-ji-Oo2"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="EDd-RU-nPT" firstAttribute="leading" secondItem="SF8-Pf-uxs" secondAttribute="leading" constant="7" id="2sr-Yn-heO"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="160" id="Cns-En-EbZ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="EDd-RU-nPT" secondAttribute="trailing" constant="10" id="F4t-JQ-Auc"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Ynw-TY-IOI" secondAttribute="bottom" constant="9.5" id="JGe-wQ-IDd"/>
+                                                    <constraint firstAttribute="height" constant="160" id="Mql-O7-4CQ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Ynw-TY-IOI" secondAttribute="trailing" constant="7" id="UAR-C7-Sf7"/>
+                                                    <constraint firstItem="Ynw-TY-IOI" firstAttribute="top" secondItem="EDd-RU-nPT" secondAttribute="bottom" constant="10" id="Wb9-WL-Ghh"/>
+                                                    <constraint firstItem="EDd-RU-nPT" firstAttribute="top" secondItem="IFL-xA-sUp" secondAttribute="bottom" constant="10" id="X9q-k9-eCk"/>
+                                                    <constraint firstItem="Ynw-TY-IOI" firstAttribute="leading" secondItem="SF8-Pf-uxs" secondAttribute="leading" constant="7" id="a31-u3-duf"/>
+                                                    <constraint firstItem="IFL-xA-sUp" firstAttribute="leading" secondItem="SF8-Pf-uxs" secondAttribute="leading" constant="10" id="izM-gd-qbi"/>
+                                                    <constraint firstItem="IFL-xA-sUp" firstAttribute="top" secondItem="SF8-Pf-uxs" secondAttribute="top" constant="10" id="yNc-Ro-PZ3"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -1876,10 +1937,11 @@
                                             <constraint firstItem="xxy-tF-JK2" firstAttribute="top" secondItem="7jV-Pm-E6d" secondAttribute="bottom" constant="20" id="Br6-uo-u7l"/>
                                             <constraint firstItem="xxy-tF-JK2" firstAttribute="centerX" secondItem="7jV-Pm-E6d" secondAttribute="centerX" id="C5M-rh-Hkk"/>
                                             <constraint firstItem="wgp-zY-uh9" firstAttribute="top" secondItem="gKt-M2-EAQ" secondAttribute="bottom" constant="8.5" id="CPo-rL-WUE"/>
+                                            <constraint firstAttribute="bottom" secondItem="SF8-Pf-uxs" secondAttribute="bottom" constant="10" id="D4q-cF-P2D"/>
                                             <constraint firstItem="7jV-Pm-E6d" firstAttribute="top" secondItem="RpH-Ax-HVl" secondAttribute="top" constant="25" id="KUg-tj-zmV"/>
                                             <constraint firstAttribute="trailing" secondItem="7jV-Pm-E6d" secondAttribute="trailing" constant="20" id="Pgp-ae-Vjp"/>
-                                            <constraint firstAttribute="bottom" secondItem="wgp-zY-uh9" secondAttribute="bottom" constant="10" id="Vg4-cb-N7e"/>
                                             <constraint firstItem="7jV-Pm-E6d" firstAttribute="centerX" secondItem="RpH-Ax-HVl" secondAttribute="centerX" id="XTs-xO-3uQ"/>
+                                            <constraint firstItem="SF8-Pf-uxs" firstAttribute="leading" secondItem="gKt-M2-EAQ" secondAttribute="leading" id="Xcp-oq-N1z"/>
                                             <constraint firstItem="wgp-zY-uh9" firstAttribute="trailing" secondItem="gKt-M2-EAQ" secondAttribute="trailing" id="YbE-6x-aRj"/>
                                             <constraint firstAttribute="trailing" secondItem="rgj-IV-ibD" secondAttribute="trailing" constant="17" id="ZZ1-hl-a2A"/>
                                             <constraint firstItem="rgj-IV-ibD" firstAttribute="top" secondItem="QPc-Q8-0Mx" secondAttribute="bottom" constant="15" id="aGb-Vj-8xi"/>
@@ -1888,8 +1950,10 @@
                                             <constraint firstItem="gKt-M2-EAQ" firstAttribute="leading" secondItem="RpH-Ax-HVl" secondAttribute="leading" constant="20" symbolic="YES" id="daL-9x-iqC"/>
                                             <constraint firstItem="xxy-tF-JK2" firstAttribute="leading" secondItem="RpH-Ax-HVl" secondAttribute="leading" constant="18" id="djl-x0-PwQ"/>
                                             <constraint firstAttribute="trailing" secondItem="gKt-M2-EAQ" secondAttribute="trailing" constant="20" symbolic="YES" id="fTj-a0-T1r"/>
+                                            <constraint firstItem="SF8-Pf-uxs" firstAttribute="trailing" secondItem="gKt-M2-EAQ" secondAttribute="trailing" id="oJO-HG-EH7"/>
                                             <constraint firstItem="QPc-Q8-0Mx" firstAttribute="top" secondItem="7jV-Pm-E6d" secondAttribute="bottom" constant="25" id="rw6-qs-s3m"/>
                                             <constraint firstAttribute="trailing" secondItem="QPc-Q8-0Mx" secondAttribute="trailing" constant="20" id="vOz-7B-27m"/>
+                                            <constraint firstItem="SF8-Pf-uxs" firstAttribute="top" secondItem="wgp-zY-uh9" secondAttribute="bottom" constant="8.5" id="yYf-Ap-qmA"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1930,11 +1994,14 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <size key="freeformSize" width="320" height="800"/>
                     <connections>
+                        <outlet property="FlutterFWViewTopConstraint" destination="yYf-Ap-qmA" id="208-Wq-iYJ"/>
                         <outlet property="btnCheckBox" destination="D4L-RI-B2L" id="cVJ-KC-ebT"/>
                         <outlet property="btnDigitalInstructions" destination="IBL-Od-7Ez" id="cmG-MR-LrY"/>
                         <outlet property="btnEG2FirmwareUpgrade" destination="6Eq-Q0-QW6" id="c9z-Ky-r9s"/>
                         <outlet property="btnEarGearInstructions" destination="NJ7-BU-mtC" id="s7E-tQ-thy"/>
                         <outlet property="btnFirmwareUpgrade" destination="uJb-Er-mcY" id="VGt-Jo-vaP"/>
+                        <outlet property="btnFlutterFirmwareUpgrade" destination="Ynw-TY-IOI" id="mUp-xm-Oda"/>
+                        <outlet property="btnFlutterInstructions" destination="2p6-WX-EKu" id="3U0-H6-FwB"/>
                         <outlet property="btnForgetNames" destination="YMd-5z-YPQ" id="9UW-IJ-2ZQ"/>
                         <outlet property="btnMenu" destination="a5L-ic-pH7" id="KMI-8D-FYB"/>
                         <outlet property="btnMiTailInstructions" destination="mlw-B3-P6C" id="J2I-9z-K8S"/>
@@ -1943,6 +2010,8 @@
                         <outlet property="lblEG2FirmwareUpgradeInstructions" destination="3Db-CJ-s8W" id="1vk-F1-Bzd"/>
                         <outlet property="lblFirmwareUpgrade" destination="h3K-Yc-tLx" id="nYf-gD-2Z7"/>
                         <outlet property="lblFirmwareUpgradeInstuctions" destination="QiH-gF-5De" id="A6Q-qA-VeH"/>
+                        <outlet property="lblFlutterFirmwareUpgrade" destination="IFL-xA-sUp" id="fyK-VQ-e1Q"/>
+                        <outlet property="lblFlutterFirmwareUpgradeInstructions" destination="EDd-RU-nPT" id="AJG-Ji-p4O"/>
                         <outlet property="lblGearNameInstuctions" destination="sos-Yv-OGG" id="Hpa-a9-EW7"/>
                         <outlet property="lblGearNames" destination="e0T-bB-NEP" id="q4L-77-dhV"/>
                         <outlet property="lblInstructionsDetails" destination="k92-9g-8Kr" id="xMM-lI-COR"/>
@@ -1951,6 +2020,7 @@
                         <outlet property="viewEG2FirmwareUpgrade" destination="wgp-zY-uh9" id="Jkp-7u-TYz"/>
                         <outlet property="viewFailTails" destination="rgj-IV-ibD" id="2Bj-mr-6Fh"/>
                         <outlet property="viewFirmwareUpgrade" destination="gKt-M2-EAQ" id="Nzh-Op-TWo"/>
+                        <outlet property="viewFlutterFirmwareUpgrade" destination="SF8-Pf-uxs" id="rkF-Jf-uYH"/>
                         <outlet property="viewInstruction" destination="7jV-Pm-E6d" id="xCi-vG-hF3"/>
                         <outlet property="viewTailMoves" destination="QPc-Q8-0Mx" id="G1Y-VB-iz7"/>
                     </connections>
@@ -6335,6 +6405,11 @@
             <point key="canvasLocation" x="7176.8000000000002" y="739.88005997001505"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="mUB-6l-EaV">
+            <size key="intrinsicContentSize" width="-1" height="65"/>
+        </designable>
+    </designables>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
         <image name="1.4" width="25.5" height="25"/>

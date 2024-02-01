@@ -213,27 +213,35 @@ class FirmwareUpdateVC: UIViewController {
     //MARK:- TO GET LATEST FIRMWARE VERSION FROM SERVER -
     func getLatestFWVersionFromServer() -> String {
         
-        var strFirmwareUpgrade = "https://thetailcompany.com/fw/eargear" // default eargear url
-        if lblCurrentFwVersionNumber.text?.hasSuffix("b") == true {
-            strFirmwareUpgrade = "https://thetailcompany.com/fw/eargear-b"
-        }
+        
+        var strFirmwareUpgrade = ""
         if connectedDeviceActor.bleDeviceType == .mitail {
             strFirmwareUpgrade = "https://thetailcompany.com/fw/mitail"
+        } else if connectedDeviceActor.bleDeviceType == .eg2 {
+            var strFirmwareUpgrade = "https://thetailcompany.com/fw/eargear" // default eargear url
+            if lblCurrentFwVersionNumber.text?.hasSuffix("b") == true {
+                strFirmwareUpgrade = "https://thetailcompany.com/fw/eargear-b"
+            }
+        } else if connectedDeviceActor.bleDeviceType == .flutter {
+            strFirmwareUpgrade = "https://thetailcompany.com/fw/flutter"
         }
         
         var latestFWVersion : String = ""
         let myURLString = strFirmwareUpgrade
-        if let myURL = NSURL(string: myURLString) {
-            do {
-                let myHTMLString = try NSString(contentsOf: myURL as URL, encoding: String.Encoding.utf8.rawValue)
-                print("html \(myHTMLString)")
-                let dictionary = convertStringToDictionary(text: myHTMLString as String)
-                
-                latestFWVersion = dictionary?["version"] as! String
-                md5 = dictionary?["md5sum"] as! String
-                firmwareDownloadURL = dictionary?["url"] as! String
-            } catch {
-                print(error)
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            guard let weakSelf = self else { return }
+            if let myURL = NSURL(string: myURLString) {
+                do {
+                    let myHTMLString = try NSString(contentsOf: myURL as URL, encoding: String.Encoding.utf8.rawValue)
+                    print("html \(myHTMLString)")
+                    let dictionary = weakSelf.convertStringToDictionary(text: myHTMLString as String)
+                    
+                    latestFWVersion = dictionary?["version"] as! String
+                    weakSelf.md5 = dictionary?["md5sum"] as! String
+                    weakSelf.firmwareDownloadURL = dictionary?["url"] as! String
+                } catch {
+                    print(error)
+                }
             }
         }
         return latestFWVersion
@@ -294,6 +302,12 @@ class FirmwareUpdateVC: UIViewController {
             //DOWNLOAD FIRMWARE FROM SERVER
             if connectedDeviceActor.bleDeviceType == .eg2 {
                 openAlert(title: NSLocalizedString("kEG2FirmwareUpgrade", comment: ""), message: NSLocalizedString("kEG2FirmwareUpgradeDecription", comment: ""), alertStyle: .alert, actionTitles: [NSLocalizedString("kStart", comment: ""),NSLocalizedString("kCancel", comment: "")], actionStyles: [.default,.cancel], actions:[{action in
+                                self.downloadLatestFWFromServer()
+                            },{cancel in
+                                
+                            }])
+            } else if connectedDeviceActor.bleDeviceType == .flutter {
+                openAlert(title: NSLocalizedString("kFlutterFirmwareUpgrade", comment: ""), message: NSLocalizedString("kFlutterFirmwareUpgradeDecription", comment: ""), alertStyle: .alert, actionTitles: [NSLocalizedString("kStart", comment: ""),NSLocalizedString("kCancel", comment: "")], actionStyles: [.default,.cancel], actions:[{action in
                                 self.downloadLatestFWFromServer()
                             },{cancel in
                                 

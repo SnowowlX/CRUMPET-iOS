@@ -18,6 +18,7 @@ class SettingVC: UIViewController {
     @IBOutlet var viewFailTails: UIView!
     @IBOutlet var viewFirmwareUpgrade: UIView!
     @IBOutlet weak var viewEG2FirmwareUpgrade: UIView!
+    @IBOutlet weak var viewFlutterFirmwareUpgrade: UIView!
     @IBOutlet var btnCheckBox: UIButton!
     @IBOutlet var btnMenu: UIButton!
     @IBOutlet weak var lblInstuctionsTitle: UILabel!
@@ -25,23 +26,34 @@ class SettingVC: UIViewController {
     @IBOutlet weak var btnDigitalInstructions: UIButton!
     @IBOutlet weak var btnMiTailInstructions: UIButton!
     @IBOutlet weak var btnEarGearInstructions: UIButton!
+    @IBOutlet weak var btnFlutterInstructions: UIButton!
     @IBOutlet weak var lblGearNames: UILabel!
     @IBOutlet weak var lblGearNameInstuctions: UILabel!
     
     @IBOutlet weak var lblFirmwareUpgrade: UILabel!
     @IBOutlet weak var lblEG2FirmwareUpgrade: UILabel!
+    @IBOutlet weak var lblFlutterFirmwareUpgrade: UILabel!
     @IBOutlet weak var btnForgetNames: UIButton!
     
     @IBOutlet weak var btnFirmwareUpgrade: UIButton!
-    @IBOutlet weak var btnEG2FirmwareUpgrade: UIButton!
-    @IBOutlet weak var lblFirmwareUpgradeInstuctions: UILabel!
-    @IBOutlet weak var lblEG2FirmwareUpgradeInstructions: UILabel!
     
+    @IBOutlet weak var lblFirmwareUpgradeInstuctions: UILabel!
+
+    @IBOutlet weak var btnEG2FirmwareUpgrade: UIButton!
+    @IBOutlet weak var lblEG2FirmwareUpgradeInstructions: UILabel!
     @IBOutlet weak var eg2FWViewTopConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var btnFlutterFirmwareUpgrade: UIButton!
+    @IBOutlet weak var lblFlutterFirmwareUpgradeInstructions: UILabel!
+    @IBOutlet weak var FlutterFWViewTopConstraint: NSLayoutConstraint!
+
     
     var latestTailFWVersion: Int = 0
     var latestEGFWVersion: Int = 0
     var latestEGFWVersionB: Int = 0
+    
+    var latestFlutterFWVersion: Int = 0
+
     
     //MARK: - View Life Cycle
     
@@ -53,6 +65,9 @@ class SettingVC: UIViewController {
     
     //MARK: - Custom Function
     func setUpMainUI(){
+        
+        btnDigitalInstructions.isHidden = true
+        
         btnMenu.layer.cornerRadius = 5.0
         viewInstruction.layer.shadowColor = UIColor.darkGray.cgColor
         viewInstruction.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
@@ -84,15 +99,23 @@ class SettingVC: UIViewController {
         viewEG2FirmwareUpgrade.layer.shadowRadius = 2.5
         viewEG2FirmwareUpgrade.layer.shadowOpacity = 0.5
         
+        viewFlutterFirmwareUpgrade.layer.shadowColor = UIColor.darkGray.cgColor
+        viewFlutterFirmwareUpgrade.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+        viewFlutterFirmwareUpgrade.layer.shadowRadius = 2.5
+        viewFlutterFirmwareUpgrade.layer.shadowOpacity = 0.5
+
+        
         viewFirmwareUpgrade.isHidden = true
         viewEG2FirmwareUpgrade.isHidden = true
-        
+        viewFlutterFirmwareUpgrade.isHidden = true
+
         DispatchQueue.global().async {
             self.latestTailFWVersion = self.getFirmwareVersionFrom(text: self.getLatestTailFWVersionFromServer())
             self.latestEGFWVersion = self.getFirmwareVersionFrom(text: self.getLatestEarGearFWVersionFromServer())
             self.latestEGFWVersionB = self.getFirmwareVersionFrom(text: self.getLatestEarGearFWVersionBFromServer())
-        
-            print("latest tail fw version = \(self.latestTailFWVersion), eg fw version = \(self.latestEGFWVersion), eg-b - \(self.latestEGFWVersionB)")
+            self.latestFlutterFWVersion = self.getFirmwareVersionFrom(text: self.getLatestFlutterFWVersionFromServer())
+
+            print("latest tail fw version = \(self.latestTailFWVersion), eg fw version = \(self.latestEGFWVersion), eg-b - \(self.latestEGFWVersionB), flutter fw version = \(self.latestFlutterFWVersion)")
             DispatchQueue.main.async {
                 self.checkFWVersions()
             }
@@ -101,6 +124,7 @@ class SettingVC: UIViewController {
     
     func checkFWVersions() {
         // check if tail connected
+        
         if let connectedMiTail = getConnectedMiTail() {
             // get current FW version
             if let currentFWVersion = connectedMiTail.state["FirmwareVersion"] as? String {
@@ -122,7 +146,7 @@ class SettingVC: UIViewController {
         // check if EG has connected
         if let connectedEG = getConnectedEG() {
             
-            if getConnectedMiTail() == nil {
+            if getConnectedMiTail() == nil{
                 eg2FWViewTopConstraint.constant = -151.5
             }
             
@@ -145,6 +169,29 @@ class SettingVC: UIViewController {
             }
         } else {
             viewEG2FirmwareUpgrade.isHidden = true
+        }
+        
+        // check if Flutter has connected
+        if let connectedFlutter = getConnectedFlutter() {
+            if getConnectedMiTail() == nil && getConnectedEG() == nil {
+                FlutterFWViewTopConstraint.constant = -303
+            }
+            
+            // get current FW version
+            if let currentFWVersion = connectedFlutter.state["FirmwareVersion"] as? String {
+                viewFlutterFirmwareUpgrade.isHidden = false
+                if getFirmwareVersionFrom(text: currentFWVersion.trimmingCharacters(in: .whitespaces)) == latestFlutterFWVersion {
+                    // already have the latest FW
+                    btnFlutterFirmwareUpgrade.isEnabled = false
+                    btnFlutterFirmwareUpgrade.alpha = 0.5
+                    lblFlutterFirmwareUpgradeInstructions.text = NSLocalizedString("kLatestFirmware", comment: "")
+                }
+            } else {
+                // can't get the current firmware version of connected MiTail device
+                
+            }
+        } else {
+            viewFlutterFirmwareUpgrade.isHidden = true
         }
     }
     
@@ -176,6 +223,20 @@ class SettingVC: UIViewController {
         return deviceActor
     }
     
+    func getConnectedFlutter() -> BLEActor? {
+        var deviceActor:BLEActor?
+        for connectedDevices in AppDelegate_.tempFlutterDeviceActor {
+            if ((connectedDevices.isDeviceIsReady) && ((connectedDevices.isConnected()))) {
+                if (connectedDevices.bleDeviceType == .flutter) {
+                    deviceActor = connectedDevices
+                    break
+                }
+            }
+        }
+        
+        return deviceActor
+    }
+    
     func setupLocalization() {
         self.title = NSLocalizedString("kSettings", comment: "")
         lblInstuctionsTitle.text = NSLocalizedString("kInstructions", comment: "")
@@ -183,15 +244,19 @@ class SettingVC: UIViewController {
         btnDigitalInstructions.setTitle(NSLocalizedString("kDigitalInstruction", comment: ""), for: .normal)
         btnMiTailInstructions.setTitle(NSLocalizedString("kMitailInstructions", comment: ""), for: .normal)
         btnEarGearInstructions.setTitle(NSLocalizedString("kEarGearInstructions", comment: ""), for: .normal)
+        btnFlutterInstructions.setTitle(NSLocalizedString("kFlutterInstructions", comment: ""), for: .normal)
         lblGearNames.text = NSLocalizedString("KGearNames", comment: "")
         lblGearNameInstuctions.text = NSLocalizedString("kGearStored", comment: "")
         lblFirmwareUpgrade.text = NSLocalizedString("kFirmwareUpgrade", comment: "")
         lblEG2FirmwareUpgrade.text = NSLocalizedString("kEG2FirmwareUpgrade", comment: "")
+        lblFlutterFirmwareUpgrade.text = NSLocalizedString("kFlutterFirmwareUpgrade", comment: "")
         btnForgetNames.setTitle(NSLocalizedString("kForgetGearNames", comment: ""), for: .normal)
         btnFirmwareUpgrade.setTitle(NSLocalizedString("kFirmwareUpgrade", comment: ""), for: .normal)
         btnEG2FirmwareUpgrade.setTitle(NSLocalizedString("kEG2FirmwareUpgrade", comment: ""), for: .normal)
+        btnFlutterFirmwareUpgrade.setTitle(NSLocalizedString("kFlutterFirmwareUpgrade", comment: ""), for: .normal)
         lblFirmwareUpgradeInstuctions.text = NSLocalizedString("kConnectedMiTail", comment: "")
         lblEG2FirmwareUpgradeInstructions.text = NSLocalizedString("kConnectedEG2", comment: "")
+        lblFlutterFirmwareUpgradeInstructions.text = NSLocalizedString("kConnectedFlutter", comment: "")
     }
     
     //MARK: - Actions
@@ -238,6 +303,13 @@ class SettingVC: UIViewController {
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "WebKitViewVC") as! WebKitViewVC
         vc.urlToLoad = "https://thetailcompany.com/eargear.pdf"
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func actionFlutter(_ sender: UIButton) {
+        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "WebKitViewVC") as! WebKitViewVC
+        vc.urlToLoad = "https://thetailcompany.com/flutterwings.pdf"
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -303,6 +375,24 @@ class SettingVC: UIViewController {
     func getLatestEarGearFWVersionFromServer() -> String {
         var latestFWVersion : String = ""
         let myURLString = "https://thetailcompany.com/fw/eargear"
+        if let myURL = NSURL(string: myURLString) {
+            do {
+                let myHTMLString = try NSString(contentsOf: myURL as URL, encoding: String.Encoding.utf8.rawValue)
+                print("html \(myHTMLString)")
+                let dictionary = convertStringToDictionary(text: myHTMLString as String)
+                
+                latestFWVersion = dictionary?["version"] as! String
+            } catch {
+                print(error)
+            }
+        }
+        return latestFWVersion
+    }
+
+    
+    func getLatestFlutterFWVersionFromServer() -> String {
+        var latestFWVersion : String = ""
+        let myURLString = "https://thetailcompany.com/fw/flutter"
         if let myURL = NSURL(string: myURLString) {
             do {
                 let myHTMLString = try NSString(contentsOf: myURL as URL, encoding: String.Encoding.utf8.rawValue)
@@ -397,4 +487,31 @@ class SettingVC: UIViewController {
         
     }
     
+    @IBAction func actionFlutterFirmwareUpgrade(_ sender: Any) {
+        /*
+        let alertController = UIAlertController(title: nil, message: "Coming soon", preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(defaultAction)
+        self.present(alertController, animated: true, completion: nil)
+        
+        return
+        */
+        var deviceActor:BLEActor?
+        for connectedDevices in AppDelegate_.tempFlutterDeviceActor {
+            if ((connectedDevices.isDeviceIsReady) && ((connectedDevices.isConnected()))) {
+                if (connectedDevices.bleDeviceType == .flutter) {
+                    deviceActor = connectedDevices
+                }
+            }
+        }
+        
+        if (deviceActor != nil) {
+            let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "FirmwareUpdateVC") as! FirmwareUpdateVC
+            vc.connectedDeviceActor = deviceActor
+            self.navigationController?.pushViewController(vc, animated: true)
+        } else {
+            showAlert(alertTitle: kTitleConnect, message: kMsgConnect, vc: self)
+        }
+    }
 }

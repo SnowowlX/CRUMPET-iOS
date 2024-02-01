@@ -48,7 +48,7 @@ let kMovesFlutter = NSLocalizedString("kMovesFlutter", comment: "")
 let kMovesMinitail = NSLocalizedString("kMovesMinitail", comment: "")
 let kGlowTips = NSLocalizedString("kGlowTipsTitle", comment: "")
 let kCasualMode = NSLocalizedString("kCasualMode", comment: "")
-let kWalkModeTitle = NSLocalizedString("kWalkMode", comment: "")
+//let kWalkModeTitle = NSLocalizedString("kWalkMode", comment: "")
 let kListenMode = NSLocalizedString("kListen Mode", comment: "")
 let kEarGearPoses = NSLocalizedString("kEarGearPoses", comment: "")
 let kTiltMode = NSLocalizedString("kTiltMode", comment: "")
@@ -99,7 +99,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
     var statusOfLocation = 0
     var glowTipRemoved = false
     
-    var generalMenuList = [kCasualMode, kWalkModeTitle]
+    var generalMenuList = [kCasualMode, kWalkMode]
     
     var mitailMenuList = [kMoves, kGlowTips]
     var earGearMenuList = [kEarGearPoses, kListenMode]
@@ -115,7 +115,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
 //    var arrAllList = [kMoves,kGlowTipsTitle,kEarGearPoses,kListenMode,kTiltMode,kCasualMode, kWalkModeTitle]
     
     var arrMenuList = [String]()
-    var arrMenuImages = [kMoves:"TailMoves",kGlowTipsTitle:"GlowTips",kCasualMode:"Casulal ModeSetting","Casual Mode Settings":"Settings",kWalkModeTitle:"movelist",kEarGearPoses:"TailMoves",kListenMode:"filter",kTiltMode:"filter", kMovesFlutter: "TailMoves", kMovesMinitail: "MinitailMoves"]
+    var arrMenuImages = [kMoves:"TailMoves",kGlowTipsTitle:"GlowTips",kCasualMode:"Casulal ModeSetting","Casual Mode Settings":"Settings",kWalkMode:"movelist",kEarGearPoses:"TailMoves",kListenMode:"filter",kTiltMode:"filter", kMovesFlutter: "TailMoves", kMovesMinitail: "MinitailMoves"]
     
     //MARK: - View Life Cycle -
     override func viewWillDisappear(_ animated: Bool) {
@@ -1232,7 +1232,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
              case "Casual Mode Settings" :
                  CasualMode_Clicked(self.btnLookForTails)
                  break
-             case kWalkModeTitle :
+             case kWalkMode :
 //                 actionWalkMode_Clicked(self.btnLookForTails)
                  break
              case kMovesFlutter:
@@ -1273,12 +1273,10 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
         if tableView == tblVwActions {
             let cell = tblVwActions.dequeueReusableCell(withIdentifier: "TblCellSideMenu", for: indexPath) as! TblCellSideMenu
             cell.lblMenuName.text = arrMenuList[indexPath.row]
-            if arrMenuList[indexPath.row] == kWalkModeTitle {
-                if isWalkModeON {
-                    cell.lblMenuName.text = kWalkModeOff
-                } else {
-                    cell.lblMenuName.text = kWalkModeOn
-                }
+            
+            cell.accessoryType = .disclosureIndicator
+            cell.modeSwitch.isHidden = true
+            if arrMenuList[indexPath.row] == kWalkMode {                
                 
                 if AppDelegate_.casualONDigitail || AppDelegate_.casualONFlutter || AppDelegate_.moveOn || AppDelegate_.casualONMinitail {
                     cell.isUserInteractionEnabled = false
@@ -1287,9 +1285,13 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                     cell.isUserInteractionEnabled = true
                     cell.alpha = 1.0
                 }
+                cell.accessoryType = .none
+                cell.modeSwitch.isHidden = false
+                cell.modeSwitch.isOn = isWalkModeON
+                cell.lblMenuName.text = isWalkModeON ? kWalkModeOn : kWalkModeOff
                 
             }
-            if arrMenuList[indexPath.row] == kCasualMode {
+            else if arrMenuList[indexPath.row] == kCasualMode {
                 if AppDelegate_.casualONEarGear || AppDelegate_.casualONDigitail || AppDelegate_.casualONFlutter || AppDelegate_.casualONMinitail {
                     cell.lblMenuName.text = kCasualModeOff
                 }
@@ -1302,33 +1304,27 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                     cell.alpha = 1.0
                 }
                 
-            }
-            
-            cell.accessoryType = .disclosureIndicator
-            cell.modeSwitch.isHidden = true
-            
-            if arrMenuList[indexPath.row] == kListenMode {
+            } else if arrMenuList[indexPath.row] == kListenMode {
                 cell.accessoryType = .none
                 
                 cell.modeSwitch.isHidden = false
                 cell.modeSwitch.isOn = isListenModeON
                 cell.lblMenuName.text = isListenModeON ? kListenModeON : kListenModeOFF
-            }
-            
-            if arrMenuList[indexPath.row] == kTiltMode {
+                
+                cell.isUserInteractionEnabled = true
+                cell.alpha = 1.0
+            } else if arrMenuList[indexPath.row] == kTiltMode {
                 cell.accessoryType = .none
                 
                 cell.modeSwitch.isHidden = false
                 cell.modeSwitch.isOn = isTiltModeON
                 cell.lblMenuName.text = isTiltModeON ? kTiltModeON : kTiltModeOFF
-            }
-            
-            if arrMenuList[indexPath.row] == kWalkMode {
-                cell.accessoryType = .none
                 
-                cell.modeSwitch.isHidden = false
-                cell.modeSwitch.isOn = isWalkModeON
-                cell.lblMenuName.text = isWalkModeON ? kWalkModeOn : kWalkModeOff
+                cell.isUserInteractionEnabled = true
+                cell.alpha = 1.0
+            }  else {
+                cell.isUserInteractionEnabled = true
+                cell.alpha = 1.0
             }
             
             cell.changeMode = { [weak self] mode in
@@ -1352,7 +1348,9 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
             
             if indexPath.section == 0 {
                //DIGITAil DEVICE LISTS AND BATTERY STATUS --
-               
+                guard AppDelegate_.tempDigitailDeviceActor.count > 0 else {
+                    return cell
+                }
                
                if AppDelegate_.tempDigitailDeviceActor[indexPath.row].peripheralActor == nil {
                    DispatchQueue.main.async {
@@ -1398,6 +1396,9 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
             } else if indexPath.section == 1 {
                //EARGEAR DEVICE LISTS AND BATTERY STATUS --
                
+                guard AppDelegate_.tempEargearDeviceActor.count > 0 else {
+                    return cell
+                }
                 
                if AppDelegate_.tempEargearDeviceActor[indexPath.row].peripheralActor == nil {
                    DispatchQueue.main.async {
@@ -1446,7 +1447,9 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
            } else if indexPath.section == 2 {
                //Flutter DEVICE LISTS AND BATTERY STATUS --
                
-               
+               guard AppDelegate_.tempFlutterDeviceActor.count > 0 else {
+                   return cell
+               }
                if AppDelegate_.tempFlutterDeviceActor[indexPath.row].peripheralActor == nil {
                    DispatchQueue.main.async {
                        cell.lblPercentage.text = ""
@@ -1490,7 +1493,9 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
            } else {
                //Minitail DEVICE LISTS AND BATTERY STATUS --
                
-               
+               guard AppDelegate_.tempMinitailDeviceActor.count > 0 else {
+                   return cell
+               }
                if AppDelegate_.tempMinitailDeviceActor[indexPath.row].peripheralActor == nil {
                    DispatchQueue.main.async {
                        cell.lblPercentage.text = ""
