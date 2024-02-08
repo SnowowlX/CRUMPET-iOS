@@ -1032,7 +1032,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
     }
     
     @IBAction func actionWalkMode_Clicked(_ sender: UIButton) {
-        if self.isDIGITAiLConnected() || self.isFlutterConnected() || self.isMinitailConnected() {
+        if self.isDIGITAiLConnected() || self.isFlutterConnected() || self.isMinitailConnected() || self.isEARGEAR2Connected() {
             if #available(iOS 14.0, *) {
                 if statusOfLocation == 3 {
                     if (isWalkModeON) {
@@ -1335,7 +1335,6 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                     self.TiltMode_Clicked(self.btnLookForTails)
                 } else if self.arrMenuList[indexPath.row] == kWalkMode {
                     self.actionWalkMode_Clicked(self.btnLookForTails)
-//                    self.TiltMode_Clicked(self.btnLookForTails)
                 }
             }
             
