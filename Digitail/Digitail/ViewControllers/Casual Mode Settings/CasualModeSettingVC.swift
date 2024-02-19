@@ -28,23 +28,36 @@ class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataS
     //MARK: - Outlets
     @IBOutlet var viewCasualModeCatDesc: UIView!
     @IBOutlet var tblViewCasualModeCategories: UITableView!
-    @IBOutlet var viewRangeSlider: RangeSeekSlider!
-    @IBOutlet var lblRangeSliderLowVal: UILabel!
-    @IBOutlet var lblRangeSliderUpperValue: UILabel!
+    @IBOutlet var btnValue1: UIButton!
+    @IBOutlet var btnValue2: UIButton!
+    @IBOutlet var btnValue3: UIButton!
+    
     @IBOutlet var btnMenu: UIButton!
     @IBOutlet var btnSendToTail: UIButton!
     
     var arrSelectedIndex =  [Int]()
-    let arrCasualMode = [kCalmAndRelaxed,kFastAndExcited,kFrustratedAndTense,kEarGearMoves]
+    let arrCasualMode = [kCalmAndRelaxed,kFastAndExcited,kFrustratedAndTense]
 
     var arrSelectedMode = [String]()
    
+    var minRangeValue : Int? = nil
+    var maxRangeValue : Int? = nil
+    
     //MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpMainUI()
         
         arrSelectedMode = UserDefaults.standard.stringArray(forKey: selectedKeys) ?? []
+        if arrSelectedMode.count == 0 || minRangeValue == nil || maxRangeValue == nil {
+            btnSendToTail.isUserInteractionEnabled = false
+            btnSendToTail.alpha = 0.5
+        } else {
+            btnSendToTail.isUserInteractionEnabled = true
+            btnSendToTail.alpha = 1.0
+        }
+        
+        tblViewCasualModeCategories.reloadData()
         
         RegisterForNote(#selector(self.refreshHome(_:)), kDeviceModeRefreshNotification, self)
         
@@ -72,6 +85,10 @@ class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataS
         btnSendToTail.setTitle(kSendToTail, for: .normal)
         btnMenu.layer.cornerRadius = 5.0
 
+        btnValue1.layer.cornerRadius = 5.0
+        btnValue2.layer.cornerRadius = 5.0
+        btnValue3.layer.cornerRadius = 5.0
+        
         tblViewCasualModeCategories.separatorInset = .zero
         tblViewCasualModeCategories.layoutMargins = .zero
         
@@ -81,10 +98,6 @@ class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataS
         viewCasualModeCatDesc.layer.shadowOpacity = 0.5
         
       
-        lblRangeSliderUpperValue.text = String(describing: viewRangeSlider.selectedMaxValue)
-        lblRangeSliderLowVal.text = String(describing: viewRangeSlider.selectedMinValue)
-        
-        viewRangeSlider.delegate = self
         //viewRangeSlider.max
     
         /*
@@ -141,6 +154,54 @@ class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataS
     }
     
      //MARK: - Actions
+    @IBAction func value1Clicked(_ sender: UIButton) {
+        btnValue1.backgroundColor = UIColor(red: 0.40, green: 0.49, blue: 0.54, alpha: 1.00)
+        btnValue2.backgroundColor = UIColor.lightGray
+        btnValue3.backgroundColor = UIColor.lightGray
+        minRangeValue = 20
+        maxRangeValue = 60
+        
+        if arrSelectedMode.count == 0 || minRangeValue == nil || maxRangeValue == nil {
+            btnSendToTail.isUserInteractionEnabled = false
+            btnSendToTail.alpha = 0.5
+        } else {
+            btnSendToTail.isUserInteractionEnabled = true
+            btnSendToTail.alpha = 1.0
+        }
+    }
+    
+    @IBAction func value2Clicked(_ sender: UIButton) {
+        btnValue2.backgroundColor = UIColor(red: 0.40, green: 0.49, blue: 0.54, alpha: 1.00)
+        btnValue1.backgroundColor = UIColor.lightGray
+        btnValue3.backgroundColor = UIColor.lightGray
+        minRangeValue = 15
+        maxRangeValue = 40
+        
+        if arrSelectedMode.count == 0 || minRangeValue == nil || maxRangeValue == nil {
+            btnSendToTail.isUserInteractionEnabled = false
+            btnSendToTail.alpha = 0.5
+        } else {
+            btnSendToTail.isUserInteractionEnabled = true
+            btnSendToTail.alpha = 1.0
+        }
+    }
+    
+    @IBAction func value3Clicked(_ sender: UIButton) {
+        btnValue3.backgroundColor = UIColor(red: 0.40, green: 0.49, blue: 0.54, alpha: 1.00)
+        btnValue1.backgroundColor = UIColor.lightGray
+        btnValue2.backgroundColor = UIColor.lightGray
+        minRangeValue = 10
+        maxRangeValue = 30
+        
+        if arrSelectedMode.count == 0 || minRangeValue == nil || maxRangeValue == nil {
+            btnSendToTail.isUserInteractionEnabled = false
+            btnSendToTail.alpha = 0.5
+        } else {
+            btnSendToTail.isUserInteractionEnabled = true
+            btnSendToTail.alpha = 1.0
+        }
+    }
+    
     @IBAction func Menu_Clicked(_ sender: UIButton) {
         present(SideMenuManager.default.leftMenuNavigationController!, animated: true, completion: nil)
     }
@@ -169,8 +230,8 @@ class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataS
 //                }
         
         UserDefaults.standard.set(arrSelectedMode, forKey: selectedKeys)
-
-        if arrSelectedMode.count == 0 {
+        
+        if arrSelectedMode.count == 0 || minRangeValue == nil || maxRangeValue == nil {
             btnSendToTail.isUserInteractionEnabled = false
             btnSendToTail.alpha = 0.5
         } else {
@@ -183,6 +244,10 @@ class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataS
     
     @IBAction func SendToTail_Clicked(_ sender: UIButton) {
       
+        guard let minValue = minRangeValue, let maxValue = maxRangeValue else {
+            return
+        }
+        
         if AppDelegate_.casualONDigitail || AppDelegate_.casualONEarGear || AppDelegate_.casualONFlutter || AppDelegate_.casualONMinitail { // already on
             
             if AppDelegate_.casualONDigitail {
@@ -253,8 +318,8 @@ class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataS
                     btnSendToTail.setTitle(kSendToTail, for: .normal)
                     AppDelegate_.casualONEarGear = true
                     sender.tag = 2
-                    let minTime = "T\(Int(viewRangeSlider.selectedMinValue))"
-                    let MaxTime = "T\(Int(viewRangeSlider.selectedMaxValue))"
+                    let minTime = "T\(Int(minValue))"
+                    let MaxTime = "T\(Int(maxValue))"
                     var eargearString = String()
                     var timeString : String?
                     eargearString = "CASUAL"
@@ -273,8 +338,8 @@ class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataS
                     btnSendToTail.setTitle(kSendToEargear, for: .normal)
                     sender.tag = 1
                     AppDelegate_.casualONDigitail = true
-                    let minTime = "T\(Int(viewRangeSlider.selectedMinValue)) "//T18
-                    let MaxTime = "T\(Int(viewRangeSlider.selectedMaxValue)) "//T200
+                    let minTime = "T\(Int(minValue)) "//T18
+                    let MaxTime = "T\(Int(maxValue)) "//T200
                     //  let totalduration = "T\(Int((viewRangeSlider.selectedMaxValue)/60))"
                     let totalduration = "T240"
                     var tailMoveString : String!
@@ -308,8 +373,8 @@ class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataS
                     btnSendToTail.setTitle(kSendToEargear, for: .normal)
                     sender.tag = 1
                     AppDelegate_.casualONFlutter = true
-                    let minTime = "T\(Int(viewRangeSlider.selectedMinValue)) "//T18
-                    let MaxTime = "T\(Int(viewRangeSlider.selectedMaxValue)) "//T200
+                    let minTime = "T\(Int(minValue)) "//T18
+                    let MaxTime = "T\(Int(maxValue)) "//T200
                     //  let totalduration = "T\(Int((viewRangeSlider.selectedMaxValue)/60))"
                     let totalduration = "T240"
                     var tailMoveString : String!
@@ -343,8 +408,8 @@ class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataS
                     btnSendToTail.setTitle(kSendToEargear, for: .normal)
                     sender.tag = 1
                     AppDelegate_.casualONMinitail = true
-                    let minTime = "T\(Int(viewRangeSlider.selectedMinValue)) "//T18
-                    let MaxTime = "T\(Int(viewRangeSlider.selectedMaxValue)) "//T200
+                    let minTime = "T\(Int(minValue)) "//T18
+                    let MaxTime = "T\(Int(maxValue)) "//T200
                     //  let totalduration = "T\(Int((viewRangeSlider.selectedMaxValue)/60))"
                     let totalduration = "T240"
                     var tailMoveString : String!
@@ -374,12 +439,6 @@ class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataS
         }
     }
     
-     func rangeSeekSlider(_ slider: RangeSeekSlider, didChange minValue: CGFloat, maxValue: CGFloat) {
-        let sliderLowerValue = Int((slider.selectedMinValue))
-        let sliderUpperValue = Int((slider.selectedMaxValue))
-        lblRangeSliderLowVal.text = "\(sliderLowerValue)"
-        lblRangeSliderUpperValue.text = "\(sliderUpperValue)"
-    }
     
     /*
     func sliderValueChanged(slider: NHRangeSlider?) {

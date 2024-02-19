@@ -81,7 +81,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
     @IBOutlet weak var tblVw_Devicelist: UITableView!
     
     @IBOutlet weak var lblSearchingForGear: UILabel!
-    @IBOutlet weak var jtSpinner: JTMaterialSpinner!
+    @IBOutlet weak var viewActivityIndicator: JTMaterialSpinner!
     
     @IBOutlet weak var btnLookForTails: UIButton!
     @IBOutlet weak var lblGearFoundMessage: UILabel!
@@ -163,9 +163,9 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
         self.lblSearchingForGear.text = NSLocalizedString("kSearchingForGear", comment: "")
         self.lblGearFoundMessage.text = NSLocalizedString("kNoneFoundYet", comment: "")
         self.btnLookForTails.isHidden = true
-        self.jtSpinner.beginRefreshing()
+        self.viewActivityIndicator.beginRefreshing()
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-            self.jtSpinner.endRefreshing()
+            self.viewActivityIndicator.endRefreshing()
             self.btnLookForTails.isHidden = false
             
             var isDigitailAvailable = false
@@ -1114,6 +1114,17 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
         
         if self.isMinitailConnected() {
             for connectedDevices in AppDelegate_.tempMinitailDeviceActor {
+                let deviceActor = connectedDevices
+                if ((deviceActor.isDeviceIsReady) && (deviceActor.isConnected())) {
+                    let tailMoveString = command
+                    let data = Data(tailMoveString.utf8)
+                    deviceActor.performCommand(Constants.kCommand_SendData, withParams:NSMutableDictionary.init(dictionary: [Constants.kCharacteristic_WriteData : [Constants.kData:data]]));
+                }
+            }
+        }
+        
+        if self.isEARGEAR2Connected() {
+            for connectedDevices in AppDelegate_.tempEargearDeviceActor {
                 let deviceActor = connectedDevices
                 if ((deviceActor.isDeviceIsReady) && (deviceActor.isConnected())) {
                     let tailMoveString = command
