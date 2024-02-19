@@ -1360,8 +1360,8 @@
                                     <action selector="Menu_Clicked:" destination="jfg-Li-hSB" eventType="touchUpInside" id="2P9-6k-5RL"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose the energy levels of your gear." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jK3-RB-rK7">
-                                <rect key="frame" x="7" y="364.5" width="361" height="16"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose the pause range between moves." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jK3-RB-rK7">
+                                <rect key="frame" x="7" y="355.5" width="361" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="wvP-jv-zHx"/>
                                 </constraints>
@@ -1370,13 +1370,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="099-Q0-qc7">
-                                <rect key="frame" x="33" y="399" width="309" height="34.5"/>
+                                <rect key="frame" x="33" y="387.5" width="309" height="34.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7JU-F8-EZ6">
                                         <rect key="frame" x="0.0" y="0.0" width="97.5" height="34"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Calm"/>
+                                        <state key="normal" title="Longer"/>
                                         <connections>
                                             <action selector="value1Clicked:" destination="jfg-Li-hSB" eventType="touchUpInside" id="jZq-K7-oAe"/>
                                         </connections>
@@ -1385,7 +1385,7 @@
                                         <rect key="frame" x="105.5" y="0.0" width="98" height="34"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Moderate"/>
+                                        <state key="normal" title="Medium"/>
                                         <connections>
                                             <action selector="value2Clicked:" destination="jfg-Li-hSB" eventType="touchUpInside" id="1Hb-lY-X5D"/>
                                         </connections>
@@ -1394,7 +1394,7 @@
                                         <rect key="frame" x="211.5" y="0.0" width="97.5" height="34"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Energetic"/>
+                                        <state key="normal" title="Shorter"/>
                                         <connections>
                                             <action selector="value3Clicked:" destination="jfg-Li-hSB" eventType="touchUpInside" id="6l6-dB-nZq"/>
                                         </connections>
@@ -1406,8 +1406,17 @@
                                     <constraint firstAttribute="height" constant="34.5" id="v6X-mx-Y9L"/>
                                 </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There will be a delay before your gear begins to move." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQ8-SE-S7f">
+                                <rect key="frame" x="16" y="438" width="343" height="33.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="QEB-pJ-cip"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oA4-bh-CcY">
-                                <rect key="frame" x="40" y="458" width="295" height="40"/>
+                                <rect key="frame" x="40" y="487.5" width="295" height="40"/>
                                 <color key="backgroundColor" red="0.83921568629999999" green="0.83921568629999999" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="g82-Bk-KEm"/>
@@ -1425,20 +1434,23 @@
                         <constraints>
                             <constraint firstItem="oA4-bh-CcY" firstAttribute="leading" secondItem="abb-Q4-yYV" secondAttribute="leading" constant="40" id="0Cw-AF-KFM"/>
                             <constraint firstItem="099-Q0-qc7" firstAttribute="leading" secondItem="abb-Q4-yYV" secondAttribute="leading" constant="33" id="0ED-nu-HO4"/>
-                            <constraint firstItem="jK3-RB-rK7" firstAttribute="top" secondItem="z2Q-LX-Ibg" secondAttribute="bottom" constant="25" id="3zT-9L-s4C"/>
-                            <constraint firstItem="099-Q0-qc7" firstAttribute="top" secondItem="jK3-RB-rK7" secondAttribute="bottom" constant="18.5" id="93h-fW-TTt"/>
+                            <constraint firstItem="jK3-RB-rK7" firstAttribute="top" secondItem="z2Q-LX-Ibg" secondAttribute="bottom" constant="16" id="3zT-9L-s4C"/>
+                            <constraint firstItem="YQ8-SE-S7f" firstAttribute="top" secondItem="099-Q0-qc7" secondAttribute="bottom" constant="16" id="7zH-3C-irc"/>
+                            <constraint firstItem="099-Q0-qc7" firstAttribute="top" secondItem="jK3-RB-rK7" secondAttribute="bottom" constant="16" id="93h-fW-TTt"/>
                             <constraint firstItem="abb-Q4-yYV" firstAttribute="trailing" secondItem="oA4-bh-CcY" secondAttribute="trailing" constant="40" id="CKs-z6-QeG"/>
                             <constraint firstItem="abb-Q4-yYV" firstAttribute="trailing" secondItem="099-Q0-qc7" secondAttribute="trailing" constant="33" id="CPH-5Z-BZd"/>
-                            <constraint firstItem="oA4-bh-CcY" firstAttribute="top" secondItem="099-Q0-qc7" secondAttribute="bottom" constant="24.5" id="F5d-mY-0Rb"/>
                             <constraint firstItem="z2Q-LX-Ibg" firstAttribute="top" secondItem="uIn-aB-yxx" secondAttribute="bottom" constant="10" id="IRj-NG-bte"/>
                             <constraint firstItem="abb-Q4-yYV" firstAttribute="trailing" secondItem="uIn-aB-yxx" secondAttribute="trailing" constant="10" id="LDp-ed-ijb"/>
                             <constraint firstItem="z2Q-LX-Ibg" firstAttribute="trailing" secondItem="abb-Q4-yYV" secondAttribute="trailing" id="OZq-bz-kae"/>
                             <constraint firstItem="z2Q-LX-Ibg" firstAttribute="leading" secondItem="abb-Q4-yYV" secondAttribute="leading" id="P1V-f3-NLm"/>
                             <constraint firstItem="jK3-RB-rK7" firstAttribute="leading" secondItem="abb-Q4-yYV" secondAttribute="leading" constant="7" id="TPE-N1-k1d"/>
                             <constraint firstItem="TWd-0m-Qng" firstAttribute="leading" secondItem="abb-Q4-yYV" secondAttribute="leading" constant="5" id="ZXI-At-mUp"/>
+                            <constraint firstItem="YQ8-SE-S7f" firstAttribute="leading" secondItem="abb-Q4-yYV" secondAttribute="leading" constant="16" id="c2L-QJ-Fj3"/>
                             <constraint firstItem="uIn-aB-yxx" firstAttribute="leading" secondItem="abb-Q4-yYV" secondAttribute="leading" constant="10" id="flH-M6-zY4"/>
+                            <constraint firstItem="abb-Q4-yYV" firstAttribute="trailing" secondItem="YQ8-SE-S7f" secondAttribute="trailing" constant="16" id="gnx-9W-t3f"/>
                             <constraint firstItem="uIn-aB-yxx" firstAttribute="centerX" secondItem="Sof-pz-hr8" secondAttribute="centerX" id="hfh-Tc-Pv7"/>
                             <constraint firstItem="abb-Q4-yYV" firstAttribute="trailing" secondItem="jK3-RB-rK7" secondAttribute="trailing" constant="7" id="jGn-Jo-dRI"/>
+                            <constraint firstItem="oA4-bh-CcY" firstAttribute="top" secondItem="YQ8-SE-S7f" secondAttribute="bottom" constant="16" id="rfP-Nh-0ae"/>
                             <constraint firstItem="abb-Q4-yYV" firstAttribute="bottom" secondItem="TWd-0m-Qng" secondAttribute="bottom" constant="7" id="sss-mQ-3XN"/>
                             <constraint firstItem="abb-Q4-yYV" firstAttribute="bottom" secondItem="TWd-0m-Qng" secondAttribute="bottom" constant="7" id="wTR-SK-egZ"/>
                             <constraint firstItem="uIn-aB-yxx" firstAttribute="centerY" secondItem="Sof-pz-hr8" secondAttribute="centerY" multiplier="20%" id="yrT-HR-3M4"/>
@@ -1459,7 +1471,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gn5-pM-8py" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2109.375" y="64.436619718309856"/>
+            <point key="canvasLocation" x="2108" y="64.31784107946028"/>
         </scene>
         <!--Web Kit ViewVC-->
         <scene sceneID="frh-eW-659">

@@ -158,7 +158,7 @@ class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataS
         btnValue1.backgroundColor = UIColor(red: 0.40, green: 0.49, blue: 0.54, alpha: 1.00)
         btnValue2.backgroundColor = UIColor.lightGray
         btnValue3.backgroundColor = UIColor.lightGray
-        minRangeValue = 20
+        minRangeValue = 10
         maxRangeValue = 60
         
         if arrSelectedMode.count == 0 || minRangeValue == nil || maxRangeValue == nil {
@@ -174,7 +174,7 @@ class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataS
         btnValue2.backgroundColor = UIColor(red: 0.40, green: 0.49, blue: 0.54, alpha: 1.00)
         btnValue1.backgroundColor = UIColor.lightGray
         btnValue3.backgroundColor = UIColor.lightGray
-        minRangeValue = 15
+        minRangeValue = 10
         maxRangeValue = 40
         
         if arrSelectedMode.count == 0 || minRangeValue == nil || maxRangeValue == nil {

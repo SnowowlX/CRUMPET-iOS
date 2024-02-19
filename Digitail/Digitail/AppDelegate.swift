@@ -11,6 +11,7 @@ import CoreBluetooth
 import SideMenu
 import IQKeyboardManagerSwift
 import SOMotionDetector
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -131,6 +132,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var duration: Double = 0.0
     var casualWalkModeTimer: Timer?
     var lastStartDate = "last_start_date"
+    var realm: Realm!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -138,6 +140,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setUpSideMenu()
         setRootViewController()
         setStatusColor()
+        
+        let config = Realm.Configuration(
+                    schemaVersion: 1,
+                    migrationBlock: { migration, oldSchemaVersion in
+                        // We haven’t migrated anything yet, so oldSchemaVersion == 0
+                        if (oldSchemaVersion < 1) {
+                            
+                        }
+                })
+        Realm.Configuration.defaultConfiguration = config
+        realm = try! Realm()
         
 //        // Load the objects for default store
 //        let devices:NSArray = (LoadObjects(kDevicesStorageKey) as NSArray)

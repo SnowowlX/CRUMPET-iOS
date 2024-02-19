@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreBluetooth
-
+import RealmSwift
 
 // CBCenterManager Notification
 let kBluetoothStateUpdate = "BluetoothStateUpdate"
@@ -241,6 +241,14 @@ class CentralManagerActor: NSObject,CBCentralManagerDelegate {
             NSLog("addPeripheral>>\(peripheral)")
             PostNoteBLE(kPeripheralStateChanged, peripheral)
         }
+        
+        let identifier = DeviceInfo()
+        identifier.btIdentifier = peripheral.identifier.uuidString
+        
+        try! AppDelegate_.realm.write {
+            AppDelegate_.realm.add(identifier, update: .modified)
+        }
+        
     }
     
     func removeAllPeripherals() {
