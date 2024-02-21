@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreBluetooth
-
+import RealmSwift
 
 // CBCenterManager Notification
 let kBluetoothStateUpdate = "BluetoothStateUpdate"
@@ -240,6 +240,43 @@ class CentralManagerActor: NSObject,CBCentralManagerDelegate {
         else {
             NSLog("addPeripheral>>\(peripheral)")
             PostNoteBLE(kPeripheralStateChanged, peripheral)
+        }
+        
+        let localStoredDevice = Array(AppDelegate_.realm.objects(DeviceInfo.self)).filter { $0.btIdentifier == peripheral.identifier.uuidString }
+        
+        let identifier = DeviceInfo()
+        identifier.btIdentifier = peripheral.identifier.uuidString
+        
+        if !localStoredDevice.isEmpty {
+            // As it is name from local
+            identifier.name = localStoredDevice.first?.name ?? getDefaultName(peripheral: peripheral)
+        } else {
+            // Insert
+            identifier.name = getDefaultName(peripheral: peripheral)
+        }
+        
+        try! AppDelegate_.realm.write {
+            AppDelegate_.realm.add(identifier, update: .modified)
+        }
+        
+        
+    }
+    
+    func getDefaultName(peripheral: CBPeripheral) -> String {
+        if peripheral.name!.lowercased().contains("mitail") {
+            return "MiTail"
+        } else if peripheral.name!.contains("(!)Tail1") {
+            return "DIGITAIL"
+        } else if peripheral.name!.lowercased().contains("eg2") {
+            return "EarGear"
+        } else if peripheral.name!.lowercased().contains("eargear") {
+            return "EARGEAR"
+        } else if peripheral.name!.lowercased().contains("flutter") {
+            return "FlutterWings"
+        } else if peripheral.name!.lowercased().contains("minitail") {
+            return "MiTail Mini"
+        } else {
+            return "N/A"
         }
     }
     
