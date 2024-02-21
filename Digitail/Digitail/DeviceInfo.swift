@@ -12,7 +12,7 @@ import RealmSwift
 public class DeviceInfo: Object {
 //    @Persisted(primaryKey: true) var id = 0
     @Persisted(primaryKey: true) var btIdentifier: String
-
+    @Persisted var name: String
 
 //    //Incrementa ID
 //    func IncrementaID() -> Int{

@@ -54,6 +54,7 @@ let kEarGearPoses = NSLocalizedString("kEarGearPoses", comment: "")
 let kTiltMode = NSLocalizedString("kTiltMode", comment: "")
 let kGlowTipsTitle = NSLocalizedString("kGlowTipsTitle", comment: "")
 
+let kDeviceInfoCellHeight : CGFloat = 42.0
 class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,UITableViewDataSource {
     
     //MARK: - Properties
@@ -402,7 +403,6 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
         self.navigationItem.setHidesBackButton(true, animated:true);
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
         updateConnectionUI()
-        setUpConnectedDevicesList()
         tblVwConnectedDeviceList.reloadData()
 
     }
@@ -636,7 +636,10 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
         LayConsts_VwConnectedDeviceTop.constant = 13
         
         if AppDelegate_.tempDigitailDeviceActor.count > 0 || AppDelegate_.tempEargearDeviceActor.count > 0 || AppDelegate_.tempFlutterDeviceActor.count > 0 || AppDelegate_.tempMinitailDeviceActor.count > 0 {
-            LayConsts_VwConnectedDeviceHeight.constant = CGFloat(30 * (AppDelegate_.tempDigitailDeviceActor.count + AppDelegate_.tempEargearDeviceActor.count + AppDelegate_.tempFlutterDeviceActor.count + AppDelegate_.tempMinitailDeviceActor.count))
+            
+            let totalDeviceCount = CGFloat(AppDelegate_.tempDigitailDeviceActor.count + AppDelegate_.tempEargearDeviceActor.count + AppDelegate_.tempFlutterDeviceActor.count + AppDelegate_.tempMinitailDeviceActor.count)
+            
+            LayConsts_VwConnectedDeviceHeight.constant = CGFloat(kDeviceInfoCellHeight * totalDeviceCount)
         }
         
 //
@@ -1168,6 +1171,113 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
         
     }
     
+    @IBAction func devieInfoClicked(_ sender: Any) {
+        if let button = (sender as? UIButton) {
+            if let cell = button.superview?.superview?.superview as? TblVw_ConnectedDeviceLIst_Cell {
+                print("battery clicked - \(button.tag)")
+                var firmwareVersion = ""
+                if cell.tag == 0 {
+                    if let version = AppDelegate_.tempDigitailDeviceActor[button.tag].state["FirmwareVersion"] {
+                        firmwareVersion = version as! String
+                    }
+                } else if cell.tag == 1 {
+                    if let version = AppDelegate_.tempEargearDeviceActor[button.tag].state["FirmwareVersion"] {
+                        firmwareVersion = version as! String
+                    }
+                    
+                } else if cell.tag == 2{
+                    if let version = AppDelegate_.tempFlutterDeviceActor[button.tag].state["FirmwareVersion"] {
+                        firmwareVersion = version as! String
+                    }
+                    
+                } else {
+                    if let version = AppDelegate_.tempMinitailDeviceActor[button.tag].state["FirmwareVersion"] {
+                        firmwareVersion = version as! String
+                    }
+                    
+                }
+                
+                showAlert(title: NSLocalizedString("kCurrentFirmwareVersion", comment: ""), msg: firmwareVersion)
+            }
+        }
+    }
+    
+    var tField: UITextField!
+    
+    @IBAction func editDeviceClicked(_ sender: Any) {
+        if let button = (sender as? UIButton) {
+            if let cell = button.superview?.superview?.superview as? TblVw_ConnectedDeviceLIst_Cell {
+                
+                print(cell.tag) // which section
+                print(button.tag) // which array
+                
+                var alert = UIAlertController(title: "Rename your gear?", message: "", preferredStyle: .alert)
+                
+                alert.addTextField(configurationHandler: configurationTextField)
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:handleCancel))
+                alert.addAction(UIAlertAction(title: "Done", style: .default, handler:{ [weak self] (UIAlertAction) in
+                    guard let weakSelf = self else { return }
+                    if let name = weakSelf.tField.text, !name.isBlank {
+                        print("\(name)")
+                        
+                        switch (cell.tag) {
+                        case 0:
+                            let oneDevice = AppDelegate_.tempDigitailDeviceActor[button.tag]
+                            
+                            if let localStoredDevice = Array(AppDelegate_.realm.objects(DeviceInfo.self)).filter({ $0.btIdentifier == oneDevice.peripheralActor.peripheral?.identifier.uuidString }).first {
+                                weakSelf.updateName(deviceInfo: localStoredDevice, name: name)
+                            }
+                            
+                        case 1:
+                            let oneDevice = AppDelegate_.tempEargearDeviceActor[button.tag]
+                            if let localStoredDevice = Array(AppDelegate_.realm.objects(DeviceInfo.self)).filter({ $0.btIdentifier == oneDevice.peripheralActor.peripheral?.identifier.uuidString }).first {
+                                weakSelf.updateName(deviceInfo: localStoredDevice, name: name)
+                            }
+                        case 2:
+                            let oneDevice =  AppDelegate_.tempFlutterDeviceActor[button.tag]
+                            if let localStoredDevice = Array(AppDelegate_.realm.objects(DeviceInfo.self)).filter({ $0.btIdentifier == oneDevice.peripheralActor.peripheral?.identifier.uuidString }).first {
+                                weakSelf.updateName(deviceInfo: localStoredDevice, name: name)
+                            }
+                        case 3:
+                            let oneDevice =  AppDelegate_.tempMinitailDeviceActor[button.tag]
+                            if let localStoredDevice = Array(AppDelegate_.realm.objects(DeviceInfo.self)).filter({ $0.btIdentifier == oneDevice.peripheralActor.peripheral?.identifier.uuidString }).first {
+                                weakSelf.updateName(deviceInfo: localStoredDevice, name: name)
+                            }
+                        default:
+                            print("\(name)")
+                        }
+                        
+                    }
+                }))
+                self.present(alert, animated: true, completion: {
+                    print("completion block")
+                })
+            }
+
+        }
+    }
+
+    func updateName(deviceInfo: DeviceInfo, name: String) {
+        try! AppDelegate_.realm.write {
+            deviceInfo.name = name
+            AppDelegate_.realm.add(deviceInfo, update: .modified)
+        }
+        tblVwConnectedDeviceList.reloadData()
+    }
+    
+    
+    func configurationTextField(textField: UITextField!)
+    {
+        print("generating the TextField")
+        textField.placeholder = "Enter an item"
+        tField = textField
+    }
+    
+    func handleCancel(alertView: UIAlertAction!)
+    {
+        print("Cancelled !!")
+    }
+    
     //MARK: - TableView Delegate Methods -
     func numberOfSections(in tableView: UITableView) -> Int {
         if tableView == tblVwActions {
@@ -1201,13 +1311,13 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
             return 60
         } else {
             if indexPath.section == 0 && self.isDIGITAiLConnected() {
-                return 30
+                return kDeviceInfoCellHeight
             } else if indexPath.section == 1 && self.isEARGEARConnected() {
-                return 30
+                return kDeviceInfoCellHeight
             } else if indexPath.section == 2 && self.isFlutterConnected() {
-                return 30
+                return kDeviceInfoCellHeight
             }  else if indexPath.section == 3 && self.isMinitailConnected() {
-                return 30
+                return kDeviceInfoCellHeight
             } else {
                 return 0
             }
@@ -1254,30 +1364,7 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                  break
              }
         } else {
-            print("battery clicked - \(indexPath.row)")
-            var firmwareVersion = ""
-            if indexPath.section == 0 {
-                if let version = AppDelegate_.tempDigitailDeviceActor[indexPath.row].state["FirmwareVersion"] {
-                    firmwareVersion = version as! String
-                }
-            } else if indexPath.section == 1 {
-                if let version = AppDelegate_.tempEargearDeviceActor[indexPath.row].state["FirmwareVersion"] {
-                    firmwareVersion = version as! String
-                }
-                 
-            } else if indexPath.section == 2{
-                if let version = AppDelegate_.tempFlutterDeviceActor[indexPath.row].state["FirmwareVersion"] {
-                    firmwareVersion = version as! String
-                }
-                 
-            } else {
-                if let version = AppDelegate_.tempMinitailDeviceActor[indexPath.row].state["FirmwareVersion"] {
-                    firmwareVersion = version as! String
-                }
-                 
-            }
             
-            showAlert(title: NSLocalizedString("kCurrentFirmwareVersion", comment: ""), msg: firmwareVersion)
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -1356,20 +1443,35 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TblVw_ConnectedDeviceLIst_Cell") as! TblVw_ConnectedDeviceLIst_Cell
             
+            cell.tag = indexPath.section
+            cell.btnEdit.tag = indexPath.row
+            cell.btnDeviceInfo.tag = indexPath.row
+            
             if indexPath.section == 0 {
                //DIGITAil DEVICE LISTS AND BATTERY STATUS --
                 guard AppDelegate_.tempDigitailDeviceActor.count > 0 else {
                     return cell
                 }
                
-               if AppDelegate_.tempDigitailDeviceActor[indexPath.row].peripheralActor == nil {
+                let oneDevice = AppDelegate_.tempDigitailDeviceActor[indexPath.row]
+                
+               if oneDevice.peripheralActor == nil {
                    DispatchQueue.main.async {
                        cell.lblPercentage.text = ""
                    }
                } else {
-                   cell.lblDeviceName.text = AppDelegate_.tempDigitailDeviceActor[indexPath.row].state[Constants.kDeviceName] as? String
-                   let batteryLevel = AppDelegate_.tempDigitailDeviceActor[indexPath.row].state["BatteryLevel"]
-                   let batteryPercentage = AppDelegate_.tempDigitailDeviceActor[indexPath.row].state["BatteryPercentage"]
+                   
+                   
+                   let objPeripharal:CBPeripheral = (oneDevice.peripheralActor.peripheral!)
+                   
+                   if let localStoredDevice = Array(AppDelegate_.realm.objects(DeviceInfo.self)).filter({ $0.btIdentifier == objPeripharal.identifier.uuidString }).first {
+                       cell.lblDeviceName.text = localStoredDevice.name
+                   } else {
+                       cell.lblDeviceName.text = oneDevice.state[Constants.kDeviceName] as? String
+                   }
+                   
+                   let batteryLevel = oneDevice.state["BatteryLevel"]
+                   let batteryPercentage = oneDevice.state["BatteryPercentage"]
 
                    if batteryLevel != nil {
                        let battery  = (batteryLevel as! NSString).integerValue
@@ -1410,15 +1512,26 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                     return cell
                 }
                 
-               if AppDelegate_.tempEargearDeviceActor[indexPath.row].peripheralActor == nil {
+                let oneDevice = AppDelegate_.tempEargearDeviceActor[indexPath.row]
+                
+               if oneDevice.peripheralActor == nil {
                    DispatchQueue.main.async {
                        cell.lblPercentage.text = ""
                    }
                } else {
-                   let objPeripharal:CBPeripheral = (AppDelegate_.tempEargearDeviceActor[indexPath.row].peripheralActor.peripheral!)
-                   cell.lblDeviceName.text = AppDelegate_.tempEargearDeviceActor[indexPath.row].state[Constants.kDeviceName] as? String
-                   let batteryLevel = AppDelegate_.tempEargearDeviceActor[indexPath.row].state["BatteryLevel"]
-                   let batteryPercentage = AppDelegate_.tempEargearDeviceActor[indexPath.row].state["BatteryPercentage"]
+                   
+                   
+                   
+                   let objPeripharal:CBPeripheral = (oneDevice.peripheralActor.peripheral!)
+                   
+                   if let localStoredDevice = Array(AppDelegate_.realm.objects(DeviceInfo.self)).filter({ $0.btIdentifier == objPeripharal.identifier.uuidString }).first {
+                       cell.lblDeviceName.text = localStoredDevice.name
+                   } else {
+                       cell.lblDeviceName.text = oneDevice.state[Constants.kDeviceName] as? String
+                   }
+                   
+                   let batteryLevel = oneDevice.state["BatteryLevel"]
+                   let batteryPercentage = oneDevice.state["BatteryPercentage"]
                    print("Eargear battery :: ",batteryLevel as Any)
 
                    if batteryLevel != nil {
@@ -1460,14 +1573,25 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                guard AppDelegate_.tempFlutterDeviceActor.count > 0 else {
                    return cell
                }
-               if AppDelegate_.tempFlutterDeviceActor[indexPath.row].peripheralActor == nil {
+               
+               let oneDevice = AppDelegate_.tempFlutterDeviceActor[indexPath.row]
+               
+               if oneDevice.peripheralActor == nil {
                    DispatchQueue.main.async {
                        cell.lblPercentage.text = ""
                    }
                } else {
-                   cell.lblDeviceName.text = AppDelegate_.tempFlutterDeviceActor[indexPath.row].state[Constants.kDeviceName] as? String
-                   let batteryLevel = AppDelegate_.tempFlutterDeviceActor[indexPath.row].state["BatteryLevel"]
-                   let batteryPercentage = AppDelegate_.tempFlutterDeviceActor[indexPath.row].state["BatteryPercentage"]
+                  
+                   let objPeripharal:CBPeripheral = (oneDevice.peripheralActor.peripheral!)
+                   
+                   if let localStoredDevice = Array(AppDelegate_.realm.objects(DeviceInfo.self)).filter({ $0.btIdentifier == objPeripharal.identifier.uuidString }).first {
+                       cell.lblDeviceName.text = localStoredDevice.name
+                   } else {
+                       cell.lblDeviceName.text = oneDevice.state[Constants.kDeviceName] as? String
+                   }
+                   
+                   let batteryLevel = oneDevice.state["BatteryLevel"]
+                   let batteryPercentage = oneDevice.state["BatteryPercentage"]
 
                    if batteryLevel != nil {
                        let battery  = (batteryLevel as! NSString).integerValue
@@ -1506,14 +1630,25 @@ class DigitailVC: UIViewController,RangeSeekSliderDelegate, UITableViewDelegate,
                guard AppDelegate_.tempMinitailDeviceActor.count > 0 else {
                    return cell
                }
-               if AppDelegate_.tempMinitailDeviceActor[indexPath.row].peripheralActor == nil {
+               
+               let oneDevice = AppDelegate_.tempMinitailDeviceActor[indexPath.row]
+               
+               if oneDevice.peripheralActor == nil {
                    DispatchQueue.main.async {
                        cell.lblPercentage.text = ""
                    }
                } else {
-                   cell.lblDeviceName.text = AppDelegate_.tempMinitailDeviceActor[indexPath.row].state[Constants.kDeviceName] as? String
-                   let batteryLevel = AppDelegate_.tempMinitailDeviceActor[indexPath.row].state["BatteryLevel"]
-                   let batteryPercentage = AppDelegate_.tempMinitailDeviceActor[indexPath.row].state["BatteryPercentage"]
+                   
+                   let objPeripharal:CBPeripheral = (oneDevice.peripheralActor.peripheral!)
+                   
+                   if let localStoredDevice = Array(AppDelegate_.realm.objects(DeviceInfo.self)).filter({ $0.btIdentifier == objPeripharal.identifier.uuidString }).first {
+                       cell.lblDeviceName.text = localStoredDevice.name
+                   } else {
+                       cell.lblDeviceName.text = oneDevice.state[Constants.kDeviceName] as? String
+                   }
+                   
+                   let batteryLevel = oneDevice.state["BatteryLevel"]
+                   let batteryPercentage = oneDevice.state["BatteryPercentage"]
 
                    if batteryLevel != nil {
                        let battery  = (batteryLevel as! NSString).integerValue

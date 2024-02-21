@@ -159,7 +159,7 @@ class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataS
         btnValue2.backgroundColor = UIColor.lightGray
         btnValue3.backgroundColor = UIColor.lightGray
         minRangeValue = 10
-        maxRangeValue = 60
+        maxRangeValue = 45
         
         if arrSelectedMode.count == 0 || minRangeValue == nil || maxRangeValue == nil {
             btnSendToTail.isUserInteractionEnabled = false
@@ -175,7 +175,7 @@ class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataS
         btnValue1.backgroundColor = UIColor.lightGray
         btnValue3.backgroundColor = UIColor.lightGray
         minRangeValue = 10
-        maxRangeValue = 40
+        maxRangeValue = 30
         
         if arrSelectedMode.count == 0 || minRangeValue == nil || maxRangeValue == nil {
             btnSendToTail.isUserInteractionEnabled = false
@@ -191,7 +191,7 @@ class CasualModeSettingVC: UIViewController,UITableViewDelegate,UITableViewDataS
         btnValue1.backgroundColor = UIColor.lightGray
         btnValue2.backgroundColor = UIColor.lightGray
         minRangeValue = 10
-        maxRangeValue = 30
+        maxRangeValue = 15
         
         if arrSelectedMode.count == 0 || minRangeValue == nil || maxRangeValue == nil {
             btnSendToTail.isUserInteractionEnabled = false
