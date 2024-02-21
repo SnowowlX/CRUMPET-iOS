@@ -1222,7 +1222,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.18.1;
+				MARKETING_VERSION = 5.18.2;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Digitail.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1248,7 +1248,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.18.1;
+				MARKETING_VERSION = 5.18.2;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Digitail.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
