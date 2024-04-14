@@ -1,0 +1,14 @@
+/* 
+  InfoPlist.strings
+  Digitail
+
+  Created by Rushabh Champaneri on 4/26/22.
+  Copyright © 2022 Iottive. All rights reserved.
+  Translated by Jörg Dahm on 4/13/24
+*/
+
+"NSBluetoothAlwaysUsageDescription" = "App verwendet Bluetooth um sich mit dem Digitail Gerät zu verbinden";
+"NSBluetoothPeripheralUsageDescription" = "App verwendet Bluetooth um mit dem Digitail Gerät zu kommunizieren";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "App möchte für den Gehen Modus die Standortdaten verwenden";
+"NSLocationWhenInUseUsageDescription" = "App möchte für den Gehen Modus die Standortdaten verwenden";
+"NSMotionUsageDescription" = "App möchte für den Gehen Modus die Standortdaten verwenden";
